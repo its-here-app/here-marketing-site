@@ -12,7 +12,7 @@ export default function Home() {
   
   return (
   <div  className="flex w-full h-[100vh] bg-black items-center justify-center">
-    <div class="relative w-[50vw] aspect-square ">
+    <div class="relative w-[50vw] max-w-[900px] aspect-square ">
 
       <div id="bg" class="absolute w-[30%] h-[30%] top-[0px] left-[45%]" >
         <Image fill src={sticker3}/>
