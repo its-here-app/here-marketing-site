@@ -10,42 +10,28 @@ export default function Home() {
   useEffect(() => {});
 
   const cursorCircle = useRef(null);
-
-  // let cursor = document.getElementsByClassName("circle")[0];
-
+  
   const [MousePosition, setMousePosition] = useState({
     left: 0,
     top: 0,
   });
 
   const [hovering, setHovering] = useState(false)
-  // const [trailSize, setTrailSize] = useState(10)
-
 
   useEffect(() => {
     gsap.to(cursorCircle.current, {
       duration: 0.3,
- 
       left: MousePosition.left - 12,
       top: MousePosition.top - 12,
     });
   }, [MousePosition]);
 
   useEffect(() => {
-    // trailSize = 300;
     let foo = cursorCircle.current;
     console.log(foo)
-    // foo.classList.add('grow')
     hovering ? foo.classList.add('grow') : foo.classList.remove('grow')
-    // gsap.to(cursorCircle.current, {
-    //   duration: 0.3,
-    //   onRepeat: () =>
-    //   width: trailSize,
-    //   height: trailSize,
-    //   left: MousePosition.left - 12,
-    //   top: MousePosition.top - 12,
-    // })
   }, [hovering])
+
   const handleMouseMove = (e) => {
     setMousePosition({ left: e.clientX, top: e.clientY });
   };
