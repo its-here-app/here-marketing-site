@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 
 @keyframes spin {
   from {
@@ -12,12 +8,39 @@
   }
 }
 
+  
 :root {
+  --cursor-size: 30px;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --neon: #DAFF70;
 }
 
+.circle {
+
+  position: fixed;
+  background-color: white;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: 100%;
+  z-index: 10;
+  user-select: none;
+  pointer-events: none;
+  transform: scale(1);
+  /* mix-blend-mode: exclusion; */
+  transition: transform 350ms ease-in-out;
+
+}
+.grow {
+  transform: scale(3);
+  background-color: var(--neon);
+  mix-blend-mode: none;
+  background-image: url('/cursor-arrow.svg');
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .spin {
   animation: spin 25s linear infinite;
 }
@@ -40,3 +63,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
