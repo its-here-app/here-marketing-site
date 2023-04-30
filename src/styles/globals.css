@@ -10,7 +10,24 @@
   font-weight: 300;
   font-style: normal;
 }
-
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -20,6 +37,9 @@
   }
 }
 
+.pop-in {
+  animation: pop-in 2300ms ease-in-out both;
+}
 :root {
   --cursor-size: 30px;
   --neon: #DAFF70;

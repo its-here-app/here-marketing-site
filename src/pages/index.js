@@ -79,7 +79,7 @@ export default function Home() {
             Try it out here*
           </div>
           <form className="relative w-[800px] h-[100px]">
-            <input className="w-full text-[2.5rem] text-white px-[1rem] h-full email-input" placeholder="your email for exclusive access"></input>
+            <input className="cursor-none w-full text-[2.5rem] text-white px-[1rem] h-full email-input" placeholder="your email for exclusive access"></input>
             <button className="cursor-none hover:scale-[1.5] transition-all absolute right-[20px] h-full items-top justify-end " type="submit">
               <Image alt="none" src={arrowSubmit}/>
             </button>
@@ -87,8 +87,8 @@ export default function Home() {
           <div className="">
             <Image alt="none" src={logoOG}/>
           </div>
-          <Image alt="none" className="absolute right-0 bottom-0" src={stickerStartYourPlaylist}/>
-          <Image alt="none" className="absolute right-[20%] bottom-[20%] " src={stickerLockupOcean}/>
+          <Image alt="none"  className="pop-in absolute right-0 bottom-0 " src={stickerStartYourPlaylist}/>
+          <Image alt="none"  className="pop-in absolute right-[20%] bottom-[20%] "  src={stickerLockupOcean}/>
         </div>
       </section>
       {/* /footer */}
