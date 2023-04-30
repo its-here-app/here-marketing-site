@@ -1,8 +1,12 @@
 import Image from "next/image";
-import sticker1 from "/public/stickers/1.svg";
-import sticker2 from "/public/stickers/2.svg";
-import sticker3 from "/public/stickers/3.svg";
-import sticker4 from "/public/stickers/4.svg";
+import logoOG from "/public/graphics/logo-og.svg";
+import arrowSubmit from "/public/graphics/arrow-right.svg";
+import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playlist.svg";
+import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
+import stickerDate from "/public/stickers/sticker-date.svg";
+import stickerLockup from "/public/stickers/sticker-lockup.svg";
+import stickerLogo from "/public/stickers/sticker-logo.svg";
+import stickerDonut from "/public/stickers/sticker-donut.svg";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 
@@ -39,7 +43,7 @@ export default function Home() {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="cursor-none flex m-0 p-0 flex-col w-full h-auto bg-black"
+      className="font-[PP-Radio-Grotesk] cursor-none flex m-0 p-0 flex-col w-full h-auto bg-[color:var(--black)]"
     >
       {/* <Cursor MousePosition={MousePosition} /> */}
 
@@ -52,24 +56,41 @@ export default function Home() {
             id="bg"
             className="absolute w-[30%] h-[30%] top-[0px] left-[45%]"
           >
-            <Image fill alt="test" src={sticker3} />
+            <Image fill alt="none" src={stickerLogo} />
           </div>
           <a href="https://instagram.com/itshere.app" onMouseOver={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className="cursor-none absolute w-[50%] h-[50%] top-[25%] left-[45%]">
-            <Image fill alt="test" className="spin" src={sticker4} />
+            <Image fill alt="none" className="spin" src={stickerDonut} />
           </a>
           <div className="absolute w-[60%] h-[60%] bottom-[0px] left-[0px]">
-            <Image fill alt="test" src={sticker1} />
+            <Image fill alt="none" src={stickerDate} />
           </div>
 
           <div className="absolute w-[50%] h-[50%] top-[10%] left-[0px]">
-            <Image fill alt="test" src={sticker2} />
+            <Image fill alt="none" src={stickerLockup} />
           </div>
         </div>
       </section>
       {/* /main */}
       {/* footer */}
 
-      {/* <section className="h-[50vh] w-full bg-[#252525]">howdy</section> */}
+      <section className="h-[800px] w-full flex flex-col items-top bg-[color:var(--black)] justify-center">
+        <div className="relative flex flex-col justify-between gap-[5rem] my-[10rem] mx-[5rem]">
+          <div className=" w-full font-[Radio] text-white text-[8vw] ">
+            Try it out here*
+          </div>
+          <form className="relative w-[800px] h-[100px]">
+            <input className="w-full text-[2.5rem] text-white px-[1rem] h-full email-input" placeholder="your email for exclusive access"></input>
+            <button className="cursor-none hover:scale-[1.5] transition-all absolute right-[20px] h-full items-top justify-end " type="submit">
+              <Image alt="none" src={arrowSubmit}/>
+            </button>
+          </form>
+          <div className="">
+            <Image alt="none" src={logoOG}/>
+          </div>
+          <Image alt="none" className="absolute right-0 bottom-0" src={stickerStartYourPlaylist}/>
+          <Image alt="none" className="absolute right-[20%] bottom-[20%] " src={stickerLockupOcean}/>
+        </div>
+      </section>
       {/* /footer */}
     </div>
   );

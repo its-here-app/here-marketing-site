@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "Radio";
+  src: url("../../public/fonts/PP/PPRadioGrotesk-Regular.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PP-Radio-Grotesk";
+  src: url("../../public/fonts/PP/PPRadioGrotesk-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -7,14 +20,27 @@
   }
 }
 
-  
 :root {
   --cursor-size: 30px;
   --neon: #DAFF70;
+  --ocean: #5C89CC;
+  --cream: #FFFBF7;
+  --bubble: #1169EE;
+  --grey: #757575;
+  --black: #101010;
+  --white: #FFFFFF;
 }
 
+/* @layer base { */
+.email-input {
+  border: 3px solid var(--neon);
+  background-color:transparent;
+  border-radius: 24px;
+  
+  /* @apply border-[color:(var(--neon)] border-solid border-[5px] bg-transparent rounded-[24px]; */
+}
+/* } */
 .circle {
-
   position: fixed;
   background-color: white;
   width: var(--cursor-size);
@@ -24,15 +50,13 @@
   user-select: none;
   pointer-events: none;
   transform: scale(1);
-  /* mix-blend-mode: exclusion; */
   transition: transform 350ms ease-in-out;
-
 }
 .grow {
   transform: scale(3);
   background-color: var(--neon);
   mix-blend-mode: none;
-  background-image: url('/cursor-arrow.svg');
+  background-image: url('/graphics/cursor-arrow.svg');
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
