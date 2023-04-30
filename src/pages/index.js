@@ -5,7 +5,6 @@ import sticker3 from "/public/stickers/3.svg";
 import sticker4 from "/public/stickers/4.svg";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
-import Cursor from "../components/Cursor.js";
 
 export default function Home() {
   useEffect(() => {});
