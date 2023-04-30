@@ -4,20 +4,18 @@ import sticker2 from "/public/stickers/2.svg";
 import sticker3 from "/public/stickers/3.svg";
 import sticker4 from "/public/stickers/4.svg";
 import { Inter } from "next/font/google";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { useLocomotiveScroll, LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { scroll } = useLocomotiveScroll();
 
   return (
-    <div className="flex flex-col w-full h-[200vh] bg-black">
+    <div data-scroll-section className="flex flex-col w-full h-full bg-black">
       {/* main */}
-      <section class="h-[100vh] flex items-center justify-center w-full">
+      <section className="h-[800px] flex items-center justify-center w-full">
         <div className="relative w-[50vw] max-w-[900px] aspect-square ">
           <div
-           
             id="bg"
             className="absolute w-[30%] h-[30%] top-[0px] left-[45%]"
           >
@@ -37,7 +35,8 @@ export default function Home() {
       </section>
       {/* /main */}
       {/* footer */}
-      <section class="h-[100vh] w-full bg-red-200">
+      
+      <section className="h-[800px] w-full bg-[#252525]">
         howdy
       </section>
       {/* /footer */}
