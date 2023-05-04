@@ -10,7 +10,7 @@ import stickerLogo from "/public/stickers/sticker-logo.svg";
 import stickerDonut from "/public/stickers/sticker-donut.svg";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
-import { BetaTesterForm } from "../components/EmailForms";
+import EmailForms from "../components/EmailForms";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 export default function Home() {
@@ -83,7 +83,7 @@ export default function Home() {
         <MailchimpSubscribe
           url={url}
           render={({ subscribe, status, message }) => (
-            <BetaTesterForm
+            <EmailForms
               status={status}
               message={message}
               onValidated={(formData) => subscribe(formData)}

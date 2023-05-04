@@ -4,9 +4,8 @@ import arrowSubmit from "/public/graphics/arrow-right.svg";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 
-export const SimpleForm = () => <MailchimpSubscribe url={url} />;
 
-export const BetaTesterForm = ({ status, message, onValidated }) => {
+const EmailForms = ({ status, message, onValidated }) => {
   let email, name;
   const submit = () =>
     email &&
@@ -59,3 +58,5 @@ export const BetaTesterForm = ({ status, message, onValidated }) => {
     </div>
   );
 };
+
+export default EmailForms;
