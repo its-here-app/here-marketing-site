@@ -1,6 +1,7 @@
 import Image from "next/image";
 import logoOG from "/public/graphics/logo-og.svg";
 import arrowSubmit from "/public/graphics/arrow-right.svg";
+
 import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playlist.svg";
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
 import stickerDate from "/public/stickers/sticker-date.svg";
@@ -9,18 +10,21 @@ import stickerLogo from "/public/stickers/sticker-logo.svg";
 import stickerDonut from "/public/stickers/sticker-donut.svg";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
+import { BetaTesterForm } from "../components/EmailForms";
+import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 export default function Home() {
   useEffect(() => {});
 
+  const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
   const cursorCircle = useRef(null);
-  
+
   const [MousePosition, setMousePosition] = useState({
     left: 0,
     top: 0,
   });
 
-  const [hovering, setHovering] = useState(false)
+  const [hovering, setHovering] = useState(false);
 
   useEffect(() => {
     gsap.to(cursorCircle.current, {
@@ -32,9 +36,9 @@ export default function Home() {
 
   useEffect(() => {
     let foo = cursorCircle.current;
-    console.log(foo)
-    hovering ? foo.classList.add('grow') : foo.classList.remove('grow')
-  }, [hovering])
+    console.log(foo);
+    hovering ? foo.classList.add("grow") : foo.classList.remove("grow");
+  }, [hovering]);
 
   const handleMouseMove = (e) => {
     setMousePosition({ left: e.clientX, top: e.clientY });
@@ -50,15 +54,17 @@ export default function Home() {
       <div ref={cursorCircle} className="circle"></div>
 
       {/* main */}
-      <section className="h-[100vh] flex items-center justify-center w-full">
+      <section className="h-[95vh] flex items-center justify-center w-full">
         <div className="relative w-[50vw] max-w-[900px] aspect-square ">
-          <div
-            id="bg"
-            className="absolute w-[30%] h-[30%] top-[0px] left-[45%]"
-          >
+          <div id="bg" className="absolute w-[30%] h-[30%] top-[0px] left-[45%]">
             <Image fill alt="none" src={stickerLogo} />
           </div>
-          <a href="https://instagram.com/itshere.app" onMouseOver={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className="cursor-none absolute w-[50%] h-[50%] top-[25%] left-[45%]">
+          <a
+            href="https:instagram.com/itshere.app"
+            onMouseOver={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+            className="cursor-none absolute w-[50%] h-[50%] top-[25%] left-[45%]"
+          >
             <Image fill alt="none" className="spin" src={stickerDonut} />
           </a>
           <div className="absolute w-[60%] h-[60%] bottom-[0px] left-[0px]">
@@ -73,23 +79,27 @@ export default function Home() {
       {/* /main */}
       {/* footer */}
 
-      <section className="h-[800px] w-full flex flex-col items-top bg-[color:var(--black)] justify-center">
-        <div className="relative flex flex-col justify-between gap-[5rem] my-[10rem] mx-[5rem]">
-          <div className=" w-full font-[Radio] text-white text-[8vw] ">
-            Try it out here*
-          </div>
-          <form className="relative w-[800px] h-[100px]">
-            <input className="cursor-none w-full text-[2.5rem] text-white px-[1rem] h-full email-input" placeholder="your email for exclusive access"></input>
-            <button className="cursor-none hover:scale-[1.5] transition-all absolute right-[20px] h-full items-top justify-end " type="submit">
-              <Image alt="none" src={arrowSubmit}/>
-            </button>
-          </form>
-          <div className="">
-            <Image alt="none" src={logoOG}/>
-          </div>
-          <Image alt="none"  className="pop-in absolute right-0 bottom-0 " src={stickerStartYourPlaylist}/>
-          <Image alt="none"  className="pop-in absolute right-[20%] bottom-[20%] "  src={stickerLockupOcean}/>
-        </div>
+      <section className="relative h-[95vh] lg:h-[80vh] w-full flex flex-col items-top bg-[#252525] justify-center">
+        <MailchimpSubscribe
+          url={url}
+          render={({ subscribe, status, message }) => (
+            <BetaTesterForm
+              status={status}
+              message={message}
+              onValidated={(formData) => subscribe(formData)}
+            />
+          )}
+        />
+        <Image
+          alt="none"
+          className="pop-in absolute right-[5%] bottom-[5%] "
+          src={stickerLockupOcean}
+        />{" "}
+        <Image
+          alt="none"
+          className="pop-in absolute right-[20%] bottom-[15%] "
+          src={stickerStartYourPlaylist}
+        />
       </section>
       {/* /footer */}
     </div>
