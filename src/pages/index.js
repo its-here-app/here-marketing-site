@@ -17,6 +17,7 @@ export default function Home() {
   useEffect(() => {});
 
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
+  console.count('counter')
   const cursorCircle = useRef(null);
 
   const [MousePosition, setMousePosition] = useState({
@@ -60,6 +61,7 @@ export default function Home() {
             <Image fill alt="none" src={stickerLogo} />
           </div>
           <a
+            target="_blank"
             href="https:instagram.com/itshere.app"
             onMouseOver={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}

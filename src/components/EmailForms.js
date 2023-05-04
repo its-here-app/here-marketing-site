@@ -39,7 +39,6 @@ const EmailForms = ({ status, message, onValidated }) => {
           </button>
           
           <div className="absolute pt-[1rem] flex w-full h-auto items-center justify-center">
-
             {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
             {status === "error" && (
               <div className="bg-red-200  text-green-600">error 😭 try again</div>
