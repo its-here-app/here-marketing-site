@@ -4,20 +4,18 @@ import arrowSubmit from "/public/graphics/arrow-right.svg";
 
 import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playlist.svg";
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
-import stickerDate from "/public/stickers/sticker-date.svg";
-import stickerLockup from "/public/stickers/sticker-lockup.svg";
-import stickerLogo from "/public/stickers/sticker-logo.svg";
-import stickerDonut from "/public/stickers/sticker-donut.svg";
+
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import EmailForms from "../components/EmailForms";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
+import LandingStickers from "../components/LandingStickers";
 
 export default function Home() {
   useEffect(() => {});
 
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
-  console.count('counter')
+  // console.count('re-renders')
   const cursorCircle = useRef(null);
 
   const [MousePosition, setMousePosition] = useState({
@@ -56,27 +54,7 @@ export default function Home() {
 
       {/* main */}
       <section className="h-[95vh] flex items-center justify-center w-full">
-        <div className="relative w-[50vw] max-w-[900px] aspect-square ">
-          <div id="bg" className="absolute w-[30%] h-[30%] top-[0px] left-[45%]">
-            <Image fill alt="none" src={stickerLogo} />
-          </div>
-          <a
-            target="_blank"
-            href="https:instagram.com/itshere.app"
-            onMouseOver={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-            className="cursor-none absolute w-[50%] h-[50%] top-[25%] left-[45%]"
-          >
-            <Image fill alt="none" className="spin" src={stickerDonut} />
-          </a>
-          <div className="absolute w-[60%] h-[60%] bottom-[0px] left-[0px]">
-            <Image fill alt="none" src={stickerDate} />
-          </div>
-
-          <div className="absolute w-[50%] h-[50%] top-[10%] left-[0px]">
-            <Image fill alt="none" src={stickerLockup} />
-          </div>
-        </div>
+        <LandingStickers />
       </section>
       {/* /main */}
       {/* footer */}
