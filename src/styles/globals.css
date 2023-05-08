@@ -28,6 +28,13 @@
   font-weight: 600;
   font-style: normal;
 }
+@font-face {
+  font-family: "Crimson";
+  src: url("../../public/fonts/Crimson/crimson-italic-webfont.woff2") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
 @keyframes pop-in {
   0% {
     opacity: 0;
@@ -60,17 +67,20 @@
 }
 :root {
   --cursor-size: 30px;
-  --background: #EEEEEE;
   --neon: #DAFF70;
   --ocean: #5C89CC;
   --cream: #FFFBF7;
   --bubble: #1169EE;
   --grey: #757575;
   --black: #101010;
+  --off-white: #FFFBF7;
   --white: #FFFFFF;
 }
 .bg-gradient-start {
   background-image: linear-gradient(transparent 10%, var(--neon) 60%);
+}
+.bg-gradient-end {
+  background-image: linear-gradient(var(--neon) 50%, transparent 90%);
 }
 /* @layer base { */
 .email-input {
@@ -92,13 +102,14 @@
   user-select: none;
   pointer-events: none;
   transform: scale(1);
-  background-color: var(--black);
+  background-color: var(--white);
+  mix-blend-mode: difference;
   transition: transform 350ms ease-in-out;
 }
 .grow {
+  mix-blend-mode: normal;
   transform: scale(3);
   background-color: var(--neon);
-  mix-blend-mode: none;
   background-image: url('/graphics/cursor-arrow.svg');
   background-size: 50%;
   background-position: center;

@@ -41,7 +41,7 @@ const EmailForms = ({ status, message, onValidated }) => {
           <div className="absolute pt-[1rem] flex w-full h-auto items-center justify-center">
             {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
             {status === "error" && (
-              <div className="bg-red-200  text-green-600">error 😭 try again</div>
+              <div className="bg-red-200">error 😭 try again</div>
             )}
             {status === "success" && (          
               <div className=" text-green-600"> thank you 💖 you've been added to our beta tester list </div>
