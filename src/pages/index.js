@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from "next/head";
 import logoOG from "/public/graphics/logo-og.svg";
 import logoLockup from "/public/graphics/logo-lockup.svg";
 import arrowSubmit from "/public/graphics/arrow-right.svg";
@@ -113,6 +114,35 @@ export default function Home() {
       onMouseMove={handleMouseMove}
       className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto bg-[--off-white]"
     >
+      <Head>
+        <title>Here*</title>
+        {/* <link rel="stylesheet" href="https://use.typekit.net/bra8pow.css"/> */}
+        {/* <link rel="stylesheet" href="https://use.typekit.net/bju4rfb.css" /> */}
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta property="og:title" content="Here * | one place for fave spots" />
+        <meta name="twitter:title" content="Here * | one place for fave spots" />
+        <meta itemProp="name" content="Here * | one place for fave spots" />
+        <meta name="application-name" content="Here * | one place for fave spots" />
+        <meta name="og:site_name" content="Here * | one place for fave spots" />
+        <meta property="og:image" content="/graphics/share_image.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Here* is an x y z app to help you x y z! ."
+        />
+        <meta
+          property="og:description"
+          content="Here* is an x y z app to help you x y z! ."
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://itshere.app" />
+        <link rel="canonical" href="https://itshere.app" />
+        <meta name="theme-color" content="#FFFFFF" />
+        <meta property="og:image:alt" content="Here*" />
+        {/* <meta name="robots" content="index,follow" /> */}
+      </Head>
       <div ref={cursorCircle} className="circle"></div>
       <div className="absolute z-[3] top-0 right-[30%] w-[10px] h-[100vh]">
         <div className="pop-in absolute top-[50%] w-[300px] h-[200px]">
