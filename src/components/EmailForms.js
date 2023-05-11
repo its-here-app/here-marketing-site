@@ -18,16 +18,16 @@ const EmailForms = ({ status, message, onValidated }) => {
 
   return (
     <div className="relative">
-      <div className="relative flex flex-col justify-between gap-[5rem] mx-[1rem] md:mx-[5rem]">
+      <div className="relative flex flex-col max-w-[1000px]  justify-between gap-[5rem] mx-[1rem] md:mx-[5rem]">
         <div className="w-full font-[Radio] text-white text-[4rem] lg:text-[6vw] ">
           Try it out here*
         </div>
 
-        <div className="relative w-[95%] max-w-[800px] justify-center ">
+        <div className="relative w-[95%] justify-center ">
           <input
             ref={(node) => (email = node)}
             type="text"
-            className="py-[1rem] cursor-none w-full text-[2rem] lg:text-[3vw] text-white px-[1rem] h-full email-input"
+            className="py-[1rem] cursor-none w-full text-[1.5rem] lg:text-[3vw] text-white px-[1rem] h-full email-input"
             placeholder="your email for exclusive access"
           ></input>
           <button
