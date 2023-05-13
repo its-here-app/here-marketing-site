@@ -127,14 +127,8 @@ export default function Home() {
         <meta name="og:site_name" content="Here * | one place for fave spots" />
         <meta property="og:image" content="/graphics/share_image.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="Here* is an x y z app to help you x y z! ."
-        />
-        <meta
-          property="og:description"
-          content="Here* is an x y z app to help you x y z! ."
-        />
+        <meta name="description" content="Here* is an x y z app to help you x y z! ." />
+        <meta property="og:description" content="Here* is an x y z app to help you x y z! ." />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://itshere.app" />
@@ -144,7 +138,7 @@ export default function Home() {
         {/* <meta name="robots" content="index,follow" /> */}
       </Head>
       <div ref={cursorCircle} className="circle"></div>
-      <div className="absolute z-[3] top-0 right-[30%] w-[10px] h-[100vh]">
+      {/* <div className="absolute z-[3] overflow-hidden top-0 right-[30%] w-[10px] h-[100vh]">
         <div className="pop-in absolute top-[50%] w-[300px] h-[200px]">
           <Link
             href=""
@@ -152,10 +146,10 @@ export default function Home() {
             onMouseOver={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >
-            <Image alt="none" className="fixed" fill src={stickerStartYourPlaylistBlack} />
+            <Image alt="none" className="fixed " fill src={stickerStartYourPlaylistBlack} />
           </Link>
         </div>
-      </div>
+      </div> */}
       {/* <Cursor MousePosition={MousePosition} /> */}
       {/* header */}
       <section className="w-full flex items-center justify-between px-[1rem] md:px-[2rem] py-[1rem] lg:py-[2rem">
@@ -168,15 +162,14 @@ export default function Home() {
       {/* hero */}
       <section
         data-start-y="-100"
-        className="h-max flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] "
+        className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] "
       >
         <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
           {/* title */}
           <span className="whitespace-nowrap xl:pl-[10vw] max-w-[2000px] md:pl-[4rem]">
             One place —{" "}
           </span>
-          <br />
-          <div className="flex  md:justify-between w-full max-w-[2000px]">
+          <div className="flex md:justify-between w-full ">
             <span>for&nbsp;</span>
             <span>fave spots&nbsp;</span>
           </div>
@@ -184,7 +177,7 @@ export default function Home() {
         </div>
         {/* subtitle */}
 
-        <div className="flex flex-col lg:ml-[15vw] w-[365px] pt-[1rem] text-[1.5rem] md:ml-[10vw] ">
+        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] pt-[1rem] text-[1.5rem] md:ml-[10vw] ">
           <span className="font-[Golos]">
             Discover and share favorite spots through city playlists*
           </span>
@@ -212,68 +205,134 @@ export default function Home() {
       </section>
       {/* section 2 */}
 
-      <section className="h-max pt-[15vw] bg-[--neon] flex flex-col  items-center justify-center w-full">
+      <section className="section-tile">
         {/* tile */}
-        <div className="flex flex-col  mx-[1rem] md:px-[3rem] font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
-          {/* title */}
-          <div className="flex  flex-col-reverse  md:grid grid-cols-12  gap-[2rem] justify-items-center w-full ">
-            <div className="col-span-6 w-full flex items-center justify-center">
-              <div className="w-full h-full  items-center">
-                <div
-                  className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px] "
-                  style={{ backgroundImage: `url('/photos/tile1.png')` }}
-                >
-                  {/* todo: add scroll watcher to trigger animation */}
-                  <div className="absolute flex flex-col items-center justify-center w-full h-full ">
-                    <Image
-                      className="pop-in py-[2rem]"
-                      width="200"
-                      height="500"
-                      src="/graphics/imessage1.png"
-                    />
-                    <Image
-                      className="pop-in py-[2rem]"
-                      width="200"
-                      height="500"
-                      src="/graphics/imessage1.png"
-                    />
-                    <Image
-                      className="pop-in py-[2rem]"
-                      width="200"
-                      height="500"
-                      src="/graphics/imessage1.png"
-                    />
-                    {/* <Image className="pop-in" width="200" height="500" src="/graphics/imessage2.png"/> */}
-                    {/* <Image className="pop-in" width="200" height="500" src="/graphics/imessage3.png"/> */}
-                  </div>
+        <div className="tile">
+          {/* tile-image */}
+          <div className="tile-image">
+            <div className="w-full h-full items-center">
+              <div
+                className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
+                style={{ backgroundImage: `url('/photos/tile1.png')` }}
+              >
+                {/* todo: add scroll watcher to trigger animation */}
+                <div className="absolute flex flex-col items-center justify-center w-full h-full ">
+                  <Image
+                    className="pop-in py-[2rem]"
+                    width="200"
+                    height="500"
+                    src="/graphics/imessage1.png"
+                  />
+                  <Image
+                    className="pop-in py-[2rem]"
+                    width="200"
+                    height="500"
+                    src="/graphics/imessage1.png"
+                  />
+                  <Image
+                    className="pop-in py-[2rem]"
+                    width="200"
+                    height="500"
+                    src="/graphics/imessage1.png"
+                  />
+                  {/* <Image className="pop-in" width="200" height="500" src="/graphics/imessage2.png"/> */}
+                  {/* <Image className="pop-in" width="200" height="500" src="/graphics/imessage3.png"/> */}
                 </div>
+                {/* tile animation */}
               </div>
-              {/* /title */}
             </div>
-            <div className="col-span-6 flex flex-col justify-between items-between h-full">
-              <div className="md:pl-[4vw]">
-                <div className="md:pt-[1rem] font-[Radio] leading-[.97] text-[3.8rem] md:text-[7vw]">
-                  <div>Stop digging for your</div>
-                  <div className="md:mt-[8vh]">travel recs</div>
-                </div>
-                <div className="font-[Golos] leading-[1.5] max-w-[400px] pt-[2rem] md:pt-[6vh] text-[1.5rem]">
-                  One link for anytime you’re asked for your fave city spots
-                </div>
-              </div>
+            {/* /title */}
+          </div>
+          {/* /tile-image */}
+          {/* tile-text */}
+          <div className="tile-text">
+            <div className="tile-text-top">
+              <div>Stop digging for your</div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">travel recs</div>
+            </div>
+            <div className="tile-text-bottom">
+              One link for anytime you’re asked for your fave city spots
             </div>
           </div>
+          {/* /tile-text */}
+        </div>
+        {/* /tile */}
+      </section>
+
+      <section className="section-tile">
+        {/* tile */}
+        <div className="tile">
+          {/* tile-image */}
+          <div className="tile-image ">
+            <div className="w-full h-full items-center">
+              <div
+                className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
+                style={{ backgroundImage: `url('/photos/tile1.png')` }}
+              >
+                {/* todo: add scroll watcher to trigger animation */}
+                <div className="absolute flex flex-col items-center justify-center w-full h-full "></div>
+                {/* tile animation */}
+              </div>
+            </div>
+            {/* /title */}
+          </div>
+          {/* /tile-image */}
+          {/* tile-text */}
+          <div className="tile-text grid-reverse text-reverse">
+            <div className="tile-text-top">
+              <div>Discover new places</div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">based on what you like</div>
+            </div>
+            <div className="tile-text-bottom">
+              One link for anytime you’re asked for your fave city spots
+            </div>
+          </div>
+          {/* /tile-text */}
+        </div>
+        {/* /tile */}
+      </section>
+
+      <section className="section-tile">
+        {/* tile */}
+        <div className="tile">
+          {/* tile-image */}
+          <div className="tile-image">
+            <div className="w-full h-full items-center">
+              <div
+                className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
+                style={{ backgroundImage: `url('/photos/tile1.png')` }}
+              >
+                <div className="absolute flex flex-col items-center justify-center w-full h-full ">
+            test
+                </div>  
+              </div>
+            </div>
+            {/* /title */}
+          </div>
+          {/* /tile-image */}
+          {/* tile-text */}
+          <div className="tile-text">
+            <div className="tile-text-top">
+              <div>Stop digging for your</div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">travel recs</div>
+            </div>
+            <div className="tile-text-bottom">
+              One link for anytime you’re asked for your fave city spots
+            </div>
+          </div>
+          {/* /tile-text */}
         </div>
         {/* /tile */}
       </section>
 
       {/* two-up tiles */}
-      <section className="h-[100vh] bg-gradient-end flex items-center  justify-center w-full">
-        <div className=""></div>
+      <section className="h-[100vh] bg-gradient-end flex items-center justify-center w-full">
+        <div className="">test</div>
       </section>
       {/* /two-up tiles */}
 
       {/* two-up tiles */}
-      <section className="h-[100vh] bg-[--white] flex items-center  justify-center w-full"></section>
+      <section className="h-[100vh] flex items-center  justify-center w-full"></section>
       {/* /two-up tiles */}
 
       {/* footer */}
@@ -295,7 +354,7 @@ export default function Home() {
         />{" "}
         <Image
           alt="none"
-          className="pop-in absolute right-[20%] bottom-[15%] "
+          className="overflow-hidden pop-in absolute right-[20%] bottom-[15%] "
           src={stickerStartYourPlaylist}
         />
       </section>

@@ -67,28 +67,79 @@
 }
 :root {
   --cursor-size: 30px;
-  --neon: #DAFF70;
-  --ocean: #5C89CC;
-  --cream: #FFFBF7;
-  --bubble: #1169EE;
+  --neon: #daff70;
+  --ocean: #5c89cc;
+  --cream: #fffbf7;
+  --bubble: #1169ee;
   --grey: #757575;
   --black: #101010;
-  --off-white: #FFFBF7;
-  --white: #FFFFFF;
+  --off-white: #fffbf7;
+  --white: #ffffff;
+}
+html {
+  scroll-behavior: smooth;
+}
+.section-tile {
+  @apply h-max pt-[15vw] bg-[--neon] flex flex-col  items-center justify-center w-full
+}
+.tile {
+  @apply flex flex-col-reverse
+  w-full max-w-[1728px] 
+  md:grid grid-cols-12 gap-[2rem] 
+  justify-items-center
+  px-[1rem] md:px-[3rem]
+  pt-[4vh];
+}
+
+.grid-reverse {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  
+}
+
+.tile-text {
+  @apply col-span-6 xl:col-span-7
+  flex flex-col
+  h-full
+  pl-[1.5vw] md:pl-[4vw] 
+  pt-[0vw] md:pt-[1rem];
+}
+
+.text-reverse {
+  @apply 
+  pl-[0w] md:pl-[0vw] 
+  pt-[0vw] md:pt-[1rem];
+}
+.tile-text-top {
+  @apply font-[Radio]
+  text-[13vw] md:text-[6.2vw] xl:text-[8rem]
+  w-[80%] md:w-full
+  leading-[1.05] md:leading-[.96];
+}
+.tile-text-bottom {
+  @apply font-[Golos] 
+  text-[1.3rem] lg:text-[1.5rem]
+  leading-[1.3] 
+  max-w-[400px] 
+  pt-[2rem] md:pt-[3vh] lg:pt-[6vh];
+}
+.tile-image {
+  @apply col-span-6 xl:col-span-5
+  w-full flex items-center justify-center;
 }
 .bg-gradient-start {
-  background-image: linear-gradient(transparent 10%, var(--neon) 60%);
+  background-image: linear-gradient(var(--off-white) 10%, var(--neon) 60%);
 }
 .bg-gradient-end {
-  background-image: linear-gradient(var(--neon) 50%, transparent 90%);
+  background-image: linear-gradient(var(--neon) 10%, var(--off-white) 90%);
 }
 /* @layer base { */
 .email-input {
   transition: all 0.25s ease 0s;
   border: 3px solid var(--neon);
-  background-color:transparent;
+  background-color: transparent;
   border-radius: 24px;
-  
+
   /* @apply border-[color:(var(--neon)] border-solid border-[5px] bg-transparent rounded-[24px]; */
 }
 /* } */
@@ -110,7 +161,7 @@
   mix-blend-mode: normal;
   transform: scale(3);
   background-color: var(--neon);
-  background-image: url('/graphics/cursor-arrow.svg');
+  background-image: url("/graphics/cursor-arrow.svg");
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
@@ -119,10 +170,6 @@
   animation: spin 25s linear infinite;
 }
 
-
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-

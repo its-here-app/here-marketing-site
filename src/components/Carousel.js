@@ -20,21 +20,25 @@ const SampleListsCarousel = () => {
     {
       title: "New York",
       subtitle: "Cute Date Spots",
+      amount: "14",
       img: "/lists/nyc.png",
     },
     {
       title: "Chicago",
       subtitle: "All Time Faves",
+      amount: "8",
       img: "/lists/chi.png",
     },
     {
       title: "Portland, ME",
       subtitle: "A weekend trip",
+      amount: "10",
       img: "/lists/pme.png",
     },
     {
       title: "Portland2",
       subtitle: "test",
+      amount: "3",
       img: "/lists/pme.png",
     },
   ];
@@ -123,10 +127,10 @@ const SampleListsCarousel = () => {
                     className="bg-cover bg-center w-full h-full transition-all ease-in duration-[1200ms] flex flex-col items-center justify-center"
                   >
                     <div className="flex wselect-none text-[--neon] w-full h-full flex-col items-center justify-center">
-                      <div className="xs:text-[2rem] sm:text-[40%] font-[Crimson] font-italic leading-[100%] translate-y-[20%]">
+                      <div className="text-[2rem] sm:text-[40%] font-[Crimson] font-italic leading-[100%] translate-y-[20%]">
                         {currentList.title}
                       </div>
-                      <div className="xs:text-[2rem] sm:text-[40%] font-[Golos] font-bold leading-[100%]">
+                      <div className="text-[2rem] sm:text-[40%] font-[Golos] font-bold leading-[100%]">
                         {currentList.subtitle}
                       </div>
                     </div>
