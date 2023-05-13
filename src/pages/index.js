@@ -30,66 +30,54 @@ export default function Home() {
   const cursorRefs = useRef([]);
   // const cursorRef = useRef(null);
   const scrollRefs = useRef([]);
-  const scrollRef = useRef(null);
+  // const scrollRef = useRef(null);
 
   const [MousePosition, setMousePosition] = useState({
-    left: 0,
-    top: 0,
+    left: 800,
+    top: 400,
   });
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const [hovering, setHovering] = useState(false);
+
+  const debounce = (callback, wait) => {
+    let timeoutId = null;
+    return (...args) => {
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => {
+        callback.apply(null, args);
+      }, wait);
+    };
+  };
+
+  const handleScroll = debounce((e) => {
+    const y = window.scrollY;
+    setScrollPosition(y);
+  }, 10);
+
   useEffect(() => {
-    handleScroll();
-    // console.log(refs.current)
-    // cursorRefs.current.forEach((ref) => {
-    //   // ref !== null ?
-    //   ref.addEventListener("mouseenter", () => setHovering(true));
-    //   ref.addEventListener("mouseleave", () => setHovering(false));
-    //   // : null;
-    // });
-    scrollRefs.current.forEach((ref) => {
-      // console.log(ref);
+    console.log("mounted");
+
+    window.addEventListener("scroll", () => {
+      handleScroll();
+    });
+
+    var timer = 0;
+    // console.log(cursorCircle.current)
+    // setHovering(true)
+    document.querySelectorAll('[data-fade-in-group="1"]').forEach((el, i) => {
+      el.classList.add("fade-in");
+      el.style.animationDelay = `${(timer += i * 85)}ms`;
+    });
+    document.querySelectorAll('[data-fade-in-group="2"]').forEach((el, i) => {
+      el.classList.add("fade-in-slide-up");
+      el.style.animationDelay = `${(timer += i * 85)}ms`;
+    });
+    document.querySelectorAll("[data-start-y]").forEach((el, i) => {
+      el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 800ms";
     });
   }, []);
-  const easeOutQuint = (t, b, c, d) => {
-    return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
-  };
-
-  // const frictionFactor = 0.2;
-  // let test = 0;
-
-  // useEffect(() => {
-  //   // console.log(scrollPosition);
-
-  //   const startY = parseInt(scrollRef.current.dataset.startY);
-  //   console.log(scrollRef.current)
-  //   // const elTop = parseInt(scrollRef.current);
-  //   // let x = startY / 2
-  //   console.log(startY, scrollPosition)
-  //   // scrollRef.current.style.transition = "transform 1s ease-in-out";
-  //   // scrollRef.current.style.transform = `translateY(${scrollPosition / 10}px)`
-  //   easeEl(scrollPosition, scrollRef.current)
-  // }, [scrollPosition]);
-
-  // const throttle = (callback, interval) => {
-  //   var now = Date.now();
-  //   console.log(now + interval - Date.now())
-  //   return function() {
-  //     if ((now + interval - Date.now()) < 0) {
-  //       callback();
-  //       now = Date.now();
-  //     }
-  //   }
-  // }
-
-  const handleScroll = () => {
-    window.addEventListener("scroll", () => {
-      const y = window.scrollY;
-      setScrollPosition(y);
-    });
-  };
 
   useEffect(() => {
     gsap.to(cursorCircle.current, {
@@ -98,6 +86,22 @@ export default function Home() {
       top: MousePosition.top - 12,
     });
   }, [MousePosition]);
+
+  useEffect(() => {
+    // const store = document.querySelector(":root");
+    // store.style.setProperty("--progress", `${percent}%`);
+    document.querySelectorAll("[data-start-y]").forEach((el, i) => {
+      const startY = parseInt(el.dataset.startY);
+      const progress = scrollPosition / (el.offsetTop);
+      if (progress > 0.05 && progress < 1) {
+        console.log('progress for', i, ' ', progress)
+        let pct = startY - progress * startY;
+        el.style.transform = `translate(0%, ${pct}%)`;
+      }
+    });
+
+    console.log('----')
+  }, [scrollPosition]);
 
   useEffect(() => {
     const ref = cursorCircle.current;
@@ -160,28 +164,29 @@ export default function Home() {
       </section>
       {/* /header */}
       {/* hero */}
-      <section
-        data-start-y="-100"
-        className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] "
-      >
+      <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] ">
         <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
           {/* title */}
-          <span className="whitespace-nowrap xl:pl-[10vw] max-w-[2000px] md:pl-[4rem]">
+          <span
+            data-fade-in-group="1"
+            className="whitespace-nowrap xl:pl-[10vw] max-w-[2000px] md:pl-[4rem]"
+          >
             One place —{" "}
           </span>
           <div className="flex md:justify-between w-full ">
-            <span>for&nbsp;</span>
-            <span>fave spots&nbsp;</span>
+            <span data-fade-in-group="1">for&nbsp;</span>
+            <span data-fade-in-group="1">fave spots&nbsp;</span>
           </div>
           {/* /title */}
         </div>
         {/* subtitle */}
 
         <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] pt-[1rem] text-[1.5rem] md:ml-[10vw] ">
-          <span className="font-[Golos]">
+          <span data-fade-in-group="1" className="font-[Golos]">
             Discover and share favorite spots through city playlists*
           </span>
           <button
+            data-fade-in-group="1"
             // ref={(ref) => cursorRefs.current.push(ref)}
             onMouseOver={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
@@ -198,7 +203,7 @@ export default function Home() {
 
       {/* section 2 */}
       <section
-        ref={scrollRef}
+        // ref={(ref) => scrollRefs.current.push(ref)}
         className="relative h-max pt-[3rem] flex items-top bg-gradient-start justify-center w-full"
       >
         <SampleListsCarousel />
@@ -209,7 +214,7 @@ export default function Home() {
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
-          <div className="tile-image">
+          <div data-start-y="10" className="tile-image">
             <div className="w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
@@ -217,24 +222,12 @@ export default function Home() {
               >
                 {/* todo: add scroll watcher to trigger animation */}
                 <div className="absolute flex flex-col items-center justify-center w-full h-full ">
-                  <Image
+                  {/* <Image
                     className="pop-in py-[2rem]"
                     width="200"
                     height="500"
                     src="/graphics/imessage1.png"
-                  />
-                  <Image
-                    className="pop-in py-[2rem]"
-                    width="200"
-                    height="500"
-                    src="/graphics/imessage1.png"
-                  />
-                  <Image
-                    className="pop-in py-[2rem]"
-                    width="200"
-                    height="500"
-                    src="/graphics/imessage1.png"
-                  />
+                  /> */}
                   {/* <Image className="pop-in" width="200" height="500" src="/graphics/imessage2.png"/> */}
                   {/* <Image className="pop-in" width="200" height="500" src="/graphics/imessage3.png"/> */}
                 </div>
@@ -245,7 +238,7 @@ export default function Home() {
           </div>
           {/* /tile-image */}
           {/* tile-text */}
-          <div className="tile-text">
+          <div data-start-y="20" className="tile-text">
             <div className="tile-text-top">
               <div>Stop digging for your</div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">travel recs</div>
@@ -263,11 +256,11 @@ export default function Home() {
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
-          <div className="tile-image ">
+          <div data-start-y="20"  className="tile-image ">
             <div className="w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
-                style={{ backgroundImage: `url('/photos/tile1.png')` }}
+                style={{ backgroundImage: `url('/photos/tile2.png')` }}
               >
                 {/* todo: add scroll watcher to trigger animation */}
                 <div className="absolute flex flex-col items-center justify-center w-full h-full "></div>
@@ -278,13 +271,13 @@ export default function Home() {
           </div>
           {/* /tile-image */}
           {/* tile-text */}
-          <div className="tile-text grid-reverse text-reverse">
+          <div data-start-y="40"  className="tile-text grid-reverse text-reverse">
             <div className="tile-text-top">
               <div>Discover new places</div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">based on what you like</div>
             </div>
             <div className="tile-text-bottom">
-              One link for anytime you’re asked for your fave city spots
+              One place to plan, search, cross-reference and find experiences curated for you.
             </div>
           </div>
           {/* /tile-text */}
@@ -296,28 +289,28 @@ export default function Home() {
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
-          <div className="tile-image">
+          <div data-start-y="15" className="tile-image">
             <div className="w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
-                style={{ backgroundImage: `url('/photos/tile1.png')` }}
+                style={{ backgroundImage: `url('/photos/tile3.png')` }}
               >
                 <div className="absolute flex flex-col items-center justify-center w-full h-full ">
-            test
-                </div>  
+                  test
+                </div>
               </div>
             </div>
             {/* /title */}
           </div>
           {/* /tile-image */}
           {/* tile-text */}
-          <div className="tile-text">
+          <div data-start-y="30" className="tile-text">
             <div className="tile-text-top">
-              <div>Stop digging for your</div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">travel recs</div>
+              <div>Auto-populate from </div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">your existing lists</div>
             </div>
             <div className="tile-text-bottom">
-              One link for anytime you’re asked for your fave city spots
+              Start your city playlist with notes, google docs, instagram, or maps.
             </div>
           </div>
           {/* /tile-text */}

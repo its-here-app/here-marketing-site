@@ -119,7 +119,7 @@ const SampleListsCarousel = () => {
       >
         {sampleLists.map((currentList, index) => {
           return (
-            <div key={index}>
+            <div key={index} data-fade-in-group="2">
               <div className="w-[80vw] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] ">
                 <Link className="cursor-none scale(110%)" href="./">
                   <div
