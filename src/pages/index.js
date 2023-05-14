@@ -37,7 +37,7 @@ export default function Home() {
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const [hovering, setHovering] = useState(false);
+  const [hovering, setHovering] = useState(null);
 
   const debounce = (callback, wait) => {
     let timeoutId = null;
@@ -78,6 +78,12 @@ export default function Home() {
     });
     document.querySelectorAll("[data-start-x]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 4000ms";
+    });
+    document.querySelectorAll("[data-hover-style]").forEach((el, i) => {
+      // onMouseOver={() => setHovering(true)}
+      // onMouseLeave={() => setHovering(false)}
+      el.addEventListener("mouseover", () => setHovering(el.dataset.hoverStyle));
+      el.addEventListener("mouseleave", () => setHovering(null));
     });
   }, []);
 
@@ -124,8 +130,18 @@ export default function Home() {
 
   useEffect(() => {
     const ref = cursorCircle.current;
-    // console.log(foo);
-    hovering ? ref.classList.add("grow") : ref.classList.remove("grow");
+
+    if(hovering === 'grow') {
+      ref.classList.add("grow")
+    } else {
+      ref.classList.remove("grow");
+    }
+
+    if(hovering === 'tile') {
+      ref.classList.add("cursor-tile")
+    } else {
+      ref.classList.remove("cursor-tile");
+    }
   }, [hovering]);
 
   const handleMouseMove = (e) => {
@@ -139,6 +155,7 @@ export default function Home() {
       className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto transition-bg bg-[--current-bg]"
     >
       <Head>
+        
         <title>Here*</title>
         {/* <link rel="stylesheet" href="https://use.typekit.net/bra8pow.css"/> */}
         {/* <link rel="stylesheet" href="https://use.typekit.net/bju4rfb.css" /> */}
@@ -203,8 +220,7 @@ export default function Home() {
           <button
             data-fade-in-group="1"
             // ref={(ref) => cursorRefs.current.push(ref)}
-            onMouseOver={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
+            data-hover-style="grow"
             className="bg-black mt-[1rem] md:mt-[4rem] leading-[150%] cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-[Golos] px-[18px] py-[10px]"
           >
             Start your playlist
