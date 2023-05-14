@@ -104,6 +104,7 @@
 }
 :root {
   --cursor-size: 30px;
+  --current-bg: white;
   --neon: #daff70;
   --ocean: #5c89cc;
   --cream: #fffbf7;
@@ -116,8 +117,12 @@
 html {
   scroll-behavior: smooth;
 }
+.transition-bg {
+
+  transition: background-color 250ms ease 0s;
+}
 .section-tile {
-  @apply h-max pt-[15vw] bg-[--neon] flex flex-col  items-center justify-center w-full
+  @apply h-max pt-[15vw] flex flex-col  items-center justify-center w-full
 }
 .tile {
   @apply flex flex-col-reverse

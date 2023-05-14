@@ -21,7 +21,6 @@ import LandingStickers from "../components/LandingStickers";
 import SampleListsCarousel from "../components/Carousel";
 
 export default function Home() {
-  useEffect(() => {});
 
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
   // console.count('re-renders')
@@ -54,14 +53,16 @@ export default function Home() {
   const handleScroll = debounce((e) => {
     const y = window.scrollY;
     setScrollPosition(y);
-  }, 10);
+  }, 1);
 
   useEffect(() => {
     console.log("mounted");
 
+
     window.addEventListener("scroll", () => {
       handleScroll();
     });
+
 
     var timer = 0;
     // console.log(cursorCircle.current)
@@ -77,6 +78,9 @@ export default function Home() {
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
+    document.querySelectorAll("[data-start-x]").forEach((el, i) => { 
+      el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 4000ms";
+    });
   }, []);
 
   useEffect(() => {
@@ -88,19 +92,37 @@ export default function Home() {
   }, [MousePosition]);
 
   useEffect(() => {
-    // const store = document.querySelector(":root");
+    const store = document.querySelector(":root");
     // store.style.setProperty("--progress", `${percent}%`);
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       const startY = parseInt(el.dataset.startY);
       const progress = scrollPosition / (el.offsetTop);
       if (progress > 0.05 && progress < 1) {
-        console.log('progress for', i, ' ', progress)
+        // console.log('progress for', i, ' ', progress)
         let pct = startY - progress * startY;
+        // console.log(i, pct)
         el.style.transform = `translate(0%, ${pct}%)`;
       }
     });
-
-    console.log('----')
+    document.querySelectorAll("[data-start-x]").forEach((el, i) => {
+      const startX = parseInt(el.dataset.startX);
+      const progress = scrollPosition / (el.offsetTop);
+      if (progress > 0.05) {
+        // console.log('progress for', i, ' ', progress)
+        let pct = startX - progress * startX;
+        // console.log(i, pct)
+        el.style.transform = `translate(${-Math.abs(pct) / 50}%, 0%)`;
+      }
+    })
+    document.querySelectorAll("[data-bg]").forEach((el, i) => {
+      const color = el.dataset.bg;
+      if(scrollPosition > el.offsetTop + el.offsetHeight / 3){ 
+        store.style.setProperty("--current-bg", `var(--${color})`);
+      }
+    });
+    
+  
+    // console.log('----')
   }, [scrollPosition]);
 
   useEffect(() => {
@@ -116,7 +138,7 @@ export default function Home() {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto bg-[--off-white]"
+      className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto transition-bg bg-[--current-bg]"
     >
       <Head>
         <title>Here*</title>
@@ -156,7 +178,7 @@ export default function Home() {
       </div> */}
       {/* <Cursor MousePosition={MousePosition} /> */}
       {/* header */}
-      <section className="w-full flex items-center justify-between px-[1rem] md:px-[2rem] py-[1rem] lg:py-[2rem">
+      <section data-bg="off-white" className="w-full flex items-center justify-between px-[1rem] md:px-[2rem] py-[1rem] lg:py-[2rem">
         <div className="flex items-center justify-center">
           <Image alt="none" src={logoLockup} />
         </div>
@@ -164,7 +186,7 @@ export default function Home() {
       </section>
       {/* /header */}
       {/* hero */}
-      <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] ">
+      <section data-bg="neon" className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] ">
         <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
           {/* title */}
           <span
@@ -204,13 +226,13 @@ export default function Home() {
       {/* section 2 */}
       <section
         // ref={(ref) => scrollRefs.current.push(ref)}
-        className="relative h-max pt-[3rem] flex items-top bg-gradient-start justify-center w-full"
+        className="relative h-max pt-[3rem] flex items-top justify-center w-full"
       >
         <SampleListsCarousel />
       </section>
       {/* section 2 */}
 
-      <section className="section-tile">
+      <section data-bg="neon" className="section-tile">
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
@@ -252,7 +274,7 @@ export default function Home() {
         {/* /tile */}
       </section>
 
-      <section className="section-tile">
+      <section data-bg="neon" className="section-tile">
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
@@ -285,7 +307,7 @@ export default function Home() {
         {/* /tile */}
       </section>
 
-      <section className="section-tile">
+      <section data-bg="neon" className="section-tile">
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
@@ -319,7 +341,7 @@ export default function Home() {
       </section>
 
       {/* two-up tiles */}
-      <section className="h-[100vh] bg-gradient-end flex items-center justify-center w-full">
+      <section data-bg="off-white" className="h-[100vh] flex items-center justify-center w-full">
         <div className="">test</div>
       </section>
       {/* /two-up tiles */}

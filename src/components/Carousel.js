@@ -110,8 +110,9 @@ const SampleListsCarousel = () => {
         // onTouchMove={handleDrag}
         // onTouchEnd={handleDragEnd}
         className={`transition-transform duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] flex flex-row gap-[2vw] pt-[2rem] text-[5rem] mx-auto subtitle-text px-[5px]`}
+        data-start-x="20"
         style={{
-          transform: `translate3d(${position}px, 0px, 0px)`,
+          // transform: `translate3d(${position}px, 0px, 0px)`,
           width: `${carouselWidth}vw`,
           // minWidth: `${250}vw`,
           // gridTemplateColumns: `repeat(${sampleLists.length}, minmax(0, 1fr))`,
