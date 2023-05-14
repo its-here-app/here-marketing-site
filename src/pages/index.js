@@ -75,7 +75,7 @@ export default function Home() {
       el.style.animationDelay = `${(timer += i * 85)}ms`;
     });
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
-      el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 800ms";
+      el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
   }, []);
 
