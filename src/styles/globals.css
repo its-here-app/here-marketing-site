@@ -122,7 +122,7 @@ html {
   transition: background-color 250ms ease 0s;
 }
 .section-tile {
-  @apply h-max pt-[15vw] flex flex-col  items-center justify-center w-full
+  @apply  pt-[15vw] flex flex-col items-center justify-center w-full
 }
 .tile {
   @apply flex flex-col-reverse
@@ -197,16 +197,20 @@ html {
   transform: scale(1);
   background-color: var(--white);
   mix-blend-mode: difference;
-  transition: transform 350ms ease-in-out;
+  transition: 350ms ease-in-out;
+  transition-property: background-image, background-color, transform, width, height, border-radius, background-color; 
 }
 .grow {
   mix-blend-mode: normal;
   transform: scale(3);
   background-color: var(--neon);
+  background-position: center;
   background-image: url("/graphics/cursor-arrow.svg");
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
+  transition: 550ms ease;
+  transition-property: background-image, background-color, transform, width, height, border-radius, background-color; 
 }
 .spin {
   animation: spin 25s linear infinite;

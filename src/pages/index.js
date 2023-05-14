@@ -21,7 +21,6 @@ import LandingStickers from "../components/LandingStickers";
 import SampleListsCarousel from "../components/Carousel";
 
 export default function Home() {
-
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
   // console.count('re-renders')
   const cursorCircle = useRef(null);
@@ -57,16 +56,15 @@ export default function Home() {
 
   useEffect(() => {
     console.log("mounted");
-
+    var timer = 0;
 
     window.addEventListener("scroll", () => {
       handleScroll();
     });
 
+    // const ctaSticker = document.querySelector('#cta-sticker')
+    // ctaSticker.style.height =`${document.body.scrollHeight}px`
 
-    var timer = 0;
-    // console.log(cursorCircle.current)
-    // setHovering(true)
     document.querySelectorAll('[data-fade-in-group="1"]').forEach((el, i) => {
       el.classList.add("fade-in");
       el.style.animationDelay = `${(timer += i * 85)}ms`;
@@ -78,7 +76,7 @@ export default function Home() {
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
-    document.querySelectorAll("[data-start-x]").forEach((el, i) => { 
+    document.querySelectorAll("[data-start-x]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 4000ms";
     });
   }, []);
@@ -96,7 +94,7 @@ export default function Home() {
     // store.style.setProperty("--progress", `${percent}%`);
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       const startY = parseInt(el.dataset.startY);
-      const progress = scrollPosition / (el.offsetTop);
+      const progress = scrollPosition / el.offsetTop;
       if (progress > 0.05 && progress < 1) {
         // console.log('progress for', i, ' ', progress)
         let pct = startY - progress * startY;
@@ -106,22 +104,21 @@ export default function Home() {
     });
     document.querySelectorAll("[data-start-x]").forEach((el, i) => {
       const startX = parseInt(el.dataset.startX);
-      const progress = scrollPosition / (el.offsetTop);
+      const progress = scrollPosition / el.offsetTop;
       if (progress > 0.05) {
         // console.log('progress for', i, ' ', progress)
         let pct = startX - progress * startX;
         // console.log(i, pct)
         el.style.transform = `translate(${-Math.abs(pct) / 50}%, 0%)`;
       }
-    })
+    });
     document.querySelectorAll("[data-bg]").forEach((el, i) => {
       const color = el.dataset.bg;
-      if(scrollPosition > el.offsetTop + el.offsetHeight / 3){ 
+      if (scrollPosition > el.offsetTop + el.offsetHeight / 3) {
         store.style.setProperty("--current-bg", `var(--${color})`);
       }
     });
-    
-  
+
     // console.log('----')
   }, [scrollPosition]);
 
@@ -138,6 +135,7 @@ export default function Home() {
   return (
     <div
       onMouseMove={handleMouseMove}
+      id="home-body"
       className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto transition-bg bg-[--current-bg]"
     >
       <Head>
@@ -164,21 +162,13 @@ export default function Home() {
         {/* <meta name="robots" content="index,follow" /> */}
       </Head>
       <div ref={cursorCircle} className="circle"></div>
-      {/* <div className="absolute z-[3] overflow-hidden top-0 right-[30%] w-[10px] h-[100vh]">
-        <div className="pop-in absolute top-[50%] w-[300px] h-[200px]">
-          <Link
-            href=""
-            className="cursor-none"
-            onMouseOver={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-          >
-            <Image alt="none" className="fixed " fill src={stickerStartYourPlaylistBlack} />
-          </Link>
-        </div>
-      </div> */}
+
       {/* <Cursor MousePosition={MousePosition} /> */}
       {/* header */}
-      <section data-bg="off-white" className="w-full flex items-center justify-between px-[1rem] md:px-[2rem] py-[1rem] lg:py-[2rem">
+      <section
+        data-bg="off-white"
+        className="w-full flex items-center justify-between px-[1rem] md:px-[2rem] py-[1rem] lg:py-[2rem"
+      >
         <div className="flex items-center justify-center">
           <Image alt="none" src={logoLockup} />
         </div>
@@ -186,7 +176,10 @@ export default function Home() {
       </section>
       {/* /header */}
       {/* hero */}
-      <section data-bg="neon" className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] ">
+      <section
+        data-bg="neon"
+        className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] "
+      >
         <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
           {/* title */}
           <span
@@ -278,7 +271,7 @@ export default function Home() {
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
-          <div data-start-y="20"  className="tile-image ">
+          <div data-start-y="20" className="tile-image ">
             <div className="w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
@@ -293,7 +286,7 @@ export default function Home() {
           </div>
           {/* /tile-image */}
           {/* tile-text */}
-          <div data-start-y="40"  className="tile-text grid-reverse text-reverse">
+          <div data-start-y="40" className="tile-text grid-reverse text-reverse">
             <div className="tile-text-top">
               <div>Discover new places</div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">based on what you like</div>
@@ -341,13 +334,12 @@ export default function Home() {
       </section>
 
       {/* two-up tiles */}
-      <section data-bg="off-white" className="h-[100vh] flex items-center justify-center w-full">
+      <section
+        data-bg="off-white"
+        className="h-[100vh] mt-[20rem] bg-red-200 flex items-center justify-center w-full"
+      >
         <div className="">test</div>
       </section>
-      {/* /two-up tiles */}
-
-      {/* two-up tiles */}
-      <section className="h-[100vh] flex items-center  justify-center w-full"></section>
       {/* /two-up tiles */}
 
       {/* footer */}
@@ -374,6 +366,18 @@ export default function Home() {
         />
       </section>
       {/* /footer */}
+      {/* <div id="cta-sticker" className="absolute z-[3]  top-0 right-[30%] w-[10px] h-[100vh]">
+        <div className="pop-in sticky top-[50%] w-[300px] h-[200px]">
+          <Link
+            href=""
+            className="cursor-none"
+            onMouseOver={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+          >
+            <Image alt="none" className=" " fill src={stickerStartYourPlaylistBlack} />
+          </Link>
+        </div>
+      </div> */}
     </div>
   );
 }
