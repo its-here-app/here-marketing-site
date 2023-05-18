@@ -131,14 +131,14 @@ export default function Home() {
   useEffect(() => {
     const ref = cursorCircle.current;
 
-    if(hovering === 'grow') {
-      ref.classList.add("grow")
+    if (hovering === "grow") {
+      ref.classList.add("grow");
     } else {
       ref.classList.remove("grow");
     }
 
-    if(hovering === 'tile') {
-      ref.classList.add("cursor-tile")
+    if (hovering === "tile") {
+      ref.classList.add("cursor-tile");
     } else {
       ref.classList.remove("cursor-tile");
     }
@@ -155,7 +155,6 @@ export default function Home() {
       className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto transition-bg bg-[--current-bg]"
     >
       <Head>
-        
         <title>Here*</title>
         {/* <link rel="stylesheet" href="https://use.typekit.net/bra8pow.css"/> */}
         {/* <link rel="stylesheet" href="https://use.typekit.net/bju4rfb.css" /> */}
@@ -184,10 +183,10 @@ export default function Home() {
       {/* header */}
       <section
         data-bg="off-white"
-        className="w-full flex items-center justify-between px-[1rem] md:px-[2rem] py-[1rem] lg:py-[2rem"
+        className="w-full flex items-center justify-between px-[1rem] md:px-[2rem] py-[1.5rem] lg:py-[2rem"
       >
         <div className="flex items-center justify-center">
-          <Image alt="none" src={logoLockup} />
+          <Image alt="logo" src={logoLockup} />
         </div>
         <div className="flex items-center justify-center">{/* hamburger menu */}</div>
       </section>
@@ -245,7 +244,7 @@ export default function Home() {
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
-          <div data-start-y="10" className="tile-image">
+          <div data-start-y="15" className="tile-image">
             <div className="w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
@@ -269,7 +268,7 @@ export default function Home() {
           </div>
           {/* /tile-image */}
           {/* tile-text */}
-          <div data-start-y="20" className="tile-text">
+          <div data-start-y="10" className="tile-text">
             <div className="tile-text-top">
               <div>Stop digging for your</div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">travel recs</div>
@@ -316,7 +315,7 @@ export default function Home() {
         {/* /tile */}
       </section>
 
-      <section data-bg="neon" className="section-tile">
+      <section data-bg="white" className="section-tile">
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
@@ -349,17 +348,36 @@ export default function Home() {
         {/* /tile */}
       </section>
 
-      {/* two-up tiles */}
+      {/* bottom CTA */}
       <section
-        data-bg="off-white"
-        className="h-[100vh] mt-[20rem] bg-red-200 flex items-center justify-center w-full"
+        data-bg="neon"
+        className="h-[85vh] mx-[1rem] md:mx-0 mt-[10rem] flex items-center w-full"
       >
-        <div className="">test</div>
+        <div className="text-[Radio] flex flex-col h-full items-start justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
+          {/* title */}
+          <div data-start-y="12" className="w-full pt-[3rem] flex justify-start">
+            <span className="xl:pl-[8vw] md:w-[60%]  md:pl-[2rem]">For the spots you love</span>
+          </div>
+          <div data-start-y="40" className="w-full pt-[3rem] flex justify-start md:justify-end ">
+            <span className="xl:pl-[8vw] md:w-[60%] md:pl-[2rem]">and those you want to visit</span>
+          </div>
+          <div
+            data-start-y="80"
+            className="relative xl:pl-[8vw] flex w-full md:w-[60%] max-w-[800px] flex-col pt-[3rem] md:pl-[2rem]  "
+          >
+            <span className="text-[1.7rem] md:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
+              * like music, compile your favorite places into a <span className="text-[--ocean]">city playlist</span> that captures that
+              time of your life.
+            </span>
+          </div>
+
+          {/* /title */}
+        </div>
       </section>
-      {/* /two-up tiles */}
+      {/* /bottom CTA  */}
 
       {/* footer */}
-      <section className="relative h-[95vh] lg:h-[80vh] w-full flex flex-col items-top bg-[--black] justify-center">
+      <section className="relative h-[60vh] lg:h-[50vh] w-full flex flex-col items-top bg-[--black] justify-start">
         <MailchimpSubscribe
           url={url}
           render={({ subscribe, status, message }) => (
@@ -370,17 +388,19 @@ export default function Home() {
             />
           )}
         />
-        <Image
-          alt="none"
-          className="pop-in absolute right-[5%] bottom-[5%] "
-          src={stickerLockupOcean}
-        />{" "}
-        <Image
-          alt="none"
-          className="overflow-hidden pop-in absolute right-[20%] bottom-[15%] "
-          src={stickerStartYourPlaylist}
-        />
+        <div className="relative overflow-hidden h-[100%] flex justify-between lg:absolute lg:w-[50%] lg:right-0">
+          <div className="absolute bottom-[10%] right-[20%] w-[40%] h-[40%]">
+            <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
+          </div>
+          <div className="absolute bottom-[30%] left-[10%] w-[40%] h-[40%]">
+            <Image alt="none" fill className="pop-in" src={stickerStartYourPlaylist} />
+          </div>
+        </div>
+        <div className="absolute bottom-[10%] left-[5%]">
+          <Image alt="none" src={logoOG} />
+        </div>
       </section>
+
       {/* /footer */}
       {/* <div id="cta-sticker" className="absolute z-[3]  top-0 right-[30%] w-[10px] h-[100vh]">
         <div className="pop-in sticky top-[50%] w-[300px] h-[200px]">

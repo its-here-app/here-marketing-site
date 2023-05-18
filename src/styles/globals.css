@@ -123,34 +123,35 @@ html {
   transition: background-color 250ms ease 0s;
 }
 .section-tile {
-  @apply  pt-[15vw] flex flex-col items-center justify-center w-full
+  @apply  pt-[10vw] flex flex-col items-center justify-center w-full
 }
 .tile {
   @apply flex flex-col-reverse
-  w-full max-w-[1728px] 
-  md:grid grid-cols-12 gap-[2rem] 
+  w-full max-w-[1728px]
+  md:grid grid-cols-12 gap-[2rem]
   justify-items-center
   px-[1rem] md:px-[3rem]
-  pt-[4vh];
+  pt-[4vh] transition-all;
 }
+
 
 .grid-reverse {
   grid-column-start: 1;
   grid-row-start: 1;
-  
+
 }
 
 .tile-text {
   @apply col-span-6 xl:col-span-7
   flex flex-col
   h-full
-  pl-[1.5vw] md:pl-[4vw] 
-  pt-[0vw] md:pt-[1rem];
+  pl-[1.5vw] md:pl-[4vw]
+  pt-[0vw] md:pt-[.5rem];
 }
 
 .text-reverse {
-  @apply 
-  pl-[0w] md:pl-[0vw] 
+  @apply
+  pl-[0w] md:pl-[0vw]
   pt-[0vw] md:pt-[1rem];
 }
 .tile-text-top {
@@ -160,10 +161,10 @@ html {
   leading-[1.05] md:leading-[.96];
 }
 .tile-text-bottom {
-  @apply font-[Golos] 
+  @apply font-[Golos]
   text-[1.3rem] lg:text-[1.5rem]
-  leading-[1.3] 
-  max-w-[400px] 
+  leading-[1.3]
+  max-w-[400px]
   pt-[2rem] md:pt-[3vh] lg:pt-[6vh];
 }
 .tile-image {
@@ -178,10 +179,11 @@ html {
 }
 /* @layer base { */
 .email-input {
+
+  @apply rounded-[18px] md:rounded-[24px];
   transition: all 0.25s ease 0s;
-  border: 3px solid var(--neon);
+  border: 2px solid var(--neon);
   background-color: transparent;
-  border-radius: 24px;
 
   /* @apply border-[color:(var(--neon)] border-solid border-[5px] bg-transparent rounded-[24px]; */
 }
@@ -199,7 +201,7 @@ html {
   mix-blend-mode: difference;
   background-color: var(--white);
   transition: 350ms ease-in-out;
-  transition-property: background-image, background-color, transform, width, height, border-radius, background-color; 
+  transition-property: background-image, background-color, transform, width, height, border-radius, background-color;
 }
 .grow {
   mix-blend-mode: normal;
@@ -212,7 +214,7 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   transition: 550ms ease;
-  transition-property: background-image, background-color, transform, width, height, border-radius, background-color; 
+  transition-property: background-image, background-color, transform, width, height, border-radius, background-color;
 }
 .cursor-tile {
   mix-blend-mode: normal;
@@ -226,7 +228,7 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   transition: 550ms ease;
-  transition-property: background-image, background-color, transform, width, height, border-radius, background-color; 
+  transition-property: background-image, background-color, transform, width, height, border-radius, background-color;
 }
 .spin {
   animation: spin 25s linear infinite;

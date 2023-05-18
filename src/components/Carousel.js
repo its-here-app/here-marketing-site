@@ -122,7 +122,7 @@ const SampleListsCarousel = () => {
         {sampleLists.map((currentList, index) => {
           return (
             <div key={index} data-hover-style="tile" data-fade-in-group="2">
-              <div className="w-[80vw] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] ">
+              <div className="w-[80vw] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
                 <Link className="cursor-none scale(110%)" href="./">
                   <div
                     style={{ backgroundImage: `url(${currentList.img})` }}
