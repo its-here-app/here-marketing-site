@@ -273,7 +273,7 @@ export default function Home() {
                   id="animation-container"
                   className="hidden absolute flex flex-col items-center justify-center w-full h-full"
                 >
-                  <div className="aspect-[1/1.5] w-[60%] items-center justify-center flex-col flex">
+                  <div className="aspect-[1/1.5]  w-[80%] md:w-[60%]  items-center justify-center flex-col flex">
                     <div className="w-full flex justify-start">
                       <div className="imessage-left pop-in-1 flex flex-col w-max my-[1rem]">
                           <span >Do you have recs for LA? </span>
