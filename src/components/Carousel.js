@@ -46,7 +46,7 @@ const SampleListsCarousel = () => {
 
   useEffect(() => {
     // TODO: allow for dynamic resizing
-  
+
   }, []);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const SampleListsCarousel = () => {
   //   let currentDragPoint = event.type === "touchmove" ? event.touches[0].clientX : event.clientX
   //   let diff = currentDragPoint - dragStartPoint;
   //   console.log(diff);
-  
+
   //   carousel.current.style.transform = `translateX(${diff}px)`;
   // };
 
@@ -126,16 +126,24 @@ const SampleListsCarousel = () => {
                 <Link className="cursor-none scale(110%)" href="./">
                   <div
                     style={{ backgroundImage: `url(${currentList.img})` }}
-                    className="bg-cover bg-center w-full h-full transition-all ease-in duration-[1200ms] flex flex-col items-center justify-center"
+                    className="bg-cover bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
                   >
-                    <div className="flex wselect-none text-[--neon] w-full h-full flex-col items-center justify-center">
-                      <div className="text-[2rem] sm:text-[40%] font-[Crimson] font-italic leading-[100%] translate-y-[20%]">
-                        {currentList.title}
+                      <div className="row-span-1">
+
                       </div>
-                      <div className="text-[2rem] sm:text-[40%] font-[Golos] font-bold leading-[100%]">
-                        {currentList.subtitle}
+                      <div className="flex row-span-1 select-none  text-[--neon] flex-col justify-center items-center">
+                        <div className="text-[2rem] sm:text-[40%] font-[Crimson] font-italic leading-[100%] translate-y-[20%]">
+                          {currentList.title}
+                        </div>
+                        <div className="text-[2rem] sm:text-[40%] font-[Golos] font-bold leading-[100%]">
+                          {currentList.subtitle}
+                        </div>
                       </div>
-                    </div>
+                      <div className="text-[--neon] pb-[1rem] self-end text-[2rem] sm:text-[40%] row-span-1 flex justify-center items-center">
+                        {currentList.amount}*
+                        {/* placeholder */}
+                      </div>
+
                   </div>
                 </Link>
               </div>

@@ -172,10 +172,11 @@ export default function Home() {
     const scrollElements = document.querySelectorAll("[data-scroll-visited]");
 
     scrollElements.forEach((el, i) => {
-      if (scrollPosition > el.offsetTop - 50) {
+      if (scrollPosition > el.offsetTop - el.offsetHeight / 2) {
         if (el.dataset.scrollVisited == "false") {
           el.dataset.scrollVisited = "true";
           document.querySelector("#animation-container").classList.remove("hidden");
+          document.querySelector("#animation-container-3").classList.add("pop-in");
           scrollElements[i].classList.add(`active-${i}`);
         }
         // console.log('got here', i)
@@ -244,21 +245,21 @@ export default function Home() {
       {/* header */}
       <section
         data-bg="off-white"
-        className="w-full flex items-center justify-between px-[1rem] md:px-[2rem] py-[1.5rem] lg:py-[2rem"
+        className="w-full flex max-w-[1738px] mx-auto items-center justify-between px-[1rem] md:px-[2rem] py-[1.5rem] lg:py-[2rem"
       >
-        <div className="flex items-center justify-center">
-          <Image alt="logo" src={logoLockup} />
+        <div className="relative w-[100px] h-[50px] md:w-[110px] flex  items-center justify-center">
+          <Image alt="logo" fill src={logoLockup} />
         </div>
         <div className="flex items-center justify-center">{/* hamburger menu */}</div>
       </section>
       {/* /header */}
       {/* hero */}
-      <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] ">
-        <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
+      <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] ">
+        <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[7.5vw] xxl:text-[9rem]">
           {/* title */}
           <span
             data-fade-in-group="1"
-            className="whitespace-nowrap xl:pl-[10vw] max-w-[2000px] md:pl-[4rem]"
+            className="whitespace-nowrap md:pl-[10%] max-w-[2000px]"
           >
             One place —{" "}
           </span>
@@ -270,7 +271,7 @@ export default function Home() {
         </div>
         {/* subtitle */}
 
-        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] pt-[1rem] text-[1.5rem] md:ml-[10vw] ">
+        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] xxl:ml-[15%] pt-[1rem] text-[1.5rem] md:ml-[10vw] ">
           <span data-fade-in-group="1" className="font-[Golos]">
             Discover and share favorite spots through city playlists*
           </span>
@@ -406,14 +407,27 @@ export default function Home() {
         <div className="tile">
           {/* tile-image */}
           <div data-start-y="15" className="tile-image">
-            <div className="w-full h-full items-center"></div>
+          <div className="w-full h-full items-center">
+              <div
+                className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
+                style={{ backgroundImage: `url('/photos/tile3.png')` }}
+              >
+                <div
+                  id="animation-container-3"
+                  className="absolute flex flex-col items-center justify-center w-full h-full"
+                >
+                  test
+                  {/* content here */}
+                </div>
+              </div>
+            </div>
             {/* /title */}
           </div>
           {/* /tile-image */}
           {/* tile-text */}
           <div data-start-y="30" className="tile-text">
             <div className="tile-text-top">
-              <div>Auto-populate from </div>
+              <div>Auto&#8209;populate from </div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">your existing lists</div>
             </div>
             <div className="tile-text-bottom">
@@ -429,19 +443,19 @@ export default function Home() {
       {/* bottom CTA */}
       <section
         data-bg="off-white"
-        className="h-[100vh] mx-[1rem] md:mx-0 mt-[10rem] flex items-center w-full"
+        className="h-[100vh] mx-[1rem] md:mx-0 mt-[10rem] flex items-center "
       >
         <div className="text-[Radio] flex flex-col h-full items-start justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
           {/* title */}
           <div data-start-y="30" className="w-full pt-[3rem] flex justify-start">
             <span className="xl:pl-[8vw] md:w-[60%]  md:pl-[2rem]">For the spots you love</span>
           </div>
-          <div data-start-y="40" className="w-full pt-[3rem] flex justify-start md:justify-end ">
+          <div data-start-y="40" className=" pt-[3rem] flex justify-start md:justify-end ">
             <span className="xl:pl-[8vw] md:w-[60%] md:pl-[2rem]">and those you want to visit</span>
           </div>
           <div
             data-start-y="80"
-            className="relative xl:pl-[8vw] flex w-full md:w-[60%] max-w-[800px] flex-col pt-[3rem] md:pl-[2rem]  "
+            className="relative xl:pl-[8vw] flex  md:w-[60%] max-w-[800px] flex-col pt-[3rem] md:pl-[2rem]  "
           >
             <span className="text-[1.7rem] md:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
               * like music, compile your favorite places into a{" "}

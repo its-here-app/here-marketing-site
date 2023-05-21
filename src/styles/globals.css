@@ -122,6 +122,9 @@
 .fade-in {
   animation: fade-in 800ms ease-in-out both;
 }
+.pop-in {
+  animation: pop-in 900ms ease-in-out both;
+}
 .pop-in-1 {
   animation: pop-in 900ms ease-in-out both;
 }
@@ -236,17 +239,17 @@ html {
   @apply col-span-6 xl:col-span-7
   flex flex-col
   h-full
-  pl-[1.5vw] md:pl-[4vw]
+  pl-[1.5vw] md:pl-[1vw]
   pt-[0vw] md:pt-[.5rem];
 }
 
 .text-reverse {
   @apply pl-[0w] md:pl-[0vw]
-  pt-[0vw] md:pt-[1rem];
+  pt-[0vw];
 }
 .tile-text-top {
   @apply font-[Radio]
-  text-[13vw] md:text-[6.2vw] xl:text-[8rem]
+  text-[13vw] md:text-[7vw] xl:text-[8rem]
   w-[80%] md:w-full
   leading-[1.05] md:leading-[.96];
 }
