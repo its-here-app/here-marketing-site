@@ -3,35 +3,35 @@ class Slider {
     // this.container = el;
     this.slider = el;
     this.row = row_id;
-    
+
     this.wrap = wrap;
-    
+
     this.proxy = this.row.querySelector('.proxy-slider');
     // this.inner = this.row.querySelector('#slider-inner');
     this.slides = [...this.slider.querySelectorAll('.g-7')];
     this.slidesNumb = this.slides.length - 1;
     this.sliderWidth = 0;
-    
+
     this.draggable = null;
-    
+
     this.current = 0;
     this.last = 0;
 
     this.offset = 0;
-    
+
     this.init();
   }
-  
+
   // Set slider and proxy width/transform
   setBounds() {
     this.sliderWidth = this.slides[0].offsetWidth * this.slidesNumb;
-    
+
     gsap.set([this.slider, this.proxy], {
       width: this.sliderWidth,
       x: 0,
     })
   }
-  
+
   createDraggable() {
     let slider = this.slider,
         inner = this.inner,
@@ -68,7 +68,7 @@ class Slider {
       onThrowUpdate: updateX
     })[0]
   }
-  
+
   init() {
     this.setBounds();
     this.createDraggable();

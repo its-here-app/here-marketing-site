@@ -12,6 +12,9 @@ import stickerStartYourPlaylistBlack from "/public/stickers/sticker-start-your-p
 import tile1 from "/public/photos/tile1.png";
 import tile2 from "/public/photos/tile2.png";
 import tile3 from "/public/photos/tile3.png";
+import imessage1 from "/public/graphics/imessage1.png";
+import imessage2 from "/public/graphics/imessage2.png";
+import imessage3 from "/public/graphics/imessage3.png";
 
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
@@ -36,6 +39,7 @@ export default function Home() {
   });
 
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollVisited, setScrollVisited] = useState([]);
 
   const [hovering, setHovering] = useState(null);
 
@@ -120,13 +124,29 @@ export default function Home() {
     });
     document.querySelectorAll("[data-bg]").forEach((el, i) => {
       const color = el.dataset.bg;
-      if (scrollPosition > el.offsetTop + el.offsetHeight / 3) {
+      if (scrollPosition > el.offsetTop - el.offsetHeight / 2) {
         store.style.setProperty("--current-bg", `var(--${color})`);
+      }
+    });
+    const scrollElements = document.querySelectorAll("[data-scroll-visited]");
+
+    scrollElements.forEach((el, i) => {
+      if (scrollPosition > el.offsetTop - 50) {
+        if (el.dataset.scrollVisited == "false") {
+          el.dataset.scrollVisited = "true";
+          document.querySelector("#animation-container").classList.remove("hidden");
+          scrollElements[i].classList.add(`active-${i}`);
+        }
+        // console.log('got here', i)
       }
     });
 
     // console.log('----')
   }, [scrollPosition]);
+
+  const filterInView = (arr, query) => {
+    return arr.filter((el) => el.imageTop < query);
+  };
 
   useEffect(() => {
     const ref = cursorCircle.current;
@@ -192,10 +212,7 @@ export default function Home() {
       </section>
       {/* /header */}
       {/* hero */}
-      <section
-        data-bg="neon"
-        className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] "
-      >
+      <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] md:px-[5vw] ">
         <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
           {/* title */}
           <span
@@ -233,14 +250,15 @@ export default function Home() {
 
       {/* section 2 */}
       <section
-        // ref={(ref) => scrollRefs.current.push(ref)}
+        data-bg="neon"
         className="relative h-max pt-[3rem] flex items-top justify-center w-full"
       >
         <SampleListsCarousel />
       </section>
       {/* section 2 */}
 
-      <section data-bg="neon" className="section-tile">
+      {/* section tile 1 */}
+      <section data-scroll-visited="false" data-bg="neon" className="section-tile">
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
@@ -250,18 +268,35 @@ export default function Home() {
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
                 style={{ backgroundImage: `url('/photos/tile1.png')` }}
               >
-                {/* todo: add scroll watcher to trigger animation */}
-                <div className="absolute flex flex-col items-center justify-center w-full h-full ">
-                  {/* <Image
-                    className="pop-in py-[2rem]"
-                    width="200"
-                    height="500"
-                    src="/graphics/imessage1.png"
-                  /> */}
-                  {/* <Image className="pop-in" width="200" height="500" src="/graphics/imessage2.png"/> */}
-                  {/* <Image className="pop-in" width="200" height="500" src="/graphics/imessage3.png"/> */}
+                {/* tile animation container */}
+                <div
+                  id="animation-container"
+                  className="hidden absolute flex flex-col items-center justify-center w-full h-full"
+                >
+                  <div className="aspect-[1/1.5] w-[60%] items-center justify-center flex-col flex">
+                    <div className="w-full flex justify-start">
+                      <div className="imessage-left pop-in-1 flex flex-col w-max my-[1rem]">
+                          <span >Do you have recs for LA? </span>
+                          <span >I'll be there next week</span>
+                      </div>
+                    </div>
+                    <div className="w-full flex justify-end">
+                      <div className="imessage-right pop-in-2 flex flex-col w-max my-[1rem]">
+                          Here!
+                      </div>
+                    </div>
+                    <div className="w-full flex justify-end">
+                      <div className="imessage-right pop-in-3 flex flex-col w-max my-[1rem]">
+                        <div className="flex flex-row items-center h-[24px]">
+                          <div className='dot dot-one'></div>
+                          <div className='dot dot-two'></div>
+                          <div className='dot dot-three'></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                {/* tile animation */}
+                {/* /tile animation container */}
               </div>
             </div>
             {/* /title */}
@@ -281,8 +316,10 @@ export default function Home() {
         </div>
         {/* /tile */}
       </section>
+      {/* /section tile 1  */}
 
-      <section data-bg="neon" className="section-tile">
+      {/* section tile 2 */}
+      <section data-scroll-visited="false" data-bg="neon" className="section-tile">
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
@@ -314,8 +351,10 @@ export default function Home() {
         </div>
         {/* /tile */}
       </section>
+      {/* /section tile 2  */}
 
-      <section data-bg="white" className="section-tile">
+      {/* section tile 3 */}
+      <section data-scroll-visited="false" data-bg="neon" className="section-tile">
         {/* tile */}
         <div className="tile">
           {/* tile-image */}
@@ -326,7 +365,7 @@ export default function Home() {
                 style={{ backgroundImage: `url('/photos/tile3.png')` }}
               >
                 <div className="absolute flex flex-col items-center justify-center w-full h-full ">
-                  test
+                  
                 </div>
               </div>
             </div>
@@ -347,15 +386,16 @@ export default function Home() {
         </div>
         {/* /tile */}
       </section>
+      {/* /section tile 3  */}
 
       {/* bottom CTA */}
       <section
-        data-bg="neon"
-        className="h-[85vh] mx-[1rem] md:mx-0 mt-[10rem] flex items-center w-full"
+        data-bg="off-white"
+        className="h-[100vh] mx-[1rem] md:mx-0 mt-[10rem] flex items-center w-full"
       >
         <div className="text-[Radio] flex flex-col h-full items-start justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
           {/* title */}
-          <div data-start-y="12" className="w-full pt-[3rem] flex justify-start">
+          <div data-start-y="30" className="w-full pt-[3rem] flex justify-start">
             <span className="xl:pl-[8vw] md:w-[60%]  md:pl-[2rem]">For the spots you love</span>
           </div>
           <div data-start-y="40" className="w-full pt-[3rem] flex justify-start md:justify-end ">
@@ -366,8 +406,9 @@ export default function Home() {
             className="relative xl:pl-[8vw] flex w-full md:w-[60%] max-w-[800px] flex-col pt-[3rem] md:pl-[2rem]  "
           >
             <span className="text-[1.7rem] md:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
-              * like music, compile your favorite places into a <span className="text-[--ocean]">city playlist</span> that captures that
-              time of your life.
+              * like music, compile your favorite places into a{" "}
+              <span className="text-[--ocean]">city playlist</span> that captures that time of your
+              life.
             </span>
           </div>
 
