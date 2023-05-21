@@ -28,6 +28,33 @@ export default function Home() {
   // console.count('re-renders')
   const cursorCircle = useRef(null);
 
+  const tile2List = [
+    {
+      title: "New York City",
+      img: "newyork.png",
+      z: 1
+    },
+    {
+      title: "Big Island",
+      img: "bigisland.png",
+      z: -1
+    },
+    {
+      title: "Los Angeles",
+      img: "losangeles.png",
+      z: -1
+    },
+    {
+      title: "San Francisco",
+      img: "sanfrancisco.png",
+      z: -1
+    },
+    {
+      title: "Portland",
+      img: "portland.png",
+      z: -1
+    },
+  ];
   const cursorRefs = useRef([]);
   // const cursorRef = useRef(null);
   const scrollRefs = useRef([]);
@@ -58,8 +85,20 @@ export default function Home() {
     setScrollPosition(y);
   }, 1);
 
+  const dothing = (e) => {
+    const tile2cities = document.querySelectorAll(".tile-2-inner")
+    let current = 0;
+    let prev = 0
+    setInterval(() => {
+      tile2cities[prev].classList.remove('active')
+      current < tile2cities.length - 1 ? current++ : current = 0;
+      tile2cities[current].classList.add('active')
+      prev = current
+    }, 500);
+  };
   useEffect(() => {
     console.log("mounted");
+    dothing();
     var timer = 0;
 
     window.addEventListener("scroll", () => {
@@ -89,6 +128,8 @@ export default function Home() {
       el.addEventListener("mouseover", () => setHovering(el.dataset.hoverStyle));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
+  
+
   }, []);
 
   useEffect(() => {
@@ -276,21 +317,21 @@ export default function Home() {
                   <div className="aspect-[1/1.5]  w-[80%] md:w-[60%]  items-center justify-center flex-col flex">
                     <div className="w-full flex justify-start">
                       <div className="imessage-left pop-in-1 flex flex-col w-max my-[1rem]">
-                          <span >Do you have recs for LA? </span>
-                          <span >I'll be there next week</span>
+                        <span>Do you have recs for LA? </span>
+                        <span>I'll be there next week</span>
                       </div>
                     </div>
                     <div className="w-full flex justify-end">
                       <div className="imessage-right pop-in-2 flex flex-col w-max my-[1rem]">
-                          Here!
+                        Here!
                       </div>
                     </div>
                     <div className="w-full flex justify-end">
                       <div className="imessage-right pop-in-3 flex flex-col w-max my-[1rem]">
                         <div className="flex flex-row items-center h-[24px]">
-                          <div className='dot dot-one'></div>
-                          <div className='dot dot-two'></div>
-                          <div className='dot dot-three'></div>
+                          <div className="dot dot-one"></div>
+                          <div className="dot dot-two"></div>
+                          <div className="dot dot-three"></div>
                         </div>
                       </div>
                     </div>
@@ -324,15 +365,21 @@ export default function Home() {
         <div className="tile">
           {/* tile-image */}
           <div data-start-y="20" className="tile-image ">
-            <div className="w-full h-full items-center">
-              <div
-                className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
-                style={{ backgroundImage: `url('/photos/tile2.png')` }}
-              >
-                {/* todo: add scroll watcher to trigger animation */}
-                <div className="absolute flex flex-col items-center justify-center w-full h-full "></div>
-                {/* tile animation */}
+            <div className="w-full h-full relative items-center justify-center aspect-[1/1.23] bg-center bg-cover ">
+              {/* todo: add scroll watcher to trigger animation */}
+              <div className="tile-2-outer">
+                {tile2List.map((item, index) => {
+                  return (
+                    <div className="tile-2-inner absolute"
+                    style= {{ backgroundImage: `url(/photos/cities/${item.img})`, zIndex: `${item.z}` }}>
+                    <div className="tile-2-text-wrapper">
+                        <span className="tile-2-text">{item.title}</span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
+              {/* tile animation */}
             </div>
             {/* /title */}
           </div>
@@ -359,16 +406,7 @@ export default function Home() {
         <div className="tile">
           {/* tile-image */}
           <div data-start-y="15" className="tile-image">
-            <div className="w-full h-full items-center">
-              <div
-                className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
-                style={{ backgroundImage: `url('/photos/tile3.png')` }}
-              >
-                <div className="absolute flex flex-col items-center justify-center w-full h-full ">
-                  
-                </div>
-              </div>
-            </div>
+            <div className="w-full h-full items-center"></div>
             {/* /title */}
           </div>
           {/* /tile-image */}

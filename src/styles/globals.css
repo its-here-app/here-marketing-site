@@ -131,6 +131,22 @@
 .pop-in-3 {
   animation: pop-in 900ms 1500ms ease-in-out both;
 }
+.tile-2-outer {
+  @apply relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
+
+}
+.tile-2-inner {
+  @apply z-[-1] relative z-[10] w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
+}
+.tile-2-text-wrapper {
+  @apply flex select-none text-red-200 w-full h-full flex-col items-center justify-center;
+}
+.tile-2-text {
+  @apply text-[--neon] text-[4rem] lg:text-[3vw] font-[Crimson] italic leading-[100%] translate-y-[20%];
+}
+.active {
+  z-index: 1 !important;
+}
 .imessage-left {
   @apply relative bg-[--black] rounded-[18px] text-white font-[Golos] px-[1rem] py-[.4rem];
 }
