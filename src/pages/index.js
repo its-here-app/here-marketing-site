@@ -32,27 +32,27 @@ export default function Home() {
     {
       title: "New York City",
       img: "newyork.png",
-      z: 1
+      z: 1,
     },
     {
       title: "Big Island",
       img: "bigisland.png",
-      z: -1
+      z: -1,
     },
     {
       title: "Los Angeles",
       img: "losangeles.png",
-      z: -1
+      z: -1,
     },
     {
       title: "San Francisco",
       img: "sanfrancisco.png",
-      z: -1
+      z: -1,
     },
     {
       title: "Portland",
       img: "portland.png",
-      z: -1
+      z: -1,
     },
   ];
   const cursorRefs = useRef([]);
@@ -86,14 +86,14 @@ export default function Home() {
   }, 1);
 
   const dothing = (e) => {
-    const tile2cities = document.querySelectorAll(".tile-2-inner")
+    const tile2cities = document.querySelectorAll(".tile-2-inner");
     let current = 0;
-    let prev = 0
+    let prev = 0;
     setInterval(() => {
-      tile2cities[prev].classList.remove('active')
-      current < tile2cities.length - 1 ? current++ : current = 0;
-      tile2cities[current].classList.add('active')
-      prev = current
+      tile2cities[prev].classList.remove("active");
+      current < tile2cities.length - 1 ? current++ : (current = 0);
+      tile2cities[current].classList.add("active");
+      prev = current;
     }, 500);
   };
   useEffect(() => {
@@ -128,8 +128,6 @@ export default function Home() {
       el.addEventListener("mouseover", () => setHovering(el.dataset.hoverStyle));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
-  
-
   }, []);
 
   useEffect(() => {
@@ -257,10 +255,7 @@ export default function Home() {
       <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] ">
         <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[7.5vw] xxl:text-[9rem]">
           {/* title */}
-          <span
-            data-fade-in-group="1"
-            className="whitespace-nowrap md:pl-[10%] max-w-[2000px]"
-          >
+          <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[10%] max-w-[2000px]">
             One place —{" "}
           </span>
           <div className="flex md:justify-between w-full ">
@@ -347,7 +342,11 @@ export default function Home() {
           {/* tile-text */}
           <div data-start-y="10" className="tile-text">
             <div className="tile-text-top">
-              <div>Stop digging for your</div>
+              <div>
+                <span>Stop digging </span>
+                <br />
+                <span> for your</span>
+              </div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">travel recs</div>
             </div>
             <div className="tile-text-bottom">
@@ -371,9 +370,14 @@ export default function Home() {
               <div className="tile-2-outer">
                 {tile2List.map((item, index) => {
                   return (
-                    <div className="tile-2-inner absolute"
-                    style= {{ backgroundImage: `url(/photos/cities/${item.img})`, zIndex: `${item.z}` }}>
-                    <div className="tile-2-text-wrapper">
+                    <div
+                      className="tile-2-inner absolute"
+                      style={{
+                        backgroundImage: `url(/photos/cities/${item.img})`,
+                        zIndex: `${item.z}`,
+                      }}
+                    >
+                      <div className="tile-2-text-wrapper">
                         <span className="tile-2-text">{item.title}</span>
                       </div>
                     </div>
@@ -407,7 +411,7 @@ export default function Home() {
         <div className="tile">
           {/* tile-image */}
           <div data-start-y="15" className="tile-image">
-          <div className="w-full h-full items-center">
+            <div className="w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
                 style={{ backgroundImage: `url('/photos/tile3.png')` }}
