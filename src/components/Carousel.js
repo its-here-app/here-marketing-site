@@ -12,6 +12,7 @@ const SampleListsCarousel = () => {
   const carousel = useRef(null);
 
   /* for dragging */
+  const [prevPosition, setPrevPosition] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(0);
   const [dragStartPoint, setDragStartPoint] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -71,10 +72,12 @@ const SampleListsCarousel = () => {
   const handleDragStart = (event) => {
     event.type === 'touchstart' ? setDragStartPoint(event.touches[0].clientX - currentPosition) : setDragStartPoint(event.clientX - currentPosition)
     setIsDragging(true);
+    setPrevPosition(currentPosition);
   };
 
   const handleDrag = (event) => {
     if (!isDragging) return;
+    event.preventDefault();
     let currentDragPoint = event.type === "touchmove" ? event.touches[0].clientX : event.clientX
     let diff = currentDragPoint - dragStartPoint;
     carousel.current.style.transform = `translateX(${diff}px)`;
@@ -82,17 +85,16 @@ const SampleListsCarousel = () => {
   };
 
   const handleDragEnd = () => {
+    if(Math.abs(currentPosition-prevPosition) < 100) {
+      console.log('short throw')
+      // setCurrentPosition(currentPosition - 500)
+
+    }
     if (!isDragging) return;
     setIsDragging(false);
 
-    // const threshold = 50;
-    // if (diff > (-sampleLists.length * increment) / 2) {
-    //   setCurrentIndex(2);
-    //   console.log('new position', currentIndex)
-    // }
-    // setStartX(diff);
-    // carousel.current.style.transform = "translate3D(0, 0, 0)";
   };
+
 
   return (
     <section ref={sampleListContainer} className="mx-auto overflow-hidden">

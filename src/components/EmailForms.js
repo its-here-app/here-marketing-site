@@ -16,23 +16,23 @@ const EmailForms = ({ status, message, onValidated }) => {
     });
 
   return (
-    <div className="relative pt-[5rem] h-[90%]  md:h-auto md:gap-[2rem] flex flex-col mx-[1rem] md:mx-[5rem]">
-      <div className="w-full font-[Radio] text-white text-[4rem] md:text-[8vw] ">
+    <div className="relative h-[90%] pt-[2rem]  md:h-auto md:gap-[2rem] flex flex-col mx-[1rem] md:mx-[6rem]">
+      <div className="w-full font-[Radio] text-white text-[4rem] md:text-[9vw] xl:text-[8vw] ">
         Try out here*
       </div>
-      <div className="relative mt-[1rem] w-[95%] lg:w-[55%]  justify-center ">
+      <div className="relative mt-[1rem] w-full md:w-[80%] lg:w-[55%]  justify-center ">
         <input
           ref={(node) => (email = node)}
           type="text"
-          className="py-[1rem] cursor-none w-full text-[1.3rem] md:text-[1.5rem] lg:text-[2vw] text-white px-[1rem] h-full email-input"
-          placeholder="your email for exclusive access"
+          className="py-[1rem] cursor-none w-full text-[1.1rem] md:text-[1.5rem]  lg:text-[2vw] text-white px-[1rem] h-full email-input"
+          placeholder="Enter email for exclusive access"
         ></input>
         <button
-          className="cursor-none hover:scale-[1.5] transition-all absolute right-[10px] h-full items-top justify-end "
+          className="cursor-none hover:scale-[1.5] transition-all w-[40px] lg:w-[60px] absolute right-[10px] h-full items-top justify-end "
           type="submit"
           onClick={submit}
         >
-          <Image alt="none" src={arrowSubmit} />
+          <Image alt="none" fill src={arrowSubmit} />
         </button>
 
         <div className="absolute pt-[1rem] flex w-full h-auto items-center justify-center">

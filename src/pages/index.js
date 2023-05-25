@@ -461,21 +461,21 @@ export default function Home() {
       {/* bottom CTA */}
       <section
         data-bg="off-white"
-        className="h-[100vh] lg:h-[120vh] mx-[1rem] md:mx-0 mt-[10rem] flex items-center "
+        className="h-[100vh] lg:h-[100vh] px-[1rem] md:px-[3rem]  lg:mx-auto  w-full xl:w-[1738px] mt-[10rem] flex items-center"
       >
-        <div className="text-[Radio] flex flex-col h-full items-start justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
+        <div className="text-[Radio] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw]">
           {/* title */}
           <div data-start-y="30" className="w-full pt-[3rem] flex justify-start">
-            <span className="xl:pl-[8vw] md:w-[60%]  md:pl-[2rem]">For the spots you love</span>
+            <span className="md:w-[50vw]">For the spots you love</span>
           </div>
-          <div data-start-y="40" className=" pt-[3rem] flex justify-start md:justify-end ">
-            <span className="xl:pl-[8vw] md:w-[60%] md:pl-[2rem]">and those you want to visit</span>
+          <div data-start-y="40" className="px-0 mt-[3rem] lg:mt-[1rem] flex justify-start md:justify-end ">
+            <span className="md:w-[55vw]">and those you want to visit</span>
           </div>
           <div
             data-start-y="80"
-            className="relative xl:pl-[8vw] flex  md:w-[60%] max-w-[800px] flex-col pt-[3rem] md:pl-[2rem]  "
+            className="relative flex md:w-[42%] lg:w-[44%] max-w-[800px] flex-col pt-[3rem] md:pt-[7rem] md:pl-[2rem]"
           >
-            <span className="text-[1.4rem] md:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
+            <span className="text-[1.8rem] px-[1rem]  md:text-[1.3rem] lg:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
               * like music, compile your favorite places into a{" "}
               <span className="text-[--ocean]">city playlist</span> that captures that time of your
               life.
@@ -488,7 +488,7 @@ export default function Home() {
       {/* /bottom CTA  */}
 
       {/* footer */}
-      <section className="relative h-[60vh] lg:h-[50vh] w-full flex flex-col items-top bg-[--black] justify-start">
+      <section className="relative h-[80vh] md:h-[50vh] lg:h-[600px] w-full flex flex-col justify-between items-top bg-[--black] ">
         <MailchimpSubscribe
           url={url}
           render={({ subscribe, status, message }) => (
@@ -509,9 +509,18 @@ export default function Home() {
           </div>
         </div>
         {/* footer stickers */}
-        <div className="absolute bottom-[10%] left-[5%]">
-          <Image alt="none" src={logoOG} />
+        {/* footer nav */}
+        <div className="h-[100px] mb-[2rem] px-[2rem] flex w-full justify-between">
+          <div className="relative flex items-center justify-center h-full w-[60px]">
+            <Image alt="none" fill src={logoOG} />
+          </div>
+          <div className="flex flex-row text-[1.5rem] w-full max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
+            <div className="hidden md:flex">Contact us ↗</div>
+            <div className="hidden md:flex">Follow us on instagram ↗</div>
+            <div className="">Here 2023 ©</div>
+          </div>
         </div>
+        {/* /footer nav */}
       </section>
 
       {/* /footer */}
