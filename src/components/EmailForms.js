@@ -16,11 +16,11 @@ const EmailForms = ({ status, message, onValidated }) => {
     });
 
   return (
-    <div className="relative h-[90%] pt-[2rem]  md:h-auto md:gap-[2rem] flex flex-col mx-[1rem] md:mx-[6rem]">
-      <div className="w-full font-[Radio] text-white text-[4rem] md:text-[9vw] xl:text-[8vw] ">
+    <div className="relative h-[90%] pt-[4rem] md:pt-[3rem]  md:h-auto gap-[3rem] flex flex-col mx-[1rem] md:mx-[6rem]">
+      <div className="w-full font-[Radio] text-white text-[5rem] md:text-[9vw] xl:text-[8vw] ">
         Try out here*
       </div>
-      <div className="relative mt-[1rem] w-full md:w-[80%] lg:w-[55%]  justify-center ">
+      <div className="relative mt-[1rem] w-full md:w-[60%] lg:w-[55%]  justify-center ">
         <input
           ref={(node) => (email = node)}
           type="text"

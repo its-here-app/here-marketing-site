@@ -31,16 +31,16 @@ const SampleListsCarousel = () => {
       img: "/lists/chi.png",
     },
     {
-      title: "Portland, ME",
-      subtitle: "A weekend trip",
+      title: "San Francisco",
+      subtitle: "Hidden Spots",
       amount: "10",
-      img: "/lists/pme.png",
+      img: "/lists/sf.png",
     },
     {
-      title: "Portland2",
-      subtitle: "test",
+      title: "Mexico City",
+      subtitle: "Fave food & drink spots",
       amount: "3",
-      img: "/lists/pme.png",
+      img: "/lists/mex.png",
     },
   ];
 
@@ -80,8 +80,10 @@ const SampleListsCarousel = () => {
     event.preventDefault();
     let currentDragPoint = event.type === "touchmove" ? event.touches[0].clientX : event.clientX
     let diff = currentDragPoint - dragStartPoint;
-    carousel.current.style.transform = `translateX(${diff}px)`;
-    setCurrentPosition(diff)
+    if(diff < 30 && diff > -900) {
+      carousel.current.style.transform = `translateX(${diff}px)`;
+      setCurrentPosition(diff)
+    }
   };
 
   const handleDragEnd = () => {
