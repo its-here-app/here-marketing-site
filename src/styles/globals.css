@@ -66,7 +66,7 @@
   }
 }
 
-@keyframes pop-in {
+@keyframes pop-in-up {
   0% {
     opacity: 0;
     transform: scale(0.3);
@@ -84,7 +84,7 @@
     transform: translateY(0px) scale(1);
   }
 }
-/* 
+
 @keyframes pop-in {
   0% {
     opacity: 0;
@@ -92,7 +92,7 @@
   }
   70% {
     opacity: 0;
-    transform: translateY(30%) scale(0.3);
+    transform: scale(0.3);
   }
   85% {
     opacity: 1;
@@ -100,9 +100,24 @@
   }
   100% {
     opacity: 1;
-    transform: translateY(0px) scale(1);
+    transform:  scale(1);
   }
-} */
+}
+
+@keyframes pop-out {
+  0% {
+    opacity: 1;
+    transform:  scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform:  scale(0);
+  }
+}
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -123,16 +138,25 @@
   animation: fade-in 800ms ease-in-out both;
 }
 .pop-in {
-  animation: pop-in 900ms ease-in-out both;
+  animation: pop-in-up 900ms ease-in-out both;
 }
 .pop-in-1 {
-  animation: pop-in 900ms ease-in-out both;
+  animation: pop-in-up 900ms ease-in-out both;
 }
 .pop-in-2 {
-  animation: pop-in 900ms 1000ms ease-in-out both;
+  animation: pop-in-up 900ms 1000ms ease-in-out both;
 }
 .pop-in-3 {
-  animation: pop-in 900ms 1500ms ease-in-out both;
+  animation: pop-in-up 900ms 1500ms ease-in-out both;
+}
+.pop-in-tile3 {
+  animation: pop-in 1500ms ease-in-out both;
+}
+.pop-out-tile3-before {
+  animation: pop-out 1500ms 1500ms ease-in-out both;
+}
+.pop-in-tile3-after {
+  animation: pop-in 1500ms 1500ms ease-in-out both;
 }
 .tile-2-outer {
   @apply relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];

@@ -12,6 +12,8 @@ import stickerStartYourPlaylistBlack from "/public/stickers/sticker-start-your-p
 import tile1 from "/public/photos/tile1.png";
 import tile2 from "/public/photos/tile2.png";
 import tile3 from "/public/photos/tile3.png";
+import tile3Before from "/public/graphics/tile3_before.png";
+import tile3After from "/public/graphics/tile3_after.png";
 import imessage1 from "/public/graphics/imessage1.png";
 import imessage2 from "/public/graphics/imessage2.png";
 import imessage3 from "/public/graphics/imessage3.png";
@@ -174,8 +176,7 @@ export default function Home() {
       if (scrollPosition > el.offsetTop - el.offsetHeight / 3) {
         if (el.dataset.scrollVisited == "false") {
           el.dataset.scrollVisited = "true";
-          document.querySelector("#animation-container").classList.remove("hidden");
-          document.querySelector("#animation-container-3").classList.add("pop-in");
+          el.querySelector("#animation-container") && el.querySelector("#animation-container").classList.remove("hidden");
           scrollElements[i].classList.add(`active-${i}`);
         }
         // console.log('got here', i)
@@ -478,10 +479,15 @@ export default function Home() {
                 style={{ backgroundImage: `url('/photos/tile3.png')` }}
               >
                 <div
-                  id="animation-container-3"
-                  className="absolute flex flex-col items-center justify-center w-full h-full"
+                  id="animation-container"
+                  className="hidden pop-in-tile3 absolute flex flex-col items-center justify-center w-full h-full"
                 >
-                  test
+                  <div className="absolute pop-out-tile3-before w-[80%] h-[80%]">
+                    <Image src={tile3Before} fill alt=""/>
+                  </div>
+                  <div className="absolute pop-in-tile3-after w-[60%] h-[50%]">
+                    <Image src={tile3After} fill alt=""/>
+                  </div>
                   {/* content here */}
                 </div>
               </div>
@@ -523,9 +529,9 @@ export default function Home() {
           </div>
           <div
             data-start-y="80"
-            className="relative flex md:w-[42%] lg:w-[44%] max-w-[800px] flex-col pt-[3rem] md:pt-[7rem] md:pl-[2rem]"
+            className="relative flex md:w-[42%] lg:w-[44%] max-w-[800px] flex-col pt-[3rem] md:pt-[7rem] md:pl-[0]"
           >
-            <span className="text-[1.8rem] px-[1rem]  md:text-[1.3rem] lg:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
+            <span className="text-[1.8rem] px-[0] md:text-[1.3rem] lg:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
               * like music, compile your favorite places into a{" "}
               <span className="text-[--ocean]">city playlist</span> that captures that time of your
               life.
