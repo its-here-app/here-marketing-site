@@ -150,13 +150,13 @@
   animation: pop-in-up 900ms 1500ms ease-in-out both;
 }
 .pop-in-tile3 {
-  animation: pop-in 1500ms ease-in-out both;
+  animation: pop-in 1200ms ease-in-out both;
 }
 .pop-out-tile3-before {
-  animation: pop-out 1500ms 1500ms ease-in-out both;
+  animation: pop-out 2400ms 1500ms ease-in-out both;
 }
 .pop-in-tile3-after {
-  animation: pop-in 1500ms 1500ms ease-in-out both;
+  animation: pop-in 2400ms 1500ms ease-in-out both;
 }
 .tile-2-outer {
   @apply relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
@@ -291,6 +291,7 @@ body {
 }
 .tile-image {
   @apply col-span-6 xl:col-span-5
+  lg:px-[3rem]
   w-full flex items-center justify-center;
 }
 .bg-gradient-start {
