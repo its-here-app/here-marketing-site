@@ -214,6 +214,11 @@
 }
 html {
   scroll-behavior: smooth;
+  min-height: 100%;
+  position: relative
+}
+body {
+  height: 100%;
 }
 .transition-bg {
   transition: background-color 250ms ease 0s;

@@ -35,7 +35,7 @@ export default function Home() {
       z: 1,
     },
     {
-      title: "Big Island",
+      title: "Big Island",  
       img: "bigisland.png",
       z: -1,
     },
@@ -94,8 +94,9 @@ export default function Home() {
       current < tile2cities.length - 1 ? current++ : (current = 0);
       tile2cities[current].classList.add("active");
       prev = current;
-    }, 500);
+    }, 850);
   };
+  
   useEffect(() => {
     console.log("mounted");
     dothing();
@@ -238,7 +239,20 @@ export default function Home() {
         {/* <meta name="robots" content="index,follow" /> */}
       </Head>
       <div ref={cursorCircle} className="circle"></div>
-
+      {/* cta sticker */}
+      <div id="cta-sticker" className="absolute z-[3] top-0 right-[300px] w-[10px] h-full pt-[400px]">
+        <div data-hover-style="tile" className="pop-in hidden md:block sticky right-0 top-[3%] md:w-[250px] md:h-[200px]">
+          <Link
+            href=""
+            className="cursor-none"
+            onMouseOver={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+          >
+            <Image alt="none" className=" " fill src={stickerStartYourPlaylistBlack} />
+          </Link>
+        </div>
+      </div>
+      {/* cta sticker */}
       {/* <Cursor MousePosition={MousePosition} /> */}
       {/* header */}
       <section
@@ -447,7 +461,7 @@ export default function Home() {
       {/* bottom CTA */}
       <section
         data-bg="off-white"
-        className="h-[100vh] mx-[1rem] md:mx-0 mt-[10rem] flex items-center "
+        className="h-[100vh] lg:h-[120vh] mx-[1rem] md:mx-0 mt-[10rem] flex items-center "
       >
         <div className="text-[Radio] flex flex-col h-full items-start justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw] ">
           {/* title */}
@@ -461,7 +475,7 @@ export default function Home() {
             data-start-y="80"
             className="relative xl:pl-[8vw] flex  md:w-[60%] max-w-[800px] flex-col pt-[3rem] md:pl-[2rem]  "
           >
-            <span className="text-[1.7rem] md:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
+            <span className="text-[1.4rem] md:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
               * like music, compile your favorite places into a{" "}
               <span className="text-[--ocean]">city playlist</span> that captures that time of your
               life.
@@ -485,6 +499,7 @@ export default function Home() {
             />
           )}
         />
+        {/* footer stickers */}
         <div className="relative overflow-hidden h-[100%] flex justify-between lg:absolute lg:w-[50%] lg:right-0">
           <div className="absolute bottom-[10%] right-[20%] w-[40%] h-[40%]">
             <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
@@ -493,24 +508,14 @@ export default function Home() {
             <Image alt="none" fill className="pop-in" src={stickerStartYourPlaylist} />
           </div>
         </div>
+        {/* footer stickers */}
         <div className="absolute bottom-[10%] left-[5%]">
           <Image alt="none" src={logoOG} />
         </div>
       </section>
 
       {/* /footer */}
-      {/* <div id="cta-sticker" className="absolute z-[3]  top-0 right-[30%] w-[10px] h-[100vh]">
-        <div className="pop-in sticky top-[50%] w-[300px] h-[200px]">
-          <Link
-            href=""
-            className="cursor-none"
-            onMouseOver={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-          >
-            <Image alt="none" className=" " fill src={stickerStartYourPlaylistBlack} />
-          </Link>
-        </div>
-      </div> */}
+      
     </div>
   );
 }
