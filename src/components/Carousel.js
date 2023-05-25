@@ -80,18 +80,42 @@ const SampleListsCarousel = () => {
     event.preventDefault();
     let currentDragPoint = event.type === "touchmove" ? event.touches[0].clientX : event.clientX
     let diff = currentDragPoint - dragStartPoint;
-    if(diff < 30 && diff > -900) {
+    const threshold = 100;
+    // todo: calculate drag width (might be a function of container width & viewport width?)
+    const min = 0;
+    const max = -500;
+    if(diff > min + threshold ) {
+      carousel.current.style.transform = `translateX(${diff}px)`;
+      setCurrentPosition(min)
+    } else if (diff < max - threshold) {
+      carousel.current.style.transform = `translateX(${diff}px)`;
+      setCurrentPosition(max)
+    } else {
       carousel.current.style.transform = `translateX(${diff}px)`;
       setCurrentPosition(diff)
     }
   };
 
   const handleDragEnd = () => {
-    if(Math.abs(currentPosition-prevPosition) < 100) {
-      console.log('short throw')
-      // setCurrentPosition(currentPosition - 500)
 
+    const threshold_min = 50;
+    const threshold_max = 200;
+    console.log(currentPosition - prevPosition)
+    const diff = currentPosition - prevPosition 
+    if(diff > threshold_min && Math.abs(diff) < threshold_max) {
+      // console.log(diff, 'is greater than', threshold_min)
+      console.log('short throw, left')
+      // carousel.current.style.transform = `translateX(${diff + 300}px)`;
+      // setCurrentPosition(currentPosition + 300)
+      
     }
+    if(diff < -threshold_min && Math.abs(diff) < threshold_max) {
+      console.log('short throw, right')
+      // carousel.current.style.transform = `translateX(${diff - 300}px)`;
+      // setCurrentPosition(currentPosition - 300)
+    }
+
+    carousel.current.style.transform = `translateX(${currentPosition}px)`;
     if (!isDragging) return;
     setIsDragging(false);
 
