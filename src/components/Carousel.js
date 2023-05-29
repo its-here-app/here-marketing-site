@@ -2,6 +2,9 @@ import * as React from "react";
 // import ImageFlipper from "./ImageFlipper";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import asterisk from "/public/graphics/asterisk_regular.svg";
+
 // import {Slider} from "./Slider";
 
 const SampleListsCarousel = () => {
@@ -142,23 +145,30 @@ const SampleListsCarousel = () => {
       >
         {sampleLists.map((currentList, index) => {
           return (
-            <div key={index} data-hover-style="tile" data-fade-in-group="2" className="">
+            <div key={index} data-cursor-state="ul-arrow" data-fade-in-group="2" className="">
               <div className="w-[80vw] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
                 <div
                   style={{ backgroundImage: `url(${currentList.img})` }}
                   className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
                 >
                   <div className="row-span-1"></div>
-                  <div className="flex row-span-1   text-[--neon] flex-col justify-center items-center">
-                    <div className="text-[2rem] sm:text-[40%] font-[Crimson] font-italic leading-[100%] translate-y-[20%]">
+                  <div className="flex row-span-1 tighten text-[--neon] flex-col justify-center items-center">
+                    <div className="text-[2rem] sm:text-[40%] font-[Crimson] font-italic  translate-y-[20%]">
                       {currentList.title}
                     </div>
-                    <div className="text-[2rem] sm:text-[40%] font-[Golos] font-bold leading-[100%]">
+                    <div className="text-[2rem] sm:text-[40%] font-[Golos] font-[500] ">
                       {currentList.subtitle}
                     </div>
                   </div>
                   <div className="text-[--neon] pb-[1rem] self-end text-[2rem] sm:text-[40%] row-span-1 flex justify-center items-center">
-                    {currentList.amount}*{/* placeholder */}
+                    <div className="flex flex-row">
+                        <div className="">
+                          {currentList.amount}
+                        </div>
+                        <div className="relative w-[15px] ml-[5px] h-auto">
+                          <Image fill src={asterisk} alt="asterisk"/>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>

@@ -125,10 +125,10 @@ export default function Home() {
     document.querySelectorAll("[data-start-x]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 4000ms";
     });
-    document.querySelectorAll("[data-hover-style]").forEach((el, i) => {
+    document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
       // onMouseOver={() => setHovering(true)}
       // onMouseLeave={() => setHovering(false)}
-      el.addEventListener("mouseover", () => setHovering(el.dataset.hoverStyle));
+      el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
   }, []);
@@ -173,10 +173,12 @@ export default function Home() {
     const scrollElements = document.querySelectorAll("[data-scroll-visited]");
 
     scrollElements.forEach((el, i) => {
-      if (scrollPosition > el.offsetTop - el.offsetHeight / 3) {
+      if (scrollPosition > el.offsetTop - el.offsetHeight / 10) {
         if (el.dataset.scrollVisited == "false") {
+          console.log("got here", i);
           el.dataset.scrollVisited = "true";
-          el.querySelector("#animation-container") && el.querySelector("#animation-container").classList.remove("hidden");
+          el.querySelector("#animation-container") &&
+            el.querySelector("#animation-container").classList.remove("hidden");
           scrollElements[i].classList.add(`active-${i}`);
         }
         // console.log('got here', i)
@@ -193,16 +195,21 @@ export default function Home() {
   useEffect(() => {
     const ref = cursorCircle.current;
 
-    if (hovering === "grow") {
-      ref.classList.add("grow");
+    if (hovering === "ul-arrow") {
+      ref.classList.add(`cursor-ul-arrow`);
     } else {
-      ref.classList.remove("grow");
+      ref.classList.remove(`cursor-ul-arrow`);
     }
 
-    if (hovering === "tile") {
-      ref.classList.add("cursor-tile");
+    if (hovering === "asterisk") {
+      ref.classList.add("cursor-asterisk");
     } else {
-      ref.classList.remove("cursor-tile");
+      ref.classList.remove("cursor-asterisk");
+    }
+    if(hovering === "invert") {
+      ref.classList.add("cursor-invert");
+    } else {
+      ref.classList.remove("cursor-invert");
     }
   }, [hovering]);
 
@@ -246,7 +253,7 @@ export default function Home() {
         className="absolute z-[3] top-0 right-[300px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
       >
         <div
-          data-hover-style="tile"
+          data-cursor-state="asterisk"
           className="pop-in hidden md:block sticky right-0 top-[3%] md:w-[250px] md:h-[200px]"
         >
           <Link
@@ -261,7 +268,7 @@ export default function Home() {
               className=" w-full h-full group  hover:rotate-[15deg] transition-all"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clipPath="url(#clip0_1244_9825)">
+              <g clipath="url(#clip0_1244_9825)">
                 <ellipse
                   cx="132.076"
                   cy="77.9937"
@@ -270,7 +277,8 @@ export default function Home() {
                   transform="rotate(-8 132.076 77.9937)"
                   className="fill-black group-hover:fill-[--neon]"
                 />
-                <path className="fill-white group-hover:fill-black"
+                <path
+                  className="fill-white group-hover:fill-black"
                   d="M77.7749 79.122C76.5906 79.2884 75.5779 79.2438 74.7368 78.9882C73.9098 78.7306 73.2412 78.3214 72.7311 77.7604C72.2189 77.1854 71.8388 76.5271 71.5908 75.7856L73.5789 75.5062C73.8251 76.1329 74.2559 76.6403 74.8711 77.0283C75.4844 77.4022 76.3691 77.5079 77.5253 77.3454C78.7096 77.179 79.5732 76.8276 80.1161 76.2912C80.6731 75.7528 80.905 75.1523 80.8118 74.4896C80.7346 73.9398 80.5462 73.5205 80.2469 73.2319C79.9455 72.9292 79.4829 72.7066 78.859 72.5643C78.2473 72.4058 77.425 72.2842 76.3923 72.1993C75.2588 72.1141 74.3168 71.959 73.5663 71.7337C72.8157 71.5085 72.2326 71.1448 71.817 70.6425C71.4013 70.1401 71.1301 69.4378 71.0032 68.5354C70.9002 67.8023 71.0125 67.1179 71.3401 66.4824C71.6799 65.8308 72.2127 65.2742 72.9387 64.8127C73.6646 64.3513 74.5633 64.0452 75.6349 63.8946C76.6923 63.746 77.5983 63.7984 78.3528 64.0518C79.1073 64.3052 79.7236 64.7003 80.2016 65.237C80.6776 65.7596 81.0306 66.3785 81.2605 67.0939L79.2725 67.3733C79.0483 66.8009 78.6748 66.343 78.1521 65.9995C77.6415 65.6399 76.8856 65.5305 75.8846 65.6712C74.8694 65.8138 74.1096 66.1363 73.605 66.6385C73.1126 67.1247 72.908 67.6639 72.9913 68.256C73.1002 69.0315 73.4695 69.5619 74.0991 69.8472C74.7267 70.1185 75.6948 70.3059 77.0034 70.4096C77.9476 70.4782 78.7618 70.5938 79.4461 70.7564C80.1444 70.9171 80.7228 71.1449 81.1812 71.4399C81.6517 71.7189 82.0123 72.0852 82.263 72.5388C82.5278 72.9904 82.7067 73.5476 82.7998 74.2102C82.9069 74.9716 82.7793 75.7012 82.4173 76.3991C82.0674 77.0809 81.5023 77.6636 80.722 78.1471C79.9416 78.6305 78.9593 78.9555 77.7749 79.122ZM89.8612 77.2077L88.0243 64.1376L82.885 64.8598L82.6413 63.1256L94.9078 61.4017L95.1515 63.1359L90.0123 63.8582L91.8492 76.9283L89.8612 77.2077ZM96.1433 76.3248L99.7306 60.7239L101.719 60.4445L109.467 74.4523L107.31 74.7554L105.376 71.2746L99.1157 72.1544L98.2159 76.0335L96.1433 76.3248ZM99.5276 70.3281L104.476 69.6326L101.039 63.128L99.5276 70.3281ZM112.003 74.0958L109.923 59.2915L115.104 58.5632C116.345 58.3889 117.402 58.4416 118.275 58.7215C119.161 58.9852 119.862 59.4258 120.38 60.0431C120.897 60.6463 121.214 61.3709 121.333 62.2169C121.472 63.2038 121.297 64.1126 120.81 64.9431C120.335 65.7575 119.548 66.393 118.447 66.8496L123.212 72.5205L120.865 72.8504L116.495 67.3827L113.153 67.8524L113.991 73.8164L112.003 74.0958ZM112.915 66.1604L115.897 65.7414C117.265 65.5491 118.21 65.1647 118.733 64.588C119.254 63.9972 119.458 63.3 119.345 62.4963C119.232 61.6926 118.845 61.0857 118.183 60.6754C117.52 60.2511 116.504 60.135 115.137 60.3272L112.155 60.7463L112.915 66.1604ZM129.619 71.6201L127.782 58.55L122.643 59.2723L122.399 57.538L134.666 55.8141L134.909 57.5483L129.77 58.2706L131.607 71.3407L129.619 71.6201ZM148.444 68.9744L147.621 63.1161L140.59 54.9815L142.874 54.6605L148.305 60.9279L151.503 53.4478L153.702 53.1387L149.609 62.8367L150.432 68.695L148.444 68.9744ZM163.201 67.1161C162.356 67.2349 161.518 67.2089 160.689 67.0379C159.872 66.8508 159.11 66.4977 158.405 65.9786C157.699 65.4595 157.097 64.7534 156.597 63.8602C156.112 62.9651 155.776 61.8549 155.59 60.5296L155.531 60.1066C155.352 58.8376 155.375 57.7202 155.599 56.7542C155.836 55.7862 156.224 54.9625 156.761 54.2831C157.296 53.5897 157.932 53.0475 158.668 52.6565C159.417 52.2635 160.215 52.0076 161.061 51.8887C161.907 51.7698 162.738 51.7969 163.553 51.9699C164.382 52.1409 165.15 52.486 165.855 53.0051C166.559 53.51 167.151 54.196 167.632 55.0629C168.128 55.9279 168.465 56.9948 168.643 58.2637L168.703 58.6867C168.889 60.0121 168.865 61.1728 168.631 62.169C168.411 63.1632 168.034 64.007 167.499 64.7005C166.964 65.3939 166.322 65.9442 165.574 66.3513C164.838 66.7422 164.047 66.9972 163.201 67.1161ZM162.952 65.3395C163.727 65.2306 164.42 64.9392 165.029 64.4653C165.652 63.9895 166.116 63.2989 166.42 62.3935C166.724 61.4881 166.78 60.3516 166.588 58.984L166.528 58.561C166.346 57.2638 165.987 56.2432 165.451 55.4989C164.913 54.7406 164.279 54.2187 163.549 53.9331C162.832 53.6456 162.087 53.5563 161.311 53.6653C160.55 53.7723 159.857 54.0637 159.234 54.5395C158.611 55.0152 158.145 55.6918 157.837 56.569C157.527 57.4321 157.463 58.5122 157.646 59.8093L157.705 60.2323C157.897 61.6 158.264 62.677 158.806 63.4636C159.348 64.2501 159.984 64.7861 160.714 65.0717C161.445 65.3573 162.19 65.4465 162.952 65.3395ZM178.751 64.9307C177.581 65.0952 176.527 65.0133 175.589 64.6849C174.65 64.3425 173.875 63.7397 173.265 62.8765C172.653 61.9992 172.245 60.8415 172.043 59.4034L170.825 50.7323L172.813 50.4529L174.031 59.124C174.257 60.7313 174.759 61.847 175.537 62.4709C176.315 63.0949 177.303 63.3226 178.501 63.1542C179.7 62.9858 180.587 62.4945 181.163 61.6803C181.738 60.8661 181.913 59.6553 181.687 58.048L180.469 49.3769L182.457 49.0975L183.675 57.7686C183.877 59.2067 183.805 60.4318 183.459 61.4439C183.11 62.4418 182.531 63.2348 181.722 63.823C180.926 64.395 179.935 64.7643 178.751 64.9307ZM188.565 63.3357L186.485 48.5314L191.666 47.8031C192.907 47.6288 193.964 47.6815 194.837 47.9614C195.723 48.2251 196.424 48.6657 196.943 49.283C197.459 49.8862 197.776 50.6108 197.895 51.4568C198.034 52.4437 197.86 53.3525 197.372 54.183C196.897 54.9974 196.11 55.6329 195.009 56.0895L199.774 61.7604L197.427 62.0903L193.057 56.6227L189.715 57.0923L190.553 63.0563L188.565 63.3357ZM189.478 55.4004L192.46 54.9813C193.827 54.789 194.772 54.4046 195.295 53.8279C195.816 53.2371 196.02 52.5399 195.907 51.7362C195.794 50.9325 195.407 50.3256 194.745 49.9153C194.082 49.491 193.066 49.3749 191.699 49.5671L188.717 49.9862L189.478 55.4004Z"
                 />
                 <path
@@ -307,7 +315,7 @@ export default function Home() {
         data-bg="off-white"
         className="w-full flex max-w-[1738px] mx-auto items-center justify-between px-[1rem] md:px-[2rem] py-[1.5rem] lg:py-[2rem"
       >
-        <div className="relative w-[100px] h-[50px] md:w-[110px] flex  items-center justify-center">
+        <div className="relative w-[65px] h-[50px] md:w-[110px] flex  items-center justify-center">
           <Image alt="logo" fill src={logoLockup} />
         </div>
         <div className="flex items-center justify-center">{/* hamburger menu */}</div>
@@ -315,9 +323,9 @@ export default function Home() {
       {/* /header */}
       {/* hero */}
       <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] ">
-        <div className="flex flex-col font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[7.5vw] xxl:text-[9rem]">
+        <div className="flex flex-col font-[Radio] lg:mx-[5vw] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[6.5vw] xxl:text-[9rem]">
           {/* title */}
-          <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[10%] max-w-[2000px]">
+          <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[5%] ">
             One place —{" "}
           </span>
           <div className="flex md:justify-between w-full ">
@@ -335,8 +343,8 @@ export default function Home() {
           <button
             data-fade-in-group="1"
             // ref={(ref) => cursorRefs.current.push(ref)}
-            data-hover-style="grow"
-            className="bg-black mt-[1rem] md:mt-[4rem] leading-[150%] cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-[Golos] px-[18px] py-[10px]"
+            data-cursor-state="ul-arrow"
+            className="bg-black mt-[2rem] md:mt-[4rem] leading-[150%] cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-[Golos] px-[18px] py-[10px]"
           >
             Start your playlist
           </button>
@@ -455,11 +463,13 @@ export default function Home() {
           {/* tile-text */}
           <div data-start-y="40" className="tile-text grid-reverse text-reverse">
             <div className="tile-text-top">
-              <div>Discover new places</div>
+              <div>
+                Discover <span className="whitespace-nowrap">new places</span>
+              </div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">based on what you like</div>
             </div>
             <div className="tile-text-bottom">
-              One place to plan, search, cross-reference and find experiences curated for you.
+              One place to plan, search, cross&#8209;reference and find experiences curated for you.
             </div>
           </div>
           {/* /tile-text */}
@@ -484,10 +494,10 @@ export default function Home() {
                   className="hidden pop-in-tile3 absolute flex flex-col items-center justify-center w-full h-full"
                 >
                   <div className="absolute pop-out-tile3-before w-[80%] h-[80%]">
-                    <Image src={tile3Before} fill alt=""/>
+                    <Image src={tile3Before} fill alt="" />
                   </div>
                   <div className="absolute pop-in-tile3-after w-[60%] h-[50%]">
-                    <Image src={tile3After} fill alt=""/>
+                    <Image src={tile3After} fill alt="" />
                   </div>
                   {/* content here */}
                 </div>
@@ -500,7 +510,11 @@ export default function Home() {
           <div data-start-y="30" className="tile-text">
             <div className="tile-text-top">
               <div>Auto&#8209;populate from </div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">your existing lists</div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">
+                <div className="text-left">
+                  your <span className="whitespace-nowrap">existing lists</span>
+                </div>
+              </div>
             </div>
             <div className="tile-text-bottom">
               Start your city playlist with notes, google docs, instagram, or maps.
@@ -515,11 +529,11 @@ export default function Home() {
       {/* bottom CTA */}
       <section
         data-bg="off-white"
-        className="h-[100vh] lg:h-[110vh] px-[1rem] md:px-[3rem]  lg:mx-auto  w-full xl:w-[1738px] mt-[10rem] flex items-center"
+        className="h-[110vh] lg:h-[110vh] px-[1rem] md:px-[3rem]  lg:mx-auto  w-full xl:w-[1738px] mt-[10rem] flex items-center"
       >
-        <div className="text-[Radio] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:text-[8vw]">
+        <div className="text-[Radio] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] text-[15vw] md:text-[8vw]">
           {/* title */}
-          <div data-start-y="30" className="w-full pt-[3rem] flex justify-start">
+          <div data-start-y="30" className="w-full pt-[2rem] flex justify-start">
             <span className="md:w-[50vw]">For the spots you love</span>
           </div>
           <div
@@ -545,7 +559,7 @@ export default function Home() {
       {/* /bottom CTA  */}
 
       {/* footer */}
-      <section className="relative h-[80vh] md:h-[50vh] lg:h-[600px] w-full flex flex-col justify-between items-top bg-[--black] ">
+      <section data-cursor-state="invert" className="relative h-[80vh] md:h-[50vh] lg:h-[600px] w-full flex flex-col justify-between items-top bg-[--black] ">
         <MailchimpSubscribe
           url={url}
           render={({ subscribe, status, message }) => (
