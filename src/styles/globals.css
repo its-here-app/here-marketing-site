@@ -291,7 +291,7 @@ body {
 }
 .tile-image {
   @apply col-span-6 xl:col-span-5
-  lg:px-[3rem]
+  lg:px-[1rem]
   w-full flex items-center justify-center;
 }
 .bg-gradient-start {

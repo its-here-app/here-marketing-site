@@ -261,7 +261,7 @@ export default function Home() {
               className=" w-full h-full group  hover:rotate-[15deg] transition-all"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_1244_9825)">
+              <g clipPath="url(#clip0_1244_9825)">
                 <ellipse
                   cx="132.076"
                   cy="77.9937"
@@ -434,6 +434,7 @@ export default function Home() {
                   return (
                     <div
                       className="tile-2-inner absolute"
+                      key={item.title}
                       style={{
                         backgroundImage: `url(/photos/cities/${item.img})`,
                         zIndex: `${item.z}`,
