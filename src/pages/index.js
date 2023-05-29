@@ -316,7 +316,7 @@ export default function Home() {
         className="w-full flex max-w-[1738px] mx-auto items-center justify-between px-[1rem] md:px-[2rem] py-[1.5rem] lg:py-[2rem"
       >
         <div className="relative w-[65px] h-[50px] md:w-[110px] flex  items-center justify-center">
-          <Image alt="logo" fill src={logoLockup} />
+          <Image tabIndex="0"  alt="logo" fill src={logoLockup} />
         </div>
         <div className="flex items-center justify-center">{/* hamburger menu */}</div>
       </section>
