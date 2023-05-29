@@ -370,7 +370,7 @@ export default function Home() {
         <div className="tile">
           {/* tile-image */}
           <div data-start-y="15" className="tile-image">
-            <div className="w-full h-full items-center">
+            <div className="w-[95%] md:w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
                 style={{ backgroundImage: `url('/photos/tile1.png')` }}
