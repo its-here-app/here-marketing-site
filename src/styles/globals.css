@@ -246,12 +246,14 @@
 html {
   scroll-behavior: smooth;
   min-height: 100%;
-  position: relative;
-  overflow-x: hidden;
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   /* -webkit-font-smoothing: antialiased; */
 /* -moz-osx-font-smoothing: grayscale; */
+}
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 body {
   height: 100%;

@@ -126,7 +126,7 @@ const SampleListsCarousel = () => {
 
 
   return (
-    <section ref={sampleListContainer} className="mx-auto overflow-hidden">
+    <div ref={sampleListContainer} className="touch-pan-x mx-auto overflow-hidden">
       <div
         ref={carousel}
         onMouseDown={handleDragStart}
@@ -135,7 +135,7 @@ const SampleListsCarousel = () => {
         onTouchStart={handleDragStart}
         onTouchMove={handleDrag}
         onTouchEnd={handleDragEnd}
-        className={`transition-transform  duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] flex flex-row gap-[2vw] pt-[2rem] text-[5rem] mx-auto subtitle-text px-[5px]`}
+        className={`touch-pan-x transition-transform  duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] flex flex-row gap-[2vw] pt-[2rem] text-[5rem] mx-auto subtitle-text px-[5px]`}
         style={{
           // transform: `translate3d(${position}px, 0px, 0px)`,
           width: `${carouselWidth}vw`,
@@ -177,7 +177,7 @@ const SampleListsCarousel = () => {
         })}
       </div>
       {/* /carousel end */}
-    </section>
+    </div>
   );
 };
 
