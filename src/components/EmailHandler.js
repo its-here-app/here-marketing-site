@@ -1,11 +1,12 @@
-import logoOG from "/public/graphics/logo-og.svg";
 import arrowSubmit from "/public/graphics/arrow-right.svg";
+import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 
-const EmailForms = ({ status, message, onValidated }) => {
+const EmailForm = ({ status, message, onValidated }) => {
   let email, name;
+
   const submit = () =>
     email &&
     // name &&
@@ -16,17 +17,20 @@ const EmailForms = ({ status, message, onValidated }) => {
     });
 
   return (
-    <div className="md:pl-[5rem] xxl:pl-[10rem]">
+    <div className="w-full ">
       <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
         Try out here*
       </div>
       <div className="relative mt-[1rem] w-full md:w-[600px] lg:w-[800px]  justify-center ">
         <input
           ref={(node) => (email = node)}
-          type="text"
-          className="email-input "
+          type="email"
+          name="email"
+          className="email-input required-email"
           placeholder="Enter email for exclusive access"
         ></input>
+      
+
         <button
           className="cursor-none hover:scale-[1.5] transition-all w-[40px] lg:w-[50px] absolute right-[12px] h-full items-top justify-end "
           type="submit"
@@ -46,10 +50,27 @@ const EmailForms = ({ status, message, onValidated }) => {
           )}
         </div>
       </div>
-
-
     </div>
   );
 };
 
-export default EmailForms;
+const MCForm = () => {
+  const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
+
+  return (
+    <>
+      <MailchimpSubscribe
+        url={url}
+        render={({ subscribe, status, message }) => (
+          <EmailForm
+            status={status}
+            message={message}
+            onValidated={(formData) => subscribe(formData)}
+          />
+        )}
+      />
+    </>
+  );
+};
+
+export default MCForm;

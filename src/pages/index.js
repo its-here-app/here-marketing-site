@@ -2,32 +2,21 @@ import Image from "next/image";
 import Head from "next/head";
 import logoOG from "/public/graphics/logo-og.svg";
 import logoLockup from "/public/graphics/logo-lockup.svg";
-import arrowSubmit from "/public/graphics/arrow-right.svg";
-import { throttle } from "lodash";
 import Link from "next/link";
 
 import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playlist.svg";
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
-import stickerStartYourPlaylistBlack from "/public/stickers/sticker-start-your-playlist-2.svg";
-import tile1 from "/public/photos/tile1.png";
-import tile2 from "/public/photos/tile2.png";
-import tile3 from "/public/photos/tile3.png";
+
 import tile3Before from "/public/graphics/tile3_before.png";
 import tile3After from "/public/graphics/tile3_after.png";
 import footerGraphic from "/public/graphics/footer-graphic.png";
-import imessage1 from "/public/graphics/imessage1.png";
-import imessage2 from "/public/graphics/imessage2.png";
-import imessage3 from "/public/graphics/imessage3.png";
 
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
-import EmailForms from "../components/EmailForms";
-import MailchimpSubscribe from "react-mailchimp-subscribe";
-import LandingStickers from "../components/LandingStickers";
+import MCForm from "../components/EmailHandler";
 import SampleListsCarousel from "../components/Carousel";
 
 export default function Home() {
-  const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
   // console.count('re-renders')
   const cursorCircle = useRef(null);
   const tile2List = [
@@ -122,9 +111,9 @@ export default function Home() {
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
-    document.querySelectorAll("[data-start-x]").forEach((el, i) => {
-      el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 4000ms";
-    });
+    // document.querySelectorAll("[data-start-x]").forEach((el, i) => {
+    //   el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 4000ms";
+    // });
     document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
       // onMouseOver={() => setHovering(true)}
       // onMouseLeave={() => setHovering(false)}
@@ -588,16 +577,9 @@ export default function Home() {
       >
         <div className="max-w-[1738px] pt-[3rem] lg:pt-[5rem] px-[1rem] w-full mx-auto flex flex-col justify-between h-full">
           {/* <div className="relative w-full h-[90%] pt-[4rem] md:pt-[3rem] md:h-auto gap-[3rem] flex flex-col md:mx-[6rem]"> */}
-          <MailchimpSubscribe
-            url={url}
-            render={({ subscribe, status, message }) => (
-              <EmailForms
-                status={status}
-                message={message}
-                onValidated={(formData) => subscribe(formData)}
-              />
-            )}
-          />
+          <div className="md:pl-[5rem] xxl:pl-[8rem]">
+            <MCForm />
+          </div>
           {/* footer stickers */}
           <div
             className="absolute
