@@ -10,13 +10,13 @@ import asterisk from "/public/graphics/asterisk_regular.svg";
 const SampleListsCarousel = () => {
   const [position, setPosition] = useState(-300);
   const [increment, setIncrement] = useState(0);
-  const [carouselWidth, setCarouselWidth] = useState(150);
+  const [carouselWidth, setCarouselWidth] = useState(null);
   const sampleListContainer = useRef(null);
   const carousel = useRef(null);
 
   /* for dragging */
   const [prevPosition, setPrevPosition] = useState(0);
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const [currentPosition, setCurrentPosition] = useState(-300);
   const [dragStartPoint, setDragStartPoint] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -48,13 +48,14 @@ const SampleListsCarousel = () => {
   ];
 
   useEffect(() => {
-    // TODO: allow for dynamic resizing
+    carousel.current.style.transform = `translateX(${-300}px)`;
+    setCurrentPosition(-300)
+    setCarouselWidth(sampleListContainer.current.offsetWidth)
   }, []);
 
   useEffect(() => {
     setIncrement(carouselWidth / sampleLists.length);
   }, [carouselWidth]);
-
 
   const next = () => {
     let maths = (-sampleLists.length * increment) / 2;
@@ -86,7 +87,7 @@ const SampleListsCarousel = () => {
     const threshold = 100;
     // todo: calculate drag width (might be a function of container width & viewport width?)
     const min = 0;
-    const max = -500;
+    const max = -increment * (sampleLists.length - 1);
     if(diff > min + threshold ) {
       carousel.current.style.transform = `translateX(${diff}px)`;
       setCurrentPosition(min)
@@ -110,7 +111,6 @@ const SampleListsCarousel = () => {
       console.log('short throw, left')
       // carousel.current.style.transform = `translateX(${diff + 300}px)`;
       // setCurrentPosition(currentPosition + 300)
-      
     }
     if(diff < -threshold_min && Math.abs(diff) < threshold_max) {
       console.log('short throw, right')

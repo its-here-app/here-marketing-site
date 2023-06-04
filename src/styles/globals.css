@@ -236,14 +236,20 @@
   --neon: #daff70;
   --neon--srgb: #e1fe84;
   --ocean: #5c89cc;
-  --cream: #fffbf7; 
+  --cream: #fffbf7;
+  --off-white: #fffbf7;
   --bubble: #1169ee;
   --grey: #757575;
   --black: #101010;
-  --off-white: #fffbf7;
   --white: #ffffff;
 }
+.bg-grad {
+  /* background: linear-gradient(to right, var(--off-white), var(--off-white) 50%, var(--black) 50%, var(--black)); */
+  /* background: linear-gradient(to right, red,); */
+
+}
 html {
+  overscroll-behavior: auto;
   scroll-behavior: smooth;
   min-height: 100%;
   -webkit-font-smoothing: auto;
@@ -317,12 +323,20 @@ body {
 }
 /* @layer base { */
 .email-input {
-  @apply rounded-[18px] md:rounded-[24px];
-  transition: all 0.25s ease 0s;
-  border: 2px solid var(--neon);
-  background-color: transparent;
+  @apply font-[Golos] rounded-[18px] md:rounded-[24px]
+  h-full w-full
+  text-white
+  px-[1rem] md:px-[3rem] py-[1rem]
+  cursor-none
+  text-[18px] md:text-[24px];
 
+  transition: all 0.25s ease 0s;
+  border: 1.75px solid var(--neon);
+  background-color: transparent;
   /* @apply border-[color:(var(--neon)] border-solid border-[5px] bg-transparent rounded-[24px]; */
+}
+.email-input::placeholder {
+  color:var(--off-white);
 }
 /* } */
 .circle {

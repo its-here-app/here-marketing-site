@@ -14,6 +14,7 @@ import tile2 from "/public/photos/tile2.png";
 import tile3 from "/public/photos/tile3.png";
 import tile3Before from "/public/graphics/tile3_before.png";
 import tile3After from "/public/graphics/tile3_after.png";
+import footerGraphic from "/public/graphics/footer-graphic.png";
 import imessage1 from "/public/graphics/imessage1.png";
 import imessage2 from "/public/graphics/imessage2.png";
 import imessage3 from "/public/graphics/imessage3.png";
@@ -29,7 +30,6 @@ export default function Home() {
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
   // console.count('re-renders')
   const cursorCircle = useRef(null);
-
   const tile2List = [
     {
       title: "New York City",
@@ -145,6 +145,8 @@ export default function Home() {
     const store = document.querySelector(":root");
     // store.style.setProperty("--progress", `${percent}%`);
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
+      console.log('got here')
+      // console.log(el)
       const startY = parseInt(el.dataset.startY);
       const progress = scrollPosition / el.offsetTop;
       if (progress > 0.05 && progress < 1) {
@@ -206,7 +208,7 @@ export default function Home() {
     } else {
       ref.classList.remove("cursor-asterisk");
     }
-    if(hovering === "invert") {
+    if (hovering === "invert") {
       ref.classList.add("cursor-invert");
     } else {
       ref.classList.remove("cursor-invert");
@@ -316,7 +318,7 @@ export default function Home() {
         className="w-full flex max-w-[1738px] mx-auto items-center justify-between px-[1rem] md:px-[2rem] py-[1.5rem] lg:py-[2rem"
       >
         <div className="relative w-[65px] h-[50px] md:w-[110px] flex  items-center justify-center">
-          <Image tabIndex="0"  alt="logo" fill src={logoLockup} />
+          <Image tabIndex="0" alt="logo" fill src={logoLockup} />
         </div>
         <div className="flex items-center justify-center">{/* hamburger menu */}</div>
       </section>
@@ -336,7 +338,7 @@ export default function Home() {
         </div>
         {/* subtitle */}
 
-        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] xxl:ml-[15%] pt-[1rem] text-[1.5rem] md:ml-[10vw] ">
+        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] xxl:ml-[15%] pt-[3rem] text-[1.5rem] md:ml-[10vw] ">
           <span data-fade-in-group="1" className="font-[Golos]">
             Discover and share favorite spots through city playlists*
           </span>
@@ -529,28 +531,49 @@ export default function Home() {
       {/* bottom CTA */}
       <section
         data-bg="off-white"
-        className="h-[110vh] lg:h-[110vh] px-[1rem] md:px-[3rem]  lg:mx-auto  w-full xl:w-[1738px] mt-[10rem] flex items-center"
+        className="relative h-auto px-[1rem] md:px-[3rem]  lg:mx-auto  w-full xl:w-[1738px] mt-[10rem] flex items-center"
       >
-        <div className="text-[Radio] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] text-[15vw] md:text-[8vw]">
+        <div data-start-y="300"
+          className="absolute
+              w-[200px] h-[200px]
+              z-[2]
+              lg:scale-[1]
+              top-[7%] right-[-15%]
+              md:top-[0px] md:right-[10%]
+          "
+        >
+          <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
+        </div>
+        <div className="text-[Radio] pb-[8rem] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] text-[15vw] md:text-[8.2vw] xxl:text-[168px]">
           {/* title */}
-          <div data-start-y="30" className="w-full pt-[2rem] flex justify-start">
+          <div data-start-y="80" className="w-full flex justify-start">
             <span className="md:w-[50vw]">For the spots you love</span>
           </div>
           <div
             data-start-y="40"
-            className="px-0 mt-[3rem] lg:mt-[1rem] flex justify-start md:justify-end "
+            className="px-0 mt-[2rem] md:mt-[.5rem] flex justify-start md:justify-end "
           >
-            <span className="md:w-[55vw]">and those you want to visit</span>
+            <div className="flex items-end justify-end md:w-[55vw] xxl:w-[1020px]">
+              <span className="w-auto ">and those you want to visit</span>
+            </div>
           </div>
           <div
             data-start-y="80"
-            className="relative flex md:w-[42%] lg:w-[44%] max-w-[800px] flex-col pt-[3rem] md:pt-[7rem] md:pl-[0]"
+            className="relative flex flex-col-reverse  md:flex-row justify-between w-full pt-[3rem] md:pl-[0]"
           >
-            <span className="text-[1.8rem] px-[0] md:text-[1.3rem] lg:text-[1.8rem] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
-              * like music, compile your favorite places into a{" "}
-              <span className="text-[--ocean]">city playlist</span> that captures that time of your
-              life.
-            </span>
+            <div className="flex items-end h-[285px] lg:h-[323px] w-full md:w-[610px] ">
+              <div className="flex h-[200px] flex-row text-[1.75rem] px-[0] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
+                <span className="pr-[.5rem]">*</span>
+                <span span className="">
+                  like music, compile your favorite places into a{" "}
+                  <span className="text-[--ocean]">city playlist</span> that captures that time of
+                  your life.
+                </span>
+              </div>
+            </div>
+            <div className="flex relative justify-end items-end">
+              <Image src={footerGraphic} alt="" />
+            </div>
           </div>
 
           {/* /title */}
@@ -558,40 +581,66 @@ export default function Home() {
       </section>
       {/* /bottom CTA  */}
 
-      {/* footer */}
-      <section data-cursor-state="invert" className="relative h-[80vh] md:h-[50vh] lg:h-[600px] w-full flex flex-col justify-between items-top bg-[--black] ">
-        <MailchimpSubscribe
-          url={url}
-          render={({ subscribe, status, message }) => (
-            <EmailForms
-              status={status}
-              message={message}
-              onValidated={(formData) => subscribe(formData)}
-            />
-          )}
-        />
-        {/* footer stickers */}
-        <div className="relative overflow-hidden h-[100%] flex justify-between md:absolute md:w-[40%] md:right-0">
-          <div className="absolute bottom-[30%] right-[20%] w-[34%] h-[34%]">
-            <Image alt="none" fill className="pop-in" src={stickerStartYourPlaylist} />
-          </div>
-          <div className="absolute bottom-[50%] left-[10%] w-[38%] h-[38%]">
+      {/* f */}
+      <section
+        data-cursor-state="invert"
+        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[600px]  w-full flex flex-col justify-between items-top"
+      >
+        <div className="max-w-[1738px] pt-[3rem] lg:pt-[5rem] px-[1rem] w-full mx-auto flex flex-col justify-between h-full">
+          {/* <div className="relative w-full h-[90%] pt-[4rem] md:pt-[3rem] md:h-auto gap-[3rem] flex flex-col md:mx-[6rem]"> */}
+          <MailchimpSubscribe
+            url={url}
+            render={({ subscribe, status, message }) => (
+              <EmailForms
+                status={status}
+                message={message}
+                onValidated={(formData) => subscribe(formData)}
+              />
+            )}
+          />
+          {/* footer stickers */}
+          <div
+            className="absolute
+              w-[170px] h-[200px]
+              lg:scale-[.8]
+              hidden md:block
+              bottom-[55%] lg:bottom-[55%]
+              right-[15%] md:right-[5%] lg:right-[15%]
+          "
+          >
             <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
           </div>
-        </div>
-        {/* footer stickers */}
-        {/* footer nav */}
-        <div className="h-[100px] mb-[2rem] px-[2rem] flex w-full justify-between">
-          <div className="relative flex items-center justify-center h-full w-[60px]">
-            <Image alt="none" fill src={logoOG} />
+          <div
+            className="absolute
+           w-[230px] h-[150px]
+           lg:scale-[1.2]
+           bottom-[35%] lg:bottom-[30%]
+           right-[10%] lg:right-[5%]
+          "
+          >
+            <Image alt="none" className="pop-in" src={stickerStartYourPlaylist} />
           </div>
-          <div className="flex flex-row text-[1.5rem] w-full max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
-            <div className="hidden md:flex">Contact us ↗</div>
-            <div className="hidden md:flex">Follow us on instagram ↗</div>
-            <div className="">Here 2023 ©</div>
+          {/* footer stickers */}
+          {/* footer nav */}
+          <div className="flex flex-col gap-[1rem]">
+            <div className="flex md:hidden tgap-[1rem] h-auto px-[1rem] text-[20px] w-full flex-col text-white">
+              <a className="">Contact us ↗</a>
+              <a className="">Follow us on instagram ↗</a>
+            </div>
+            <div className="h-[100px] mb-[2rem] px-[1rem] lg:px-[2rem] flex w-full justify-between">
+              <div className="relative flex items-center justify-center h-full w-[60px]">
+                <Image alt="none" fill src={logoOG} />
+              </div>
+              <div className="flex flex-row text-[1.5rem] w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
+                <div className="whitespace-nowrap hidden md:flex">Contact us ↗</div>
+                <div className="whitespace-nowrap hidden md:flex">Follow us on instagram ↗</div>
+                <div className="whitespace-nowrap">Here 2023 ©</div>
+              </div>
+            </div>
           </div>
+          {/* /footer nav */}
+          {/* </div> */}
         </div>
-        {/* /footer nav */}
       </section>
 
       {/* /footer */}
