@@ -134,7 +134,9 @@
 
 
 
-
+.snackbar-status {
+  /* @apply bg-[--white] rounded-[6px] transition-all px-[10px] */
+}
 .fade-in-slide-up {
   animation: fade-in-slide-up 800ms ease-in-out both;
 }
@@ -166,6 +168,7 @@
   @apply relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
 
 }
+
 .tile-2-inner {
   @apply z-[-1] relative z-[10] w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
 }
@@ -252,10 +255,10 @@ html {
   overscroll-behavior: auto;
   scroll-behavior: smooth;
   min-height: 100%;
-  -webkit-font-smoothing: auto;
-  -moz-osx-font-smoothing: auto;
-  /* -webkit-font-smoothing: antialiased; */
-/* -moz-osx-font-smoothing: grayscale; */
+  /* -webkit-font-smoothing: auto; */
+  /* -moz-osx-font-smoothing: auto; */
+  -webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
 }
 html, body {
   max-width: 100% !important;

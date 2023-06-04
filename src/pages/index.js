@@ -3,6 +3,7 @@ import Head from "next/head";
 import logoOG from "/public/graphics/logo-og.svg";
 import logoLockup from "/public/graphics/logo-lockup.svg";
 import Link from "next/link";
+import Modal from 'react-modal';
 
 import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playlist.svg";
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
@@ -49,7 +50,19 @@ export default function Home() {
   const cursorRefs = useRef([]);
   // const cursorRef = useRef(null);
   const scrollRefs = useRef([]);
+  
   // const scrollRef = useRef(null);
+
+  const [modalIsOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+    cursorCircle.current.classList.add("invert");
+  }
+  const closeModal = () => {
+    setModalOpen(false);
+    cursorCircle.current.classList.remove("invert");
+  }
 
   const [MousePosition, setMousePosition] = useState({
     left: 800,
@@ -120,6 +133,7 @@ export default function Home() {
       el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
+    Modal.setAppElement('body');
   }, []);
 
   useEffect(() => {
@@ -184,23 +198,21 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const ref = cursorCircle.current;
-
     if (hovering === "ul-arrow") {
-      ref.classList.add(`cursor-ul-arrow`);
+      cursorCircle.current.classList.add(`cursor-ul-arrow`);
     } else {
-      ref.classList.remove(`cursor-ul-arrow`);
+      cursorCircle.current.classList.remove(`cursor-ul-arrow`);
     }
 
     if (hovering === "asterisk") {
-      ref.classList.add("cursor-asterisk");
+      cursorCircle.current.classList.add("cursor-asterisk");
     } else {
-      ref.classList.remove("cursor-asterisk");
+      cursorCircle.current.classList.remove("cursor-asterisk");
     }
     if (hovering === "invert") {
-      ref.classList.add("cursor-invert");
+      cursorCircle.current.classList.add("cursor-invert");
     } else {
-      ref.classList.remove("cursor-invert");
+      cursorCircle.current.classList.remove("cursor-invert");
     }
   }, [hovering]);
 
@@ -237,18 +249,29 @@ export default function Home() {
         <meta property="og:image:alt" content="Here*" />
         {/* <meta name="robots" content="index,follow" /> */}
       </Head>
+      <Modal
+        isOpen={modalIsOpen}
+        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-[1rem] md:p-[2rem] rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+      >
+        <button onClick={closeModal}>close</button>
+        <MCForm isModal={true}/>
+      </Modal>
       <div ref={cursorCircle} className="circle"></div>
       {/* cta sticker */}
       <div
         id="cta-sticker"
-        className="absolute z-[3] top-0 right-[300px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
+        style={{zIndex:3}}
+        className="absolute  top-0 right-[300px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
       >
         <div
           data-cursor-state="asterisk"
-          className="pop-in hidden md:block sticky right-0 top-[3%] md:w-[250px] md:h-[200px]"
+          className="pop-in hidden hover:drop-shadow-2xl md:block fixed right-[5%] top-[50%] md:w-[250px] md:h-[200px]"
         >
-          <Link
+          <div
             href=""
+            onClick={openModal}
             className="cursor-none"
             onMouseOver={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
@@ -296,7 +319,7 @@ export default function Home() {
                 </clipPath>
               </defs>
             </svg>
-          </Link>
+          </div>
         </div>
       </div>
       {/* cta sticker */}
@@ -335,6 +358,7 @@ export default function Home() {
             data-fade-in-group="1"
             // ref={(ref) => cursorRefs.current.push(ref)}
             data-cursor-state="ul-arrow"
+            onClick={openModal}
             className="bg-black mt-[2rem] md:mt-[4rem] leading-[150%] cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-[Golos] px-[18px] py-[10px]"
           >
             Start your playlist
@@ -550,8 +574,8 @@ export default function Home() {
             data-start-y="80"
             className="relative flex flex-col-reverse  md:flex-row justify-between w-full pt-[3rem] md:pl-[0]"
           >
-            <div className="flex items-end h-[285px] lg:h-[323px] w-full md:w-[610px] ">
-              <div className="flex h-[200px] flex-row text-[1.75rem] px-[0] leading-[120%] md:leading-[150%] tracking-[.07rem] font-[Golos]">
+            <div className="flex items-end h-auto lg:h-[323px] w-full md:w-[560px] ">
+              <div className="flex h-[200px] flex-row text-[1.75rem] px-[0] leading-[120%] md:leading-[150%] tracking-[-.01em] font-[Golos]">
                 <span className="pr-[.5rem]">*</span>
                 <span span className="">
                   like music, compile your favorite places into a{" "}
@@ -560,7 +584,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="flex relative justify-end items-end">
+            <div className="flex relative h-[285px] lg:h-[330px] aspect-[1/1.23] justify-end items-end">
               <Image src={footerGraphic} alt="" />
             </div>
           </div>
@@ -578,7 +602,7 @@ export default function Home() {
         <div className="max-w-[1738px] pt-[3rem] lg:pt-[5rem] px-[1rem] w-full mx-auto flex flex-col justify-between h-full">
           {/* <div className="relative w-full h-[90%] pt-[4rem] md:pt-[3rem] md:h-auto gap-[3rem] flex flex-col md:mx-[6rem]"> */}
           <div className="md:pl-[5rem] xxl:pl-[8rem]">
-            <MCForm />
+            <MCForm isModal={false} />
           </div>
           {/* footer stickers */}
           <div
@@ -600,7 +624,7 @@ export default function Home() {
            right-[10%] lg:right-[5%]
           "
           >
-            <Image alt="none" className="pop-in" src={stickerStartYourPlaylist} />
+            <Image alt="none" className="pop-in" src={stickerStartYourPlaylist}  />
           </div>
           {/* footer stickers */}
           {/* footer nav */}
