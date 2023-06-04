@@ -546,7 +546,7 @@ export default function Home() {
         data-bg="off-white"
         className="relative h-auto px-[1rem] md:px-[3rem]  lg:mx-auto  w-full xl:w-[1738px] mt-[10rem] flex items-center"
       >
-        <div data-start-y="300"
+        <div 
           className="absolute
               w-[140px] h-[140px]
               z-[1]
@@ -557,13 +557,12 @@ export default function Home() {
         >
           <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
         </div>
-        <div className="text-[Radio] pb-[4rem] lg:pb-[8rem] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] text-[15vw] md:text-[8.2vw] xxl:text-[168px]">
+        <div className="text-[Radio] pb-[4rem] md:pb-[10rem] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] text-[15vw] md:text-[8.2vw] xxl:text-[168px]">
           {/* title */}
           <div data-start-y="80" className="w-full flex justify-start">
             <span className="md:w-[50vw]">For the spots you love</span>
           </div>
           <div
-            data-start-y="40"
             className="px-0 mt-[2rem] md:mt-[.5rem] flex justify-start md:justify-end "
           >
             <div className="flex items-end justify-end md:w-[55vw] xxl:w-[1020px]">
