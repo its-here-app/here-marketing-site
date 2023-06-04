@@ -548,16 +548,16 @@ export default function Home() {
       >
         <div data-start-y="300"
           className="absolute
-              w-[200px] h-[200px]
-              z-[2]
-              lg:scale-[1]
-              top-[7%] right-[-15%]
+              w-[140px] h-[140px]
+              z-[1]
+              lg:scale-[1.5]
+              top-[4%] right-[-15%]
               md:top-[0px] md:right-[10%]
           "
         >
           <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
         </div>
-        <div className="text-[Radio] pb-[8rem] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] text-[15vw] md:text-[8.2vw] xxl:text-[168px]">
+        <div className="text-[Radio] pb-[4rem] lg:pb-[8rem] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] text-[15vw] md:text-[8.2vw] xxl:text-[168px]">
           {/* title */}
           <div data-start-y="80" className="w-full flex justify-start">
             <span className="md:w-[50vw]">For the spots you love</span>
@@ -572,9 +572,9 @@ export default function Home() {
           </div>
           <div
             data-start-y="80"
-            className="relative flex flex-col-reverse  md:flex-row justify-between w-full pt-[3rem] md:pl-[0]"
+            className="relative flex flex-col-reverse items-end  md:flex-row justify-between w-full pt-[3rem] md:pl-[0]"
           >
-            <div className="flex items-end h-auto lg:h-[323px] w-full md:w-[560px] ">
+            <div className="flex pt-[3rem] md:pt-0 items-end h-auto lg:h-[323px] w-full md:w-[560px] ">
               <div className="flex h-[200px] flex-row text-[1.75rem] px-[0] leading-[120%] md:leading-[150%] tracking-[-.01em] font-[Golos]">
                 <span className="pr-[.5rem]">*</span>
                 <span span className="">
@@ -584,7 +584,8 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="flex relative h-[285px] lg:h-[330px] aspect-[1/1.23] justify-end items-end">
+            
+            <div className="flex relative h-[285px] w-[233px] lg:h-[330px] lg:w-[264px] ">
               <Image src={footerGraphic} alt="" />
             </div>
           </div>
