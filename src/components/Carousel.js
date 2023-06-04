@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import asterisk from "/public/graphics/asterisk_regular.svg";
-
+import {sampleLists} from "../samples";
 // import {Slider} from "./Slider";
 
 const SampleListsCarousel = () => {
@@ -20,32 +20,6 @@ const SampleListsCarousel = () => {
   const [dragStartPoint, setDragStartPoint] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
-  const sampleLists = [
-    {
-      title: "New York",
-      subtitle: "Cute Date Spots",
-      amount: "14",
-      img: "/lists/nyc.png",
-    },
-    {
-      title: "Chicago",
-      subtitle: "All Time Faves",
-      amount: "8",
-      img: "/lists/chi.png",
-    },
-    {
-      title: "San Francisco",
-      subtitle: "Hidden Spots",
-      amount: "10",
-      img: "/lists/sf.png",
-    },
-    {
-      title: "Mexico City",
-      subtitle: "Fave food & drink spots",
-      amount: "3",
-      img: "/lists/mex.png",
-    },
-  ];
 
   useEffect(() => {
     carousel.current.style.transform = `translateX(${-300}px)`;
@@ -74,6 +48,7 @@ const SampleListsCarousel = () => {
   // handle drag end
 
   const handleDragStart = (event) => {
+    event.preventDefault();
     event.type === 'touchstart' ? setDragStartPoint(event.touches[0].clientX - currentPosition) : setDragStartPoint(event.clientX - currentPosition)
     setIsDragging(true);
     setPrevPosition(currentPosition);
@@ -145,8 +120,8 @@ const SampleListsCarousel = () => {
       >
         {sampleLists.map((currentList, index) => {
           return (
-            <div key={index} data-cursor-state="ul-arrow" data-fade-in-group="2" className="">
-              <div className="w-[80vw] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+            <Link href={`/${currentList.slug}`} key={index} data-cursor-state="ul-arrow" data-fade-in-group="2" className="z-2 transition-transform">
+              <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
                 <div
                   style={{ backgroundImage: `url(${currentList.img})` }}
                   className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
@@ -172,7 +147,7 @@ const SampleListsCarousel = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

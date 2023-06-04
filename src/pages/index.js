@@ -251,7 +251,7 @@ export default function Home() {
       </Head>
       <Modal
         isOpen={modalIsOpen}
-        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-[1rem] md:p-[2rem] rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
+        className="z-[3] cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-[1rem] md:p-[2rem] rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >
@@ -262,7 +262,7 @@ export default function Home() {
       {/* cta sticker */}
       <div
         id="cta-sticker"
-        style={{zIndex:3}}
+        style={{zIndex:2}}
         className="absolute  top-0 right-[300px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
       >
         <div
