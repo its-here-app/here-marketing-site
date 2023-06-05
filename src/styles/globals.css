@@ -272,7 +272,7 @@ body {
   transition: background-color ease-in-out 350ms;
 }
 .section-tile {
-  @apply pt-[10vw] flex flex-col items-center justify-center w-full;
+  @apply pt-[7vw] xl:pt-[8rem] flex flex-col items-center justify-center w-full;
 }
 .tile {
   @apply flex flex-col-reverse
