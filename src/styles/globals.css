@@ -170,16 +170,16 @@
 }
 
 .tile-2-inner {
-  @apply z-[-1] relative z-[10] w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
+  @apply z-[-1] relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
 }
 .tile-2-text-wrapper {
-  @apply flex select-none tighten text-red-200 w-full h-full flex-col items-center justify-center;
+  @apply flex select-none  text-red-200 w-full h-full flex-col items-center justify-center;
 }
 .tighten {
   letter-spacing: -0.06rem;
 }
 .tile-2-text {
-  @apply text-[--neon] text-[4rem] lg:text-[3vw] font-[Crimson] italic leading-[100%] translate-y-[20%];
+  @apply text-[--neon] tracking-[-.06em] text-[2rem] md:text-[3.5vw] xl:text-[70px] font-[Crimson] italic leading-[100%] translate-y-[20%];
 }
 .active {
   z-index: 1 !important;

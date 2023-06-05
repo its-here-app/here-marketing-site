@@ -464,7 +464,7 @@ export default function Home() {
                       }}
                     >
                       <div className="tile-2-text-wrapper">
-                        <span className="tile-2-text">{item.title}</span>
+                        <span className="tile-2-text ">{item.title}</span>
                       </div>
                     </div>
                   );

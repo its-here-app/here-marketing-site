@@ -128,7 +128,7 @@ const SampleListsCarousel = () => {
                 >
                   <div className="row-span-1"></div>
                   <div className="flex row-span-1 tighten text-[--neon] flex-col justify-center items-center">
-                    <div className="text-[2rem] sm:text-[40%] font-[Crimson] font-italic  translate-y-[20%]">
+                    <div className="text-[1rem] sm:text-[40%] font-[Crimson] italic translate-y-[20%]">
                       {currentList.title}
                     </div>
                     <div className="text-[2rem] sm:text-[40%] font-[Golos] font-[500] ">
