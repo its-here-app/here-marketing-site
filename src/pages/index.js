@@ -58,7 +58,7 @@ export default function Home() {
             <Image fill alt="test" className="spin" src={sticker4} />
           </a>
           <div className="absolute w-[60%] h-[60%] bottom-[0px] left-[0px]">
-            <Image fill alt="test" src={sticker1} />
+            {/* <Image fill alt="test" src={sticker1} /> */}
           </div>
 
           <div className="absolute w-[50%] h-[50%] top-[10%] left-[0px]">
