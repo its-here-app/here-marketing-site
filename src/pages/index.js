@@ -1,25 +1,31 @@
 import Image from "next/image";
 import Head from "next/head";
+import Modal from 'react-modal';
+import { useEffect, useState, useRef } from "react";
+import { gsap } from "gsap";
+
 import logoOG from "/public/graphics/logo-og.svg";
 import logoLockup from "/public/graphics/logo-lockup.svg";
-import Link from "next/link";
-import Modal from 'react-modal';
-
 import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playlist.svg";
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
-
 import tile3Before from "/public/graphics/tile3_before.png";
 import tile3After from "/public/graphics/tile3_after.png";
 import footerGraphic from "/public/graphics/footer-graphic.png";
 
-import { useEffect, useState, useRef } from "react";
-import { gsap } from "gsap";
 import MCForm from "../components/EmailHandler";
 import SampleListsCarousel from "../components/Carousel";
 
 export default function Home() {
-  // console.count('re-renders')
+  
   const cursorCircle = useRef(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [modalIsOpen, setModalOpen] = useState(false);
+  const [hovering, setHovering] = useState(null);
+  const [MousePosition, setMousePosition] = useState({
+    left: 800,
+    top: 400,
+  });
+
   const tile2List = [
     {
       title: "New York City",
@@ -47,32 +53,16 @@ export default function Home() {
       z: -1,
     },
   ];
-  const cursorRefs = useRef([]);
-  // const cursorRef = useRef(null);
-  const scrollRefs = useRef([]);
-  
-  // const scrollRef = useRef(null);
-
-  const [modalIsOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
     cursorCircle.current.classList.add("invert");
   }
+
   const closeModal = () => {
     setModalOpen(false);
     cursorCircle.current.classList.remove("invert");
   }
-
-  const [MousePosition, setMousePosition] = useState({
-    left: 800,
-    top: 400,
-  });
-
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [scrollVisited, setScrollVisited] = useState([]);
-
-  const [hovering, setHovering] = useState(null);
 
   const debounce = (callback, wait) => {
     let timeoutId = null;
@@ -102,16 +92,12 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log("mounted");
     dothing();
     var timer = 0;
 
     window.addEventListener("scroll", () => {
       handleScroll();
     });
-
-    // const ctaSticker = document.querySelector('#cta-sticker')
-    // ctaSticker.style.height =`${document.body.scrollHeight}px`
 
     document.querySelectorAll('[data-fade-in-group="1"]').forEach((el, i) => {
       el.classList.add("fade-in");
@@ -124,12 +110,7 @@ export default function Home() {
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
-    // document.querySelectorAll("[data-start-x]").forEach((el, i) => {
-    //   el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 4000ms";
-    // });
     document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
-      // onMouseOver={() => setHovering(true)}
-      // onMouseLeave={() => setHovering(false)}
       el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
@@ -146,37 +127,24 @@ export default function Home() {
 
   useEffect(() => {
     const store = document.querySelector(":root");
-    // store.style.setProperty("--progress", `${percent}%`);
-    document.querySelectorAll("[data-start-y]").forEach((el, i) => {
-      console.log('got here')
-      // console.log(el)
+    const scrollElements = document.querySelectorAll("[data-scroll-visited]");
+    const scrollYElements = document.querySelectorAll("[data-start-y]");
+    const bgElements = document.querySelectorAll("[data-bg]");
+
+    scrollYElements.forEach((el, i) => {
       const startY = parseInt(el.dataset.startY);
       const progress = scrollPosition / el.offsetTop;
       if (progress > 0.05 && progress < 1) {
-        // console.log('progress for', i, ' ', progress)
         let pct = startY - progress * startY;
-        // console.log(i, pct)
         el.style.transform = `translate(0%, ${pct}%)`;
       }
     });
-    document.querySelectorAll("[data-start-x]").forEach((el, i) => {
-      const startX = parseInt(el.dataset.startX);
-      const progress = scrollPosition / el.offsetTop;
-      if (progress > 0.05) {
-        // console.log('progress for', i, ' ', progress)
-        let pct = startX - progress * startX;
-        // console.log(i, pct)
-        el.style.transform = `translate(${-Math.abs(pct) / 50}%, 0%)`;
-      }
-    });
-    document.querySelectorAll("[data-bg]").forEach((el, i) => {
+    bgElements.forEach((el, i) => {
       const color = el.dataset.bg;
       if (scrollPosition > el.offsetTop - el.offsetHeight / 2) {
         store.style.setProperty("--current-bg", `var(--${color})`);
       }
     });
-    const scrollElements = document.querySelectorAll("[data-scroll-visited]");
-
     scrollElements.forEach((el, i) => {
       if (scrollPosition > el.offsetTop - el.offsetHeight / 10) {
         if (el.dataset.scrollVisited == "false") {
@@ -186,34 +154,19 @@ export default function Home() {
             el.querySelector("#animation-container").classList.remove("hidden");
           scrollElements[i].classList.add(`active-${i}`);
         }
-        // console.log('got here', i)
       }
     });
-
-    // console.log('----')
   }, [scrollPosition]);
 
-  const filterInView = (arr, query) => {
-    return arr.filter((el) => el.imageTop < query);
-  };
-
   useEffect(() => {
-    if (hovering === "ul-arrow") {
-      cursorCircle.current.classList.add(`cursor-ul-arrow`);
-    } else {
-      cursorCircle.current.classList.remove(`cursor-ul-arrow`);
-    }
 
-    if (hovering === "asterisk") {
-      cursorCircle.current.classList.add("cursor-asterisk");
-    } else {
-      cursorCircle.current.classList.remove("cursor-asterisk");
+    const states = {
+      'ul-arrow': 'cursor-ul-arrow',
+      'asterisk': 'cursor-asterisk',
+      'invert': 'cursor-invert',
     }
-    if (hovering === "invert") {
-      cursorCircle.current.classList.add("cursor-invert");
-    } else {
-      cursorCircle.current.classList.remove("cursor-invert");
-    }
+    
+    return states[hovering] ? cursorCircle.current.classList.add(states[hovering]) : cursorCircle.current.classList.remove('cursor-ul-arrow', 'cursor-asterisk', 'cursor-invert');
   }, [hovering]);
 
   const handleMouseMove = (e) => {

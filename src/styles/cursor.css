@@ -1,0 +1,48 @@
+@layer base {
+  .circle {
+    position: fixed;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    /* border: 1px solid white; */
+    border-radius: 100%;
+    z-index: 10;
+    user-select: none;
+    pointer-events: none;
+    transform: scale(1);
+    mix-blend-mode: normal;
+    background-color: var(--black);
+    transition: 350ms ease-in-out;
+    transition-property: background-image, background-color, transform, width, height, border-radius,
+      background-color;
+  }
+  .cursor-invert {
+    filter: invert(100%);
+  }
+  .cursor-ul-arrow {
+    mix-blend-mode: normal;
+    transform: scale(3);
+    background-color: var(--neon);
+    background-position: center;
+    /* border: 1px solid black; */
+    background-image: url("/graphics/cursor-arrow.svg");
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 550ms ease;
+    transition-property: background-image, background-color, transform, width, height, border-radius,
+      background-color;
+  }
+  .cursor-asterisk {
+    mix-blend-mode: normal;
+    background-color: transparent;
+    background-position: center;
+    transform: scale(3);
+    background-image: url("/stickers/sticker-logo.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 550ms ease;
+    transition-property: background-image, background-color, transform, width, height, border-radius,
+      background-color;
+  }
+}

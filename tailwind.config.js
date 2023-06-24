@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
   content: [
@@ -15,6 +14,11 @@ module.exports = {
       'xl': '1728px',
       'xxl': '1920px',
     },
+    extends: {
+      colors: {
+        'neon': '#00ff00',
+      }
+    }
   },
   plugins: [],
 }
