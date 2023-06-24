@@ -52,6 +52,7 @@ const EmailForm = ({ status, message, onValidated }) => {
     </div>
   );
 };
+
 const ModalForm = ({ status, message, onValidated }) => {
   let email, name;
 
@@ -65,7 +66,7 @@ const ModalForm = ({ status, message, onValidated }) => {
     });
 
   return (
-    <div className="w-full">
+    <div className="w-full fade-in">
       <div className="flex flex-col gap-[2.5rem] w-full tracking-[-0.03em]  text-white ">
         <div className="w-full h-auto flex flex-row-reverse gap-[2.5rem]">
           <div className="relative h-[200px] w-full md:w-[30%] translate-x-[-50px]">
@@ -107,7 +108,6 @@ const ModalForm = ({ status, message, onValidated }) => {
           >
             <Image alt="none" fill src={arrowSubmit} />
           </button>
-          
         </div>
         <div className="h-auto w-max transition-all mx-auto">
             {status === "sending" && <div className="snackbar-status" style={{ color: "blue" }}>sending...</div>}
@@ -126,6 +126,7 @@ const ModalForm = ({ status, message, onValidated }) => {
 
 const MCForm = ({ isModal = false }) => {
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
+
   return (
     <>
       <MailchimpSubscribe

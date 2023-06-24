@@ -3,6 +3,7 @@ import Head from "next/head";
 import Modal from 'react-modal';
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
+import classNames from 'classnames'
 
 import logoOG from "/public/graphics/logo-og.svg";
 import logoLockup from "/public/graphics/logo-lockup.svg";
@@ -225,7 +226,7 @@ export default function Home() {
           <div
             href=""
             onClick={openModal}
-            className="cursor-none"
+            className={classNames(modalIsOpen && "hidden", 'cursor-none')}
             onMouseOver={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >
@@ -303,7 +304,7 @@ export default function Home() {
         </div>
         {/* subtitle */}
 
-        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] xxl:ml-[15%] pt-[3rem] text-[1.5rem] md:ml-[10vw] ">
+        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] xxl:ml-[15%] pt-[3rem] text-[1.5rem] md:ml-[10vw]">
           <span data-fade-in-group="1" className="font-[Golos]">
             Discover and share favorite spots through city playlists*
           </span>
