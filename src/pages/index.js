@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Head from "next/head";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
-import classNames from 'classnames'
+import classNames from "classnames";
 
 import logoOG from "/public/graphics/logo-og.svg";
 import logoLockup from "/public/graphics/logo-lockup.svg";
@@ -17,7 +17,6 @@ import MCForm from "../components/EmailHandler";
 import SampleListsCarousel from "../components/Carousel";
 
 export default function Home() {
-  
   const cursorCircle = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [modalIsOpen, setModalOpen] = useState(false);
@@ -58,12 +57,12 @@ export default function Home() {
   const openModal = () => {
     setModalOpen(true);
     cursorCircle.current.classList.add("invert");
-  }
+  };
 
   const closeModal = () => {
     setModalOpen(false);
     cursorCircle.current.classList.remove("invert");
-  }
+  };
 
   const debounce = (callback, wait) => {
     let timeoutId = null;
@@ -115,7 +114,7 @@ export default function Home() {
       el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
-    Modal.setAppElement('body');
+    Modal.setAppElement("body");
   }, []);
 
   useEffect(() => {
@@ -160,14 +159,19 @@ export default function Home() {
   }, [scrollPosition]);
 
   useEffect(() => {
-
     const states = {
-      'ul-arrow': 'cursor-ul-arrow',
-      'asterisk': 'cursor-asterisk',
-      'invert': 'cursor-invert',
-    }
-    
-    return states[hovering] ? cursorCircle.current.classList.add(states[hovering]) : cursorCircle.current.classList.remove('cursor-ul-arrow', 'cursor-asterisk', 'cursor-invert');
+      "ul-arrow": "cursor-ul-arrow",
+      asterisk: "cursor-asterisk",
+      invert: "cursor-invert",
+    };
+
+    return states[hovering]
+      ? cursorCircle.current.classList.add(states[hovering])
+      : cursorCircle.current.classList.remove(
+          "cursor-ul-arrow",
+          "cursor-asterisk",
+          "cursor-invert"
+        );
   }, [hovering]);
 
   const handleMouseMove = (e) => {
@@ -210,13 +214,13 @@ export default function Home() {
         contentLabel="Example Modal"
       >
         <button onClick={closeModal}>close</button>
-        <MCForm isModal={true}/>
+        <MCForm isModal={true} />
       </Modal>
       <div ref={cursorCircle} className="circle"></div>
       {/* cta sticker */}
       <div
         id="cta-sticker"
-        style={{zIndex:2}}
+        style={{ zIndex: 2 }}
         className="absolute  top-0 right-[300px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
       >
         <div
@@ -226,7 +230,7 @@ export default function Home() {
           <div
             href=""
             onClick={openModal}
-            className={classNames(modalIsOpen && "hidden", 'cursor-none')}
+            className={classNames(modalIsOpen && "hidden", "cursor-none")}
             onMouseOver={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >
@@ -500,7 +504,7 @@ export default function Home() {
         data-bg="off-white"
         className="relative h-auto px-[1rem] md:px-[3rem]  lg:mx-auto  w-full xl:w-[1738px] mt-[10rem] flex items-center"
       >
-        <div 
+        <div
           className="absolute
               w-[140px] h-[140px]
               z-[1]
@@ -516,9 +520,7 @@ export default function Home() {
           <div data-start-y="80" className="w-full flex justify-start">
             <span className="md:w-[50vw]">For the spots you love</span>
           </div>
-          <div
-            className="px-0 mt-[2rem] md:mt-[.5rem] flex justify-start md:justify-end "
-          >
+          <div className="px-0 mt-[2rem] md:mt-[.5rem] flex justify-start md:justify-end ">
             <div className="flex items-end justify-end md:w-[55vw] xxl:w-[1020px]">
               <span className="w-auto ">and those you want to visit</span>
             </div>
@@ -537,7 +539,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            
+
             <div className="flex relative h-[285px] w-[233px] lg:h-[330px] lg:w-[264px] ">
               <Image src={footerGraphic} alt="" />
             </div>
@@ -578,7 +580,7 @@ export default function Home() {
            right-[10%] lg:right-[5%]
           "
           >
-            <Image alt="none" className="pop-in" src={stickerStartYourPlaylist}  />
+            <Image alt="none" className="pop-in" src={stickerStartYourPlaylist} />
           </div>
           {/* footer stickers */}
           {/* footer nav */}

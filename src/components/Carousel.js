@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import asterisk from "/public/graphics/asterisk_regular.svg";
-import {sampleLists} from "../samples";
+import { sampleLists } from "../samples";
 // import {Slider} from "./Slider";
 
-const SampleListsCarousel = () => {
+const SampleListsCarousel = ({ data }) => {
   const [position, setPosition] = useState(-300);
   const [increment, setIncrement] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(null);
@@ -20,11 +20,10 @@ const SampleListsCarousel = () => {
   const [dragStartPoint, setDragStartPoint] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
-
   useEffect(() => {
     carousel.current.style.transform = `translateX(${-300}px)`;
-    setCurrentPosition(-300)
-    setCarouselWidth(sampleListContainer.current.offsetWidth)
+    setCurrentPosition(-300);
+    setCarouselWidth(sampleListContainer.current.offsetWidth);
   }, []);
 
   useEffect(() => {
@@ -49,7 +48,9 @@ const SampleListsCarousel = () => {
 
   const handleDragStart = (event) => {
     event.preventDefault();
-    event.type === 'touchstart' ? setDragStartPoint(event.touches[0].clientX - currentPosition) : setDragStartPoint(event.clientX - currentPosition)
+    event.type === "touchstart"
+      ? setDragStartPoint(event.touches[0].clientX - currentPosition)
+      : setDragStartPoint(event.clientX - currentPosition);
     setIsDragging(true);
     setPrevPosition(currentPosition);
   };
@@ -57,38 +58,37 @@ const SampleListsCarousel = () => {
   const handleDrag = (event) => {
     if (!isDragging) return;
     event.preventDefault();
-    let currentDragPoint = event.type === "touchmove" ? event.touches[0].clientX : event.clientX
+    let currentDragPoint = event.type === "touchmove" ? event.touches[0].clientX : event.clientX;
     let diff = currentDragPoint - dragStartPoint;
     const threshold = 100;
     // todo: calculate drag width (might be a function of container width & viewport width?)
     const min = 0;
     const max = -increment * (sampleLists.length - 1);
-    if(diff > min + threshold ) {
+    if (diff > min + threshold) {
       carousel.current.style.transform = `translateX(${diff}px)`;
-      setCurrentPosition(min)
+      setCurrentPosition(min);
     } else if (diff < max - threshold) {
       carousel.current.style.transform = `translateX(${diff}px)`;
-      setCurrentPosition(max)
+      setCurrentPosition(max);
     } else {
       carousel.current.style.transform = `translateX(${diff}px)`;
-      setCurrentPosition(diff)
+      setCurrentPosition(diff);
     }
   };
 
   const handleDragEnd = () => {
-
     const threshold_min = 50;
     const threshold_max = 200;
-    console.log(currentPosition - prevPosition)
-    const diff = currentPosition - prevPosition 
-    if(diff > threshold_min && Math.abs(diff) < threshold_max) {
+    console.log(currentPosition - prevPosition);
+    const diff = currentPosition - prevPosition;
+    if (diff > threshold_min && Math.abs(diff) < threshold_max) {
       // console.log(diff, 'is greater than', threshold_min)
-      console.log('short throw, left')
+      console.log("short throw, left");
       // carousel.current.style.transform = `translateX(${diff + 300}px)`;
       // setCurrentPosition(currentPosition + 300)
     }
-    if(diff < -threshold_min && Math.abs(diff) < threshold_max) {
-      console.log('short throw, right')
+    if (diff < -threshold_min && Math.abs(diff) < threshold_max) {
+      console.log("short throw, right");
       // carousel.current.style.transform = `translateX(${diff - 300}px)`;
       // setCurrentPosition(currentPosition - 300)
     }
@@ -96,9 +96,7 @@ const SampleListsCarousel = () => {
     carousel.current.style.transform = `translateX(${currentPosition}px)`;
     if (!isDragging) return;
     setIsDragging(false);
-
   };
-
 
   return (
     <div ref={sampleListContainer} className="touch-pan-x mx-auto overflow-hidden">
@@ -120,7 +118,13 @@ const SampleListsCarousel = () => {
       >
         {sampleLists.map((currentList, index) => {
           return (
-            <Link href={`/${currentList.slug}`} key={index} data-cursor-state="ul-arrow" data-fade-in-group="2" className="z-2 transition-transform">
+            <Link
+              href={`/${currentList.slug}`}
+              key={index}
+              data-cursor-state="ul-arrow"
+              data-fade-in-group="2"
+              className="z-2 transition-transform"
+            >
               <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
                 <div
                   style={{ backgroundImage: `url(${currentList.img})` }}
@@ -137,13 +141,11 @@ const SampleListsCarousel = () => {
                   </div>
                   <div className="text-[--neon] pb-[1rem] self-end text-[2rem] sm:text-[40%] row-span-1 flex justify-center items-center">
                     <div className="flex flex-row">
-                        <div className="">
-                          {currentList.amount}
-                        </div>
-                        <div className="relative w-[15px] ml-[5px] h-auto">
-                          <Image fill src={asterisk} alt="asterisk"/>
-                        </div>
+                      <div className="">{currentList.amount}</div>
+                      <div className="relative w-[15px] ml-[5px] h-auto">
+                        <Image fill src={asterisk} alt="asterisk" />
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
