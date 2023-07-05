@@ -1,6 +1,5 @@
 import { google } from "googleapis";
 import { useRouter } from "next/router";
-// import { Spot } from "../../components/spot";
 import slugify from '@sindresorhus/slugify';
 import { Spot } from "../../components/Spot";
 

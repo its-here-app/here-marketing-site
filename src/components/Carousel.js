@@ -97,7 +97,7 @@ const SampleListsCarousel = ({ data }) => {
     if (!isDragging) return;
     setIsDragging(false);
   };
-
+  
   return (
     <div ref={sampleListContainer} className="touch-pan-x mx-auto overflow-hidden">
       <div
