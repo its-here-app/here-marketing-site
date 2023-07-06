@@ -13,7 +13,6 @@ export default async function handler(req, res) {
     spreadsheetId: process.env.SHEET_ID,
     range,
   });
-  
   const rows = response.data.values;
   const lists = rows.map((row) => ({
     city: row[0],
