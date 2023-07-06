@@ -11,18 +11,19 @@ export async function getServerSideProps({ query }) {
   const sheets = google.sheets({ version: "v4", auth });
 
   const { id } = query;
-  const range = `Sheet1!A${id}:F${id}`;
+  const range = `Sheet1!A${id}:G${id}`;
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
     range,
   });
 
-  const [city, playlistName, slug, username, description, content] = response.data.values[0];
+  const [city, playlistName, isFeatured, slug, username, description, content] = response.data.values[0];
 
   return {
     props: {
       city,
       playlistName,
+      isFeatured,
       slug,
       username,
       description,

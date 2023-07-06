@@ -14,13 +14,17 @@ import tile3After from "/public/graphics/tile3_after.png";
 import footerGraphic from "/public/graphics/footer-graphic.png";
 
 import MCForm from "../components/EmailHandler";
-import SampleListsCarousel from "../components/Carousel";
+// import CarouselWrapper from "../components/CarouselWrapper";
+import Carousel from "../components/Carousel";
 
 export default function Home() {
   const cursorCircle = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [modalIsOpen, setModalOpen] = useState(false);
   const [hovering, setHovering] = useState(null);
+  const [carouselData, setCarouselData] = useState(null);
+  const [hydrated, setHydrated] = useState(false);
   const [MousePosition, setMousePosition] = useState({
     left: 800,
     top: 400,
@@ -91,14 +95,23 @@ export default function Home() {
     }, 850);
   };
 
+  const getCarouselData = async () => {
+    // set isloading to false on success
+    const res = await fetch("/api/sheets");
+    const data = await res.json();
+    console.log(data);
+    let featured = data.lists.filter((list) => list.isFeatured === "yes");
+    console.log(featured);
+    setCarouselData(featured);
+  };
+
   useEffect(() => {
     dothing();
     var timer = 0;
-
+    // set cursor to arrow on load
     window.addEventListener("scroll", () => {
       handleScroll();
     });
-
     document.querySelectorAll('[data-fade-in-group="1"]').forEach((el, i) => {
       el.classList.add("fade-in");
       el.style.animationDelay = `${(timer += i * 85)}ms`;
@@ -115,6 +128,10 @@ export default function Home() {
       el.addEventListener("mouseleave", () => setHovering(null));
     });
     Modal.setAppElement("body");
+    getCarouselData().then(() => {
+      setHydrated(true);
+      setIsLoading(false);
+    });
   }, []);
 
   useEffect(() => {
@@ -148,7 +165,7 @@ export default function Home() {
     scrollElements.forEach((el, i) => {
       if (scrollPosition > el.offsetTop - el.offsetHeight / 10) {
         if (el.dataset.scrollVisited == "false") {
-          console.log("got here", i);
+          // console.log("got here", i);
           el.dataset.scrollVisited = "true";
           el.querySelector("#animation-container") &&
             el.querySelector("#animation-container").classList.remove("hidden");
@@ -333,7 +350,15 @@ export default function Home() {
         data-bg="neon"
         className="relative h-max pt-[3rem] flex items-top justify-center w-full"
       >
-        <SampleListsCarousel />
+        {isLoading ? (
+          <div className="">
+            <div className="w-full h-[100vh] flex items-center justify-center">
+              <div className="w-[100px] h-[100px] border-2 border-black rounded-full animate-spin"></div>
+            </div>
+          </div>
+        ) : (
+          <Carousel lists={carouselData} />
+        )}
       </section>
       {/* section 2 */}
 

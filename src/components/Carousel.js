@@ -1,13 +1,17 @@
 import * as React from "react";
 // import ImageFlipper from "./ImageFlipper";
+// import { google } from "googleapis";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import asterisk from "/public/graphics/asterisk_regular.svg";
 import { sampleLists } from "../samples";
-// import {Slider} from "./Slider";
 
-const SampleListsCarousel = ({ data }) => {
+// import {Slider} from "./Slider";
+// call server side function hello
+
+export default function Carousel({ lists }) {
+
   const [position, setPosition] = useState(-300);
   const [increment, setIncrement] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(null);
@@ -27,24 +31,8 @@ const SampleListsCarousel = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    setIncrement(carouselWidth / sampleLists.length);
+    setIncrement(carouselWidth / lists.length);
   }, [carouselWidth]);
-
-  const next = () => {
-    let maths = (-sampleLists.length * increment) / 2;
-    console.log(maths);
-    if (position > maths) {
-      setPosition((prevState) => prevState - increment);
-    }
-    // sampleListContainer.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const prev = () => {
-    if (position < 0) setPosition((prevState) => prevState + increment);
-  };
-  // handle drag start
-  // handle drag
-  // handle drag end
 
   const handleDragStart = (event) => {
     event.preventDefault();
@@ -63,7 +51,7 @@ const SampleListsCarousel = ({ data }) => {
     const threshold = 100;
     // todo: calculate drag width (might be a function of container width & viewport width?)
     const min = 0;
-    const max = -increment * (sampleLists.length - 1);
+    const max = -increment * (lists.length - 1);
     if (diff > min + threshold) {
       carousel.current.style.transform = `translateX(${diff}px)`;
       setCurrentPosition(min);
@@ -116,10 +104,12 @@ const SampleListsCarousel = ({ data }) => {
           // gridTemplateColumns: `repeat(${sampleLists.length}, minmax(0, 1fr))`,
         }}
       >
-        {sampleLists.map((currentList, index) => {
+        {console.log(lists)}
+        {lists && lists.map((currentList, index) => {
+          const parsedContent = JSON.parse(currentList.content);
           return (
             <Link
-              href={`/${currentList.slug}`}
+              href={`/${currentList.username}/${currentList.slug}`}
               key={index}
               data-cursor-state="ul-arrow"
               data-fade-in-group="2"
@@ -127,21 +117,21 @@ const SampleListsCarousel = ({ data }) => {
             >
               <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
                 <div
-                  style={{ backgroundImage: `url(${currentList.img})` }}
+                  style={{ backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${currentList.username}/${currentList.slug}/cover_${"00"}.webp')` }}
                   className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
                 >
                   <div className="row-span-1"></div>
                   <div className="flex row-span-1 tighten text-[--neon] flex-col justify-center items-center">
                     <div className="text-[1rem] sm:text-[40%] font-[Crimson] italic translate-y-[20%]">
-                      {currentList.title}
+                      {currentList.city}
                     </div>
                     <div className="text-[2rem] sm:text-[40%] font-[Golos] font-[500] ">
-                      {currentList.subtitle}
+                      {currentList.playlistName}
                     </div>
                   </div>
                   <div className="text-[--neon] pb-[1rem] self-end text-[2rem] sm:text-[40%] row-span-1 flex justify-center items-center">
                     <div className="flex flex-row">
-                      <div className="">{currentList.amount}</div>
+                      <div className="">{parsedContent.length}</div>
                       <div className="relative w-[15px] ml-[5px] h-auto">
                         <Image fill src={asterisk} alt="asterisk" />
                       </div>
@@ -158,4 +148,3 @@ const SampleListsCarousel = ({ data }) => {
   );
 };
 
-export default SampleListsCarousel;
