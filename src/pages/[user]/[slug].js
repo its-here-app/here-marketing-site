@@ -2,6 +2,7 @@ import { google } from "googleapis";
 import { useRouter } from "next/router";
 import slugify from "@sindresorhus/slugify";
 import { Spot } from "../../components/Spot";
+import { Footer } from "../../components/Footer";
 
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
@@ -54,6 +55,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
   // const router = useRouter();
 
   return (
+    <>
     <div className="relative flex flex-col bg-white md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]">
       {/* left */}
       <section className="relative h-full">
@@ -113,5 +115,8 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
         </div>
       </section>
     </div>
+    
+    <Footer />
+    </>
   );
 }
