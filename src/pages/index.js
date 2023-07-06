@@ -104,9 +104,16 @@ export default function Home() {
     console.log(featured);
     setCarouselData(featured);
   };
+  
+  const sayHello = async () => {
+    const res = await fetch("/api/hello");
+    const data = await res.json();
+    console.log(data);
+  };
 
   useEffect(() => {
     dothing();
+    sayHello();
     var timer = 0;
     // set cursor to arrow on load
     window.addEventListener("scroll", () => {
