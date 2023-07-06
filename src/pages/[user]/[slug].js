@@ -10,39 +10,56 @@ export async function getServerSideProps({ query }) {
 
   const sheets = google.sheets({ version: "v4", auth });
 
-  const { id } = query;
-  const range = `Sheet1!A${id}:G${id}`;
+  const { slug } = query;
+  const range = `Sheet1!A$2:G$40`;
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
     range,
   });
 
-  const [city, playlistName, isFeatured, slug, username, description, content] = response.data.values[0];
+  // find list with matching slug
+  const rows = response.data.values;
+  const lists = rows.map((row) => ({
+    city: row[0],
+    playlistName: row[1],
+    isFeatured: row[2],
+    slug: row[3],
+    username: row[4],
+    description: row[5],
+    content: row[6],
+  }));
+
+  // const list = lists.find((list) => list.slug === slug);
+
+  // get id of list with matching slug
+  const listId = lists.findIndex((list) => list.slug === slug);
+
+  const [city, playlistName, isFeatured, listSlug, username, description, content] = response.data.values[listId];
 
   return {
     props: {
       city,
       playlistName,
-      isFeatured,
-      slug,
+      listSlug,
       username,
       description,
-      content,
-    },
-  };
+      content
+    }
+  }
 }
 
-export default function ListPage({ city, playlistName, slug, username, description, content }) {
+export default function ListPage({ city, playlistName,listSlug, username, description, content }) {
   const parsedContent = JSON.parse(content);
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
+
     <div className="relative flex flex-col bg-white md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]">
       <section className="">
         <div
           className=" font-[Golos] text-[--neon]  h-[50vh] md:h-[calc(100vh-2rem)] bg-center bg-cover w-full rounded-[1rem] flex justify-between flex-col"
           style={{
-            backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${username}/${slug}/cover_${"00"}.webp')`,
+            backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${username}/${listSlug}/cover_${"00"}.webp')`,
           }}
         >
           <div className="w-full h-full"></div>
@@ -82,7 +99,7 @@ export default function ListPage({ city, playlistName, slug, username, descripti
         <div className="w-full text-[20px] lg:pr-[5rem] ">{description}</div>
         <div class="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
           {parsedContent.map((spot, i) => {
-            const s3url = `https://its-here-app.s3.amazonaws.com/${username}/${slug}/${
+            const s3url = `https://its-here-app.s3.amazonaws.com/${username}/${listSlug}/${
               slugify(spot.name)
             }_${"00"}.webp`;
             return (
