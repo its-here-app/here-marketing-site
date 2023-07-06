@@ -106,7 +106,7 @@ export default function Carousel({ lists }) {
       >
         {console.log(lists)}
         {lists && lists.map((currentList, index) => {
-          const parsedContent = JSON.parse(currentList.content);
+          // const parsedContent = JSON.parse(currentList.content);
           return (
             <Link
               href={`/${currentList.username}/${currentList.slug}`}
@@ -131,7 +131,7 @@ export default function Carousel({ lists }) {
                   </div>
                   <div className="text-[--neon] pb-[1rem] self-end text-[2rem] sm:text-[40%] row-span-1 flex justify-center items-center">
                     <div className="flex flex-row">
-                      <div className="">{parsedContent.length}</div>
+                      {/* <div className="">{parsedContent.length}</div> */}
                       <div className="relative w-[15px] ml-[5px] h-auto">
                         <Image fill src={asterisk} alt="asterisk" />
                       </div>
