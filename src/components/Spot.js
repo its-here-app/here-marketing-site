@@ -2,8 +2,8 @@
 export const Spot = ({ title, description, type, image }) => {
   return (
     <div className="relative flex w-full flex-row min-h-[80px]">
-      <div className="w-[20%] h-[20%] overflow-hidden aspect-[1/1] rounded-[8px]">
-        <img src={image} className="w-full h-full"/>
+      <div className="w-[20%] h-full overflow-hidden aspect-[1/1] rounded-[8px]">
+        <img src={image} className="w-full"/>
       </div>
       <div className="grid grid-cols-2 w-full">
         <div className="h-auto pl-[1rem] flex flex-col gap-[.2rem] content-evenly">
