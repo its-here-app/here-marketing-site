@@ -136,6 +136,7 @@ export default function Home() {
     });
     Modal.setAppElement("body");
     getCarouselData().then(() => {
+      console.log('caro data', carouselData)
       setHydrated(true);
       setIsLoading(false);
     });
