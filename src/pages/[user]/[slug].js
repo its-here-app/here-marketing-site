@@ -56,35 +56,45 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
 
   return (
     <>
-    <div className="relative flex flex-col bg-white md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]">
+    <div className="max-w-[1728px] mx-auto">
+    <div className="relative flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]">
       {/* left */}
       <section className="relative h-full">
         <div
           className="sticky top-0 font-[Golos] text-[--neon] h-[50vh] md:h-[calc(100vh-2rem)] bg-center bg-cover w-full rounded-[1rem] flex justify-between flex-col"
           style={{
-            backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${username}/${listSlug}/cover_${"00"}.webp')`,
+            backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${username}/${listSlug}/cover_${"00"}.webp'), url('http://placehold.it/300x300')`,
           }}
         >
-          <div className="w-full h-full"></div>
+          <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
+            <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
+              <div className="">x button</div>
+            </div>
+            <div className="">share icon</div>
+          </div>
           <div className="w-full flex items-center justify-center flex-col">
-            <div className="font-[Crimson] text-[34px] font-[400] leading-[106%] tracking-[-0.06em]">
+            <div className="font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
               {city}
             </div>
-            <div className="text-[40px] text-center px-[3rem] leading-[106%] font-[600] tracking-[-0.06em]">
+            <div className="text-[2.625rem] lg:text-[4rem] text-center px-[3rem] leading-[106%] lg:leading-normal font-[600] tracking-[-0.06em]">
               {playlistName}
             </div>
           </div>
-          <div className="w-full h-full flex justify-between items-end px-[1rem] py-[1rem]">
-            <div className="">{username}</div>
-            <div className="">last updated 1 week ago</div>
+          
+          <div className="w-full h-full flex justify-between items-end px-[1.25rem] py-[1.25rem]">
+            <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
+              <div className="w-[1.75rem] h-[1.75rem] bg-[--neon] rounded-full"></div>
+              <div className="">{username}</div>
+            </div>
+            <div className="">Last updated 1 week ago</div>
           </div>
         </div>
       </section>
       {/* right side */}
-      <section className="flex gap-[1rem] top-0 w-full px-[2rem] flex-col">
+      <section className="flex gap-[1rem] pt-[1.5rem] top-0 w-full px-[2rem] flex-col">
         <div className="grid grid-cols-2">
           {/*  */}
-          <div className="justify-self-start text-base">{parsedContent.length} spots *</div>
+          <div className="justify-self-start text-[1rem] lg:text-[1.125rem]">{parsedContent.length} spots *</div>
           {/* icon bubbles */}
           <div className="justify-self-end">
             {/* a sliding toggle switch */}
@@ -96,7 +106,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             </div>
           </div>
         </div>
-        <div className="w-full text-[20px] lg:pr-[5rem] ">{description}</div>
+        <div className="w-full text-[.875rem] lg:text-[1.125rem] md:pr-[5rem] ">{description}</div>
         <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
           {parsedContent.map((spot, i) => {
             const s3url = `https://its-here-app.s3.amazonaws.com/${username}/${listSlug}/${slugify(
@@ -113,9 +123,22 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             );
           })}
         </div>
+        <div className="grid grid-cols-2">
+          <div className=""></div>
+          <div className="justify-self-end">
+            <div className="bg-black font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white">
+            □ Copy List
+            </div>
+          </div>
+
+        </div>
+        <div className="flex flex-col h-[500px] items-center justify-center">
+          todo: similar playlists
+        </div>
       </section>
     </div>
     
+    </div>
     <Footer />
     </>
   );

@@ -104,7 +104,7 @@ export default function Home() {
     console.log(featured);
     setCarouselData(featured);
   };
-  
+
   const sayHello = async () => {
     const res = await fetch("/api/hello");
     const data = await res.json();
@@ -130,17 +130,21 @@ export default function Home() {
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
-    document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
-      el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
-      el.addEventListener("mouseleave", () => setHovering(null));
-    });
+
     Modal.setAppElement("body");
     getCarouselData().then(() => {
-      console.log('caro data', carouselData)
+      console.log("caro data", carouselData);
       setHydrated(true);
       setIsLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
+      el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
+      el.addEventListener("mouseleave", () => setHovering(null));
+    });
+  }, [hydrated])
 
   useEffect(() => {
     gsap.to(cursorCircle.current, {
@@ -184,13 +188,28 @@ export default function Home() {
   }, [scrollPosition]);
 
   useEffect(() => {
+    // if (hovering === "ul-arrow") {
+    //   cursorCircle.current.classList.add(`cursor-ul-arrow`);
+    // } else {
+    //   cursorCircle.current.classList.remove(`cursor-ul-arrow`);
+    // }
+    // if (hovering === "asterisk") {
+    //   cursorCircle.current.classList.add("cursor-asterisk");
+    // } else {
+    //   cursorCircle.current.classList.remove("cursor-asterisk");
+    // }
+    // if (hovering === "invert") {
+    //   cursorCircle.current.classList.add("cursor-invert");
+    // } else {
+    //   cursorCircle.current.classList.remove("cursor-invert");
+    // }
     const states = {
       "ul-arrow": "cursor-ul-arrow",
       asterisk: "cursor-asterisk",
       invert: "cursor-invert",
     };
-
-    return states[hovering]
+    console.log(hovering)
+    states[hovering]
       ? cursorCircle.current.classList.add(states[hovering])
       : cursorCircle.current.classList.remove(
           "cursor-ul-arrow",
@@ -234,7 +253,7 @@ export default function Home() {
       </Head>
       <Modal
         isOpen={modalIsOpen}
-        className="z-[3] cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-[1rem] md:p-[2rem] rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
+        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-[1rem] md:p-[2rem] rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >
@@ -359,11 +378,13 @@ export default function Home() {
         className="relative h-max pt-[3rem] flex items-top justify-center w-full"
       >
         {isLoading ? (
-          <div className="">
-            <div className="w-full h-[100vh] flex items-center justify-center">
-              <div className="w-[100px] h-[100px] border-2 border-black rounded-full animate-spin"></div>
+            <div className="min-h-[400px] flex justify-center transition-all flex-col h-[300px] w-max my-[1rem]">
+              <div className="flex flex-row items-center h-[24px]">
+                <div className="dot dot-one bg-black"></div>
+                <div className="dot dot-two bg-black"></div>
+                <div className="dot dot-three bg-black"></div>
+              </div>
             </div>
-          </div>
         ) : (
           <Carousel lists={carouselData} />
         )}

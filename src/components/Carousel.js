@@ -1,18 +1,12 @@
 import * as React from "react";
-// import ImageFlipper from "./ImageFlipper";
-// import { google } from "googleapis";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import asterisk from "/public/graphics/asterisk_regular.svg";
-import { sampleLists } from "../samples";
-
-// import {Slider} from "./Slider";
-// call server side function hello
 
 export default function Carousel({ lists }) {
 
-  const [position, setPosition] = useState(-300);
+  // carousel state
   const [increment, setIncrement] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(null);
   const sampleListContainer = useRef(null);
@@ -104,14 +98,11 @@ export default function Carousel({ lists }) {
           // gridTemplateColumns: `repeat(${sampleLists.length}, minmax(0, 1fr))`,
         }}
       >
-        {console.log(lists)}
         {lists && lists.map((currentList, index) => {
           // const parsedContent = JSON.parse(currentList.content);
           return (
-            <Link
-              href={`/${currentList.username}/${currentList.slug}`}
+            <div
               key={index}
-              data-cursor-state="ul-arrow"
               data-fade-in-group="2"
               className="z-2 transition-transform"
             >
@@ -121,14 +112,17 @@ export default function Carousel({ lists }) {
                   className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
                 >
                   <div className="row-span-1"></div>
-                  <div className="flex row-span-1 tighten text-[--neon] flex-col justify-center items-center">
+                  <Link
+                    href={`/${currentList.username}/${currentList.slug}`}
+                    data-cursor-state="ul-arrow" 
+                    className="cursor-none flex row-span-1 tighten text-[--neon] flex-col justify-center items-center">
                     <div className="text-[1rem] sm:text-[40%] font-[Crimson] italic translate-y-[20%]">
                       {currentList.city}
                     </div>
                     <div className="text-[2rem] sm:text-[40%] font-[Golos] font-[500] ">
                       {currentList.playlistName}
                     </div>
-                  </div>
+                  </Link>
                   <div className="text-[--neon] pb-[1rem] self-end text-[2rem] sm:text-[40%] row-span-1 flex justify-center items-center">
                     <div className="flex flex-row">
                       {/* <div className="">{parsedContent.length}</div> */}
@@ -139,7 +133,7 @@ export default function Carousel({ lists }) {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>

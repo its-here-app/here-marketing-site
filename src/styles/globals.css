@@ -20,6 +20,7 @@
   }
 
   html {
+    background-color: var(--cream);
     overscroll-behavior: auto;
     scroll-behavior: smooth;
     min-height: 100%;
