@@ -57,7 +57,7 @@ export default function Home() {
       z: -1,
     },
   ];
-
+ 
   const openModal = () => {
     setModalOpen(true);
     cursorCircle.current.classList.add("invert");
