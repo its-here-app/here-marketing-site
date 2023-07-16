@@ -108,7 +108,7 @@ export default function Carousel({ lists }) {
             >
               <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
                 <div
-                  style={{ backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${currentList.username}/${currentList.slug}/cover_${"00"}.webp')` }}
+                  style={{ backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${currentList.username}_${currentList.slug}/cover_${"00"}.webp')` }}
                   className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
                 >
                   <div className="row-span-1"></div>

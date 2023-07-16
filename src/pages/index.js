@@ -135,7 +135,7 @@ export default function Home() {
       el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
-  }, [hydrated])
+  }, [hydrated]);
 
   useEffect(() => {
     gsap.to(cursorCircle.current, {
@@ -154,7 +154,7 @@ export default function Home() {
     const ctaStickerFooter = document.querySelector("#cta-sticker-footer");
 
     // if your scroll position is 1000px from the bottom, fade out the scroll sticker
-    if (scrollPosition > document.body.offsetHeight - 1000) {
+    if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 1000) {
       ctaSticker.classList.add("fade-out-slide-down");
       ctaStickerFooter.classList.remove("hidden");
     } else {
@@ -190,7 +190,6 @@ export default function Home() {
         }
       }
     });
-
   }, [scrollPosition]);
 
   useEffect(() => {
@@ -276,18 +275,16 @@ export default function Home() {
           className="pop-in hidden z-30 hover:drop-shadow-2xl md:block fixed right-[5%] top-[50%] md:w-[250px] md:h-[200px]"
         >
           <div
-            href=""
             onClick={openModal}
             className={classNames(modalIsOpen && "hidden", "cursor-none")}
             onMouseOver={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >
             <svg
-
-              id="cta-sticker"
+            id="cta-sticker"
               viewBox="0 0 264 156"
               fill="none"
-              className=" w-full h-full group  hover:rotate-[15deg] transition-all"
+              className=" w-full h-full group hover:rotate-[15deg] transition-all"
               xmlns="http://www.w3.org/2000/svg"
             >
               <g clipath="url(#clip0_1244_9825)">
@@ -384,13 +381,13 @@ export default function Home() {
         className="relative h-max pt-[3rem] flex items-top justify-center w-full"
       >
         {isLoading ? (
-            <div className="min-h-[400px] flex justify-center transition-all flex-col h-[300px] w-max my-[1rem]">
-              <div className="flex flex-row items-center h-[24px]">
-                <div className="dot dot-one bg-black"></div>
-                <div className="dot dot-two bg-black"></div>
-                <div className="dot dot-three bg-black"></div>
-              </div>
+          <div className="min-h-[400px] flex justify-center transition-all flex-col h-[300px] w-max my-[1rem]">
+            <div className="flex flex-row items-center h-[24px]">
+              <div className="dot dot-one bg-black"></div>
+              <div className="dot dot-two bg-black"></div>
+              <div className="dot dot-three bg-black"></div>
             </div>
+          </div>
         ) : (
           <Carousel lists={carouselData} />
         )}
@@ -640,7 +637,12 @@ export default function Home() {
            right-[10%] lg:right-[5%]
           "
           >
-            <Image alt="none" id="cta-sticker-footer" className="hidden fade-in-slide-up" src={stickerStartYourPlaylist} />
+            <Image
+              alt="none"
+              id="cta-sticker-footer"
+              className="hidden fade-in-slide-up"
+              src={stickerStartYourPlaylist}
+            />
           </div>
           {/* footer stickers */}
           {/* footer nav */}
