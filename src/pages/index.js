@@ -99,21 +99,12 @@ export default function Home() {
     // set isloading to false on success
     const res = await fetch("/api/sheets");
     const data = await res.json();
-    console.log(data);
     let featured = data.lists.filter((list) => list.isFeatured === "yes");
-    console.log(featured);
     setCarouselData(featured);
-  };
-
-  const sayHello = async () => {
-    const res = await fetch("/api/hello");
-    const data = await res.json();
-    console.log(data);
   };
 
   useEffect(() => {
     dothing();
-    sayHello();
     var timer = 0;
     // set cursor to arrow on load
     window.addEventListener("scroll", () => {
@@ -132,8 +123,8 @@ export default function Home() {
     });
 
     Modal.setAppElement("body");
+
     getCarouselData().then(() => {
-      console.log("caro data", carouselData);
       setHydrated(true);
       setIsLoading(false);
     });
@@ -159,6 +150,19 @@ export default function Home() {
     const scrollElements = document.querySelectorAll("[data-scroll-visited]");
     const scrollYElements = document.querySelectorAll("[data-start-y]");
     const bgElements = document.querySelectorAll("[data-bg]");
+    const ctaSticker = document.querySelector("#cta-sticker");
+    const ctaStickerFooter = document.querySelector("#cta-sticker-footer");
+
+    // if your scroll position is 1000px from the bottom, fade out the scroll sticker
+    if (scrollPosition > document.body.offsetHeight - 1000) {
+      ctaSticker.classList.add("fade-out-slide-down");
+      ctaStickerFooter.classList.remove("hidden");
+    } else {
+      ctaStickerFooter.classList.add("hidden");
+
+      ctaSticker.classList.remove("fade-out-slide-down");
+      ctaSticker.classList.add("fade-in-slide-up");
+    }
 
     scrollYElements.forEach((el, i) => {
       const startY = parseInt(el.dataset.startY);
@@ -168,16 +172,17 @@ export default function Home() {
         el.style.transform = `translate(0%, ${pct}%)`;
       }
     });
+
     bgElements.forEach((el, i) => {
       const color = el.dataset.bg;
       if (scrollPosition > el.offsetTop - el.offsetHeight / 2) {
         store.style.setProperty("--current-bg", `var(--${color})`);
       }
     });
+
     scrollElements.forEach((el, i) => {
       if (scrollPosition > el.offsetTop - el.offsetHeight / 10) {
         if (el.dataset.scrollVisited == "false") {
-          // console.log("got here", i);
           el.dataset.scrollVisited = "true";
           el.querySelector("#animation-container") &&
             el.querySelector("#animation-container").classList.remove("hidden");
@@ -185,37 +190,37 @@ export default function Home() {
         }
       }
     });
+
   }, [scrollPosition]);
 
   useEffect(() => {
-    // if (hovering === "ul-arrow") {
-    //   cursorCircle.current.classList.add(`cursor-ul-arrow`);
-    // } else {
-    //   cursorCircle.current.classList.remove(`cursor-ul-arrow`);
-    // }
-    // if (hovering === "asterisk") {
-    //   cursorCircle.current.classList.add("cursor-asterisk");
-    // } else {
-    //   cursorCircle.current.classList.remove("cursor-asterisk");
-    // }
-    // if (hovering === "invert") {
-    //   cursorCircle.current.classList.add("cursor-invert");
-    // } else {
-    //   cursorCircle.current.classList.remove("cursor-invert");
-    // }
-    const states = {
-      "ul-arrow": "cursor-ul-arrow",
-      asterisk: "cursor-asterisk",
-      invert: "cursor-invert",
-    };
-    console.log(hovering)
-    states[hovering]
-      ? cursorCircle.current.classList.add(states[hovering])
-      : cursorCircle.current.classList.remove(
-          "cursor-ul-arrow",
-          "cursor-asterisk",
-          "cursor-invert"
-        );
+    if (hovering === "ul-arrow") {
+      cursorCircle.current.classList.add(`cursor-ul-arrow`);
+    } else {
+      cursorCircle.current.classList.remove(`cursor-ul-arrow`);
+    }
+    if (hovering === "asterisk") {
+      cursorCircle.current.classList.add("cursor-asterisk");
+    } else {
+      cursorCircle.current.classList.remove("cursor-asterisk");
+    }
+    if (hovering === "invert") {
+      cursorCircle.current.classList.add("cursor-invert");
+    } else {
+      cursorCircle.current.classList.remove("cursor-invert");
+    }
+    // const states = {
+    //   "ul-arrow": "cursor-ul-arrow",
+    //   asterisk: "cursor-asterisk",
+    //   invert: "cursor-invert",
+    // };
+    // states[hovering]
+    //   ? cursorCircle.current.classList.add(states[hovering])
+    //   : cursorCircle.current.classList.remove(
+    //       "cursor-ul-arrow",
+    //       "cursor-asterisk",
+    //       "cursor-invert"
+    //     );
   }, [hovering]);
 
   const handleMouseMove = (e) => {
@@ -263,13 +268,12 @@ export default function Home() {
       <div ref={cursorCircle} className="circle"></div>
       {/* cta sticker */}
       <div
-        id="cta-sticker"
         style={{ zIndex: 2 }}
         className="absolute  top-0 right-[300px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
       >
         <div
           data-cursor-state="asterisk"
-          className="pop-in hidden hover:drop-shadow-2xl md:block fixed right-[5%] top-[50%] md:w-[250px] md:h-[200px]"
+          className="pop-in hidden z-30 hover:drop-shadow-2xl md:block fixed right-[5%] top-[50%] md:w-[250px] md:h-[200px]"
         >
           <div
             href=""
@@ -279,6 +283,8 @@ export default function Home() {
             onMouseLeave={() => setHovering(false)}
           >
             <svg
+
+              id="cta-sticker"
               viewBox="0 0 264 156"
               fill="none"
               className=" w-full h-full group  hover:rotate-[15deg] transition-all"
@@ -634,7 +640,7 @@ export default function Home() {
            right-[10%] lg:right-[5%]
           "
           >
-            <Image alt="none" className="pop-in" src={stickerStartYourPlaylist} />
+            <Image alt="none" id="cta-sticker-footer" className="hidden fade-in-slide-up" src={stickerStartYourPlaylist} />
           </div>
           {/* footer stickers */}
           {/* footer nav */}

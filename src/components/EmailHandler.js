@@ -9,6 +9,8 @@ import stickerLocalRecs from "/public/stickers/sticker-local-recs.svg";
 const EmailForm = ({ status, message, onValidated }) => {
   let email, name;
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const submit = () =>
     email &&
     // name &&
