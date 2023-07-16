@@ -154,7 +154,7 @@ export default function Home() {
     const ctaStickerFooter = document.querySelector("#cta-sticker-footer");
 
     // if your scroll position is 1000px from the bottom, fade out the scroll sticker
-    if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 1000) {
+    if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 400) {
       ctaSticker.classList.add("fade-out-slide-down");
       ctaStickerFooter.classList.remove("hidden");
     } else {
