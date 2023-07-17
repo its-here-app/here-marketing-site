@@ -7,6 +7,28 @@ module.exports = {
     './src/styles/**/*.{js,ts,jsx,tsx,css}',
   ],
   theme: {
+    extend: {
+      transitionTimingFunction: {
+        "in-out-quint": "cubic-bezier(0.23, 1, 0.32,1)",
+        "in-out-image": "cubic-bezier(0.65, 0.05, 0.36, 1)",
+      },
+      // leading
+      lineHeight: {
+        100: "1em",
+        105: "1.05em",
+        107: "1.07em",
+        110: "1.1em",
+        120: "1.2em",
+        125: "1.25em",
+        150: "1.5em",
+      },
+      //tracking
+      letterSpacing: {
+        "1": "-0.01em",
+        "3": "-0.03em",
+        "6": "-0.06em",
+      },
+    },
     fontFamily: {
       'sans': ['Golos', 'sans-serif'],
       'serif': ['Crimson', 'serif'],
@@ -18,11 +40,7 @@ module.exports = {
       'lg': '1.125rem',   // 18px
       'xl': '1.25rem',    // 20px
       '2xl': '1.5rem',    // 24px
-      '3xl': '1.875rem',  // 30px
-      '4xl': '2.25rem',   // 36px
-      '5xl': '3rem',      // 48px
-      '6xl': '4rem',      // 64px
-      '7xl': '5rem',      // 80px
+      '3xl': '1.75rem', // 28px
     },
     screens: {
       'sm': '390px',

@@ -7,6 +7,8 @@ import classNames from "classnames";
 
 import logoOG from "/public/graphics/logo-og.svg";
 import logoLockup from "/public/graphics/logo-lockup.svg";
+import SVG from "react-inlinesvg";
+
 import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playlist.svg";
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
 import tile3Before from "/public/graphics/tile3_before.png";
@@ -257,7 +259,7 @@ export default function Home() {
       </Head>
       <Modal
         isOpen={modalIsOpen}
-        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-[1rem] md:p-[2rem] rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
+        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-4 md:p-8 rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >
@@ -329,17 +331,22 @@ export default function Home() {
       {/* header */}
       <section
         data-bg="off-white"
-        className="w-full flex max-w-[1738px] mx-auto items-center justify-between px-[1rem] md:px-[2rem] py-[1.5rem] lg:py-[2rem"
+        className="w-full flex max-w-[1738px] mx-auto items-center justify-between px-4 md:px-8 py-6 lg:py-8"
       >
-        <div className="relative w-[65px] h-[50px] md:w-[110px] flex  items-center justify-center">
-          <Image tabIndex="0" alt="logo" fill src={logoLockup} />
+        <div className="relative w-[60px] md:w-[80px] h-auto flex  items-center justify-center">
+          <SVG
+            src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/graphics/logo-lockup.svg`}
+            width="auto"
+            height="auto"
+            title="Logo"
+          />
         </div>
         <div className="flex items-center justify-center">{/* hamburger menu */}</div>
       </section>
       {/* /header */}
       {/* hero */}
-      <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] ">
-        <div className="flex flex-col font-[Radio] lg:mx-[5vw] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[6.5vw] xxl:text-[9rem]">
+      <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-4 ">
+        <div className="flex flex-col font-[Radio] lg:mx-[5vw] leading-105 tracking-6 pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[6.5vw] xxl:text-[9rem]">
           {/* title */}
           <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[5%] ">
             One place —{" "}
@@ -352,7 +359,7 @@ export default function Home() {
         </div>
         {/* subtitle */}
 
-        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] xxl:ml-[15%] pt-[3rem] text-[1.5rem] md:ml-[10vw]">
+        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] xxl:ml-[15%] pt-12 text-6 md:ml-[10vw]">
           <span data-fade-in-group="1" className="font-[Golos]">
             Discover and share favorite spots through city playlists*
           </span>
@@ -361,7 +368,7 @@ export default function Home() {
             // ref={(ref) => cursorRefs.current.push(ref)}
             data-cursor-state="ul-arrow"
             onClick={openModal}
-            className="bg-black mt-[2rem] md:mt-[4rem] leading-[150%] cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-[Golos] px-[18px] py-[10px]"
+            className="bg-black mt-8 md:mt-16 leading-150 cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-[Golos] px-[18px] py-[10px]"
           >
             Start your playlist
           </button>
@@ -373,12 +380,9 @@ export default function Home() {
       {/* /hero */}
 
       {/* section 2 */}
-      <section
-        data-bg="neon"
-        className="relative h-max pt-[3rem] flex items-top justify-center w-full"
-      >
+      <section data-bg="neon" className="relative h-max pt-12 flex items-top justify-center w-full">
         {isLoading ? (
-          <div className="min-h-[400px] flex justify-center transition-all flex-col h-[300px] w-max my-[1rem]">
+          <div className="min-h-[400px] flex justify-center transition-all flex-col h-[300px] w-max my-4">
             <div className="flex flex-row items-center h-[24px]">
               <div className="dot dot-one bg-black"></div>
               <div className="dot dot-two bg-black"></div>
@@ -407,20 +411,18 @@ export default function Home() {
                   id="animation-container"
                   className="hidden absolute flex flex-col items-center justify-center w-full h-full"
                 >
-                  <div className="aspect-[1/1.5]  w-[80%] md:w-[60%]  items-center justify-center flex-col flex">
+                  <div className="aspect-[1/1.5] md:scale-125 w-[80%] md:w-[60%] items-center justify-center flex-col flex">
                     <div className="w-full flex justify-start">
-                      <div className="imessage-left pop-in-1 flex flex-col w-max my-[1rem]">
+                      <div className="imessage-left pop-in-1 flex flex-col w-max my-4">
                         <span>Do you have recs for LA? </span>
                         <span>I'll be there next week</span>
                       </div>
                     </div>
                     <div className="w-full flex justify-end">
-                      <div className="imessage-right pop-in-2 flex flex-col w-max my-[1rem]">
-                        Here!
-                      </div>
+                      <div className="imessage-right pop-in-2 flex flex-col w-max my-4">Here!</div>
                     </div>
                     <div className="w-full flex justify-end">
-                      <div className="imessage-right pop-in-3 flex flex-col w-max my-[1rem]">
+                      <div className="imessage-right pop-in-3 flex flex-col w-max my-4">
                         <div className="flex flex-row items-center h-[24px]">
                           <div className="dot dot-one"></div>
                           <div className="dot dot-two"></div>
@@ -556,7 +558,7 @@ export default function Home() {
       {/* bottom CTA */}
       <section
         data-bg="off-white"
-        className="relative h-auto px-[1rem] md:px-[3rem]  lg:mx-auto  w-full xl:w-[1738px] mt-[10rem] flex items-center"
+        className="relative h-auto px-4 md:px-12  lg:mx-auto  w-full xl:w-[1738px] mt-40 flex items-center"
       >
         <div
           className="absolute
@@ -567,34 +569,36 @@ export default function Home() {
               md:top-[0px] md:right-[10%]
           "
         >
-          <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
+          <Image alt="none" fill className="pop-in" src={stickerLockupOcean} />
         </div>
-        <div className="text-[Radio] pb-[4rem] md:pb-[10rem] w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-[1.05] tracking-[-.06rem] text-[15vw] md:text-[8.2vw] xxl:text-[168px]">
+        <div className="text-[Radio] tracking-1 md:tracking-3 pb-16 md:pb-40 w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-105 text-[15vw] md:text-[8.2vw] xxl:text-[168px]">
           {/* title */}
           <div data-start-y="80" className="w-full flex justify-start">
-            <span className="md:w-[50vw]">For the spots you love</span>
+            <span className="md:w-[50vw] max-w-[900px]">For the spots you love</span>
           </div>
-          <div className="px-0 mt-[2rem] md:mt-[.5rem] flex justify-start md:justify-end ">
+          <div className="px-0 mt-8 md:mt-2 flex justify-start md:justify-end ">
             <div className="flex items-end justify-end md:w-[55vw] xxl:w-[1020px]">
               <span className="w-auto ">and those you want to visit</span>
             </div>
           </div>
           <div
             data-start-y="80"
-            className="relative flex flex-col-reverse items-end  md:flex-row justify-between w-full pt-[3rem] md:pl-[0]"
+            className="grid grid-cols-1 md:grid-cols-12  md:gap-8  justify-between w-full pt-12 md:pl-[0]"
           >
-            <div className="flex pt-[3rem] md:pt-0 items-end h-auto lg:h-[323px] w-full md:w-[560px] ">
-              <div className="flex h-[200px] flex-row text-[1.75rem] px-[0] leading-[120%] md:leading-[150%] tracking-[-.01em] font-[Golos]">
-                <span className="pr-[.5rem]">*</span>
-                <span span className="">
-                  like music, compile your favorite places into a{" "}
-                  <span className="text-[--ocean]">city playlist</span> that captures that time of
-                  your life.
-                </span>
+            <div className="flex col-span-1 md:col-span-9 pt-12 w-full md:pt-0 items-end h-auto order-1 md:-order-1">
+              <div className="flex items-end h-full flex-row text-[1.75rem] px-0 leading-120 md:leading-150 tracking-1 font-[Golos]">
+                <div className="flex flex-row">
+                  <span className="pr-2">*</span>
+                  <div className="max-w-[552px]">
+                    like music, compile your favorite places into a{" "}
+                    <span className="text-[--ocean]">city playlist</span> that captures that time of
+                    your life.
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="flex relative h-[285px] w-[233px] lg:h-[330px] lg:w-[264px] ">
+            <div className="flex justify-self-end max-w-[320px]  col-span-3 w-full h-max relative">
               <Image src={footerGraphic} alt="" />
             </div>
           </div>
@@ -609,9 +613,9 @@ export default function Home() {
         data-cursor-state="invert"
         className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[600px]  w-full flex flex-col justify-between items-top"
       >
-        <div className="max-w-[1738px] pt-[3rem] lg:pt-[5rem] px-[1rem] w-full mx-auto flex flex-col justify-between h-full">
-          {/* <div className="relative w-full h-[90%] pt-[4rem] md:pt-[3rem] md:h-auto gap-[3rem] flex flex-col md:mx-[6rem]"> */}
-          <div className="md:pl-[5rem] xxl:pl-[8rem]">
+        <div className="max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
+          {/* <div className="relative w-full h-[90%] pt-16 md:pt-12 md:h-auto gap-12 flex flex-col md:mx-[6rem]"> */}
+          <div className="md:pl-20 xxl:pl-32">
             <MCForm isModal={false} />
           </div>
           {/* footer stickers */}
@@ -644,16 +648,16 @@ export default function Home() {
           </div>
           {/* footer stickers */}
           {/* footer nav */}
-          <div className="flex flex-col gap-[1rem]">
-            <div className="flex md:hidden tgap-[1rem] h-auto px-[1rem] text-[20px] w-full flex-col text-white">
+          <div className="flex flex-col gap-4">
+            <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
               <a className="">Contact us ↗</a>
               <a className="">Follow us on instagram ↗</a>
             </div>
-            <div className="h-[100px] mb-[2rem] px-[1rem] lg:px-[2rem] flex w-full justify-between">
+            <div className="h-[100px] mb-8 px-4 lg:px-8 flex w-full justify-between">
               <div className="relative flex items-center justify-center h-full w-[60px]">
                 <Image alt="none" fill src={logoOG} />
               </div>
-              <div className="flex flex-row text-[1.5rem] w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
+              <div className="flex flex-row text-6 w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
                 <div className="whitespace-nowrap hidden md:flex">Contact us ↗</div>
                 <div className="whitespace-nowrap hidden md:flex">Follow us on instagram ↗</div>
                 <div className="whitespace-nowrap">Here 2023 ©</div>
