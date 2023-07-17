@@ -69,7 +69,8 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
   const parsedContent = JSON.parse(content);
   // const router = useRouter();
   const public_url = "http://localhost:3000";
-
+  const GCP_url = "https://storage.googleapis.com/here-marketing-site"
+  // const s3_url = "https://its-here-app.s3.amazonaws.com/"
   return (
     <>
       <div className="max-w-[1728px] mx-auto">
@@ -79,7 +80,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div
               className="sticky top-0 font-[Golos] text-[--neon] h-[50vh] md:h-[calc(100vh-2rem)] bg-center bg-cover w-full rounded-[1rem] flex justify-between flex-col"
               style={{
-                backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${username}_${listSlug}/cover_${"00"}.webp'), url('http://placehold.it/300x300')`,
+                backgroundImage: `url(${GCP_url}/${username}_${listSlug}/cover_${"00"}.webp'), url('http://placehold.it/300x300')`,
               }}
             >
               <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
@@ -165,7 +166,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             </div>
             <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
               {parsedContent.map((spot, i) => {
-                const s3url = `https://its-here-app.s3.amazonaws.com/${username}_${listSlug}/${slugify(
+                const url = `${GCP_url}/${username}_${listSlug}/${slugify(
                   spot.name
                 )}_${"00"}.webp`;
                 return (
@@ -174,7 +175,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                     title={spot.name}
                     description={spot.description}
                     type={spot.type}
-                    image={s3url}
+                    image={url}
                   />
                 );
               })}
