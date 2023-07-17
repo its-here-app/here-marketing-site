@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import slugify from "@sindresorhus/slugify";
 import { Spot } from "../../components/Spot";
 import { Footer } from "../../components/Footer";
+import SVG from "react-inlinesvg";
+import { Share } from "/public/icons/Share.svg";
 
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
@@ -66,6 +68,7 @@ export async function getServerSideProps({ query }) {
 export default function ListPage({ city, playlistName, listSlug, username, description, content }) {
   const parsedContent = JSON.parse(content);
   // const router = useRouter();
+  const public_url = "http://localhost:3000";
 
   return (
     <>
@@ -81,9 +84,21 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             >
               <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
                 <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
-                  <div className="">x button</div>
+                  <SVG
+                    src={`${public_url}/icons/Close.svg`}
+                    width={24}
+                    height="auto"
+                    title="Close"
+                    className="fill-[--neon]"
+                  />
                 </div>
-                <div className="">share icon</div>
+                <SVG
+                  src={`${public_url}/icons/Share.svg`}
+                  width={24}
+                  height="auto"
+                  title="Share"
+                  className="fill-[--neon]"
+                />
               </div>
               <div className="w-full flex items-center justify-center flex-col">
                 <div className="font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
@@ -115,9 +130,33 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                 {/* a sliding toggle switch */}
                 <div className="relative grid grid-cols-3 gap-[.5rem] bg-[#DFDFDF] w-[124px] px-[8px] h-[40px] rounded-full overflow-hidden">
                   <div className="z-10 absolute bg-[--neon] w-[44px] h-full rounded-full"></div>
-                  <div className="z-20 rounded-full flex items-center justify-center">□</div>
-                  <div className="z-20 flex items-center justify-center">□</div>
-                  <div className="z-20 flex items-center justify-center">□</div>
+                  <div className="z-20 rounded-full flex items-center justify-center">
+                    <SVG
+                      src={`${public_url}/icons/List view focus.svg`}
+                      width={20}
+                      height="auto"
+                      title="Share"
+                      className="stroke-2"
+                    />
+                  </div>
+                  <div className="z-20 flex items-center justify-center">
+                    <SVG
+                      src={`${public_url}/icons/Expanded View.svg`}
+                      width={20}
+                      height="auto"
+                      title="Share"
+                      className=""
+                    />
+                  </div>
+                  <div className="z-20 flex items-center justify-center">
+                    <SVG
+                      src={`${public_url}/icons/Map2.svg`}
+                      width={20}
+                      height="auto"
+                      title="Share"
+                      className=""
+                    />
+                  </div>
                 </div>
               </div>
             </div>
