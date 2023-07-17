@@ -116,10 +116,7 @@ export default function Home() {
       el.classList.add("fade-in");
       el.style.animationDelay = `${(timer += i * 85)}ms`;
     });
-    document.querySelectorAll('[data-fade-in-group="2"]').forEach((el, i) => {
-      el.classList.add("fade-in-slide-up");
-      el.style.animationDelay = `${(timer += i * 85)}ms`;
-    });
+
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
@@ -133,10 +130,14 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+  }, [hydrated]);
+
+  useEffect(() => {
     document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
       el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
+
   }, [hydrated]);
 
   useEffect(() => {

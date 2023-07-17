@@ -6,7 +6,6 @@ import asterisk from "/public/graphics/asterisk_regular.svg";
 
 export default function Carousel({ lists }) {
 
-  
   // carousel state
   const [increment, setIncrement] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(null);
@@ -20,11 +19,15 @@ export default function Carousel({ lists }) {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
+    var timer = 0;
     carousel.current.style.transform = `translateX(${-300}px)`;
     setCurrentPosition(-300);
     setCarouselWidth(sampleListContainer.current.offsetWidth);
+    document.querySelectorAll('[data-fade-in-group="2"]').forEach((el, i) => {
+      el.classList.add("fade-in-slide-up");
+      el.style.animationDelay = `${(timer += i * 85)}ms`;
+    });
   }, []);
-
 
   useEffect(() => {
     setIncrement(carouselWidth / lists.length);
@@ -101,7 +104,7 @@ export default function Carousel({ lists }) {
         }}
       >
         {lists && lists.map((currentList, index) => {
-          // const parsedContent = JSON.parse(currentList.content);
+          const parsedContent = JSON.parse(currentList.content);
           return (
             <div
               key={index}
@@ -126,10 +129,16 @@ export default function Carousel({ lists }) {
                       {currentList.playlistName}
                     </div>
                   </Link>
-                  <div className="text-[--neon] pb-[1rem] self-end text-[2rem] sm:text-[40%] row-span-1 flex justify-center items-center">
-                    <div className="flex flex-row">
+                  <div className="text-[--neon] pb-4 font-[Golos] self-end text-[2rem] row-span-1 flex justify-center items-center">
+                    <div className="flex flex-row pl-[.8rem]">
                       {/* <div className="">{parsedContent.length}</div> */}
-                      <div className="relative w-[15px] ml-[5px] h-auto">
+                      {/* amout of items in list */}
+                      {/* <div className="">{console.log(currentList)}</div> */}
+                      {/* {currentList} */}
+                      <div className="">
+                        {parsedContent.length}
+                      </div>
+                      <div className="relative w-[18px] ml-[4px] h-auto">
                         <Image fill src={asterisk} alt="asterisk" />
                       </div>
                     </div>

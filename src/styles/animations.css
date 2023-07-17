@@ -137,7 +137,7 @@
     animation: pop-in 1200ms ease-in-out both
   }
   .pop-out-tile3-before {
-    animation: pop-out 2400ms 300ms cubic-bezier(0.45, 1.45, 0.8, 1) both;
+    animation: pop-in 2400ms 1500ms ease-in-out both;
   }
   .pop-in-tile3-after {
     animation: pop-in 2400ms 1500ms ease-in-out both;
