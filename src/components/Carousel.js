@@ -6,6 +6,7 @@ import asterisk from "/public/graphics/asterisk_regular.svg";
 
 export default function Carousel({ lists }) {
 
+  
   // carousel state
   const [increment, setIncrement] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(null);
@@ -23,6 +24,7 @@ export default function Carousel({ lists }) {
     setCurrentPosition(-300);
     setCarouselWidth(sampleListContainer.current.offsetWidth);
   }, []);
+
 
   useEffect(() => {
     setIncrement(carouselWidth / lists.length);
@@ -108,7 +110,8 @@ export default function Carousel({ lists }) {
             >
               <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
                 <div
-                  style={{ backgroundImage: `url('https://its-here-app.s3.amazonaws.com/${currentList.username}_${currentList.slug}/cover_${"00"}.webp')` }}
+                  style={{ backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${currentList.slug}/cover_${"00"}.webp')` }}
+                  // style={{ backgroundImage: `url('${returnFirstFormatThatExists(currentList.username, currentList.slug, "00")}')` }}
                   className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
                 >
                   <div className="row-span-1"></div>
