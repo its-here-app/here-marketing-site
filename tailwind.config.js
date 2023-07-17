@@ -26,6 +26,7 @@ module.exports = {
       letterSpacing: {
         "1": "-0.01em",
         "3": "-0.03em",
+        "4": "-0.04em",
         "6": "-0.06em",
       },
     },

@@ -134,10 +134,10 @@
     animation: pop-in-up 900ms 1500ms ease-in-out both;
   }
   .pop-in-tile3 {
-    animation: pop-in 1200ms ease-in-out both
+    animation: pop-in 1800ms ease-in-out both
   }
   .pop-out-tile3-before {
-    animation: pop-in 2400ms 1500ms ease-in-out both;
+    animation: pop-out 2400ms 1500ms ease-in-out both;
   }
   .pop-in-tile3-after {
     animation: pop-in 2400ms 1500ms ease-in-out both;

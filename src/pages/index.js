@@ -162,7 +162,6 @@ export default function Home() {
       ctaStickerFooter.classList.remove("hidden");
     } else {
       ctaStickerFooter.classList.add("hidden");
-
       ctaSticker.classList.remove("fade-out-slide-down");
       ctaSticker.classList.add("fade-in-slide-up");
     }

@@ -3,6 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import asterisk from "/public/graphics/asterisk_regular.svg";
+// router
+import { useRouter } from "next/router";
+// import router
+import router from "next/router";
 
 export default function Carousel({ lists }) {
 
@@ -19,9 +23,9 @@ export default function Carousel({ lists }) {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
-    var timer = 0;
     carousel.current.style.transform = `translateX(${-300}px)`;
     setCurrentPosition(-300);
+    let timer = 0;
     setCarouselWidth(sampleListContainer.current.offsetWidth);
     document.querySelectorAll('[data-fade-in-group="2"]').forEach((el, i) => {
       el.classList.add("fade-in-slide-up");
@@ -84,7 +88,31 @@ export default function Carousel({ lists }) {
     if (!isDragging) return;
     setIsDragging(false);
   };
-  
+  const handleClick = (slug, username) => {
+    // fade page away with web animation api
+    const body = document.querySelector("body");
+    //body.animate away
+    body.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(0%)",
+        },
+        {
+          opacity: 0,
+          transform: "translateY(-30px)",
+        },
+      ],
+      {
+        duration: 500,
+        easing: "ease-in-out",
+        fill: "forwards",
+      }
+    ).onfinish = () => {
+      router.push(`/${username}/${slug}`);
+    };
+    // on finsi
+  }
   return (
     <div ref={sampleListContainer} className="touch-pan-x mx-auto overflow-hidden">
       <div
@@ -118,8 +146,8 @@ export default function Carousel({ lists }) {
                   className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
                 >
                   <div className="row-span-1"></div>
-                  <Link
-                    href={`/${currentList.username}/${currentList.slug}`}
+                  <div
+                    onClick={() => { handleClick(currentList.slug, currentList.username) }}
                     data-cursor-state="ul-arrow" 
                     className="cursor-none flex row-span-1 tighten text-[--neon] flex-col justify-center items-center">
                     <div className="text-[1rem] sm:text-[40%] font-[Crimson] italic translate-y-[20%]">
@@ -128,7 +156,7 @@ export default function Carousel({ lists }) {
                     <div className="text-[2rem] sm:text-[40%] font-[Golos] font-[500] ">
                       {currentList.playlistName}
                     </div>
-                  </Link>
+                  </div>
                   <div className="text-[--neon] pb-4 font-[Golos] self-end text-[2rem] row-span-1 flex justify-center items-center">
                     <div className="flex flex-row pl-[.8rem]">
                       {/* <div className="">{parsedContent.length}</div> */}
