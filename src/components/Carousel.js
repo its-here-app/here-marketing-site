@@ -3,9 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import asterisk from "/public/graphics/asterisk_regular.svg";
-// router
-import { useRouter } from "next/router";
-// import router
+
 import router from "next/router";
 
 export default function Carousel({ lists }) {
@@ -50,28 +48,7 @@ export default function Carousel({ lists }) {
     if (!isDragging) return;
     setIsDragging(false);
   };
-  const handleClick = (slug, username) => {
-    const body = document.querySelector("body");
-    body.animate(
-      [
-        {
-          opacity: 1,
-          transform: "translateY(0px)",
-        },
-        {
-          opacity: 0,
-          transform: "translateY(30px)",
-        },
-      ],
-      {
-        duration: 500,
-        easing: "ease-in-out",
-        fill: "forwards",
-      }
-    ).onfinish = (event) => {
-      router.push(`/${username}/${slug}`);
-    };
-  };
+
   return (
     <div
       ref={carouselContainer}
@@ -95,47 +72,7 @@ export default function Carousel({ lists }) {
           lists.map((currentList, index) => {
             const parsedContent = JSON.parse(currentList.content);
             return (
-              <div key={index} data-fade-in-group="2" className="z-2 transition-transform">
-                <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
-                  <div
-                    style={{
-                      backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${
-                        currentList.username
-                      }_${currentList.slug}/cover_${"00"}.webp')`,
-                    }}
-                    // style={{ backgroundImage: `url('${returnFirstFormatThatExists(currentList.username, currentList.slug, "00")}')` }}
-                    className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
-                  >
-                    <div className="row-span-1"></div>
-                    <div
-                      onClick={() => {
-                        handleClick(currentList.slug, currentList.username);
-                      }}
-                      data-cursor-state="ul-arrow"
-                      className="cursor-none flex row-span-1 tighten text-[--neon] flex-col justify-center items-center"
-                    >
-                      <div className="text-[1rem] sm:text-[40%] font-[Crimson] italic translate-y-[20%]">
-                        {currentList.city}
-                      </div>
-                      <div className="text-[2rem] sm:text-[40%] font-[Golos] font-[500] ">
-                        {currentList.playlistName}
-                      </div>
-                    </div>
-                    <div className="text-[--neon] pb-4 font-[Golos] self-end text-[2rem] row-span-1 flex justify-center items-center">
-                      <div className="flex flex-row pl-[.8rem]">
-                        {/* <div className="">{parsedContent.length}</div> */}
-                        {/* amout of items in list */}
-                        {/* <div className="">{console.log(currentList)}</div> */}
-                        {/* {currentList} */}
-                        <div className="">{parsedContent.length}</div>
-                        <div className="relative w-[18px] ml-[4px] h-auto">
-                          <Image fill src={asterisk} alt="asterisk" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <CarouselItem key={index} currentList={currentList} parsedContent={parsedContent} />
             );
           })}
       </div>
@@ -143,3 +80,71 @@ export default function Carousel({ lists }) {
     </div>
   );
 }
+
+const CarouselItem = ({ index, currentList, parsedContent }) => {
+  const handleClick = (slug, username) => {
+    const body = document.querySelector("body");
+    body.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(0px)",
+        },
+        {
+          opacity: 0,
+          transform: "translateY(30px)",
+        },
+      ],
+      {
+        duration: 500,
+        easing: "ease-in-out",
+        fill: "forwards",
+      }
+    ).onfinish = (event) => {
+      router.push(`/${username}/${slug}`);
+    };
+  };
+  return (
+    <div key={index} data-fade-in-group="2" className="z-2 transition-transform">
+      <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+        <div
+          style={{
+            backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${
+              currentList.slug
+            }/cover_${"00"}.webp')`,
+          }}
+          // style={{ backgroundImage: `url('${returnFirstFormatThatExists(currentList.username, currentList.slug, "00")}')` }}
+          className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
+        >
+          <div className="row-span-1"></div>
+          <div
+            onClick={() => {
+              handleClick(currentList.slug, currentList.username);
+            }}
+            data-cursor-state="ul-arrow"
+            className="cursor-none flex row-span-1 tighten text-[--neon] flex-col justify-center items-center"
+          >
+            <div className="text-[1rem] sm:text-[40%] font-[Crimson] italic translate-y-[20%]">
+              {currentList.city}
+            </div>
+            <div className="text-[2rem] sm:text-[40%] font-[Golos] font-[500] ">
+              {currentList.playlistName}
+            </div>
+          </div>
+          <div className="text-[--neon] pb-4 font-[Golos] self-end text-[2rem] row-span-1 flex justify-center items-center">
+            <div className="flex flex-row pl-[.8rem]">
+              {/* <div className="">{parsedContent.length}</div> */}
+              {/* amout of items in list */}
+              {/* <div className="">{console.log(currentList)}</div> */}
+              {/* {currentList} */}
+              <div className="">{parsedContent.length}</div>
+              <div className="relative w-[18px] ml-[4px] h-auto">
+                <Image fill src={asterisk} alt="asterisk" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

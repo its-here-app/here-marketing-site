@@ -291,7 +291,7 @@ export default function Home() {
       >
         <div
           onClick={openModal}
-          className={classNames(modalIsOpen && "hidden", "cursor-none")}
+          className={classNames(modalIsOpen && "hidden", "cursor-none"), "hover:rotate-[15deg] transition-all "}
           onMouseOver={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
         >
@@ -300,7 +300,7 @@ export default function Home() {
             data-cursor-state="asterisk"
             viewBox="0 0 264 156"
             fill="none"
-            className=" w-full h-full group hover:rotate-[15deg] transition-all"
+            className="w-full h-full group transition-all"
             xmlns="http://www.w3.org/2000/svg"
           >
             <g clipath="url(#clip0_1244_9825)">
@@ -310,7 +310,7 @@ export default function Home() {
                 rx="124.076"
                 ry="60.994"
                 transform="rotate(-8 132.076 77.9937)"
-                className="fill-black group-hover:fill-[--neon]"
+                className="fill-black group-hover:fill-[--neon] transition-all"
               />
               <path
                 className="fill-white group-hover:fill-black"
@@ -340,6 +340,7 @@ export default function Home() {
               </clipPath>
             </defs>
           </svg>
+       
         </div>
       </div>
       {/* cta sticker */}
@@ -647,7 +648,8 @@ export default function Home() {
             <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
           </div>
           <div
-            className="absolute
+            onClick={openModal}
+            className="cursor-pointer absolute
               w-[230px] h-[150px]
               lg:scale-[1.2]
               bottom-[35%] lg:bottom-[30%]
