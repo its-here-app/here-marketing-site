@@ -6,7 +6,7 @@ import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playli
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
 
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <section
     data-cursor-state="invert"
@@ -64,3 +64,4 @@ export const Footer = () => {
   );
 };
 
+export default Footer;
