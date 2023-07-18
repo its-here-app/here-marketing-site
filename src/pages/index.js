@@ -265,7 +265,7 @@ export default function Home() {
       <div
         id="cta-sticker"
         style={{ zIndex: 2 }}
-        className="absolute  top-0 right-[300px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
+        className="absolute  top-0 right-[64px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
       >
         <div
           data-cursor-state="asterisk"
@@ -341,10 +341,10 @@ export default function Home() {
       <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-[1rem] ">
         <div className="flex flex-col font-[Radio] lg:mx-[5vw] leading-[1.05] tracking-[-.06rem] pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[6.5vw] xxl:text-[9rem]">
           {/* title */}
-          <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[5%] ">
+          <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[10%] ">
             One place —{" "}
           </span>
-          <div className="flex md:justify-between w-full ">
+          <div className="flex md:justify-between w-[95%] ">
             <span data-fade-in-group="1">for&nbsp;</span>
             <span data-fade-in-group="1">fave spots&nbsp;</span>
           </div>
