@@ -107,6 +107,7 @@ export default function Home() {
 
   useEffect(() => {
     dothing();
+    const body = document.querySelector("body");
     var timer = 0;
     // set cursor to arrow on load
     window.addEventListener("scroll", () => {
@@ -127,6 +128,21 @@ export default function Home() {
       setHydrated(true);
       setIsLoading(false);
     });
+    body.animate(
+      [
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+      ],
+      {
+        duration: 500,
+        easing: "ease-in-out",
+        fill: "forwards",
+      }
+    )
   }, []);
 
   useEffect(() => {
