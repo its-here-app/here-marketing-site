@@ -56,9 +56,11 @@ export default function Carousel({ lists }) {
       [
         {
           opacity: 1,
+          transform: "translateY(0px)",
         },
         {
           opacity: 0,
+          transform: "translateY(30px)",
         },
       ],
       {

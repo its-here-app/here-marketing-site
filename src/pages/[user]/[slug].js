@@ -6,6 +6,7 @@ import { Footer } from "../../components/Footer";
 import SVG from "react-inlinesvg";
 import { Share } from "/public/icons/Share.svg";
 import {useEffect} from "react";
+import router from "next/router";
 
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
@@ -91,14 +92,37 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
       }
     )
   }, [])
+
+  const handleClose = () => {
+    const body = document.querySelector("body");
+    body.animate(
+      [
+        {
+          opacity: 1,
+        },
+        {
+          opacity: 0,
+        },
+      ],
+      {
+        duration: 500,
+        easing: "ease-in-out",
+        fill: "forwards",
+      }
+    ).onfinish = (event) => {
+      router.push(`/`);
+    };
+  };
+
+
   return (
     <>
       <div className="max-w-[1728px] mx-auto">
         <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]">
           {/* left */}
-          <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh-2rem)] w-full">
+          <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh-1.5rem)] w-full">
             <div
-              className=" h-full top-0 left-0 ml-[1rem] mt-[1rem]  rounded-[1rem] max-w-[49vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
+              className=" h-full top-0 left-0 ml-[.5rem] mt-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
                 backgroundImage: `url('${
                   process.env.NEXT_PUBLIC_GCP_URL
@@ -107,7 +131,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             >
               {/* add a sticky element */}
               <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
-                <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
+                <div onClick={handleClose} className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center">
                   <SVG
                     src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Close.svg`}
                     width={24}
@@ -155,7 +179,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                   <div className="z-10 absolute bg-[--neon] w-[44px] h-full rounded-full"></div>
                   <div className="z-20 rounded-full flex items-center justify-center">
                     <SVG
-                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/List view focus.svg`}
+                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/list-view-focus.svg`}
                       width={20}
                       height="auto"
                       title="Share"
@@ -164,7 +188,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                   </div>
                   <div className="z-20 flex items-center justify-center">
                     <SVG
-                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Expanded View.svg`}
+                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/expanded-view.svg`}
                       width={20}
                       height="auto"
                       title="Share"
