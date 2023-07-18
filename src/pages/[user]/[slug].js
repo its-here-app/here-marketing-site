@@ -71,26 +71,28 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
   const parsedContent = JSON.parse(content);
   // const router = useRouter();
   // const s3_url = "https://its-here-app.s3.amazonaws.com/"
+
+  const body = document.querySelector("body");
+
+  body.animate(
+    [
+      {
+        opacity: 0,
+        transform: "translateY(30px)",
+      },
+      {
+        opacity: 1,
+        transform: "translateY(0)",
+      },
+    ],
+    {
+      duration: 500,
+      easing: "ease-in-out",
+      fill: "forwards",
+    }
+  )
   useEffect(() => {
     // set body opacity to 1
-    const body = document.querySelector("body");
-    body.animate(
-      [
-        {
-          opacity: 0,
-          transform: "translateY(30px)",
-        },
-        {
-          opacity: 1,
-          transform: "translateY(0)",
-        },
-      ],
-      {
-        duration: 500,
-        easing: "ease-in-out",
-        fill: "forwards",
-      }
-    )
   }, [])
 
   const handleClose = () => {
