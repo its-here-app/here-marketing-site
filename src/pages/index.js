@@ -59,7 +59,7 @@ export default function Home() {
       z: -1,
     },
   ];
- 
+
   const openModal = () => {
     setModalOpen(true);
     cursorCircle.current.classList.add("invert");
@@ -128,6 +128,7 @@ export default function Home() {
       setHydrated(true);
       setIsLoading(false);
     });
+
     body.animate(
       [
         {
@@ -142,18 +143,14 @@ export default function Home() {
         easing: "ease-in-out",
         fill: "forwards",
       }
-    )
+    );
   }, []);
-
-  useEffect(() => {
-  }, [hydrated]);
 
   useEffect(() => {
     document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
       el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setHovering(null));
     });
-
   }, [hydrated]);
 
   useEffect(() => {
@@ -337,7 +334,6 @@ export default function Home() {
               </clipPath>
             </defs>
           </svg>
-       
         </div>
       </div>
       {/* cta sticker */}

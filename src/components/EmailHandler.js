@@ -11,46 +11,96 @@ const EmailForm = ({ status, message, onValidated }) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const submit = () => {
+  // create en amil ref
+
+  useEffect(() => {
+    // email.current.focus();
+    console.log(email);
+  }, [currentSlide]);
+
+  useEffect(() => {
+    console.log("email", email);
+    console.log("name", name);
+  }, [email, name]);
+
+  const submit = (e) => {
+    e.preventDefault();
+    // console.log("submitting");
+    console.log(email, name)
     email &&
-      // name &&
+      name &&
       email.value.indexOf("@") > -1 &&
       onValidated({
         EMAIL: email.value,
-        // NAME: name.value,
+        name: name.value,
       });
+  };
+
+
+
+  const next = () => {
+    email &&
+      // name &&
+      email.value.indexOf("@") > -1 &&
+      setCurrentSlide(currentSlide + 1);
   };
 
   return (
     <div className="w-full">
-      <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
+      <div className="w-full tracking-[-0.03em]   nt-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
         Try out here*
       </div>
-      <div className="relative mt-[1rem] w-full md:w-[600px] lg:w-[800px]  justify-center ">
-        <input
-          ref={(node) => (email = node)}
-          type="email"
-          name="email"
-          className="email-input required-email"
-          placeholder="Enter email for exclusive access"
-        ></input>
-        <button
-          className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
-          type="submit"
-          onClick={submit}
-        >
-          <Image alt="none" fill src={arrowSubmit} />
-        </button>
-        <div className="absolute pt-[1rem] flex w-full h-auto items-center justify-center">
-          {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
-          {status === "error" && <div className="bg-red-200">error 😭 try again</div>}
-          {status === "success" && (
-            <div className=" text-green-600">
-              {" "}
-              thank you 💖 you've been added to our beta tester list{" "}
-            </div>
-          )}
-        </div>
+      {currentSlide === 0 && (
+        <form className="relative mt-[1rem] w-full md:w-[600px] lg:w-[800px] justify-center">
+          <input
+            autoComplete="off"
+            ref={email}
+            type="email"
+            name="email"
+            className="email-input"
+            placeholder="Enter email for exclusive access"
+          ></input>
+          <button
+            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
+            type="submit"
+            onClick={(e) => submit(e)}
+            // on enter key press, hit next
+          >
+            <Image alt="none" fill src={arrowSubmit} />
+          </button>
+        </form>
+      )}
+      {currentSlide === 1 && (
+        <form className="relative mt-[1rem] w-full md:w-[600px] lg:w-[800px] justify-center fade-in-from-right">
+          {/* if currentSlide is 1, show this  */}
+          <input
+            autoComplete="off"
+            ref={name}
+            type="name"
+            name="name"
+            className="email-input"
+            placeholder="we'd love to know your name!"
+          ></input>
+          <button
+            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
+            type="submit"
+            onClick={(e) => {
+              submit(e);
+            }}
+          >
+            <Image alt="none" fill src={arrowSubmit} />
+          </button>
+        </form>
+      )}
+      <div className="absolute z-30 pt-[1rem] flex w-full h-auto items-center justify-center">
+        {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
+        {status === "error" && <div className="bg-red-200">error 😭 try again</div>}
+        {status === "success" && (
+          <div className=" text-green-600">
+            {" "}
+            thank you 💖 you've been added to our beta tester list{" "}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -61,13 +111,13 @@ const ModalForm = ({ status, message, onValidated }) => {
 
   const submit = () => {
     email &&
-    // name &&
-    email.value.indexOf("@") > -1 &&
-    onValidated({
-      EMAIL: email.value,
-      // NAME: name.value,
-    });
-  }
+      // name &&
+      email.value.indexOf("@") > -1 &&
+      onValidated({
+        EMAIL: email.value,
+        // NAME: name.value,
+      });
+  };
 
   return (
     <div className="w-full fade-in">
