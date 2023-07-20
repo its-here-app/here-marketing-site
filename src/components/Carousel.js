@@ -101,7 +101,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
         fill: "forwards",
       }
     ).onfinish = (event) => {
-      router.push(`/${username}/${slug}`);
+      router.push(`/${username}/${slug}`, undefined, { shallow: true })
     };
   };
   return (
