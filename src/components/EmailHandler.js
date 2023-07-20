@@ -11,14 +11,15 @@ const EmailForm = ({ status, message, onValidated }) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const submit = () =>
+  const submit = () => {
     email &&
-    // name &&
-    email.value.indexOf("@") > -1 &&
-    onValidated({
-      EMAIL: email.value,
-      // NAME: name.value,
-    });
+      // name &&
+      email.value.indexOf("@") > -1 &&
+      onValidated({
+        EMAIL: email.value,
+        // NAME: name.value,
+      });
+  };
 
   return (
     <div className="w-full">
@@ -58,7 +59,7 @@ const EmailForm = ({ status, message, onValidated }) => {
 const ModalForm = ({ status, message, onValidated }) => {
   let email, name;
 
-  const submit = () =>
+  const submit = () => {
     email &&
     // name &&
     email.value.indexOf("@") > -1 &&
@@ -66,6 +67,7 @@ const ModalForm = ({ status, message, onValidated }) => {
       EMAIL: email.value,
       // NAME: name.value,
     });
+  }
 
   return (
     <div className="w-full fade-in">
@@ -112,20 +114,25 @@ const ModalForm = ({ status, message, onValidated }) => {
           </button>
         </div>
         <div className="h-auto w-max transition-all mx-auto">
-            {status === "sending" && <div className="snackbar-status" style={{ color: "blue" }}>sending...</div>}
-            {status === "error" && <div className="snackbar-status">error 😭 try again</div>}
-            {status === "success" && (
-              <div className="snackbar-status text-green-600">
-                {" "}
-                thank you 💖 you've been added to our beta tester list{" "}
-              </div>
-            )}
-          </div>
+          {status === "sending" && (
+            <div className="snackbar-status" style={{ color: "blue" }}>
+              sending...
+            </div>
+          )}
+          {status === "error" && <div className="snackbar-status">error 😭 try again</div>}
+          {status === "success" && (
+            <div className="snackbar-status text-green-600">
+              {" "}
+              thank you 💖 you've been added to our beta tester list{" "}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
+// this is such a weird and foreign pattern to me
 const MCForm = ({ isModal = false }) => {
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
 

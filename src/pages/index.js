@@ -275,7 +275,7 @@ export default function Home() {
       </Head>
       <Modal
         isOpen={modalIsOpen}
-        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-4 md:p-8 rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
+        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-4 md:p-8 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >
