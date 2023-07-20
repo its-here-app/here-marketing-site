@@ -27,7 +27,7 @@ export const Footer = () => {
           right-[15%] md:right-[5%] lg:right-[15%]
       "
       >
-        <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
+        {/* <Image alt="none" fill className="pop-in " src={stickerLockupOcean} /> */}
       </div>
       <div
         className="absolute
