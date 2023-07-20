@@ -88,11 +88,11 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
       [
         {
           opacity: 1,
-          transform: "translateY(0px)",
+          // transform: "translateY(0px)",
         },
         {
           opacity: 0,
-          transform: "translateY(30px)",
+          // transform: "translateY(30px)",
         },
       ],
       {
