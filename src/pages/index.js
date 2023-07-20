@@ -269,7 +269,7 @@ export default function Home() {
       >
         <div
           data-cursor-state="asterisk"
-          className="pop-in hidden hover:drop-shadow-2xl md:block fixed right-[5%] top-[50%] md:w-[250px] md:h-[200px]"
+          className="pop-in hidden hover:drop-shadow-2xl md:block fixed right-[5%] top-[75%] md:w-[250px] md:h-[200px]"
         >
           <div
             href=""
@@ -626,7 +626,8 @@ export default function Home() {
           >
             <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
           </div>
-          <div
+         {/* Deduping bottom sticker - remy to do: make floaty sticker stop scrolling at a certain point and invert to green */}
+          {/* <div
             className="absolute
            w-[230px] h-[150px]
            lg:scale-[1.2]
@@ -635,7 +636,7 @@ export default function Home() {
           "
           >
             <Image alt="none" className="pop-in" src={stickerStartYourPlaylist} />
-          </div>
+          </div> */}
           {/* footer stickers */}
           {/* footer nav */}
           <div className="flex flex-col gap-[1rem]">

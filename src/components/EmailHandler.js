@@ -32,7 +32,7 @@ const EmailForm = ({ status, message, onValidated }) => {
           placeholder="Enter email for exclusive access"
         ></input>
         <button
-          className="cursor-none hover:scale-[1.5] transition-all w-[40px] lg:w-[50px] absolute right-[12px] h-full items-top justify-end "
+          className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
           type="submit"
           onClick={submit}
         >
@@ -102,7 +102,7 @@ const ModalForm = ({ status, message, onValidated }) => {
             placeholder="Enter email for exclusive access"
           ></input>
           <button
-            className="cursor-none hover:scale-[1.5] transition-all w-[40px] lg:w-[50px] absolute right-[12px] h-full items-top justify-end "
+            className="cursor-none hover:scale-[1.2] transition-all w-[40px] lg:w-[50px] absolute right-[12px] h-full items-top justify-end "
             type="submit"
             onClick={submit}
           >
