@@ -59,7 +59,7 @@ export default function Home() {
       z: -1,
     },
   ];
-
+ 
   const openModal = () => {
     setModalOpen(true);
     cursorCircle.current.classList.add("invert");
@@ -275,7 +275,7 @@ export default function Home() {
       </Head>
       <Modal
         isOpen={modalIsOpen}
-        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-4 md:p-8 rounded-[24px] z-[999] mx-auto my-auto h-auto bg-[--black]"
+        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-4 md:p-8 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >
@@ -286,21 +286,18 @@ export default function Home() {
       {/* cta sticker */}
       <div
         style={{ zIndex: 2 }}
-        data-cursor-state="asterisk"
-        className="pop-in hidden z-30 hover:drop-shadow-2xl md:block fixed bottom-[30px] right-[64px] md:w-[260px] md:h-auto"
+        className="absolute  top-0 right-[64px] pt-[400px] lg:pt-[500px] lg:right-[20%] w-[10px] h-full"
       >
         <div
-          onClick={openModal}
-          className={classNames(modalIsOpen && "hidden", "cursor-none")}
-          onMouseOver={() => setHovering(true)}
-          onMouseLeave={() => setHovering(false)}
+          data-cursor-state="asterisk"
+          className="pop-in hidden hover:drop-shadow-2xl md:block fixed right-[5%] top-[75%] md:w-[250px] md:h-[200px]"
         >
           <svg
             id="cta-sticker"
             data-cursor-state="asterisk"
             viewBox="0 0 264 156"
             fill="none"
-            className=" w-full h-full group hover:rotate-[15deg] transition-all"
+            className="w-full h-full group transition-all"
             xmlns="http://www.w3.org/2000/svg"
           >
             <g clipath="url(#clip0_1244_9825)">
@@ -310,7 +307,7 @@ export default function Home() {
                 rx="124.076"
                 ry="60.994"
                 transform="rotate(-8 132.076 77.9937)"
-                className="fill-black group-hover:fill-[--neon]"
+                className="fill-black group-hover:fill-[--neon] transition-all"
               />
               <path
                 className="fill-white group-hover:fill-black"
@@ -340,6 +337,7 @@ export default function Home() {
               </clipPath>
             </defs>
           </svg>
+       
         </div>
       </div>
       {/* cta sticker */}
@@ -364,10 +362,10 @@ export default function Home() {
       <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-4 ">
         <div className="flex flex-col font-[Radio] lg:mx-[5vw] leading-105 tracking-6 pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[6.5vw] xxl:text-[9rem]">
           {/* title */}
-          <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[5%] ">
+          <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[10%] ">
             One place —{" "}
           </span>
-          <div className="flex md:justify-between w-full ">
+          <div className="flex md:justify-between w-[95%] ">
             <span data-fade-in-group="1">for&nbsp;</span>
             <span data-fade-in-group="1">fave spots&nbsp;</span>
           </div>
@@ -647,7 +645,8 @@ export default function Home() {
             <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
           </div>
           <div
-            className="absolute
+            onClick={openModal}
+            className="cursor-pointer absolute
               w-[230px] h-[150px]
               lg:scale-[1.2]
               bottom-[35%] lg:bottom-[30%]

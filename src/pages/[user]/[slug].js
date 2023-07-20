@@ -5,7 +5,7 @@ import { Spot } from "../../components/Spot";
 import { Footer } from "../../components/Footer";
 import SVG from "react-inlinesvg";
 import { Share } from "/public/icons/Share.svg";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import router from "next/router";
 
 export async function getServerSideProps({ query }) {
@@ -72,28 +72,28 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
   // const router = useRouter();
   // const s3_url = "https://its-here-app.s3.amazonaws.com/"
 
-  const body = document.querySelector("body");
-
-  body.animate(
-    [
-      {
-        opacity: 0,
-        transform: "translateY(30px)",
-      },
-      {
-        opacity: 1,
-        transform: "translateY(0)",
-      },
-    ],
-    {
-      duration: 500,
-      easing: "ease-in-out",
-      fill: "forwards",
-    }
-  )
   useEffect(() => {
-    // set body opacity to 1
-  }, [])
+    const body = document.querySelector("body");
+
+    // if router.from is home
+
+    body.animate(
+      [
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+      ],
+      {
+        duration: 500,
+        easing: "ease-in-out",
+        fill: "forwards",
+      }
+    );
+    // }
+  }, []);
 
   const handleClose = () => {
     const body = document.querySelector("body");
@@ -112,10 +112,10 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
         fill: "forwards",
       }
     ).onfinish = (event) => {
-      router.push(`/`);
+      // router.push(`/`);
+      router.push('/', undefined, { shallow: true })
     };
   };
-
 
   return (
     <>
@@ -133,7 +133,10 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             >
               {/* add a sticky element */}
               <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
-                <div onClick={handleClose} className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center">
+                <div
+                  onClick={handleClose}
+                  className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
+                >
                   <SVG
                     src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Close.svg`}
                     width={24}
@@ -231,13 +234,19 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div className="grid grid-cols-2">
               <div className=""></div>
               <div className="justify-self-end">
-                <div className="bg-black font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white">
-                  □ Copy List
+                <div className="bg-black flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white">
+                  <SVG
+                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/bookmark.svg`}
+                    width={24}
+                    className="stroke-white"
+                    height="auto"
+                    title="Copy List"
+                  />{" "}
+                  Copy List
                 </div>
               </div>
             </div>
-            <div className="flex flex-col h-[500px] items-center justify-center">
-            </div>
+            <div className="flex flex-col h-[500px] items-center justify-center"></div>
           </section>
         </div>
       </div>

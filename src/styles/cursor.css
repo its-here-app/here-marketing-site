@@ -20,12 +20,12 @@
   }
   .cursor-ul-arrow {
     mix-blend-mode: normal;
-    transform: scale(3);
+    transform: scale(4);
     background-color: var(--neon);
     background-position: center;
     /* border: 1px solid black; */
     background-image: url("/graphics/cursor-arrow.svg");
-    background-size: 50%;
+    background-size: 40%;
     background-position: center;
     background-repeat: no-repeat;
     transition: 550ms ease;
