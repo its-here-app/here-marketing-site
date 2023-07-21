@@ -578,8 +578,9 @@ export default function Home() {
           className="absolute
               w-[140px] h-[140px]
               z-[1]
-              lg:scale-[1.5]
-              top-[4%] right-[-15%]
+              lg:scale-[1.25] md:scale-[1.2]
+              top-[28%] right-[-6%]
+              lg:top-[12%] lg:right-[20%]
               md:top-[0px] md:right-[10%]
           "
         >
@@ -603,7 +604,7 @@ export default function Home() {
               <div className="flex items-end h-full flex-row text-[1.75rem] px-0 leading-120 md:leading-150 tracking-1 font-[Golos]">
                 <div className="flex flex-row">
                   <span className="pr-2">*</span>
-                  <div className="max-w-[552px]">
+                  <div className="md:max-w-[355px] lg:max-w-[552px] text-[1.3rem] lg:text-[1.5rem]">
                     like music, compile your favorite places into a{" "}
                     <span className="text-[--ocean]">city playlist</span> that captures that time of
                     your life.
