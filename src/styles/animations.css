@@ -12,6 +12,23 @@
     /* transform: scale(1); */
   }
 }
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 @keyframes fade-in-slide-up {
   0% {
     opacity: 0;
@@ -111,7 +128,9 @@
   }
 }
 @layer base {
-
+  .wiggle {
+    animation: wiggle .3s linear 2;
+  }
   .fade-in-slide-up {
     animation: fade-in-slide-up 800ms ease-in-out both;
   }
