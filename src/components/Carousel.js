@@ -124,10 +124,10 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
             data-cursor-state="ul-arrow"
             className="cursor-none flex row-span-1 tighten text-[--neon] flex-col justify-center items-center"
           >
-            <div className="text-[1rem] sm:text-[40%] font-[Crimson] italic translate-y-[20%]">
+            <div className="card-city-name">
               {currentList.city}
             </div>
-            <div className="text-[2rem] sm:text-[40%] font-[Golos] font-[500] ">
+            <div className="card-playlist-name max-w-[74%]">
               {currentList.playlistName}
             </div>
           </div>

@@ -651,13 +651,13 @@ export default function Home() {
               w-[230px] h-[150px]
               lg:scale-[1.2]
               bottom-[35%] lg:bottom-[30%]
-              right-[10%] lg:right-[5%]
+              right-[10%] lg:right-[10%]
           "
           >
             <Image
               alt="none"
               id="cta-sticker-footer"
-              className="z-30 hidden fade-in-slide-up"
+              className="z-30 hidden fade-in scale-[0.95]"
               data-cursor-state="asterisk"
               src={stickerStartYourPlaylist}
             />
