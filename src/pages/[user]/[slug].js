@@ -168,10 +168,10 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
               </div>
               <div className="w-full h-full flex justify-between items-end px-[1.25rem] py-[1.25rem]">
                 <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
-                  <div className="w-[1.75rem] h-[1.75rem] bg-[--neon] rounded-full"></div>
-                  <div className="">{username}</div>
+                  <div className="w-[1.25rem] md:w[1.75rem] md:h[1.75rem] h-[1.25rem] bg-[--neon] rounded-full"></div>
+                  <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
                 </div>
-                <div className="">Last updated 1 week ago</div>
+                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated 1 week ago</div>
               </div>
             </div>
           </section>
