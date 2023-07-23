@@ -119,12 +119,13 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
 
   return (
     <>
-      <div className="max-w-[1800px] mx-auto">
-        <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]">
+      <div className="max-w-[1800gpx] mx-auto">
+        <div className=" flex flex-col md:grid grid-cols-2 min-h-[100vh]">
+        {/* <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]"> */}
           {/* left */}
-          <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh-1.5rem)] w-full">
+          <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
             <div
-              className=" h-full top-0 left-0 ml-[.5rem] mt-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
+              className=" h-full top-0 left-0 ml-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
                 backgroundImage: `url('${
                   process.env.NEXT_PUBLIC_GCP_URL
@@ -145,15 +146,19 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                     className="fill-[--neon]"
                   />
                 </div>
+                <div
+                  onClick={handleClose}
+                  className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
+                >
                 <SVG
                   src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share.svg`}
                   width={24}
                   height="auto"
                   title="Share"
                   className="fill-[--neon]"
-                />
+                /></div>
               </div>
-              <div className="w-full flex items-center justify-center flex-col">
+              <div className="w-full h-full flex items-center justify-center flex-col">
                 <div className="font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
                   {city}
                 </div>
