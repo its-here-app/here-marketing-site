@@ -125,7 +125,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
           {/* left */}
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
             <div
-              className=" h-full top-0 left-0 ml-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
+              className=" h-full top-0 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
                 backgroundImage: `url('${
                   process.env.NEXT_PUBLIC_GCP_URL
