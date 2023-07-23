@@ -4,7 +4,7 @@ export const Spot = ({ title, description, type, image }) => {
   return (
     <div className="relative flex w-full flex-row min-h-[80px]">
       <div
-        className="w-[20%] h-full bg-cover bg-center overflow-hidden aspect-[1/1] rounded-[8px]"
+        className="w-[20%] h-full bg-cover bg-center overflow-hidden aspect-[1/1] rounded-[0.5rem] md:rounded-[0.625rem]"
         style={{
           backgroundImage: `url(${image}), url('http://placehold.it/300x300')`,
         }}
