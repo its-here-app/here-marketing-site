@@ -158,11 +158,11 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                   className="fill-[--neon]"
                 /></div>
               </div>
-              <div className="w-full h-full flex items-center justify-center flex-col">
-                <div className="font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
+              <div className="h-full flex items-center justify-center flex-col">
+                <div className="max-w-[80%] font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
                   {city}
                 </div>
-                <div className="list-playlist-name">
+                <div className="max-w-[80%] list-playlist-name">
                   {playlistName}
                 </div>
               </div>
@@ -176,11 +176,11 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             </div>
           </section>
           {/* right side */}
-          <section className="flex gap-[1rem] max-h-[100vh] overflow-y-auto pt-[1.5rem] top-0 w-full px-[2rem] flex-col">
+          <section className="flex gap-[1rem] max-h-[100vh] overflow-y-auto pt-[1.5rem] top-0 w-full px-[1.5rem] flex-col">
             <div className="grid grid-cols-2">
               {/*  */}
-              <div className="justify-self-start text-[1rem] lg:text-[1.125rem]">
-                {parsedContent.length} spots *
+              <div className="justify-self-start flex gap-[8px] items-center text-[1rem] lg:text-[1.125rem]">
+                {parsedContent.length} spots <div class="relative pt-[0.5rem] text-[1.6rem]">*</div>
               </div>
               {/* icon bubbles */}
               <div className="justify-self-end">
@@ -190,25 +190,25 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                   <div className="z-20 rounded-full flex items-center justify-center">
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/list-view-focus.svg`}
-                      width={20}
+                      width={24}
                       height="auto"
                       title="Share"
                       className="stroke-2"
                     />
                   </div>
-                  <div className="z-20 flex items-center justify-center">
+                  <div className="z-20 flex items-center justify-center opacity-[.2]">
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/expanded-view.svg`}
-                      width={20}
+                      width={24}
                       height="auto"
                       title="Share"
                       className=""
                     />
                   </div>
-                  <div className="z-20 flex items-center justify-center">
+                  <div className="z-20 flex items-center justify-center opacity-[.2]">
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map view.svg`}
-                      width={20}
+                      width={24}
                       height="auto"
                       title="Share"
                       className="fill-none stroke-black"

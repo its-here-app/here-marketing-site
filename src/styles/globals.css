@@ -93,12 +93,13 @@
     font-size: 2.5rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 2.75rem; /* 110% */
+    line-height: 2.4rem; 
     letter-spacing: -0.15rem;
     
     @apply 
     lg:text-[5rem] md:text-[4rem]
     lg:tracking-[-0.3rem] md:tracking-[-0.24rem]
+    lg:leading-[4.4rem] md:leading-[3.4rem] 
   }
 
   .tighten {
