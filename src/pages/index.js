@@ -175,7 +175,6 @@ export default function Home() {
     if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 400) {
       store.style.setProperty("--cta-fill", `var(--neon)`);
       store.style.setProperty("--cta-fill-inner", `black`);
-      ctaSticker.current.classList.add("wiggle");
     } else {
       store.style.setProperty("--cta-fill-inner", `var(--white)`);
       store.style.setProperty("--cta-fill", `var(--black)`);
