@@ -13,6 +13,8 @@
   :root {
     --cursor-size: 20px;
     --current-bg: var(--off-white);
+    --cta-fill: black;
+    --cta-fill-inner: white;
     --neon: #daff70;
     --neon--srgb: #e1fe84;
     --ocean: #5c89cc;
@@ -40,6 +42,14 @@
     height: 100%;
     position: relative;
   }
+
+  #cta-sticker >  path {
+    @apply fill-[--cta-fill-inner] ;
+  }
+  #cta-sticker > ellipse {
+    @apply fill-[--cta-fill] transition-all
+  }
+
   .transition-bg {
     transition: background-color ease-in-out 350ms;
   }
