@@ -325,8 +325,8 @@ export default function Home() {
         </div>
         {/* subtitle */}
 
-        <div className="flex w-full md:w-[365px] flex-col lg:ml-[15vw] xxl:ml-[15%] pt-12 text-6 md:ml-[10vw]">
-          <span data-fade-in-group="1" className="font-[Golos]">
+        <div className="flex w-full md:w-[365px] flex-col lg:ml-[19vw] xxl:ml-[15%] pt-12 text-6 md:ml-[10vw]">
+          <span data-fade-in-group="1" className="font-[Golos] text-[1.3rem] lg:text-[1.5rem]">
             Discover and share favorite spots through city playlists*
           </span>
           <button
@@ -530,8 +530,9 @@ export default function Home() {
           className="absolute
               w-[140px] h-[140px]
               z-[1]
-              lg:scale-[1.5]
-              top-[4%] right-[-15%]
+              lg:scale-[1.25] md:scale-[1.2]
+              top-[28%] right-[-6%]
+              lg:top-[12%] lg:right-[20%]
               md:top-[0px] md:right-[10%]
           "
         >
@@ -555,7 +556,7 @@ export default function Home() {
               <div className="flex items-end h-full flex-row text-[1.75rem] px-0 leading-120 md:leading-150 tracking-1 font-[Golos]">
                 <div className="flex flex-row">
                   <span className="pr-2">*</span>
-                  <div className="max-w-[552px]">
+                  <div className="md:max-w-[355px] lg:max-w-[552px] text-[1.3rem] lg:text-[1.5rem]">
                     like music, compile your favorite places into a{" "}
                     <span className="text-[--ocean]">city playlist</span> that captures that time of
                     your life.
@@ -602,13 +603,13 @@ export default function Home() {
               w-[230px] h-[150px]
               lg:scale-[1.2]
               bottom-[35%] lg:bottom-[30%]
-              right-[10%] lg:right-[5%]
+              right-[10%] lg:right-[10%]
           "
           >
             <Image
               alt="none"
               id="cta-sticker-footer"
-              className="z-30 hidden fade-in-slide-up"
+              className="z-30 hidden fade-in scale-[0.95]"
               data-cursor-state="asterisk"
               src={stickerStartYourPlaylist}
             />
