@@ -119,7 +119,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
 
   return (
     <>
-      <div className="max-w-[1728px] mx-auto">
+      <div className="max-w-[1800px] mx-auto">
         <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]">
           {/* left */}
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh-1.5rem)] w-full">
