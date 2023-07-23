@@ -162,7 +162,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                 <div className="font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
                   {city}
                 </div>
-                <div className="text-[2.625rem] lg:text-[4rem] text-center px-[3rem] leading-[106%] lg:leading-normal font-[600] tracking-[-0.06em]">
+                <div className="list-playlist-name">
                   {playlistName}
                 </div>
               </div>
