@@ -13,7 +13,7 @@ export const Spot = ({ title, description, type, image }) => {
       </div>
       <div className="grid grid-cols-4 w-full">
         {/* info left */}
-        <div className="h-auto col-span-3 pl-[1rem] flex flex-col gap-[.5rem] ">
+        <div className="h-auto col-span-3 pl-[.69rem] flex flex-col gap-[.5rem] ">
           <div className="font-[Radio] text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
             {title}
           </div>
