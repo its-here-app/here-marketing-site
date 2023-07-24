@@ -171,12 +171,12 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                   <div className="w-[1.25rem] md:w[1.75rem] md:h[1.75rem] h-[1.25rem] bg-[--neon] rounded-full"></div>
                   <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
                 </div>
-                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated 1 week ago</div>
+                  <div className="text-[0.75rem] md:text-[0.875rem]">Last updated 1 week ago</div>
               </div>
             </div>
           </section>
           {/* right side */}
-          <section className="flex gap-[1rem] max-h-[100vh] overflow-y-auto pt-[1.5rem] top-0 w-full px-[1.5rem] flex-col">
+          <section className="flex gap-[1rem] max-h-[100vh] overflow-y-auto pt-[0.5rem] top-0 w-full px-[.75rem] flex-col">
             <div className="grid grid-cols-2">
               {/*  */}
               <div className="justify-self-start flex gap-[8px] items-center text-[1rem] lg:text-[1.125rem]">
@@ -192,7 +192,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/list-view-focus.svg`}
                       width={24}
                       height="auto"
-                      title="Share"
+                      title="list-view"
                       className="stroke-2"
                     />
                   </div>
@@ -201,7 +201,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/expanded-view.svg`}
                       width={24}
                       height="auto"
-                      title="Share"
+                      title="expanded-view"
                       className=""
                     />
                   </div>
@@ -210,7 +210,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map view.svg`}
                       width={24}
                       height="auto"
-                      title="Share"
+                      title="map-view"
                       className="fill-none stroke-black"
                     />
                   </div>
