@@ -20,7 +20,7 @@ export const Spot = ({ title, description, type, image }) => {
           <div className="w-full text-[1rem] max-h-[2.125rem] overflow-hidden text-ellipsis md:flex text-[#757575] tracking-[-0.02em] leading-[112%]">
             {description}
           </div>
-          <div className="w-max px-[8px] py-[2px] text-[0.875rem] rounded-[8px] bg-[#DFDFDF] tracking-[-0.02em] leading-[150%]">
+          <div className="w-max px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-[#DFDFDF] tracking-[-0.02em] leading-[150%]">
             {type && type}
           </div>
         </div>
