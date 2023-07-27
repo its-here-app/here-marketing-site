@@ -72,6 +72,17 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
   // const router = useRouter();
   // const s3_url = "https://its-here-app.s3.amazonaws.com/"
 
+  const copyToClipboard = () => {
+    // copies list contents to clipboard
+    const el = document.createElement("textarea");
+    const content = parsedContent.map((spot) => spot.name).join("\n");
+    el.value = content;
+    document.body.appendChild(el);
+    el.style.visibility = "hidden";
+    el.select();
+    document.execCommand("copy");
+  };
+
   useEffect(() => {
     const body = document.querySelector("body");
 
@@ -180,7 +191,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div className="grid grid-cols-2">
               {/*  */}
               <div className="justify-self-start flex gap-[8px] items-center text-[1rem] lg:text-[1.125rem]">
-                {parsedContent.length} spots <div class="relative pt-[0.5rem] text-[1.6rem]">*</div>
+                {parsedContent.length} spots <div className="relative pt-[0.5rem] text-[1.6rem]">*</div>
               </div>
               {/* icon bubbles */}
               <div className="justify-self-end">
@@ -239,11 +250,11 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div className="grid grid-cols-2">
               <div className=""></div>
               <div className="justify-self-end">
-                <div className="bg-black flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white">
+                <div onClick={copyToClipboard} className="bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white">
                   <SVG
                     src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/bookmark.svg`}
                     width={24}
-                    className="stroke-white"
+                    className="stroke-white group-hover:stroke-black"
                     height="auto"
                     title="Copy List"
                   />{" "}

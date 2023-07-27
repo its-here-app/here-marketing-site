@@ -13,13 +13,16 @@ export const Spot = ({ title, description, type, image }) => {
       </div>
       <div className="grid grid-cols-4 w-full">
         {/* info left */}
-        <div className="h-auto col-span-3 pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
+        <div className="h-auto col-span-3  pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
           <div className="font-[Radio] text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
             {title}
           </div>
-          <div className="w-full text-[1rem] max-h-[2.125rem] overflow-hidden text-ellipsis md:flex text-[#757575] tracking-[-0.02em] leading-[112%]">
-            {description}
+            <div className="w-full text-[1rem] text-ellipsis md:flex text-[#757575] tracking-[-0.02em] leading-[112%]">
+          <div className="line-clamp-2">
+              {description}
           </div>
+            </div>
+          
           <div className="w-max px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-[#DFDFDF] tracking-[-0.02em] leading-[150%]">
             {type && type}
           </div>
