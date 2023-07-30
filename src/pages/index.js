@@ -86,7 +86,7 @@ export default function Home() {
     setScrollPosition(y);
   }, 1);
 
-  const dothing = (e) => {
+  const tileFlipAnimation = (e) => {
     const tile2cities = document.querySelectorAll(".tile-2-inner");
     let current = 0;
     let prev = 0;
@@ -100,14 +100,18 @@ export default function Home() {
 
   const getCarouselData = async () => {
     // set isloading to false on success
-    const res = await fetch("/api/sheets");
+    const res = await fetch("/api/sheets", {
+      next: {
+        revalidate: 3600,
+      }
+    });
     const data = await res.json();
     let featured = data.lists.filter((list) => list.isFeatured === "yes");
     setCarouselData(featured);
   };
 
   useEffect(() => {
-    dothing();
+    tileFlipAnimation();
     const body = document.querySelector("body");
     var timer = 0;
     // set cursor to arrow on load
