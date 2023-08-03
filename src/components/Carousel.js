@@ -111,7 +111,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
           style={{
             backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${
               currentList.slug
-            }/cover_${"00"}.webp')`,
+            }/cover_${"00"}.jpg')`,
           }}
           // style={{ backgroundImage: `url('${returnFirstFormatThatExists(currentList.username, currentList.slug, "00")}')` }}
           className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"

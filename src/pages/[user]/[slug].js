@@ -129,7 +129,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
               style={{
                 backgroundImage: `url('${
                   process.env.NEXT_PUBLIC_GCP_URL
-                }/${username}_${listSlug}/cover_${"00"}.webp')`,
+                }/${username}_${listSlug}/cover_${"00"}.jpg')`,
               }}
             >
               {/* add a sticky element */}
@@ -224,7 +224,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
               {parsedContent.map((spot, i) => {
                 const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${listSlug}/${slugify(
                   spot.name
-                )}_${"00"}.webp`;
+                )}_${"00"}.jpg`;
                 return (
                   <Spot
                     key={spot.name}
