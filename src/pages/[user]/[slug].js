@@ -130,7 +130,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
   return (
     <>
       <div className="max-w-[1800gpx] mx-auto">
-        <div className=" flex flex-col md:grid grid-cols-2 min-h-[100vh]">
+        <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh]">
           {/* <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]"> */}
           {/* left */}
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
@@ -289,25 +289,24 @@ const Spot = ({ title, description, type, image, ratings }) => {
       <div className="grid grid-cols-4 w-full">
         {/* info left */}
         <div className="h-auto col-span-3  pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
-          <div className="font-[Radio] text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
+          <div className="font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
             {title}
           </div>
           <div className="w-full text-[1rem] text-ellipsis md:flex text-gray-500 tracking-[-0.02em] leading-[112%]">
             <div className="hidden md:line-clamp-2">{description}</div>
           </div>
-          <div className="flex md:hidden leading-120 text-base text-gray-500">
-            {ratings}
-            <SVG
-              src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/star.svg`}
-              width={15}
-              height="auto"
-              title="Star Ratings"
-              className="fill-[--bubble] pb-.75 mx-1"
-            />
+
+          <div className="flex md:hidden">
+            <Ratings rating={ratings} />
           </div>
 
-          <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
-            {type && type}
+          <div className="flex flex-row items-center gap-x-1">
+            <div className="hidden md:flex leading-100">
+              <Ratings rating={ratings} />
+            </div>
+            <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
+              {type && type}
+            </div>
           </div>
         </div>
         {/* icon right */}
@@ -323,6 +322,21 @@ const Spot = ({ title, description, type, image, ratings }) => {
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const Ratings = ({ rating }) => {
+  return (
+    <div className="flex leading-120 text-base text-gray-500">
+      {rating} 
+      <SVG
+        src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/star.svg`}
+        width={15}
+        height="auto"
+        title="Star Ratings"
+        className="fill-[--bubble] pb-.75 mx-1"
+      />
     </div>
   );
 };
