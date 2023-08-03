@@ -100,7 +100,11 @@ export default function Home() {
 
   const getCarouselData = async () => {
     // set isloading to false on success
-    const res = await fetch("/api/sheets");
+    const res = await fetch("/api/sheets", {
+      next: {
+        revalidate: 3600,
+      }
+    });
     const data = await res.json();
     let featured = data.lists.filter((list) => list.isFeatured === "yes");
     setCarouselData(featured);
@@ -147,6 +151,11 @@ export default function Home() {
     );
   }, []);
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {}, [hydrated]);
+
+>>>>>>> staging
   useEffect(() => {
     document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
       el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
