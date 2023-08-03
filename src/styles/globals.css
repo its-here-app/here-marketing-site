@@ -13,6 +13,8 @@
   :root {
     --cursor-size: 20px;
     --current-bg: var(--off-white);
+    --cta-fill: black;
+    --cta-fill-inner: white;
     --neon: #daff70;
     --neon--srgb: #e1fe84;
     --ocean: #5c89cc;
@@ -40,6 +42,14 @@
     height: 100%;
     position: relative;
   }
+
+  #cta-sticker >  path {
+    @apply fill-[--cta-fill-inner] ;
+  }
+  #cta-sticker > ellipse {
+    @apply fill-[--cta-fill] transition-all
+  }
+
   .transition-bg {
     transition: background-color ease-in-out 350ms;
   }
@@ -52,6 +62,29 @@
   .tile-2-text-wrapper {
     @apply flex select-none  text-red-200 w-full h-full flex-col items-center justify-center;
   }
+
+  .card-playlist-name {
+    color: var(--neon, #DAFF70);
+    font-family: Golos Text;
+    text-align: center;
+    font-size: 2.8125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 3.29669rem; /* 117.216% */
+    letter-spacing: -0.16875rem;
+  }
+
+  .card-city-name{
+    color: var(--neon, #DAFF70);
+    font-family: Crimson Text;
+    text-align: center;
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 2.08794rem; /* 98.255% */
+    letter-spacing: -0.1275rem;
+  }
+
   .tighten {
     letter-spacing: -0.06rem;
   }

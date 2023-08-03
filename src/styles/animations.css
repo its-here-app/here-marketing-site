@@ -135,7 +135,9 @@
   }
 }
 @layer base {
-
+  .wiggle {
+    animation: wiggle .3s linear 2;
+  }
   .fade-in-slide-up {
     animation: fade-in-slide-up 800ms ease-in-out both;
   }
