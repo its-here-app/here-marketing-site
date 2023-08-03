@@ -306,7 +306,7 @@ const Spot = ({ title, description, type, image, ratings }) => {
             />
           </div>
 
-          <div className="w-max px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
+          <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
             {type && type}
           </div>
         </div>
