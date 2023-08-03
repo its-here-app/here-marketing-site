@@ -6,7 +6,7 @@
 
 @layer utilities {
   .container {
-    @apply max-w-[1738px] mx-auto;
+    @apply max-w-[1900px] mx-auto;
   }
 }
 @layer base {
@@ -83,6 +83,23 @@
     font-weight: 400;
     line-height: 2.08794rem; /* 98.255% */
     letter-spacing: -0.1275rem;
+    }
+  }
+
+  .list-playlist-name {
+    color: var(--neon, #DAFF70);
+    text-align: center;
+    font-family: Golos Text;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.4rem; 
+    letter-spacing: -0.15rem;
+    
+    @apply 
+    lg:text-[5rem] md:text-[4rem]
+    lg:tracking-[-0.3rem] md:tracking-[-0.24rem]
+    lg:leading-[4.4rem] md:leading-[3.4rem] 
   }
 
   .tighten {
@@ -145,7 +162,7 @@
   .bg-gradient-end {
     background-image: linear-gradient(var(--neon) 10%, var(--off-white) 90%);
   }
-}
+
 
 @tailwind base;
 @tailwind components;
