@@ -1,7 +1,6 @@
 import { google } from "googleapis";
 import { useRouter } from "next/router";
 import slugify from "@sindresorhus/slugify";
-import { Spot } from "../../components/Spot";
 import { Footer } from "../../components/Footer";
 import SVG from "react-inlinesvg";
 import { Share } from "/public/icons/Share.svg";
@@ -124,7 +123,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
       }
     ).onfinish = (event) => {
       // router.push(`/`);
-      router.push('/', undefined, { shallow: true })
+      router.push("/", undefined, { shallow: true });
     };
   };
 
@@ -132,7 +131,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
     <>
       <div className="max-w-[1800gpx] mx-auto">
         <div className=" flex flex-col md:grid grid-cols-2 min-h-[100vh]">
-        {/* <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]"> */}
+          {/* <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]"> */}
           {/* left */}
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
             <div
@@ -161,28 +160,27 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                   onClick={handleClose}
                   className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
                 >
-                <SVG
-                  src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share.svg`}
-                  width={24}
-                  height="auto"
-                  title="Share"
-                  className="fill-[--neon]"
-                /></div>
+                  <SVG
+                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share.svg`}
+                    width={24}
+                    height="auto"
+                    title="Share"
+                    className="fill-[--neon]"
+                  />
+                </div>
               </div>
               <div className="h-full flex items-center justify-center flex-col">
                 <div className="max-w-[80%] font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
                   {city}
                 </div>
-                <div className="max-w-[80%] list-playlist-name">
-                  {playlistName}
-                </div>
+                <div className="max-w-[80%] list-playlist-name">{playlistName}</div>
               </div>
               <div className="w-full h-full flex justify-between items-end px-[1.25rem] py-[1.25rem]">
                 <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
                   <div className="w-[1.25rem] md:w[1.75rem] md:h[1.75rem] h-[1.25rem] bg-[--neon] rounded-full"></div>
                   <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
                 </div>
-                  <div className="text-[0.75rem] md:text-[0.875rem]">Last updated 1 week ago</div>
+                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated 1 week ago</div>
               </div>
             </div>
           </section>
@@ -191,7 +189,8 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div className="grid grid-cols-2">
               {/*  */}
               <div className="justify-self-start flex gap-[8px] items-center text-[1rem] lg:text-[1.125rem]">
-                {parsedContent.length} spots <div className="relative pt-[0.5rem] text-[1.6rem]">*</div>
+                {parsedContent.length} spots{" "}
+                <div className="relative pt-[0.5rem] text-[1.6rem]">*</div>
               </div>
               {/* icon bubbles */}
               <div className="justify-self-end">
@@ -241,6 +240,8 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                     key={spot.name}
                     title={spot.name}
                     description={spot.description}
+                    // if spot has ratings, pass in ratings
+                    ratings={spot.ratings && spot.ratings}
                     type={spot.type}
                     image={url}
                   />
@@ -250,7 +251,10 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div className="grid grid-cols-2">
               <div className=""></div>
               <div className="justify-self-end">
-                <div onClick={copyToClipboard} className="bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white">
+                <div
+                  onClick={copyToClipboard}
+                  className="bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
+                >
                   <SVG
                     src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/bookmark.svg`}
                     width={24}
@@ -270,3 +274,55 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
     </>
   );
 }
+
+const Spot = ({ title, description, type, image, ratings }) => {
+  return (
+    <div className="relative flex w-full flex-row min-h-[80px]">
+      <div
+        className="w-[24%] md:w-[17%] lg:w-[15%] min-w-max aspect-square h-full bg-cover bg-center overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
+        style={{
+          backgroundImage: `url(${image}), url('http://placehold.it/300x300')`,
+        }}
+      >
+        {/* <img src={image} className="w-full"/> */}
+      </div>
+      <div className="grid grid-cols-4 w-full">
+        {/* info left */}
+        <div className="h-auto col-span-3  pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
+          <div className="font-[Radio] text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
+            {title}
+          </div>
+          <div className="w-full text-[1rem] text-ellipsis md:flex text-gray-500 tracking-[-0.02em] leading-[112%]">
+            <div className="hidden md:line-clamp-2">{description}</div>
+          </div>
+          <div className="flex md:hidden leading-120 text-base text-gray-500">
+            {ratings}
+            <SVG
+              src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/star.svg`}
+              width={15}
+              height="auto"
+              title="Star Ratings"
+              className="fill-[--bubble] pb-.75 mx-1"
+            />
+          </div>
+
+          <div className="w-max px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
+            {type && type}
+          </div>
+        </div>
+        {/* icon right */}
+        <div className="flex items-center content-center justify-self-end">
+          <div className="rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
+            <SVG
+              src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map view.svg`}
+              width={30}
+              height="auto"
+              title="Share"
+              className="fill-none stroke-white"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
