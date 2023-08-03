@@ -151,11 +151,6 @@ export default function Home() {
     );
   }, []);
 
-<<<<<<< HEAD
-=======
-  useEffect(() => {}, [hydrated]);
-
->>>>>>> staging
   useEffect(() => {
     document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
       el.addEventListener("mouseover", () => setHovering(el.dataset.cursorState));
