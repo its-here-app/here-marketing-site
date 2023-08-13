@@ -137,9 +137,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div
               className=" h-full top-0 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
-                backgroundImage: `url('${
-                  process.env.NEXT_PUBLIC_GCP_URL
-                }/${username}_${listSlug}/cover_${"00"}.jpg')`,
+                backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_cover-${"00"}.jpg')`,
               }}
             >
               {/* add a sticky element */}
@@ -232,9 +230,7 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             </div>
             <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
               {parsedContent.map((spot, i) => {
-                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${listSlug}/${slugify(
-                  spot.name
-                )}_${"00"}.jpg`;
+                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_${slugify(spot.name)}-${"00"}.jpg`;
                 return (
                   <Spot
                     key={spot.name}

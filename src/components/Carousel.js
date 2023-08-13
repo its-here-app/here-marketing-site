@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import slugify from "@sindresorhus/slugify";
 import asterisk from "/public/graphics/asterisk_regular.svg";
 
 import router from "next/router";
@@ -109,9 +110,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
       <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
         <div
           style={{
-            backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${
-              currentList.slug
-            }/cover_${"00"}.jpg')`,
+            backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${slugify(currentList.city)}_${currentList.slug}_cover-${"00"}.jpg')`,
           }}
           // style={{ backgroundImage: `url('${returnFirstFormatThatExists(currentList.username, currentList.slug, "00")}')` }}
           className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
