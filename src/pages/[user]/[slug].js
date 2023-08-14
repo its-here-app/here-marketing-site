@@ -28,7 +28,7 @@ export async function getServerSideProps({ query }) {
   const sheets = google.sheets({ version: "v4", auth });
 
   const { slug } = query;
-  const range = `Sheet1!A$2:G$40`;
+  const range = `Sheet1!A$2:H$40`;
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
     range,
@@ -42,8 +42,9 @@ export async function getServerSideProps({ query }) {
     isFeatured: row[2],
     slug: row[3],
     username: row[4],
-    description: row[5],
-    content: row[6],
+    instagram: row[5],
+    description: row[6],
+    content: row[7],
   }));
 
   // const list = lists.find((list) => list.slug === slug);
@@ -51,7 +52,7 @@ export async function getServerSideProps({ query }) {
   // get id of list with matching slug
   const listId = lists.findIndex((list) => list.slug === slug);
 
-  const [city, playlistName, isFeatured, listSlug, username, description, content] =
+  const [city, playlistName, isFeatured, listSlug, username, instagram, description, content] =
     response.data.values[listId];
 
   return {
@@ -60,13 +61,14 @@ export async function getServerSideProps({ query }) {
       playlistName,
       listSlug,
       username,
+      instagram,
       description,
       content,
     },
   };
 }
 
-export default function ListPage({ city, playlistName, listSlug, username, description, content }) {
+export default function ListPage({ city, playlistName, listSlug, username, instagram, description, content }) {
   const parsedContent = JSON.parse(content);
   // const router = useRouter();
   // const s3_url = "https://its-here-app.s3.amazonaws.com/"
@@ -137,7 +139,9 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div
               className=" h-full top-0 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
-                backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_cover-${"00"}.jpg')`,
+                backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
+                  city
+                )}_${listSlug}_cover-${"00"}.jpg')`,
               }}
             >
               {/* add a sticky element */}
@@ -175,8 +179,16 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
               </div>
               <div className="w-full h-full flex justify-between items-end px-[1.25rem] py-[1.25rem]">
                 <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
-                  <div className="w-[1.25rem] md:w[1.75rem] md:h[1.75rem] h-[1.25rem] bg-[--neon] rounded-full"></div>
-                  <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
+                  <a href={`https://instagram.com/${instagram}`} className="flex flex-row ">
+                    <div
+                      className="w-[1.25rem] md:w[1.75rem] mr-2 md:h[1.75rem] h-[1.25rem] bg-cover rounded-full"
+                      style={{
+                        backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/profile-pics/${username}.jpg')`,
+                      }}
+                    ></div>
+
+                    <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
+                  </a>
                 </div>
                 <div className="text-[0.75rem] md:text-[0.875rem]">Last updated 1 week ago</div>
               </div>
@@ -230,7 +242,9 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             </div>
             <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
               {parsedContent.map((spot, i) => {
-                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_${slugify(spot.name)}-${"00"}.jpg`;
+                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
+                  city
+                )}_${listSlug}_${slugify(spot.name)}-${"00"}.jpg`;
                 return (
                   <Spot
                     key={spot.name}
@@ -325,7 +339,7 @@ const Spot = ({ title, description, type, image, ratings }) => {
 const Ratings = ({ rating }) => {
   return (
     <div className="flex leading-120 text-base text-gray-500">
-      {rating} 
+      {rating}
       <SVG
         src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/star.svg`}
         width={15}
