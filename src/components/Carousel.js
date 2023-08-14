@@ -17,6 +17,8 @@ export default function Carousel({ lists }) {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
+    // shuffl lists
+    lists.sort(() => Math.random() - 0.5);
     carousel.current.style.transform = `translateX(${-300}px)`;
     setCurrentPosition(-300);
     let timer = 0;
@@ -69,6 +71,7 @@ export default function Carousel({ lists }) {
           width: `${carouselWidth}px`,
         }}
       >
+        
         {lists &&
           lists.map((currentList, index) => {
             const parsedContent = JSON.parse(currentList.content);
