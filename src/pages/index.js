@@ -103,7 +103,7 @@ export default function Home() {
     const res = await fetch("/api/sheets", {
       next: {
         revalidate: 3600,
-      }
+      },
     });
     const data = await res.json();
     let featured = data.lists.filter((list) => list.isFeatured === "yes");
@@ -182,7 +182,6 @@ export default function Home() {
     } else {
       store.style.setProperty("--cta-fill-inner", `var(--white)`);
       store.style.setProperty("--cta-fill", `var(--black)`);
-
     }
 
     scrollYElements.forEach((el, i) => {
@@ -287,15 +286,15 @@ export default function Home() {
       </Modal>
       <div ref={cursorCircle} className="circle"></div>
       {/* cta sticker */}
-        <div
-          onClick={openModal}
-          data-cursor-state="asterisk"
-          ref={ctaSticker}
-          style={{ zIndex: "2"}}
-          className="hover:drop-shadow-2xl md:block fixed right-[5%] top-[75%] md:w-[250px] md:h-[200px]"
-        >
-          <SVG id="cta-sticker" className="group w-full h-full" src="/stickers/sticker-cta.svg" />
-        </div>
+      <div
+        onClick={openModal}
+        data-cursor-state="asterisk"
+        ref={ctaSticker}
+        style={{ zIndex: "2" }}
+        className="hover:drop-shadow-2xl md:block fixed right-[5%] top-[75%] md:w-[250px] md:h-[200px]"
+      >
+        <SVG id="cta-sticker" className="group w-full h-full" src="/stickers/sticker-cta.svg" />
+      </div>
       {/* cta sticker */}
       {/* <Cursor MousePosition={MousePosition} /> */}
       {/* header */}
@@ -352,14 +351,10 @@ export default function Home() {
       {/* section 2 */}
       <section data-bg="neon" className="relative h-max pt-12 flex items-top justify-center w-full">
         {isLoading ? (
-          <div className="min-h-[400px] flex justify-center transition-all flex-col h-[300px] w-max my-4">
-            <div className="flex flex-row items-center h-[24px]">
-              <div className="dot dot-one bg-black"></div>
-              <div className="dot dot-two bg-black"></div>
-              <div className="dot dot-three bg-black"></div>
-            </div>
-          </div>
+          // <LoadingDots />
+          <PlaceholderCarousel />
         ) : (
+          // <PlaceholderCarousel />
           <Carousel lists={carouselData} />
         )}
       </section>
@@ -645,3 +640,35 @@ export default function Home() {
     </div>
   );
 }
+
+export const LoadingDots = () => {
+  return (
+    <div className="min-h-[400px] flex justify-center transition-all flex-col h-[300px] w-max my-4">
+      <div className="flex flex-row items-center h-[24px]">
+        <div className="dot dot-one bg-black"></div>
+        <div className="dot dot-two bg-black"></div>
+        <div className="dot dot-three bg-black"></div>
+      </div>
+    </div>
+  );
+};
+
+export const PlaceholderCarousel = () => {
+  const x = 10;
+  return (
+    <div className="touch-pan-x transition-transform  duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] flex flex-row gap-[2vw] pt-[2rem] text-[5rem] mx-auto subtitle-text px-[5px] w-full">
+  
+    <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+      <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
+    </div>
+    <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+      <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
+    </div>
+    <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+      <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
+    </div>
+
+
+    </div>
+  );
+};

@@ -12,6 +12,14 @@
     /* transform: scale(1); */
   }
 }
+@keyframes shimmer {
+  0% {
+    background-position: 75% 0;
+  }
+  100% {
+    background-position: -90% 0;
+  }
+}
 @keyframes wiggle {
   0% {
     transform: rotate(0deg);
@@ -130,6 +138,21 @@
 @layer base {
   .wiggle {
     animation: wiggle .3s linear 2;
+  }
+  .shimmer {
+    position: relative;
+    background: #ececec;
+    opacity: 0.5;
+    background-image: linear-gradient(to right,
+      #ececec 0%,
+      #f2f2f2 10%,
+      #fafafa 20%,
+      #f2f2f2 30%,
+      #ececec 40%,
+      #ececec 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1500ms forwards ease-in-out infinite;
   }
   .fade-in-slide-up {
     animation: fade-in-slide-up 800ms ease-in-out both;
