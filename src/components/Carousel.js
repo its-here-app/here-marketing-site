@@ -43,9 +43,18 @@ export default function Carousel({ lists }) {
     let currentDragPoint = event.type === "touchmove" ? event.touches[0].clientX : event.clientX;
     let diff = currentDragPoint - dragStartPoint;
     carousel.current.style.transform = `translateX(${diff}px)`;
+
     setCurrentPosition(diff);
   };
 
+  useEffect(() => {
+    if (currentPosition > 200) {
+      setCurrentPosition(200);
+    }
+    if (currentPosition * -1 > carouselWidth + window.innerWidth + 400) {
+      setCurrentPosition((carouselWidth + window.innerWidth + 400) * -1);
+    }
+  }, [currentPosition]);
   const handleDragEnd = () => {
     carousel.current.style.transform = `translateX(${currentPosition}px)`;
     if (!isDragging) return;
@@ -71,7 +80,6 @@ export default function Carousel({ lists }) {
           width: `${carouselWidth}px`,
         }}
       >
-        
         {lists &&
           lists.map((currentList, index) => {
             const parsedContent = JSON.parse(currentList.content);
@@ -105,7 +113,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
         fill: "forwards",
       }
     ).onfinish = (event) => {
-      router.push(`/${username}/${slug}`, undefined, { shallow: true })
+      router.push(`/${username}/${slug}`, undefined, { shallow: true });
     };
   };
   return (
@@ -113,7 +121,9 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
       <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
         <div
           style={{
-            backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${slugify(currentList.city)}_${currentList.slug}_cover-${"00"}.jpg')`,
+            backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${
+              currentList.username
+            }_${slugify(currentList.city)}_${currentList.slug}_cover-${"00"}.jpg')`,
           }}
           // style={{ backgroundImage: `url('${returnFirstFormatThatExists(currentList.username, currentList.slug, "00")}')` }}
           className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
@@ -126,12 +136,8 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
             data-cursor-state="ul-arrow"
             className="cursor-none flex row-span-1 tighten text-[--neon] flex-col justify-center items-center"
           >
-            <div className="card-city-name">
-              {currentList.city}
-            </div>
-            <div className="card-playlist-name max-w-[74%]">
-              {currentList.playlistName}
-            </div>
+            <div className="card-city-name">{currentList.city}</div>
+            <div className="card-playlist-name max-w-[74%]">{currentList.playlistName}</div>
           </div>
           <div className="text-[--neon] pb-4 font-[Golos] self-end text-[2rem] row-span-1 flex justify-center items-center">
             <div className="flex flex-row pl-[.8rem]">
