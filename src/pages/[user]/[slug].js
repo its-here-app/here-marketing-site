@@ -7,6 +7,7 @@ import { Share } from "/public/icons/Share.svg";
 import { useEffect } from "react";
 import router from "next/router";
 import Image from "next/image";
+import moment from "moment";
 
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
@@ -142,6 +143,10 @@ export default function ListPage({
     };
   };
 
+  const getTimeElapsed = () => {
+    return moment.utc(`${dateAdded} 00:00:00`).local().startOf('seconds').fromNow()
+  }
+
   return (
     <>
       <div className="max-w-[1800gpx] mx-auto">
@@ -201,7 +206,7 @@ export default function ListPage({
                     <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
                   </a>
                 </div>
-                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated {dateAdded}</div>
+                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated {getTimeElapsed()}</div>
               </div>
             </div>
           </section>
