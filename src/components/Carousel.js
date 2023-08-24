@@ -17,7 +17,7 @@ export default function Carousel({ lists }) {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
-    // shuffl lists
+    // shuffle lists
     lists.sort(() => Math.random() - 0.5);
     carousel.current.style.transform = `translateX(${-300}px)`;
     setCurrentPosition(-300);
@@ -48,13 +48,14 @@ export default function Carousel({ lists }) {
   };
 
   useEffect(() => {
-    if (currentPosition > 200) {
-      setCurrentPosition(200);
+    if (currentPosition > (25)) {
+      setCurrentPosition(25);
     }
-    if (currentPosition * -1 > carouselWidth + window.innerWidth + 400) {
-      setCurrentPosition((carouselWidth + window.innerWidth + 400) * -1);
+    if (currentPosition * -1 > carouselWidth + window.innerWidth + 50) {
+      setCurrentPosition((carouselWidth + window.innerWidth + 50) * -1);
     }
   }, [currentPosition]);
+
   const handleDragEnd = () => {
     carousel.current.style.transform = `translateX(${currentPosition}px)`;
     if (!isDragging) return;
