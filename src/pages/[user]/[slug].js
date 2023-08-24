@@ -29,7 +29,7 @@ export async function getServerSideProps({ query }) {
   const sheets = google.sheets({ version: "v4", auth });
 
   const { slug } = query;
-  const range = `Sheet1!A$2:H$40`;
+  const range = `Sheet1!A$2:I$40`;
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
     range,
@@ -45,7 +45,8 @@ export async function getServerSideProps({ query }) {
     username: row[4],
     instagram: row[5],
     description: row[6],
-    content: row[7],
+    dateAdded: row[7],
+    content: row[8],
   }));
 
   // const list = lists.find((list) => list.slug === slug);
@@ -53,7 +54,7 @@ export async function getServerSideProps({ query }) {
   // get id of list with matching slug
   const listId = lists.findIndex((list) => list.slug === slug);
 
-  const [city, playlistName, isFeatured, listSlug, username, instagram, description, content] =
+  const [city, playlistName, isFeatured, listSlug, username, instagram, description, dateAdded, content] =
     response.data.values[listId];
 
   return {
@@ -64,6 +65,7 @@ export async function getServerSideProps({ query }) {
       username,
       instagram,
       description,
+      dateAdded,
       content,
     },
   };
@@ -76,6 +78,7 @@ export default function ListPage({
   username,
   instagram,
   description,
+  dateAdded,
   content,
 }) {
   const parsedContent = JSON.parse(content);
@@ -198,7 +201,7 @@ export default function ListPage({
                     <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
                   </a>
                 </div>
-                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated 1 week ago</div>
+                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated {dateAdded}</div>
               </div>
             </div>
           </section>
