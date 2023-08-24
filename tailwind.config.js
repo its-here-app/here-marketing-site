@@ -12,6 +12,21 @@ module.exports = {
         "in-out-quint": "cubic-bezier(0.23, 1, 0.32,1)",
         "in-out-image": "cubic-bezier(0.65, 0.05, 0.36, 1)",
       },
+      colors: {
+        white: "#ffffff",
+        black: "#000000",
+        green: "#00FF47",
+        gray: {
+          100: "#",
+          200: "#",
+          300: "#DFDFDF",
+          400: "#",
+          500: "#757575",
+          600: "#",
+          700: "#",
+          900: "#",
+        },
+      },
       // leading
       lineHeight: {
         100: "1em",

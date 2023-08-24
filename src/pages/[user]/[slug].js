@@ -1,12 +1,13 @@
 import { google } from "googleapis";
 import { useRouter } from "next/router";
 import slugify from "@sindresorhus/slugify";
-import { Spot } from "../../components/Spot";
 import { Footer } from "../../components/Footer";
 import SVG from "react-inlinesvg";
 import { Share } from "/public/icons/Share.svg";
 import { useEffect } from "react";
 import router from "next/router";
+import Image from "next/image";
+import moment from "moment";
 
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
@@ -29,7 +30,7 @@ export async function getServerSideProps({ query }) {
   const sheets = google.sheets({ version: "v4", auth });
 
   const { slug } = query;
-  const range = `Sheet1!A$2:G$40`;
+  const range = `Sheet1!A$2:I$40`;
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
     range,
@@ -43,8 +44,10 @@ export async function getServerSideProps({ query }) {
     isFeatured: row[2],
     slug: row[3],
     username: row[4],
-    description: row[5],
-    content: row[6],
+    instagram: row[5],
+    description: row[6],
+    dateAdded: row[7],
+    content: row[8],
   }));
 
   // const list = lists.find((list) => list.slug === slug);
@@ -52,7 +55,7 @@ export async function getServerSideProps({ query }) {
   // get id of list with matching slug
   const listId = lists.findIndex((list) => list.slug === slug);
 
-  const [city, playlistName, isFeatured, listSlug, username, description, content] =
+  const [city, playlistName, isFeatured, listSlug, username, instagram, description, dateAdded, content] =
     response.data.values[listId];
 
   return {
@@ -61,21 +64,46 @@ export async function getServerSideProps({ query }) {
       playlistName,
       listSlug,
       username,
+      instagram,
       description,
+      dateAdded,
       content,
     },
   };
 }
 
-export default function ListPage({ city, playlistName, listSlug, username, description, content }) {
+export default function ListPage({
+  city,
+  playlistName,
+  listSlug,
+  username,
+  instagram,
+  description,
+  dateAdded,
+  content,
+}) {
   const parsedContent = JSON.parse(content);
-  // const router = useRouter();
-  // const s3_url = "https://its-here-app.s3.amazonaws.com/"
+
+  const copyToClipboard = () => {
+    const el = document.createElement("textarea");
+    let content = ""
+
+    content+=`${city} — ${playlistName} @ ${username}\n`;
+    content+=parsedContent.map((spot) => `*${spot.name}, ${spot.description} (${spot.type})`).join("\n");
+    content+=`\n\nhttps://itshere.app/${username}/${listSlug}\n`;
+    el.value = content;
+    document.body.appendChild(el);
+    el.style.position = "absolute";
+    el.style.left = "-9999px";
+    el.style.opacity = "0";
+    
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+  };
 
   useEffect(() => {
     const body = document.querySelector("body");
-
-    // if router.from is home
 
     body.animate(
       [
@@ -92,7 +120,6 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
         fill: "forwards",
       }
     );
-    // }
   }, []);
 
   const handleClose = () => {
@@ -112,23 +139,25 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
         fill: "forwards",
       }
     ).onfinish = (event) => {
-      // router.push(`/`);
-      router.push('/', undefined, { shallow: true })
+      router.push("/", undefined, { shallow: true });
     };
   };
 
+  const getTimeElapsed = () => {
+    return moment.utc(`${dateAdded} 00:00:00`).local().startOf('seconds').fromNow()
+  }
+
   return (
     <>
-      <div className="max-w-[1728px] mx-auto">
-        <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]">
-          {/* left */}
-          <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh-1.5rem)] w-full">
+      <div className="max-w-[1800gpx] mx-auto">
+        <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh]">
+          <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
             <div
-              className=" h-full top-0 left-0 ml-[.5rem] mt-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
+              className="h-full top-0 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
-                backgroundImage: `url('${
-                  process.env.NEXT_PUBLIC_GCP_URL
-                }/${username}_${listSlug}/cover_${"00"}.webp')`,
+                backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
+                  city
+                )}_${listSlug}_cover-${"00"}.jpg')`,
               }}
             >
               {/* add a sticky element */}
@@ -145,37 +174,49 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                     className="fill-[--neon]"
                   />
                 </div>
-                <SVG
-                  src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share.svg`}
-                  width={24}
-                  height="auto"
-                  title="Share"
-                  className="fill-[--neon]"
-                />
+                <div
+                  onClick={handleClose}
+                  className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
+                >
+                  <SVG
+                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share.svg`}
+                    width={24}
+                    height="auto"
+                    title="Share"
+                    className="fill-[--neon]"
+                  />
+                </div>
               </div>
-              <div className="w-full flex items-center justify-center flex-col">
-                <div className="font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
+              <div className="h-full flex items-center justify-center flex-col">
+                <div className="max-w-[80%] font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
                   {city}
                 </div>
-                <div className="text-[2.625rem] lg:text-[4rem] text-center px-[3rem] leading-[106%] lg:leading-normal font-[600] tracking-[-0.06em]">
-                  {playlistName}
-                </div>
+                <div className="max-w-[80%] list-playlist-name">{playlistName}</div>
               </div>
               <div className="w-full h-full flex justify-between items-end px-[1.25rem] py-[1.25rem]">
                 <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
-                  <div className="w-[1.75rem] h-[1.75rem] bg-[--neon] rounded-full"></div>
-                  <div className="">{username}</div>
+                  <a href={`https://instagram.com/${instagram}`} className="flex flex-row ">
+                    <div
+                      className="w-[1.25rem] md:w[1.75rem] mr-2 md:h[1.75rem] h-[1.25rem] bg-cover rounded-full"
+                      style={{
+                        backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/profile-pics/${username}.jpg')`,
+                      }}
+                    ></div>
+
+                    <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
+                  </a>
                 </div>
-                <div className="">Last updated 1 week ago</div>
+                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated {getTimeElapsed()}</div>
               </div>
             </div>
           </section>
           {/* right side */}
-          <section className="flex gap-[1rem] max-h-[100vh] overflow-y-auto pt-[1.5rem] top-0 w-full px-[2rem] flex-col">
+          <section className="flex gap-[1rem] max-h-[100vh] overflow-y-auto pt-[0.5rem] top-0 w-full px-[.75rem] flex-col">
             <div className="grid grid-cols-2">
               {/*  */}
-              <div className="justify-self-start text-[1rem] lg:text-[1.125rem]">
-                {parsedContent.length} spots *
+              <div className="justify-self-start flex gap-[8px] items-center text-[1rem] lg:text-[1.125rem]">
+                {parsedContent.length} spots{" "}
+                <div className="relative pt-[0.5rem] text-[1.6rem]">*</div>
               </div>
               {/* icon bubbles */}
               <div className="justify-self-end">
@@ -185,27 +226,27 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
                   <div className="z-20 rounded-full flex items-center justify-center">
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/list-view-focus.svg`}
-                      width={20}
+                      width={24}
                       height="auto"
-                      title="Share"
+                      title="list-view"
                       className="stroke-2"
                     />
                   </div>
-                  <div className="z-20 flex items-center justify-center">
+                  <div className="z-20 flex items-center justify-center opacity-[.2]">
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/expanded-view.svg`}
-                      width={20}
+                      width={24}
                       height="auto"
-                      title="Share"
+                      title="expanded-view"
                       className=""
                     />
                   </div>
-                  <div className="z-20 flex items-center justify-center">
+                  <div className="z-20 flex items-center justify-center opacity-[.2]">
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map view.svg`}
-                      width={20}
+                      width={24}
                       height="auto"
-                      title="Share"
+                      title="map-view"
                       className="fill-none stroke-black"
                     />
                   </div>
@@ -217,14 +258,16 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             </div>
             <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
               {parsedContent.map((spot, i) => {
-                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${listSlug}/${slugify(
-                  spot.name
-                )}_${"00"}.webp`;
+                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
+                  city
+                )}_${listSlug}_${slugify(spot.name)}-${"00"}.jpg`;
                 return (
                   <Spot
                     key={spot.name}
                     title={spot.name}
                     description={spot.description}
+                    // if spot has ratings, pass in ratings
+                    ratings={spot.ratings && spot.ratings}
                     type={spot.type}
                     image={url}
                   />
@@ -234,11 +277,14 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
             <div className="grid grid-cols-2">
               <div className=""></div>
               <div className="justify-self-end">
-                <div className="bg-black flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white">
+                <div
+                  onClick={copyToClipboard}
+                  className="bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
+                >
                   <SVG
                     src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/bookmark.svg`}
                     width={24}
-                    className="stroke-white"
+                    className="stroke-white group-hover:stroke-black"
                     height="auto"
                     title="Copy List"
                   />{" "}
@@ -254,3 +300,68 @@ export default function ListPage({ city, playlistName, listSlug, username, descr
     </>
   );
 }
+
+const Spot = ({ title, description, type, image, ratings }) => {
+  return (
+    <div className="relative flex w-full flex-row  min-h-[80px]">
+      <div className="flex-shrink-0 min-w-[5.5rem] w-[24%] md:w-[17%] lg:w-[15%] aspect-square">
+        <div
+          className="aspect-square bg-cover bg-center my-auto overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
+          style={{
+            backgroundImage: `url(${image}), url('http://placehold.it/300x300')`,
+          }}
+        ></div>
+      </div>
+      <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-4">
+        {/* info left */}
+        <div className="h-auto col-span-5 lg:col-span-3 pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
+          <div className="font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
+            {title}
+          </div>
+          {description && <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
+            <div className="hidden md:line-clamp-2">{description}</div>
+          </div> }
+          <div className="flex md:hidden">
+            <Ratings rating={ratings} />
+          </div>
+
+          <div className="flex flex-row items-center gap-x-1">
+            <div className="hidden md:flex leading-100">
+              <Ratings rating={ratings} />
+            </div>
+            <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
+              {type && type}
+            </div>
+          </div>
+        </div>
+        {/* icon right */}
+        <div className="flex items-center content-center justify-self-end">
+          <div className="rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
+            <SVG
+              src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map view.svg`}
+              width={30}
+              height="auto"
+              title="Share"
+              className="fill-none stroke-white"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Ratings = ({ rating }) => {
+  return (
+    <div className="flex leading-120 text-base text-gray-500">
+      {rating}
+      <SVG
+        src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/star.svg`}
+        width={15}
+        height="auto"
+        title="Star Ratings"
+        className="fill-[--bubble] pb-.75 mx-1"
+      />
+    </div>
+  );
+};

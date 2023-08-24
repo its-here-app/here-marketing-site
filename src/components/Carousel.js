@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import slugify from "@sindresorhus/slugify";
 import asterisk from "/public/graphics/asterisk_regular.svg";
 
 import router from "next/router";
@@ -16,6 +17,8 @@ export default function Carousel({ lists }) {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
+    // shuffle lists
+    lists.sort(() => Math.random() - 0.5);
     carousel.current.style.transform = `translateX(${-300}px)`;
     setCurrentPosition(-300);
     let timer = 0;
@@ -40,8 +43,18 @@ export default function Carousel({ lists }) {
     let currentDragPoint = event.type === "touchmove" ? event.touches[0].clientX : event.clientX;
     let diff = currentDragPoint - dragStartPoint;
     carousel.current.style.transform = `translateX(${diff}px)`;
+
     setCurrentPosition(diff);
   };
+
+  useEffect(() => {
+    if (currentPosition > 25) {
+      setCurrentPosition(25);
+    }
+    if (currentPosition * -1 > carouselWidth + window.innerWidth + 50) {
+      setCurrentPosition((carouselWidth + window.innerWidth + 50) * -1);
+    }
+  }, [currentPosition]);
 
   const handleDragEnd = () => {
     carousel.current.style.transform = `translateX(${currentPosition}px)`;
@@ -101,45 +114,51 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
         fill: "forwards",
       }
     ).onfinish = (event) => {
-      router.push(`/${username}/${slug}`, undefined, { shallow: true })
+      router.push(`/${username}/${slug}`, undefined, { shallow: true });
     };
   };
   return (
     <div key={index} data-fade-in-group="2" className="z-2 transition-transform">
-      <div className="w-[80vw] hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
-        <div
-          style={{
-            backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${
-              currentList.slug
-            }/cover_${"00"}.webp')`,
-          }}
-          // style={{ backgroundImage: `url('${returnFirstFormatThatExists(currentList.username, currentList.slug, "00")}')` }}
-          className="cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"
-        >
-          <div className="row-span-1"></div>
+      <div className="w-[80vw] md:w-[40vw] hover:scale-[1.01] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  transition-all rounded-[1rem] relative">
+        <div className="cursor-none scale(110%) select-none bg-center w-full h-full transition-all ease-in duration-[1800ms] items-center justify-center">
           <div
-            onClick={() => {
-              handleClick(currentList.slug, currentList.username);
-            }}
-            data-cursor-state="ul-arrow"
-            className="cursor-none flex row-span-1 tighten text-[--neon] flex-col justify-center items-center"
+            className="grid grid-cols-1 grid-rows-3 w-full h-full bg-cover "
           >
-            <div className="card-city-name">
-              {currentList.city}
+             <div
+            className="absolute w-full h-full bg-cover"
+            style={{
+              backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${
+                currentList.username
+              }_${slugify(currentList.city)}_${currentList.slug}_cover-${"00"}.jpg')`,
+            }}
+          ></div>
+            <div className="w-full h-full absolute"
+              style={{
+                background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 54.95%, rgba(0, 0, 0, 0.00) 100%)",
+                mixBlendMode: "soft-light",
+              }}
+            >
             </div>
-            <div className="card-playlist-name max-w-[74%]">
-              {currentList.playlistName}
+            <div
+              onClick={() => {
+                handleClick(currentList.slug, currentList.username);
+              }}
+              data-cursor-state="ul-arrow"
+              className="z-20 cursor-none flex row-span-1 row-start-2 tighten text-[--neon] flex-col justify-center items-center"
+            >
+              <div className="card-city-name">{currentList.city}</div>
+              <div className="card-playlist-name max-w-[74%]">{currentList.playlistName}</div>
             </div>
-          </div>
-          <div className="text-[--neon] pb-4 font-[Golos] self-end text-[2rem] row-span-1 flex justify-center items-center">
-            <div className="flex flex-row pl-[.8rem]">
-              {/* <div className="">{parsedContent.length}</div> */}
-              {/* amout of items in list */}
-              {/* <div className="">{console.log(currentList)}</div> */}
-              {/* {currentList} */}
-              <div className="">{parsedContent.length}</div>
-              <div className="relative w-[18px] ml-[4px] h-auto">
-                <Image fill src={asterisk} alt="asterisk" />
+            <div className="z-20 text-[--neon] pb-4 font-[Golos] self-end text-[2rem] row-span-1 row-start-3 flex justify-center items-center">
+              <div className="flex flex-row pl-[.8rem]">
+                {/* <div className="">{parsedContent.length}</div> */}
+                {/* amout of items in list */}
+                {/* <div className="">{console.log(currentList)}</div> */}
+                {/* {currentList} */}
+                <div className="">{parsedContent.length}</div>
+                <div className="relative w-[18px] ml-[4px] h-auto">
+                  <Image fill src={asterisk} alt="asterisk" />
+                </div>
               </div>
             </div>
           </div>

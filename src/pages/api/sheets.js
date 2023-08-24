@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
   const sheets = google.sheets({ version: "v4", auth });
 
-  const range = `Sheet1!A2:G40`;
+  const range = `Sheet1!A2:I40`;
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
     range,
@@ -36,8 +36,10 @@ export default async function handler(req, res) {
     isFeatured: row[2],
     slug: row[3],
     username: row[4],
-    description: row[5],
-    content: row[6],
+    instagram: row[5],
+    description: row[6],
+    dateAdded: row[7],
+    content: row[8],
   }));
 
   res.status(200).json({
