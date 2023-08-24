@@ -11,11 +11,9 @@ const EmailForm = ({ status, message, onValidated }) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // create en amil ref
-
   useEffect(() => {
-    // email.current.focus();
     console.log(email);
+    console.log("currentSlide", currentSlide);
   }, [currentSlide]);
 
   useEffect(() => {
@@ -36,13 +34,11 @@ const EmailForm = ({ status, message, onValidated }) => {
       });
   };
 
-
-
-  const next = () => {
-    email &&
-      // name &&
-      email.value.indexOf("@") > -1 &&
-      setCurrentSlide(currentSlide + 1);
+  const next = (e) => {
+    e.preventDefault();
+    setCurrentSlide(currentSlide + 1)
+    // email &&
+      // email.value.indexOf("@") > -1 &&
   };
 
   return (
@@ -62,8 +58,9 @@ const EmailForm = ({ status, message, onValidated }) => {
           ></input>
           <button
             className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
-            type="submit"
-            onClick={(e) => submit(e)}
+            onClick={(e) => 
+              // prevent submit
+              next(e)}
             // on enter key press, hit next
           >
             <Image alt="none" fill src={arrowSubmit} />
@@ -83,7 +80,6 @@ const EmailForm = ({ status, message, onValidated }) => {
           ></input>
           <button
             className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
-            type="submit"
             onClick={(e) => {
               submit(e);
             }}
@@ -157,7 +153,6 @@ const ModalForm = ({ status, message, onValidated }) => {
           ></input>
           <button
             className="cursor-none hover:scale-[1.2] transition-all w-[40px] lg:w-[50px] absolute right-[12px] h-full items-top justify-end "
-            type="submit"
             onClick={submit}
           >
             <Image alt="none" fill src={arrowSubmit} />
