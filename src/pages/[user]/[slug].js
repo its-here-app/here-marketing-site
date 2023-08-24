@@ -82,12 +82,20 @@ export default function ListPage({
 
   const copyToClipboard = () => {
     const el = document.createElement("textarea");
-    const content = parsedContent.map((spot) => spot.name).join("\n");
+    let content = ""
+
+    content+=`${city} — ${playlistName} @ ${username}\n`;
+    content+=parsedContent.map((spot) => `*${spot.name}, ${spot.description} (${spot.type})`).join("\n");
+    content+=`\n\nhttps://itshere.app/${username}/${listSlug}\n`;
     el.value = content;
     document.body.appendChild(el);
-    el.style.visibility = "hidden";
+    el.style.position = "absolute";
+    el.style.left = "-9999px";
+    el.style.opacity = "0";
+    
     el.select();
     document.execCommand("copy");
+    document.body.removeChild(el);
   };
 
   useEffect(() => {
@@ -302,9 +310,9 @@ const Spot = ({ title, description, type, image, ratings }) => {
           <div className="font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
             {title}
           </div>
-          <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
+          {description && <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
             <div className="hidden md:line-clamp-2">{description}</div>
-          </div>
+          </div>}
           <div className="flex md:hidden">
             <Ratings rating={ratings} />
           </div>
