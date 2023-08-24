@@ -6,6 +6,7 @@ import SVG from "react-inlinesvg";
 import { Share } from "/public/icons/Share.svg";
 import { useEffect } from "react";
 import router from "next/router";
+import Image from "next/image";
 
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
@@ -68,13 +69,18 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default function ListPage({ city, playlistName, listSlug, username, instagram, description, content }) {
+export default function ListPage({
+  city,
+  playlistName,
+  listSlug,
+  username,
+  instagram,
+  description,
+  content,
+}) {
   const parsedContent = JSON.parse(content);
-  // const router = useRouter();
-  // const s3_url = "https://its-here-app.s3.amazonaws.com/"
 
   const copyToClipboard = () => {
-    // copies list contents to clipboard
     const el = document.createElement("textarea");
     const content = parsedContent.map((spot) => spot.name).join("\n");
     el.value = content;
@@ -86,8 +92,6 @@ export default function ListPage({ city, playlistName, listSlug, username, insta
 
   useEffect(() => {
     const body = document.querySelector("body");
-
-    // if router.from is home
 
     body.animate(
       [
@@ -104,7 +108,6 @@ export default function ListPage({ city, playlistName, listSlug, username, insta
         fill: "forwards",
       }
     );
-    // }
   }, []);
 
   const handleClose = () => {
@@ -124,7 +127,6 @@ export default function ListPage({ city, playlistName, listSlug, username, insta
         fill: "forwards",
       }
     ).onfinish = (event) => {
-      // router.push(`/`);
       router.push("/", undefined, { shallow: true });
     };
   };
@@ -133,17 +135,16 @@ export default function ListPage({ city, playlistName, listSlug, username, insta
     <>
       <div className="max-w-[1800gpx] mx-auto">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh]">
-          {/* <div className=" flex flex-col md:grid grid-cols-2 px-[.5rem] py-[.5rem] min-h-[100vh]"> */}
-          {/* left */}
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
             <div
-              className=" h-full top-0 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
+              className="h-full top-0 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city
                 )}_${listSlug}_cover-${"00"}.jpg')`,
               }}
             >
+         
               {/* add a sticky element */}
               <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
                 <div

@@ -1,8 +1,8 @@
 @import "animations.css";
 @import "typography.css";
 @import "imessage.css";
-@import 'cursor.css';
-@import 'email.css';
+@import "cursor.css";
+@import "email.css";
 
 @layer utilities {
   .container {
@@ -42,11 +42,11 @@
     position: relative;
   }
 
-  #cta-sticker >  path {
-    @apply fill-[--cta-fill-inner] ;
+  #cta-sticker > path {
+    @apply fill-[--cta-fill-inner];
   }
   #cta-sticker > ellipse {
-    @apply fill-[--cta-fill] transition-all
+    @apply fill-[--cta-fill] transition-all;
   }
 
   .transition-bg {
@@ -63,7 +63,7 @@
   }
 
   .card-playlist-name {
-    color: var(--neon, #DAFF70);
+    color: var(--neon, #daff70);
     font-family: Golos Text;
     text-align: center;
     font-size: 2.8125rem;
@@ -73,8 +73,8 @@
     letter-spacing: -0.16875rem;
   }
 
-  .card-city-name{
-    color: var(--neon, #DAFF70);
+  .card-city-name {
+    color: var(--neon, #daff70);
     font-family: Crimson Text;
     text-align: center;
     font-size: 2.2rem;
@@ -82,85 +82,86 @@
     font-weight: 400;
     line-height: 2.08794rem; /* 98.255% */
     letter-spacing: -0.1275rem;
-    }
   }
+}
 
-  .list-playlist-name {
-    color: var(--neon, #DAFF70);
-    text-align: center;
-    font-family: Golos Text;
-    font-size: 2.5rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 2.4rem; 
-    letter-spacing: -0.15rem;
-    
-    @apply 
-    lg:text-[5rem] md:text-[4rem]
+.list-playlist-name {
+  color: var(--neon, #daff70);
+  text-align: center;
+  font-family: Golos Text;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.4rem;
+  letter-spacing: -0.15rem;
+
+  @apply lg:text-[5rem] md:text-[4rem]
     lg:tracking-[-0.3rem] md:tracking-[-0.24rem]
-    lg:leading-[4.4rem] md:leading-[3.4rem] 
-  }
+    lg:leading-[4.4rem] md:leading-[3.4rem];
+}
 
-  .tighten {
-    letter-spacing: -0.06rem;
-  }
-  .tile-2-text {
-    @apply text-[--neon] tracking-[-.06em] text-[2rem] md:text-[3.5vw] xl:text-[70px] font-[Crimson] italic leading-[100%] translate-y-[20%];
-  }
-  .active {
-    z-index: 1 !important;
-  }
-  .section-tile {
-    @apply pt-[7vw] xl:pt-[8rem] flex flex-col items-center justify-center w-full;
-  }
-  .tile {
-    @apply flex flex-col-reverse
+.tighten {
+  letter-spacing: -0.06rem;
+}
+.tile-2-text {
+  @apply text-[--neon] tracking-[-.06em] text-[2rem] md:text-[3.5vw] xl:text-[70px] font-[Crimson] italic leading-[100%] translate-y-[20%];
+}
+.active {
+  z-index: 1 !important;
+}
+.section-tile {
+  @apply pt-[7vw] xl:pt-[8rem] flex flex-col items-center justify-center w-full;
+}
+.tile {
+  @apply flex flex-col-reverse
       w-full max-w-[1728px]
       md:grid grid-cols-12 gap-8 xl:gap-16
       justify-items-start
       px-[1rem] md:px-[3rem]
       pt-[4vh] transition-all;
-  }
-  .grid-reverse {
-    grid-column-start: 1;
-    grid-row-start: 1;
-  }
-  .tile-text {
-    @apply col-span-6 xl:col-span-7
+}
+.grid-reverse {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.tile-text {
+  @apply col-span-6 xl:col-span-7
       flex flex-col
       h-full
       pl-[1.5vw] md:pl-[1vw]
       pt-[0vw] md:pt-[.5rem];
-  }
-  .text-reverse {
-    @apply pl-[0w] md:pl-[0vw]
+}
+.text-reverse {
+  @apply pl-[0w] md:pl-[0vw]
       pt-[0vw];
-  }
-  .tile-text-top {
-    @apply font-[Radio]
+}
+.tile-text-top {
+  @apply font-[Radio]
       text-[13vw] md:text-[7vw] xl:text-[8rem]
       w-[80%] md:w-full
       tracking-1
       leading-105 md:leading-100;
-  }
-  .tile-text-bottom {
-    @apply font-[Golos]
+}
+.tile-text-bottom {
+  @apply font-[Golos]
       text-[1.3rem] lg:text-[1.5rem]
       leading-125 lg:leading-150
       max-w-[490px]
       pt-[2rem] md:pt-[3vh] lg:pt-[6vh];
-  }
-  .tile-image {
-    @apply col-span-6 xl:col-span-5
+}
+.tile-image {
+  @apply col-span-6 xl:col-span-5
       lg:px-[0rem]
       w-full flex items-center justify-center;
-  }
-  .bg-gradient-start {
-    background-image: linear-gradient(var(--off-white) 10%, var(--neon) 60%);
-  }
-  .bg-gradient-end {
-    background-image: linear-gradient(var(--neon) 10%, var(--off-white) 90%);
-  }
+}
+.bg-gradient-start {
+  background-image: linear-gradient(var(--off-white) 10%, var(--neon) 60%);
+}
+.bg-gradient-end {
+  background-image: linear-gradient(var(--neon) 10%, var(--off-white) 90%);
+}
+
+
 
 
 @tailwind base;
