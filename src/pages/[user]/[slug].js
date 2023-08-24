@@ -144,7 +144,6 @@ export default function ListPage({
                 )}_${listSlug}_cover-${"00"}.jpg')`,
               }}
             >
-         
               {/* add a sticky element */}
               <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
                 <div
@@ -288,25 +287,24 @@ export default function ListPage({
 
 const Spot = ({ title, description, type, image, ratings }) => {
   return (
-    <div className="relative flex w-full flex-row min-h-[80px]">
-      <div
-        className="w-[24%] md:w-[17%] lg:w-[15%] min-w-max aspect-square h-full bg-cover bg-center overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
-        style={{
-          backgroundImage: `url(${image}), url('http://placehold.it/300x300')`,
-        }}
-      >
-        {/* <img src={image} className="w-full"/> */}
+    <div className="relative flex w-full flex-row  min-h-[80px]">
+      <div className="flex-shrink-0 min-w-[5.5rem] w-[24%] md:w-[17%] lg:w-[15%] aspect-square">
+        <div
+          className="aspect-square bg-cover bg-center my-auto overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
+          style={{
+            backgroundImage: `url(${image}), url('http://placehold.it/300x300')`,
+          }}
+        ></div>
       </div>
-      <div className="grid grid-cols-4 w-full">
+      <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-4">
         {/* info left */}
-        <div className="h-auto col-span-3  pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
+        <div className="h-auto col-span-5 lg:col-span-3 pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
           <div className="font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
             {title}
           </div>
-          <div className="w-full text-[1rem] text-ellipsis md:flex text-gray-500 tracking-[-0.02em] leading-[112%]">
+          <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
             <div className="hidden md:line-clamp-2">{description}</div>
           </div>
-
           <div className="flex md:hidden">
             <Ratings rating={ratings} />
           </div>
