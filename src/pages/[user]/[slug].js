@@ -101,25 +101,26 @@ export default function ListPage({
     document.execCommand("copy");
     document.body.removeChild(el);
   };
+  const body = document.querySelector("body");
 
-  useEffect(() => {
-    const body = document.querySelector("body");
-
-    body.animate(
-      [
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-        },
-      ],
+  body.animate(
+    [
       {
-        duration: 500,
-        easing: "ease-in-out",
-        fill: "forwards",
-      }
-    );
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      duration: 500,
+      easing: "ease-in-out",
+      fill: "forwards",
+    }
+  );
+  
+  useEffect(() => {
+
   }, []);
 
   const handleClose = () => {
