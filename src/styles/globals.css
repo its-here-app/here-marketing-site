@@ -41,6 +41,9 @@
     height: 100%;
     position: relative;
   }
+  button {
+    border: 0px;
+  }
 
   #cta-sticker > path {
     @apply fill-[--cta-fill-inner];
