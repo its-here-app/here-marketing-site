@@ -103,24 +103,24 @@ export default function ListPage({
   };
   const body = document.querySelector("body");
 
-  body.animate(
-    [
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-      },
-    ],
-    {
-      duration: 500,
-      easing: "ease-in-out",
-      fill: "forwards",
-    }
-  );
+  
   
   useEffect(() => {
-
+    body.animate(
+      [
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+      ],
+      {
+        duration: 500,
+        easing: "ease-in-out",
+        fill: "forwards",
+      }
+    );
   }, []);
 
   const handleClose = () => {
