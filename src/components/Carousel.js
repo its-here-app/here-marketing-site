@@ -129,7 +129,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${
                   currentList.username
-                }_${slugify(currentList.city)}_${currentList.slug}_cover-${"00"}.jpg')`,
+                }_${slugify(currentList.city)}_${currentList.slug}_cover.jpg')`,
               }}
             ></div>
             <div
