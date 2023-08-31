@@ -158,7 +158,7 @@ export default function ListPage({
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city
-                )}_${listSlug}_cover-${"00"}.jpg')`,
+                )}_${listSlug}_cover.jpg')`,
               }}
             >
               {/* add a sticky element */}
