@@ -577,9 +577,9 @@ export default function Home() {
       {/* f */}
       <section
         data-cursor-state="invert"
-        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[600px]  w-full flex flex-col justify-between items-top"
+        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top"
       >
-        <div className="max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
+        <div className="max-w-[1738px] pt-12 lg:pt-15 px-4 w-full mx-auto flex flex-col justify-between h-full">
           {/* <div className="relative w-full h-[90%] pt-16 md:pt-12 md:h-auto gap-12 flex flex-col md:mx-[6rem]"> */}
           <div className="md:pl-20 xxl:pl-32">
             <MCForm isModal={false} />
@@ -620,11 +620,11 @@ export default function Home() {
               <a className="">Contact us ↗</a>
               <a className="">Follow us on instagram ↗</a>
             </div>
-            <div className="h-[100px] mb-8 px-4 lg:px-8 flex w-full justify-between">
-              <div className="relative flex items-center justify-center h-full w-[60px]">
+            <div className="h-[60px] mb-8 px-4 lg:px-8 flex w-full justify-between">
+              <div className="relative flex items-center justify-center h-full w-[40px]">
                 <Image alt="none" fill src={logoOG} />
               </div>
-              <div className="flex flex-row text-6 w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
+              <div className="flex flex-row text-6 w-[65%] ext-[400]  max-w-[600px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
                 <div className="whitespace-nowrap hidden md:flex">Contact us ↗</div>
                 <div className="whitespace-nowrap hidden md:flex">Follow us on instagram ↗</div>
                 <div className="whitespace-nowrap">Here 2023 ©</div>
