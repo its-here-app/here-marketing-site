@@ -23,7 +23,7 @@ const EmailForm = ({ status, message, onValidated }) => {
 
   return (
     <div className="w-full">
-      <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
+      <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[90px] xxl:text-[140px] ">
         Try out here*
       </div>
       <div className="relative mt-[1rem] w-full md:w-[600px] lg:w-[800px]  justify-center ">
