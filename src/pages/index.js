@@ -620,11 +620,11 @@ export default function Home() {
               <a className="">Contact us ↗</a>
               <a className="">Follow us on instagram ↗</a>
             </div>
-            <div className="h-[100px] mb-8 px-4 lg:px-8 flex w-full justify-between">
+            <div className="h-[60px] mb-8 px-4 lg:px-8 flex w-full justify-between">
               <div className="relative flex items-center justify-center h-full w-[40px]">
                 <Image alt="none" fill src={logoOG} />
               </div>
-              <div className="flex flex-row text-6 w-[85%] ext-[400]  max-w-[800px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
+              <div className="flex flex-row text-6 w-[65%] ext-[400]  max-w-[600px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
                 <div className="whitespace-nowrap hidden md:flex">Contact us ↗</div>
                 <div className="whitespace-nowrap hidden md:flex">Follow us on instagram ↗</div>
                 <div className="whitespace-nowrap">Here 2023 ©</div>
