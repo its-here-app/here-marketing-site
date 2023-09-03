@@ -101,10 +101,11 @@ export default function ListPage({
     document.execCommand("copy");
     document.body.removeChild(el);
   };
+  const body = document.querySelector("body");
 
+  
+  
   useEffect(() => {
-    const body = document.querySelector("body");
-
     body.animate(
       [
         {
@@ -157,7 +158,7 @@ export default function ListPage({
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city
-                )}_${listSlug}_cover-${"00"}.jpg')`,
+                )}_${listSlug}_cover.jpg')`,
               }}
             >
               {/* add a sticky element */}
