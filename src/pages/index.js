@@ -577,9 +577,9 @@ export default function Home() {
       {/* f */}
       <section
         data-cursor-state="invert"
-        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[600px]  w-full flex flex-col justify-between items-top"
+        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top"
       >
-        <div className="max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
+        <div className="max-w-[1738px] pt-12 lg:pt-15 px-4 w-full mx-auto flex flex-col justify-between h-full">
           {/* <div className="relative w-full h-[90%] pt-16 md:pt-12 md:h-auto gap-12 flex flex-col md:mx-[6rem]"> */}
           <div className="md:pl-20 xxl:pl-32">
             <MCForm isModal={false} />
