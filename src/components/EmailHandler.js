@@ -37,14 +37,6 @@ const EmailForm = ({ status, message, onSubmitted }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    // get value of email ref
-    // get value of name ref
-    // if email is valid, call onValidated
-    // onValidated will call subscribe(formData)
-    // subscribe(formData) will call mailchimp api
-    // mailchimp api will send email to user
-    // mailchimp api will send email to us
-    // mailchimp api will send email to user
     email &&
       name &&
       email.indexOf("@") > -1 &&
@@ -100,7 +92,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             type="name"
             name="name"
             className="email-input"
-            placeholder="name"
+            placeholder="we'd love to know your name!"
           ></input>
           <button
             className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "

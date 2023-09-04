@@ -18,6 +18,7 @@ import footerGraphic from "/public/graphics/footer-graphic.png";
 // import CarouselWrapper from "../components/CarouselWrapper";
 import Carousel from "../components/Carousel";
 import { ModalForm } from "../components/Modal";
+import MailChimpForm  from "../components/EmailHandler";
 
 export default function Home() {
   const cursorCircle = useRef(null);
@@ -578,61 +579,7 @@ export default function Home() {
         data-cursor-state="invert"
         className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[600px]  w-full flex flex-col justify-between items-top"
       >
-        <div className="max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
-          {/* <div className="relative w-full h-[90%] pt-16 md:pt-12 md:h-auto gap-12 flex flex-col md:mx-[6rem]"> */}
-          <div className="md:pl-20 xxl:pl-32">
-            {/* <MCForm isModal={false} /> */}
-          </div>
-          {/* footer stickers */}
-          <div
-            className="absolute
-              w-[170px] h-[200px]
-              lg:scale-[.8]
-              hidden md:block
-              bottom-[55%] lg:bottom-[55%]
-              right-[15%] md:right-[5%] lg:right-[15%]
-          "
-          >
-            <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
-          </div>
-          <div
-            onClick={openModal}
-            className="cursor-pointer absolute
-              w-[230px] h-[150px]
-              lg:scale-[1.2]
-              bottom-[35%] lg:bottom-[30%]
-              right-[10%] lg:right-[10%]
-          "
-          >
-            <Image
-              alt="none"
-              id="cta-sticker-footer"
-              className="z-30 hidden fade-in scale-[0.95]"
-              data-cursor-state="asterisk"
-              src={stickerStartYourPlaylist}
-            />
-          </div>
-          {/* footer stickers */}
-          {/* footer nav */}
-          <div className="flex flex-col gap-4">
-            <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
-              <a className="">Contact us ↗</a>
-              <a className="">Follow us on instagram ↗</a>
-            </div>
-            <div className="h-[100px] mb-8 px-4 lg:px-8 flex w-full justify-between">
-              <div className="relative flex items-center justify-center h-full w-[60px]">
-                <Image alt="none" fill src={logoOG} />
-              </div>
-              <div className="flex flex-row text-6 w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
-                <div className="whitespace-nowrap hidden md:flex">Contact us ↗</div>
-                <div className="whitespace-nowrap hidden md:flex">Follow us on instagram ↗</div>
-                <div className="whitespace-nowrap">Here 2023 ©</div>
-              </div>
-            </div>
-          </div>
-          {/* /footer nav */}
-          {/* </div> */}
-        </div>
+        <Footer />
       </section>
 
       {/* /footer */}
@@ -652,24 +599,84 @@ export const LoadingDots = () => {
   );
 };
 
+const Footer = () => {
+  return (
+    <div className="max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
+      {/* <div className="relative w-full h-[90%] pt-16 md:pt-12 md:h-auto gap-12 flex flex-col md:mx-[6rem]"> */}
+      <div className="md:pl-20 xxl:pl-32">{/* <MCForm isModal={false} /> */}</div>
+      {/* footer stickers */}
+      <div
+        className="absolute
+        w-[170px] h-[200px]
+        lg:scale-[.8]
+        hidden md:block
+        bottom-[55%] lg:bottom-[55%]
+        right-[15%] md:right-[5%] lg:right-[15%]
+    "
+      >
+        <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
+      </div>
+      <div
+        // onClick={openModal}
+        className="cursor-pointer absolute
+        w-[230px] h-[150px]
+        lg:scale-[1.2]
+        bottom-[35%] lg:bottom-[30%]
+        right-[10%] lg:right-[10%]
+    "
+      >
+        <Image
+          alt="none"
+          id="cta-sticker-footer"
+          className="z-30 hidden fade-in scale-[0.95]"
+          data-cursor-state="asterisk"
+          src={stickerStartYourPlaylist}
+        />
+      </div>
+      <div className="w-full">
+      <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
+        Try out here*
+      </div>
+      <MailChimpForm />
+      </div>
+      <div className="flex flex-col gap-4">
+        <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
+          <a className="">Contact us ↗</a>
+          <a className="">Follow us on instagram ↗</a>
+        </div>
+        <div className="h-[100px] mb-8 px-4 lg:px-8 flex w-full justify-between">
+          <div className="relative flex items-center justify-center h-full w-[60px]">
+            <Image alt="none" fill src={logoOG} />
+          </div>
+          <div className="flex flex-row text-6 w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
+            <div className="whitespace-nowrap hidden md:flex">Contact us ↗</div>
+            <div className="whitespace-nowrap hidden md:flex">Follow us on instagram ↗</div>
+            <div className="whitespace-nowrap">Here 2023 ©</div>
+          </div>
+        </div>
+      </div>
+      {/* /footer nav */}
+      {/* </div> */}
+    </div>
+  );
+};
+
 export const PlaceholderCarousel = () => {
   const x = 10;
   return (
     <div className="touch-pan-x transition-transform  duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] flex flex-row gap-[2vw] pt-[2rem] text-[5rem] mx-auto subtitle-text px-[5px] w-auto">
-    <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
-      <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
-    </div>
-    <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
-      <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
-    </div>
-    <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
-      <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
-    </div>
-    <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
-      <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
-    </div>
-
-
+      <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+        <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
+      </div>
+      <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+        <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
+      </div>
+      <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+        <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
+      </div>
+      <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
+        <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
+      </div>
     </div>
   );
 };
