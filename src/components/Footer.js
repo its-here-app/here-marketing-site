@@ -7,7 +7,7 @@ import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
 
 export const Footer = () => {
   return (
-    <div className="relative bg-black max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
+    <div className="relative bg-[--black] max-w-[1738px] pt-12 lg:pt-15 px-4 w-full mx-auto flex flex-col justify-between h-full">
       <div
         className="absolute
         w-[170px] h-[200px]
@@ -45,16 +45,16 @@ export const Footer = () => {
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
-          <a className="">Contact us ↗</a>
-          <a className="">Follow us on instagram ↗</a>
+          <a href="mailto:team@itshere.app">Contact us ↗</a>
+          <a href="https://instagram.com/itshere.app" target="blank" className="">Follow us on instagram ↗</a>
         </div>
         <div className="h-[100px] mb-8 px-4 lg:px-8 flex w-full justify-between">
           <div className="relative flex items-center justify-center h-full w-[60px]">
             <Image alt="none" fill src={logoOG} />
           </div>
           <div className="flex flex-row text-6 w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
-            <div className="whitespace-nowrap hidden md:flex">Contact us ↗</div>
-            <div className="whitespace-nowrap hidden md:flex">Follow us on instagram ↗</div>
+            <a href="mailto:team@itshere.app" className="cursor-none whitespace-nowrap hidden md:flex">Contact us ↗</a>
+            <a href="https://instagram.com/itshere.app" target="blank" className="cursor=none whitespace-nowrap hidden md:flex">Follow us on instagram ↗</a>
             <div className="whitespace-nowrap">Here 2023 ©</div>
           </div>
         </div>

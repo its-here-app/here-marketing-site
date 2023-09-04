@@ -3,6 +3,7 @@ import Head from "next/head";
 import Modal from "react-modal";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
+import classNames from "classnames";
 
 import SVG from "react-inlinesvg";
 
@@ -275,8 +276,10 @@ export default function Home() {
         onClick={openModal}
         data-cursor-state="asterisk"
         ref={ctaSticker}
-        style={{ zIndex: "2" }}
-        className="hover:drop-shadow-2xl md:block fixed right-[5%] top-[75%] md:w-[250px] md:h-[200px]"
+        className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[75%] md:w-[250px] md:h-[200px]",
+        {
+          "opacity-0": modalIsOpen
+        })}
       >
         <SVG id="cta-sticker" className="group w-full h-full" src="/stickers/sticker-cta.svg" />
       </div>
@@ -462,7 +465,7 @@ export default function Home() {
         <div
           className="absolute
               w-[140px] h-[140px]
-              z-[1]
+              z-0
               lg:scale-[1.25] md:scale-[1.2]
               top-[28%] right-[-6%]
               lg:top-[12%] lg:right-[20%]
@@ -506,8 +509,7 @@ export default function Home() {
 
       <section
         data-cursor-state="invert"
-        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[600px]  w-full flex flex-col justify-between items-top"
-      >
+        assName="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top">
         <Footer />
       </section>
     </div>

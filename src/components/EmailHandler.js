@@ -64,7 +64,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
   };
 
   return (
-    <div className="relative mt-[1rem] w-full md:w-[600px] lg:w-[800px] justify-center fade-in-from-right">
+    <div className="relative mt-[1rem] w-full justify-center">
       {currentSlide === 0 && (
         <form>
           <input
@@ -77,7 +77,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             placeholder="Enter email for exclusive access"
           ></input>
           <button
-            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end"
+            className="email-button"
             onClick={(e) => nextFormStep(e)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -101,7 +101,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             placeholder="we'd love to know your name!"
           ></input>
           <button
-            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end"
+            className="email-button"
             onClick={(e) => submit(e)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
