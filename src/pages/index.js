@@ -261,9 +261,10 @@ export default function Home() {
         <meta property="og:image:alt" content="Here*" />
         {/* <meta name="robots" content="index,follow" /> */}
       </Head>
+
       <Modal
         isOpen={modalIsOpen}
-        className="cursor-none w-[95%] md:w-[944px]  mt-[30vh] p-4 md:p-8 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
+        className="cursor-none w-[95%] mt-[140px] md:w-[944px] p-4 md:p-8 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >

@@ -14,8 +14,7 @@ export const Footer = () => {
         lg:scale-[.8]
         hidden md:block
         bottom-[55%] lg:bottom-[55%]
-        right-[15%] md:right-[5%] lg:right-[15%]
-    "
+        right-[15%] md:right-[5%] lg:right-[15%]"
       >
         <Image alt="none" fill className="absolute top-0 pop-in" src={stickerLockupOcean} />
       </div>
