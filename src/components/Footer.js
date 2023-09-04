@@ -37,10 +37,12 @@ export const Footer = () => {
 
       <div className="w-full">
         <div className="md:pl-20 xxl:pl-32">
-          <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
+          <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[80px] lg:text-[90px] xxl:text-[140px] ">
             Try out here*
           </div>
-          <MailChimpForm />
+          <div className="relative mt-[1rem] w-full md:w-[600px] lg:w-[800px]  justify-center">
+            <MailChimpForm />
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-4">
@@ -48,11 +50,11 @@ export const Footer = () => {
           <a href="mailto:team@itshere.app">Contact us ↗</a>
           <a href="https://instagram.com/itshere.app" target="blank" className="">Follow us on instagram ↗</a>
         </div>
-        <div className="h-[100px] mb-8 px-4 lg:px-8 flex w-full justify-between">
-          <div className="relative flex items-center justify-center h-full w-[60px]">
+        <div className="h-[60px] mb-8 px-4 lg:px-8 flex w-full justify-between">
+          <div className="relative flex items-center justify-center h-full w-[40px]">
             <Image alt="none" fill src={logoOG} />
           </div>
-          <div className="flex flex-row text-6 w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
+          <div className="flex flex-row text-6 w-[65%] ext-[400]  max-w-[600px] h-full items-center md:justify-between justify-end text-white font-[Golos]">
             <a href="mailto:team@itshere.app" className="cursor-none whitespace-nowrap hidden md:flex">Contact us ↗</a>
             <a href="https://instagram.com/itshere.app" target="blank" className="cursor=none whitespace-nowrap hidden md:flex">Follow us on instagram ↗</a>
             <div className="whitespace-nowrap">Here 2023 ©</div>

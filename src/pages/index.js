@@ -276,7 +276,7 @@ export default function Home() {
         onClick={openModal}
         data-cursor-state="asterisk"
         ref={ctaSticker}
-        className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[75%] md:w-[250px] md:h-[200px]",
+        className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] w-[180px] md:w-[250px] md:h-[200px]",
         {
           "absolute hidden": modalIsOpen,
         })}
@@ -509,7 +509,7 @@ export default function Home() {
 
       <section
         data-cursor-state="invert"
-        assName="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top">
+        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top">
         <Footer />
       </section>
     </div>

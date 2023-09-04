@@ -9,7 +9,7 @@
     background-color: transparent;
   }
   .email-button {
-    @apply cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[12px] h-full justify-end;
+    @apply cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[1.2rem] h-full justify-end;
   }
   .email-input::placeholder {
     color: var(--off-white);
