@@ -11,8 +11,6 @@ import tile3Before from "/public/graphics/tile3_before.png";
 import tile3After from "/public/graphics/tile3_after.png";
 import footerGraphic from "/public/graphics/footer-graphic.png";
 
-// import MCForm from "../components/EmailHandler";
-// import CarouselWrapper from "../components/CarouselWrapper";
 import Carousel from "../components/Carousel";
 import { ModalForm } from "../components/Modal";
 import { Footer } from "../components/Footer";
@@ -31,7 +29,62 @@ export default function Home() {
     top: 400,
   });
 
-  const tile2List = [
+  const openModal = () => {
+    setModalOpen(true);
+    cursorCircle.current.classList.add("invert");
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    cursorCircle.current.classList.remove("invert");
+  };
+
+  const debounce = (callback, wait) => {
+    let timeoutId = null;
+    return (...args) => {
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => {
+        callback.apply(null, args);
+      }, wait);
+    };
+  };
+
+  const handleScroll = debounce((e) => {
+    const y = window.scrollY;
+    setScrollPosition(y);
+  }, 1);
+
+  const getCarouselData = async () => {
+    // set isloading to false on success
+    const res = await fetch("/api/sheets", {
+      next: {
+        revalidate: 3600,
+      },
+    });
+    const data = await res.json();
+    let featured = data.lists.filter((list) => list.isFeatured === "yes");
+    setCarouselData(featured);
+  };
+
+  const animateBodyFade = (context) => {
+    context.animate(
+      [
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+      ],
+      {
+        duration: 500,
+        easing: "ease-in-out",
+        fill: "forwards",
+      }
+    );
+  };
+
+  const flipperAnimationList = [
     {
       title: "New York City",
       img: "newyork.png",
@@ -59,63 +112,23 @@ export default function Home() {
     },
   ];
 
-  const openModal = () => {
-    setModalOpen(true);
-    cursorCircle.current.classList.add("invert");
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    cursorCircle.current.classList.remove("invert");
-  };
-
-  const debounce = (callback, wait) => {
-    let timeoutId = null;
-    return (...args) => {
-      window.clearTimeout(timeoutId);
-      timeoutId = window.setTimeout(() => {
-        callback.apply(null, args);
-      }, wait);
-    };
-  };
-
-  const handleScroll = debounce((e) => {
-    const y = window.scrollY;
-    setScrollPosition(y);
-  }, 1);
-
-  const tileFlipAnimation = (e) => {
-    const tile2cities = document.querySelectorAll(".tile-2-inner");
+  const registerAnimationListeners = () => {
+    const flipperAnimationElement = document.querySelectorAll(".tile-2-inner");
     let current = 0;
     let prev = 0;
     setInterval(() => {
-      tile2cities[prev].classList.remove("active");
-      current < tile2cities.length - 1 ? current++ : (current = 0);
-      tile2cities[current].classList.add("active");
+      flipperAnimationElement[prev].classList.remove("active");
+      current < flipperAnimationElement.length - 1 ? current++ : (current = 0);
+      flipperAnimationElement[current].classList.add("active");
       prev = current;
     }, 850);
-  };
 
-  const getCarouselData = async () => {
-    // set isloading to false on success
-    const res = await fetch("/api/sheets", {
-      next: {
-        revalidate: 3600,
-      },
-    });
-    const data = await res.json();
-    let featured = data.lists.filter((list) => list.isFeatured === "yes");
-    setCarouselData(featured);
-  };
-
-  useEffect(() => {
-    tileFlipAnimation();
-    const body = document.querySelector("body");
     var timer = 0;
     // set cursor to arrow on load
     window.addEventListener("scroll", () => {
       handleScroll();
     });
+
     document.querySelectorAll('[data-fade-in-group="1"]').forEach((el, i) => {
       el.classList.add("fade-in");
       el.style.animationDelay = `${(timer += i * 85)}ms`;
@@ -124,29 +137,20 @@ export default function Home() {
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
+  }
 
+  useEffect(() => {
+    const body = document.querySelector("body");
+    registerAnimationListeners();
+    // register modal
     Modal.setAppElement("body");
-
+    // get carousel data, handle loading state
     getCarouselData().then(() => {
       setHydrated(true);
       setIsLoading(false);
     });
-
-    body.animate(
-      [
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-        },
-      ],
-      {
-        duration: 500,
-        easing: "ease-in-out",
-        fill: "forwards",
-      }
-    );
+    // animate in body on load
+    animateBodyFade(body);
   }, []);
 
   useEffect(() => {
@@ -169,8 +173,6 @@ export default function Home() {
     const scrollElements = document.querySelectorAll("[data-scroll-visited]");
     const scrollYElements = document.querySelectorAll("[data-start-y]");
     const bgElements = document.querySelectorAll("[data-bg]");
-    // const ctaSticker = document.querySelector("#cta-sticker");
-    const ctaStickerFooter = document.querySelector("#cta-sticker-footer");
 
     // if your scroll position is 1000px from the bottom, fade out the scroll sticker
     if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 400) {
@@ -209,34 +211,19 @@ export default function Home() {
     });
   }, [scrollPosition]);
 
+
   useEffect(() => {
-    if (hovering === "ul-arrow") {
-      cursorCircle.current.classList.add(`cursor-ul-arrow`);
-    } else {
-      cursorCircle.current.classList.remove(`cursor-ul-arrow`);
+    const manageHoverState = (state) => {
+      if(hovering === state) {
+        cursorCircle.current.classList.add(`cursor-${state}`);
+      } else {
+        cursorCircle.current.classList.remove(`cursor-${state}`);
+      }
     }
-    if (hovering === "asterisk") {
-      cursorCircle.current.classList.add("cursor-asterisk");
-    } else {
-      cursorCircle.current.classList.remove("cursor-asterisk");
-    }
-    if (hovering === "invert") {
-      cursorCircle.current.classList.add("cursor-invert");
-    } else {
-      cursorCircle.current.classList.remove("cursor-invert");
-    }
-    // const states = {
-    //   "ul-arrow": "cursor-ul-arrow",
-    //   asterisk: "cursor-asterisk",
-    //   invert: "cursor-invert",
-    // };
-    // states[hovering]
-    //   ? cursorCircle.current.classList.add(states[hovering])
-    //   : cursorCircle.current.classList.remove(
-    //       "cursor-ul-arrow",
-    //       "cursor-asterisk",
-    //       "cursor-invert"
-    //     );
+    const hoverStates = ["ul-arrow", "asterisk", "invert"];
+    hoverStates.forEach((state) => {
+      manageHoverState(state);
+    });
   }, [hovering]);
 
   const handleMouseMove = (e) => {
@@ -293,9 +280,7 @@ export default function Home() {
       >
         <SVG id="cta-sticker" className="group w-full h-full" src="/stickers/sticker-cta.svg" />
       </div>
-      {/* cta sticker */}
-      {/* <Cursor MousePosition={MousePosition} /> */}
-      {/* header */}
+
       <section
         data-bg="off-white"
         className="w-full flex max-w-[1738px] mx-auto items-center justify-between px-4 md:px-8 py-6 lg:py-8"
@@ -310,11 +295,9 @@ export default function Home() {
         </div>
         <div className="flex items-center justify-center">{/* hamburger menu */}</div>
       </section>
-      {/* /header */}
-      {/* hero */}
+
       <section className="h-max max-w-[1738px] mx-auto flex-col flex items-left justify-start w-full px-4 ">
         <div className="flex flex-col font-[Radio] lg:mx-[5vw] leading-105 tracking-6 pt-[4vh] text-[15vw] md:px-[6vw] xxl:px-0 md:text-[10vw] lg:text-[6.5vw] xxl:text-[9rem]">
-          {/* title */}
           <span data-fade-in-group="1" className="whitespace-nowrap md:pl-[10%] ">
             One place —{" "}
           </span>
@@ -322,9 +305,7 @@ export default function Home() {
             <span data-fade-in-group="1">for&nbsp;</span>
             <span data-fade-in-group="1">fave spots&nbsp;</span>
           </div>
-          {/* /title */}
         </div>
-        {/* subtitle */}
 
         <div className="flex w-full md:w-[365px] flex-col lg:ml-[19vw] xxl:ml-[15%] pt-12 text-6 md:ml-[10vw]">
           <span data-fade-in-group="1" className="font-[Golos] text-[1.3rem] lg:text-[1.5rem]">
@@ -340,36 +321,20 @@ export default function Home() {
             Start your playlist
           </button>
         </div>
-
-        {/* /subtitle */}
-        {/* <LandingStickers /> */}
       </section>
-      {/* /hero */}
 
-      {/* section 2 */}
       <section data-bg="neon" className="relative h-max pt-12 flex items-top justify-center w-full">
-        {isLoading ? (
-          // <LoadingDots />
-          <PlaceholderCarousel />
-        ) : (
-          // <PlaceholderCarousel />
-          <Carousel lists={carouselData} />
-        )}
+        {isLoading ? <PlaceholderCarousel /> : <Carousel lists={carouselData} />}
       </section>
-      {/* section 2 */}
 
-      {/* section tile 1 */}
       <section data-scroll-visited="false" data-bg="neon" className="section-tile">
-        {/* tile */}
         <div className="tile">
-          {/* tile-image */}
           <div data-start-y="15" className="tile-image">
             <div className="w-[95%] md:w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
                 style={{ backgroundImage: `url('/photos/tile1.png')` }}
               >
-                {/* tile animation container */}
                 <div
                   id="animation-container"
                   className="hidden absolute flex flex-col items-center justify-center w-full h-full"
@@ -395,13 +360,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                {/* /tile animation container */}
               </div>
             </div>
-            {/* /title */}
           </div>
-          {/* /tile-image */}
-          {/* tile-text */}
           <div data-start-y="10" className="tile-text">
             <div className="tile-text-top">
               <div>
@@ -415,22 +376,15 @@ export default function Home() {
               One link for anytime you’re asked for your fave city spots
             </div>
           </div>
-          {/* /tile-text */}
         </div>
-        {/* /tile */}
       </section>
-      {/* /section tile 1  */}
 
-      {/* section tile 2 */}
       <section data-scroll-visited="false" data-bg="neon" className="section-tile">
-        {/* tile */}
         <div className="tile">
-          {/* tile-image */}
           <div data-start-y="20" className="tile-image ">
             <div className="w-full h-full relative items-center justify-center aspect-[1/1.23] bg-center bg-cover ">
-              {/* todo: add scroll watcher to trigger animation */}
               <div className="tile-2-outer">
-                {tile2List.map((item, index) => {
+                {flipperAnimationList.map((item, index) => {
                   return (
                     <div
                       className="tile-2-inner absolute"
@@ -447,12 +401,8 @@ export default function Home() {
                   );
                 })}
               </div>
-              {/* tile animation */}
             </div>
-            {/* /title */}
           </div>
-          {/* /tile-image */}
-          {/* tile-text */}
           <div data-start-y="40" className="tile-text grid-reverse text-reverse">
             <div className="tile-text-top">
               <div>
@@ -464,17 +414,11 @@ export default function Home() {
               One place to plan, search, cross&#8209;reference and find experiences curated for you.
             </div>
           </div>
-          {/* /tile-text */}
         </div>
-        {/* /tile */}
       </section>
-      {/* /section tile 2  */}
 
-      {/* section tile 3 */}
       <section data-scroll-visited="false" data-bg="neon" className="section-tile">
-        {/* tile */}
         <div className="tile">
-          {/* tile-image */}
           <div data-start-y="15" className="tile-image">
             <div className="w-full h-full items-center">
               <div
@@ -491,14 +435,10 @@ export default function Home() {
                   <div className="absolute pop-in-tile3-after w-[60%] h-[50%]">
                     <Image src={tile3After} fill alt="" />
                   </div>
-                  {/* content here */}
                 </div>
               </div>
             </div>
-            {/* /title */}
           </div>
-          {/* /tile-image */}
-          {/* tile-text */}
           <div data-start-y="30" className="tile-text">
             <div className="tile-text-top">
               <div>Auto&#8209;populate from </div>
@@ -512,13 +452,9 @@ export default function Home() {
               Start your city playlist with notes, google docs, instagram, or maps.
             </div>
           </div>
-          {/* /tile-text */}
         </div>
-        {/* /tile */}
       </section>
-      {/* /section tile 3  */}
 
-      {/* bottom CTA */}
       <section
         data-bg="off-white"
         className="relative h-auto px-4 md:px-12  lg:mx-auto  w-full xl:w-[1738px] mt-40 flex items-center"
@@ -536,7 +472,6 @@ export default function Home() {
           <Image alt="none" fill className="pop-in" src={stickerLockupOcean} />
         </div>
         <div className="text-[Radio] tracking-1 md:tracking-3 pb-16 md:pb-40 w-full mx-0 flex flex-col h-full items-between justify-start font-[Radio] leading-105 text-[15vw] md:text-[8.2vw] xxl:text-[168px]">
-          {/* title */}
           <div data-start-y="80" className="w-full flex justify-start">
             <span className="md:w-[50vw] max-w-[900px]">For the spots you love</span>
           </div>
@@ -566,21 +501,15 @@ export default function Home() {
               <Image src={footerGraphic} alt="" />
             </div>
           </div>
-
-          {/* /title */}
         </div>
       </section>
-      {/* /bottom CTA  */}
 
-      {/* footer */}
       <section
         data-cursor-state="invert"
         className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[600px]  w-full flex flex-col justify-between items-top"
       >
         <Footer />
       </section>
-
-      {/* /footer */}
     </div>
   );
 }

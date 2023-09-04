@@ -32,20 +32,26 @@ const EmailForm = ({ status, message, onSubmitted }) => {
     console.log("status...", status);
     if (status === "success") {
       console.log("success");
+      clearFields();
     }
   }, [status]);
+
+    const clearFields = () => {
+        setName('');
+        setEmail('');
+    }
 
   const submit = (e) => {
     e.preventDefault();
     email &&
       name &&
       email.indexOf("@") > -1 &&
-      // console.log('fake submitting')
       onSubmitted({
         EMAIL: email,
         MERGE1: name,
-        // FNAME: name.value,
       });
+    setCurrentSlide(null);
+
   };
 
   const nextFormStep = (e) => {
@@ -71,7 +77,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             placeholder="Enter email for exclusive access"
           ></input>
           <button
-            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
+            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end"
             onClick={(e) => nextFormStep(e)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -95,8 +101,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             placeholder="we'd love to know your name!"
           ></input>
           <button
-            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
-            // type submit
+            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end"
             onClick={(e) => submit(e)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -106,22 +111,10 @@ const EmailForm = ({ status, message, onSubmitted }) => {
           >
             <Image alt="none" fill src={arrowSubmit} />
           </button>
-          {/* <input
-            autoComplete="off"
-            ref={name}
-            type="name"
-            name="name"
-            className="email-input"
-            placeholder="we'd love to know your name!"
-          ></input>
-          <button
-            className="cursor-none hover:scale-[1.25] transition-all w-[40px] lg:w-[50px] absolute right-[20px] h-full items-top justify-end "
-            onClick={submit}
-          >
-            <Image alt="none" fill src={arrowSubmit} />
-          </button> */}
         </form>
       )}
+      {/* {currentSlide === null && status === "success" && (
+      )} */}
     </div>
   );
 };
