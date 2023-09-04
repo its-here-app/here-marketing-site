@@ -4,11 +4,8 @@ import Modal from "react-modal";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 
-import logoOG from "/public/graphics/logo-og.svg";
-import logoLockup from "/public/graphics/logo-lockup.svg";
 import SVG from "react-inlinesvg";
 
-import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playlist.svg";
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
 import tile3Before from "/public/graphics/tile3_before.png";
 import tile3After from "/public/graphics/tile3_after.png";
@@ -18,7 +15,7 @@ import footerGraphic from "/public/graphics/footer-graphic.png";
 // import CarouselWrapper from "../components/CarouselWrapper";
 import Carousel from "../components/Carousel";
 import { ModalForm } from "../components/Modal";
-import MailChimpForm from "../components/EmailHandler";
+import { Footer } from "../components/Footer";
 
 export default function Home() {
   const cursorCircle = useRef(null);
@@ -26,7 +23,7 @@ export default function Home() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [modalIsOpen, setModalOpen] = useState(false);
-  const [hovering, setHovering] = useState(null);
+  const [hovering, setHovering] = useState("ul-arrow");
   const [carouselData, setCarouselData] = useState(null);
   const [hydrated, setHydrated] = useState(false);
   const [MousePosition, setMousePosition] = useState({
@@ -213,33 +210,33 @@ export default function Home() {
   }, [scrollPosition]);
 
   useEffect(() => {
-    // if (hovering === "ul-arrow") {
-    //   cursorCircle.current.classList.add(`cursor-ul-arrow`);
-    // } else {
-    //   cursorCircle.current.classList.remove(`cursor-ul-arrow`);
-    // }
-    // if (hovering === "asterisk") {
-    //   cursorCircle.current.classList.add("cursor-asterisk");
-    // } else {
-    //   cursorCircle.current.classList.remove("cursor-asterisk");
-    // }
-    // if (hovering === "invert") {
-    //   cursorCircle.current.classList.add("cursor-invert");
-    // } else {
-    //   cursorCircle.current.classList.remove("cursor-invert");
-    // }
-    const states = {
-      "ul-arrow": "cursor-ul-arrow",
-      asterisk: "cursor-asterisk",
-      invert: "cursor-invert",
-    };
-    states[hovering]
-      ? cursorCircle.current.classList.add(states[hovering])
-      : cursorCircle.current.classList.remove(
-          "cursor-ul-arrow",
-          "cursor-asterisk",
-          "cursor-invert"
-        );
+    if (hovering === "ul-arrow") {
+      cursorCircle.current.classList.add(`cursor-ul-arrow`);
+    } else {
+      cursorCircle.current.classList.remove(`cursor-ul-arrow`);
+    }
+    if (hovering === "asterisk") {
+      cursorCircle.current.classList.add("cursor-asterisk");
+    } else {
+      cursorCircle.current.classList.remove("cursor-asterisk");
+    }
+    if (hovering === "invert") {
+      cursorCircle.current.classList.add("cursor-invert");
+    } else {
+      cursorCircle.current.classList.remove("cursor-invert");
+    }
+    // const states = {
+    //   "ul-arrow": "cursor-ul-arrow",
+    //   asterisk: "cursor-asterisk",
+    //   invert: "cursor-invert",
+    // };
+    // states[hovering]
+    //   ? cursorCircle.current.classList.add(states[hovering])
+    //   : cursorCircle.current.classList.remove(
+    //       "cursor-ul-arrow",
+    //       "cursor-asterisk",
+    //       "cursor-invert"
+    //     );
   }, [hovering]);
 
   const handleMouseMove = (e) => {
@@ -250,6 +247,7 @@ export default function Home() {
     <div
       onMouseMove={handleMouseMove}
       id="home-body"
+      // set hovering
       className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto transition-bg bg-[--current-bg]"
     >
       <Head>
@@ -355,7 +353,7 @@ export default function Home() {
           <PlaceholderCarousel />
         ) : (
           // <PlaceholderCarousel />
-          <Carousel lists={carouselData} />
+          <Carousel lists={carouselData}  />
         )}
       </section>
       {/* section 2 */}
@@ -599,67 +597,6 @@ export const LoadingDots = () => {
   );
 };
 
-const Footer = () => {
-  return (
-    <div className="max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
-      <div
-        className="absolute
-        w-[170px] h-[200px]
-        lg:scale-[.8]
-        hidden md:block
-        bottom-[55%] lg:bottom-[55%]
-        right-[15%] md:right-[5%] lg:right-[15%]
-    "
-      >
-        <Image alt="none" fill className="pop-in " src={stickerLockupOcean} />
-      </div>
-      <div
-        // onClick={openModal}
-        className="cursor-pointer absolute
-        w-[230px] h-[150px]
-        lg:scale-[1.2]
-        bottom-[35%] lg:bottom-[30%]
-        right-[10%] lg:right-[10%]
-    "
-      >
-        <Image
-          alt="none"
-          id="cta-sticker-footer"
-          className="z-30 hidden fade-in scale-[0.95]"
-          data-cursor-state="asterisk"
-          src={stickerStartYourPlaylist}
-        />
-      </div>
-      
-      <div className="w-full">
-        <div className="md:pl-20 xxl:pl-32">
-        <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
-          Try out here*
-        </div>
-        <MailChimpForm />
-          </div>
-      </div>
-      <div className="flex flex-col gap-4">
-        <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
-          <a className="">Contact us ↗</a>
-          <a className="">Follow us on instagram ↗</a>
-        </div>
-        <div className="h-[100px] mb-8 px-4 lg:px-8 flex w-full justify-between">
-          <div className="relative flex items-center justify-center h-full w-[60px]">
-            <Image alt="none" fill src={logoOG} />
-          </div>
-          <div className="flex flex-row text-6 w-[85%] ext-[400]  max-w-[900px] h-full items-center md:justify-between justify-end  text-white font-[Golos]">
-            <div className="whitespace-nowrap hidden md:flex">Contact us ↗</div>
-            <div className="whitespace-nowrap hidden md:flex">Follow us on instagram ↗</div>
-            <div className="whitespace-nowrap">Here 2023 ©</div>
-          </div>
-        </div>
-      </div>
-      {/* /footer nav */}
-      {/* </div> */}
-    </div>
-  );
-};
 
 export const PlaceholderCarousel = () => {
   const x = 10;
