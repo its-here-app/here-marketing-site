@@ -278,7 +278,7 @@ export default function Home() {
         ref={ctaSticker}
         className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[75%] md:w-[250px] md:h-[200px]",
         {
-          "opacity-0": modalIsOpen
+          "absolute hidden": modalIsOpen,
         })}
       >
         <SVG id="cta-sticker" className="group w-full h-full" src="/stickers/sticker-cta.svg" />
