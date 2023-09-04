@@ -239,7 +239,7 @@ export default function ListPage({
                       className=""
                     />
                   </div>
-                  <div className="z-20 flex items-center justify-center opacity-[.2]">
+                  <a href="" className="z-20 flex items-center justify-center opacity-[.2]">
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map view.svg`}
                       width={24}
@@ -247,7 +247,7 @@ export default function ListPage({
                       title="map-view"
                       className="fill-none stroke-black"
                     />
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -259,6 +259,7 @@ export default function ListPage({
                 const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city
                 )}_${listSlug}_${slugify(spot.name)}_${"00"}.jpg`;
+             
                 return (
                   <Spot
                     key={spot.name}
@@ -267,6 +268,7 @@ export default function ListPage({
                     // if spot has ratings, pass in ratings
                     ratings={spot.ratings && spot.ratings}
                     type={spot.type}
+                    googleMapsUrl={spot.googleMapsUrl}
                     image={url}
                   />
                 );
@@ -299,7 +301,7 @@ export default function ListPage({
   );
 }
 
-const Spot = ({ title, description, type, image, ratings }) => {
+const Spot = ({ title, description, type, image, ratings, googleMapsUrl}) => {
   return (
     <div className="relative flex w-full flex-row  min-h-[80px]">
       <div className="flex-shrink-0 min-w-[5.5rem] w-[24%] md:w-[17%] lg:w-[15%] aspect-square">
@@ -319,9 +321,9 @@ const Spot = ({ title, description, type, image, ratings }) => {
           {description && <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
             <div className="hidden md:line-clamp-2">{description}</div>
           </div> }
-          <div className="flex md:hidden">
+          {ratings && <div className="flex md:hidden">
             <Ratings rating={ratings} />
-          </div>
+          </div>}
 
           <div className="flex flex-row items-center gap-x-1">
             <div className="hidden md:flex leading-100">
@@ -333,17 +335,18 @@ const Spot = ({ title, description, type, image, ratings }) => {
           </div>
         </div>
         {/* icon right */}
-        <div className="flex items-center content-center justify-self-end">
-          <div className="rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
+        <a href={`${googleMapsUrl}`} target="_blank" rel="noopener noreferrer"
+         className="flex items-center content-center justify-self-end">
+          <div className="group hover:bg-[--neon]  rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
             <SVG
-              src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map view.svg`}
+              src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Mappy.svg`}
               width={30}
               height="auto"
               title="Share"
-              className="fill-none stroke-white"
+              className="group-hover:stroke-black fill-none stroke-[.5px] stroke-white"
             />
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );
