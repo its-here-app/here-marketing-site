@@ -18,7 +18,7 @@ import footerGraphic from "/public/graphics/footer-graphic.png";
 // import CarouselWrapper from "../components/CarouselWrapper";
 import Carousel from "../components/Carousel";
 import { ModalForm } from "../components/Modal";
-import MailChimpForm  from "../components/EmailHandler";
+import MailChimpForm from "../components/EmailHandler";
 
 export default function Home() {
   const cursorCircle = useRef(null);
@@ -633,11 +633,14 @@ const Footer = () => {
           src={stickerStartYourPlaylist}
         />
       </div>
+      
       <div className="w-full">
-      <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
-        Try out here*
-      </div>
-      <MailChimpForm />
+        <div className="md:pl-20 xxl:pl-32">
+        <div className="w-full tracking-[-0.03em] font-[Radio] text-white text-[70px] md:text-[100px] lg:text-[110px] xxl:text-[140px] ">
+          Try out here*
+        </div>
+        <MailChimpForm />
+          </div>
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
