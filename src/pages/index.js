@@ -602,9 +602,6 @@ export const LoadingDots = () => {
 const Footer = () => {
   return (
     <div className="max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
-      {/* <div className="relative w-full h-[90%] pt-16 md:pt-12 md:h-auto gap-12 flex flex-col md:mx-[6rem]"> */}
-      <div className="md:pl-20 xxl:pl-32">{/* <MCForm isModal={false} /> */}</div>
-      {/* footer stickers */}
       <div
         className="absolute
         w-[170px] h-[200px]
