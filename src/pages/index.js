@@ -3,7 +3,6 @@ import Head from "next/head";
 import Modal from "react-modal";
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
-import classNames from "classnames";
 
 import logoOG from "/public/graphics/logo-og.svg";
 import logoLockup from "/public/graphics/logo-lockup.svg";
@@ -15,9 +14,10 @@ import tile3Before from "/public/graphics/tile3_before.png";
 import tile3After from "/public/graphics/tile3_after.png";
 import footerGraphic from "/public/graphics/footer-graphic.png";
 
-import MCForm from "../components/EmailHandler";
+// import MCForm from "../components/EmailHandler";
 // import CarouselWrapper from "../components/CarouselWrapper";
 import Carousel from "../components/Carousel";
+import { ModalForm } from "../components/Modal";
 
 export default function Home() {
   const cursorCircle = useRef(null);
@@ -281,7 +281,7 @@ export default function Home() {
         contentLabel="Example Modal"
       >
         <button onClick={closeModal}>close</button>
-        <MCForm isModal={true} />
+        <ModalForm isModal={true} />
       </Modal>
       <div ref={cursorCircle} className="circle"></div>
       {/* cta sticker */}
@@ -573,7 +573,7 @@ export default function Home() {
       </section>
       {/* /bottom CTA  */}
 
-      {/* f */}
+      {/* footer */}
       <section
         data-cursor-state="invert"
         className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[600px]  w-full flex flex-col justify-between items-top"
@@ -581,7 +581,7 @@ export default function Home() {
         <div className="max-w-[1738px] pt-12 lg:pt-20 px-4 w-full mx-auto flex flex-col justify-between h-full">
           {/* <div className="relative w-full h-[90%] pt-16 md:pt-12 md:h-auto gap-12 flex flex-col md:mx-[6rem]"> */}
           <div className="md:pl-20 xxl:pl-32">
-            <MCForm isModal={false} />
+            {/* <MCForm isModal={false} /> */}
           </div>
           {/* footer stickers */}
           <div
@@ -656,7 +656,6 @@ export const PlaceholderCarousel = () => {
   const x = 10;
   return (
     <div className="touch-pan-x transition-transform  duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] flex flex-row gap-[2vw] pt-[2rem] text-[5rem] mx-auto subtitle-text px-[5px] w-auto">
-  
     <div className="w-[80vw] shimmer hover:scale-[1.02] md:w-[40vw] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  rounded-[1rem] transition-all">
       <div className=" cursor-none scale(110%) select-none bg-cover bg-gray-400 bg-center w-full h-full transition-all ease-in duration-[1200ms] items-center justify-center grid grid-cols-1 grid-rows-3"></div>
     </div>

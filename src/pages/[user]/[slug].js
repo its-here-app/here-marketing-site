@@ -96,16 +96,13 @@ export default function ListPage({
     el.style.position = "absolute";
     el.style.left = "-9999px";
     el.style.opacity = "0";
-    
     el.select();
     document.execCommand("copy");
     document.body.removeChild(el);
   };
-  const body = document.querySelector("body");
 
-  
-  
   useEffect(() => {
+    const body = document.querySelector("body");
     body.animate(
       [
         {
@@ -200,7 +197,7 @@ export default function ListPage({
                     <div
                       className="w-[1.25rem] md:w[1.75rem] mr-2 md:h[1.75rem] h-[1.25rem] bg-cover rounded-full"
                       style={{
-                        backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/profile-pics/${username}.jpg')`,
+                        backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/_profile-pics/${username}.jpg')`,
                       }}
                     ></div>
 
@@ -261,7 +258,7 @@ export default function ListPage({
               {parsedContent.map((spot, i) => {
                 const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city
-                )}_${listSlug}_${slugify(spot.name)}-${"00"}.jpg`;
+                )}_${listSlug}_${slugify(spot.name)}_${"00"}.jpg`;
                 return (
                   <Spot
                     key={spot.name}

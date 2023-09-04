@@ -15,7 +15,7 @@ export const Footer = () => {
     <div className="max-w-[1738px] pt-[3rem] lg:pt-[5rem] px-[1rem] w-full mx-auto flex flex-col justify-between h-full">
       {/* <div className="relative w-full h-[90%] pt-[4rem] md:pt-[3rem] md:h-auto gap-[3rem] flex flex-col md:mx-[6rem]"> */}
       <div className="md:pl-[5rem] xxl:pl-[8rem]">
-        <MCForm isModal={false} />
+        <MailChimpForm />
       </div>
       {/* footer stickers */}
       <div

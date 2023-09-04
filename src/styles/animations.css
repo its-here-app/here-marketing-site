@@ -164,6 +164,9 @@
   .fade-in-slide-up {
     animation: fade-in-slide-up 800ms ease-in-out both;
   }
+  /* .fade-out-to-left {
+    animation: fade-out-slide-left 800ms ease-in-out both;
+  } */
   .fade-in-from-right {
     animation: fade-in-from-right 800ms ease-in-out both;
   }
