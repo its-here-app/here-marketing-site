@@ -296,7 +296,11 @@ export default function ListPage({
           </section>
         </div>
       </div>
-      <Footer />
+      <section
+        data-cursor-state="invert"
+        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top">
+        <Footer />
+      </section>
     </>
   );
 }
