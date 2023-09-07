@@ -6,7 +6,7 @@ import stickerLocalRecs from "/public/stickers/sticker-local-recs.svg";
 export const ModalForm = () => {
   return (
     <div className="w-full fade-in">
-      <div className="flex flex-col gap-[1.5rem] w-full tracking-[-0.03em] pb-10  text-white ">
+      <div className="flex flex-col gap-[1.5rem] w-full tracking-[-0.03em] pb-6  text-white ">
         <div className="w-full h-auto flex flex-row-reverse gap-[2.5rem]">
           <div className="relative hidden md:flex h-[200px] w-full md:w-[30%] translate-x-[-50px]">
           <Image
