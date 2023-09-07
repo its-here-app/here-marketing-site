@@ -20,7 +20,7 @@ export const ModalForm = () => {
               src={stickerCityDate}
             />
           </div>
-          <div className="w-full flex flex-col gap-[2.5rem] md:w-[70%]">
+          <div className="w-full flex flex-col gap-[1rem] md:gap-[2.5rem] md:w-[70%]">
             <div className="flex flex-col font-[Radio] text-[48px] md:text-[64px] leading-[60px]">
               <span className="whitespace-nowrap">We're excited</span>
               <span className="whitespace-nowrap">that you're excited</span>
