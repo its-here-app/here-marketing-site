@@ -7,7 +7,8 @@ import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
 
 export const Footer = () => {
   return (
-    <div className="relative bg-[--black] max-w-[1738px] pt-12 lg:pt-15 px-4 w-full mx-auto flex flex-col justify-between h-full">
+    <div className="relative bg-[--black] pt-12 lg:pt-15 px-4 w-full mx-auto flex flex-col justify-between h-full">
+       {/* i removed max-w-[1738px] */}
       <div
         className="absolute
         w-[170px] h-[200px]

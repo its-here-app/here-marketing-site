@@ -244,15 +244,15 @@ export default function Home() {
         {/* <link rel="stylesheet" href="https://use.typekit.net/bju4rfb.css" /> */}
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta property="og:title" content="Here * | one place for fave spots" />
-        <meta name="twitter:title" content="Here * | one place for fave spots" />
-        <meta itemProp="name" content="Here * | one place for fave spots" />
-        <meta name="application-name" content="Here * | one place for fave spots" />
-        <meta name="og:site_name" content="Here * | one place for fave spots" />
+        <meta property="og:title" content="here* — One place for fave spots" />
+        <meta name="twitter:title" content="here* — One place for fave spots" />
+        <meta itemProp="name" content="here*" />
+        <meta name="application-name" content="here*" />
+        <meta name="og:site_name" content="here* — One place for fave spots" />
         <meta property="og:image" content="/graphics/share_image.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Here* is an x y z app to help you x y z! ." />
-        <meta property="og:description" content="Here* is an x y z app to help you x y z! ." />
+        <meta name="description" content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends." />
+        <meta property="og:description" content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends." />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://itshere.app" />
@@ -264,7 +264,7 @@ export default function Home() {
 
       <Modal
         isOpen={modalIsOpen}
-        className="cursor-none w-[95%] mt-[140px] md:w-[944px] p-4 md:p-8 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
+        className="cursor-none w-[95%] mt-[140px] lg:w-[944px] p-6 md:p-10 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >

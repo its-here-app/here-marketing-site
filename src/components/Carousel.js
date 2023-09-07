@@ -151,13 +151,13 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
               <div className="card-playlist-name max-w-[74%]">{currentList.playlistName}</div>
             </div>
             <div className="z-20 text-[--neon] pb-4 font-[Golos] self-end text-[2rem] row-span-1 row-start-3 flex justify-center items-center">
-              <div className="flex flex-row pl-[.8rem]">
+              <div className="flex flex-row pl-[.8rem] card-content-length">
                 {/* <div className="">{parsedContent.length}</div> */}
                 {/* amout of items in list */}
                 {/* <div className="">{console.log(currentList)}</div> */}
                 {/* {currentList} */}
-                <div className="">{parsedContent.length}</div>
-                <div className="relative w-[18px] ml-[4px] h-auto">
+                <div className="card-content-length">{parsedContent.length}</div>
+                <div className="relative w-[10px] lg:w-[18px] ml-[4px] h-auto">
                   <Image fill src={asterisk} alt="asterisk" />
                 </div>
               </div>
