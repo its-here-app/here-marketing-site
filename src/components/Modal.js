@@ -23,7 +23,7 @@ export const ModalForm = () => {
           <div className="w-full flex flex-col gap-[1rem] md:gap-[2.5rem] md:w-[70%]">
             <div className="flex flex-col font-[Radio] text-[48px] md:text-[64px] leading-[60px]">
               <span className="whitespace-nowrap">We're excited</span>
-              <span className="whitespace-nowrap">that you're excited</span>
+              <span className="">that you're excited</span>
             </div>
             <div className="font-[Golos] text-[20px] leading-normal ">
               Get notified when we officially launch and be the first to know when it comes to
