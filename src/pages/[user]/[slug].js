@@ -1,5 +1,6 @@
 import { google } from "googleapis";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import slugify from "@sindresorhus/slugify";
 import { Footer } from "../../components/Footer";
 import SVG from "react-inlinesvg";
@@ -147,6 +148,10 @@ export default function ListPage({
 
   return (
     <>
+
+      <Head>
+        <title>Here* | {playlistName}</title>
+      </Head>
       <div className="max-w-[1800gpx] mx-auto">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh]">
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
