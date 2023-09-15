@@ -245,7 +245,7 @@ export default function ListPage({
                       width={24}
                       height="auto"
                       title="map-view"
-                      className="fill-none stroke-black"
+                      className="fill-none"
                     />
                   </div>
                 </div>
@@ -340,7 +340,7 @@ const Spot = ({ title, description, type, image, ratings }) => {
               width={30}
               height="auto"
               title="Share"
-              className="stroke-white stroke-0.5"
+              className="fill-none stroke-white"
             />
           </div>
         </div>
