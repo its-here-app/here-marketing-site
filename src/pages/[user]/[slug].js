@@ -1,5 +1,6 @@
 import { google } from "googleapis";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import slugify from "@sindresorhus/slugify";
 import { Footer } from "../../components/Footer";
 import SVG from "react-inlinesvg";
@@ -55,8 +56,17 @@ export async function getServerSideProps({ query }) {
   // get id of list with matching slug
   const listId = lists.findIndex((list) => list.slug === slug);
 
-  const [city, playlistName, isFeatured, listSlug, username, instagram, description, dateAdded, content] =
-    response.data.values[listId];
+  const [
+    city,
+    playlistName,
+    isFeatured,
+    listSlug,
+    username,
+    instagram,
+    description,
+    dateAdded,
+    content,
+  ] = response.data.values[listId];
 
   return {
     props: {
@@ -86,11 +96,13 @@ export default function ListPage({
 
   const copyToClipboard = () => {
     const el = document.createElement("textarea");
-    let content = ""
+    let content = "";
 
-    content+=`${city} — ${playlistName} @ ${username}\n`;
-    content+=parsedContent.map((spot) => `*${spot.name}, ${spot.description} (${spot.type})`).join("\n");
-    content+=`\n\nhttps://itshere.app/${username}/${listSlug}\n`;
+    content += `${city} — ${playlistName} @ ${username}\n`;
+    content += parsedContent
+      .map((spot) => `*${spot.name}, ${spot.description} (${spot.type})`)
+      .join("\n");
+    content += `\n\nhttps://itshere.app/${username}/${listSlug}\n`;
     el.value = content;
     document.body.appendChild(el);
     el.style.position = "absolute";
@@ -142,11 +154,14 @@ export default function ListPage({
   };
 
   const getTimeElapsed = () => {
-    return moment.utc(`${dateAdded} 00:00:00`).local().startOf('seconds').fromNow()
-  }
+    return moment.utc(`${dateAdded} 00:00:00`).local().startOf("seconds").fromNow();
+  };
 
   return (
     <>
+      <Head>
+        <title>Here* | {playlistName}</title>
+      </Head>
       <div className="max-w-[1800gpx] mx-auto">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh]">
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
@@ -204,7 +219,9 @@ export default function ListPage({
                     <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
                   </a>
                 </div>
-                <div className="text-[0.75rem] md:text-[0.875rem]">Last updated {getTimeElapsed()}</div>
+                <div className="text-[0.75rem] md:text-[0.875rem]">
+                  Last updated {getTimeElapsed()}
+                </div>
               </div>
             </div>
           </section>
@@ -239,15 +256,15 @@ export default function ListPage({
                       className=""
                     />
                   </div>
-                  <div className="z-20 flex items-center justify-center opacity-[.2]">
+                  <a href="" className="z-20 flex items-center justify-center opacity-[.2]">
                     <SVG
-                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map-2.svg`}
+                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map.svg`}
                       width={24}
                       height="auto"
                       title="map-view"
-                      className="fill-none"
+                      className="fill-gray-400"
                     />
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -259,6 +276,7 @@ export default function ListPage({
                 const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city
                 )}_${listSlug}_${slugify(spot.name)}_${"00"}.jpg`;
+
                 return (
                   <Spot
                     key={spot.name}
@@ -267,6 +285,7 @@ export default function ListPage({
                     // if spot has ratings, pass in ratings
                     ratings={spot.ratings && spot.ratings}
                     type={spot.type}
+                    googleMapsUrl={spot.googleMapsUrl}
                     image={url}
                   />
                 );
@@ -294,12 +313,17 @@ export default function ListPage({
           </section>
         </div>
       </div>
-      <Footer />
+      <section
+        data-cursor-state="invert"
+        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top"
+      >
+        <Footer />
+      </section>
     </>
   );
 }
 
-const Spot = ({ title, description, type, image, ratings }) => {
+const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
   return (
     <div className="relative flex w-full flex-row  min-h-[80px]">
       <div className="flex-shrink-0 min-w-[5.5rem] w-[24%] md:w-[17%] lg:w-[15%] aspect-square">
@@ -316,12 +340,16 @@ const Spot = ({ title, description, type, image, ratings }) => {
           <div className="font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
             {title}
           </div>
-          {description && <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
-            <div className="hidden md:line-clamp-2">{description}</div>
-          </div> }
-          <div className="flex md:hidden">
-            <Ratings rating={ratings} />
-          </div>
+          {description && (
+            <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
+              <div className="hidden md:line-clamp-2">{description}</div>
+            </div>
+          )}
+          {ratings && (
+            <div className="flex md:hidden">
+              <Ratings rating={ratings} />
+            </div>
+          )}
 
           <div className="flex flex-row items-center gap-x-1">
             <div className="hidden md:flex leading-100">
@@ -333,17 +361,22 @@ const Spot = ({ title, description, type, image, ratings }) => {
           </div>
         </div>
         {/* icon right */}
-        <div className="flex items-center content-center justify-self-end">
-          <div className="rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
+        <a
+          href={`${googleMapsUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center content-center justify-self-end"
+        >
+          <div className="group hover:bg-[--neon] rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
             <SVG
-              src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map-2.svg`}
+              src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map.svg`}
               width={30}
               height="auto"
               title="Share"
-              className="fill-none stroke-white"
+              className="group-hover:fill-black fill-white"
             />
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );
