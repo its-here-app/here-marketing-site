@@ -328,9 +328,9 @@ const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
     <div className="relative flex w-full flex-row  min-h-[80px]">
       <div className="flex-shrink-0 min-w-[5.5rem] w-[24%] md:w-[17%] lg:w-[15%] aspect-square">
         <div
-          className="aspect-square bg-cover bg-center my-auto overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
+          className="aspect-square bg-gray-300 bg-cover bg-center my-auto overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
           style={{
-            backgroundImage: `url(${image}), url('http://placehold.it/300x300')`,
+            backgroundImage: `url(${image}))`,
           }}
         ></div>
       </div>
