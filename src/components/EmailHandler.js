@@ -28,27 +28,28 @@ const EmailForm = ({ status, message, onSubmitted }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [success, setSuccess] = useState(false)
-  const [successMessage, setMessage] = useState("sending... 💌")
-  
+  const [success, setSuccess] = useState(false);
+  const [successMessage, setMessage] = useState("sending... 💌");
+
   useEffect(() => {
     console.log("status...", status);
     if (status === "success") {
-      setSuccess(true)
-      setTimeout(() => { setSuccess(true)}, 1000);
-      setMessage("Email added. Can’t wait to keep you updated!")
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(true);
+      }, 1000);
+      setMessage("Email added. Can’t wait to keep you updated!");
       clearFields();
     } else if (status === "error") {
-      setSuccess(false)
-      setMessage("sorry, something went wrong :( try again?")
+      setSuccess(false);
+      setMessage("sorry, something went wrong :( try again?");
     }
-    
   }, [status]);
 
-    const clearFields = () => {
-      setName('');
-      setEmail('');
-    }
+  const clearFields = () => {
+    setName("");
+    setEmail("");
+  };
 
   const submit = (e) => {
     e.preventDefault();
@@ -60,7 +61,6 @@ const EmailForm = ({ status, message, onSubmitted }) => {
         MERGE1: name,
       });
     setCurrentSlide(null);
-
   };
 
   const nextFormStep = (e) => {
@@ -122,27 +122,26 @@ const EmailForm = ({ status, message, onSubmitted }) => {
           </button>
         </form>
       )}
-      {
-      currentSlide === null && (
-         <form>
-         <input
-           autoComplete="off"
-           type="message"
-           name="message"
-           disabled
-           className={classNames("email-input", {
+      {currentSlide === null && (
+        <form>
+          <input
+            autoComplete="off"
+            type="message"
+            name="message"
+            disabled
+            className={classNames("email-input", {
               "placeholder:text-[--neon]": success,
-           })}
-           placeholder={successMessage}
-         ></input>
-         <button
+            })}
+            placeholder={successMessage}
+          ></input>
+          <button
             onClick={(e) => {
               e.preventDefault();
             }}
-           className="email-button"
-         >
-           <Image alt="none" fill src={successCheck} />
-         </button>
+            className="email-button"
+          >
+            <Image alt="none" fill src={successCheck} />
+          </button>
         </form>
       )}
     </div>
