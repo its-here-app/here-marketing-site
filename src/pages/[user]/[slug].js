@@ -166,7 +166,7 @@ export default function ListPage({
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh]">
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
             <div
-              className="h-full top-0 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
+              className="h-full top-0 bg-gray-300 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city

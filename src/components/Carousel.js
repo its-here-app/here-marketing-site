@@ -121,11 +121,11 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
   };
   return (
     <div key={index} id="carousel-item" data-fade-in-group="2" className="z-2 transition-transform">
-      <div className="w-[80vw] md:w-[40vw] hover:scale-[1.01] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden bg-white  transition-all rounded-[1rem] relative">
+      <div className="w-[80vw] md:w-[40vw] hover:scale-[1.01] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden transition-all rounded-[1rem] relative">
         <div className="cursor-none scale(110%) select-none bg-center w-full h-full transition-all ease-in duration-[1800ms] items-center justify-center">
           <div className="grid grid-cols-1 grid-rows-3 w-full h-full bg-cover ">
             <div
-              className="absolute w-full h-full bg-cover"
+              className="absolute bg-[#dfdfdf] w-full h-full bg-cover"
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${
                   currentList.username
