@@ -1,4 +1,5 @@
 import arrowSubmit from "/public/graphics/arrow-right.svg";
+import successCheck from "/public/icons/success-check.svg";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import classNames from "classnames";
 import Image from "next/image";
@@ -27,18 +28,26 @@ const EmailForm = ({ status, message, onSubmitted }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-
+  const [success, setSuccess] = useState(false)
+  const [successMessage, setMessage] = useState("sending... 💌")
+  
   useEffect(() => {
     console.log("status...", status);
     if (status === "success") {
-      console.log("success");
+      setSuccess(true)
+      setTimeout(() => { setSuccess(true)}, 1000);
+      setMessage("Email added. Can’t wait to keep you updated!")
       clearFields();
+    } else if (status === "error") {
+      setSuccess(false)
+      setMessage("sorry, something went wrong :( try again?")
     }
+    
   }, [status]);
 
     const clearFields = () => {
-        setName('');
-        setEmail('');
+      setName('');
+      setEmail('');
     }
 
   const submit = (e) => {
@@ -113,8 +122,29 @@ const EmailForm = ({ status, message, onSubmitted }) => {
           </button>
         </form>
       )}
-      {/* {currentSlide === null && status === "success" && (
-      )} */}
+      {
+      currentSlide === null && (
+         <form>
+         <input
+           autoComplete="off"
+           type="message"
+           name="message"
+           disabled
+           className={classNames("email-input", {
+              "placeholder:text-[--neon]": success,
+           })}
+           placeholder={successMessage}
+         ></input>
+         <button
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+           className="email-button"
+         >
+           <Image alt="none" fill src={successCheck} />
+         </button>
+        </form>
+      )}
     </div>
   );
 };
