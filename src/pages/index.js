@@ -327,7 +327,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section data-bg="neon" className="relative h-max pt-12 flex items-top justify-center w-full">
+      <section data-bg="white" className="relative h-max pt-12 flex items-top justify-center w-full">
         {isLoading ? <PlaceholderCarousel /> : <Carousel lists={carouselData} />}
       </section>
 
