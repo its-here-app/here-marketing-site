@@ -273,9 +273,7 @@ export default function ListPage({
             </div>
             <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
               {parsedContent.map((spot, i) => {
-                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
-                  city
-                )}_${listSlug}_${slugify(spot.name)}_${"00"}.jpg`;
+                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_${slugify(spot.name)}_${"00"}.jpg`;
 
                 return (
                   <Spot
@@ -330,7 +328,7 @@ const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
         <div
           className="aspect-square bg-gray-300 bg-cover bg-center my-auto overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
           style={{
-            backgroundImage: `url(${image}))`,
+            backgroundImage: `url(${image})`,
           }}
         ></div>
       </div>
