@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import slugify from "@sindresorhus/slugify";
 import { Footer } from "../../components/Footer";
+import Toast from "../../components/Toast";
 import SVG from "react-inlinesvg";
 import { Share } from "/public/icons/Share.svg";
 import { useEffect } from "react";
@@ -296,6 +297,7 @@ export default function ListPage({
               <div className="justify-self-end">
                 <div
                   onClick={copyToClipboard}
+                  // show toast on click
                   className="bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
                 >
                   <SVG
@@ -306,6 +308,7 @@ export default function ListPage({
                     title="Copy List"
                   />{" "}
                   Copy List
+                  <Toast message="Copied to clipboard!" triggered={showToast} />
                 </div>
               </div>
             </div>
