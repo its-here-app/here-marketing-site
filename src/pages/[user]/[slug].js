@@ -294,7 +294,7 @@ export default function ListPage({
               <div className="justify-self-end">
                 <div
                   onClick={copyToClipboard}
-                  className="bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
+                  className="mb-12 bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
                 >
                   <SVG
                     src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/bookmark.svg`}
@@ -315,7 +315,7 @@ export default function ListPage({
         data-cursor-state="invert"
         className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top"
       >
-        <Footer />
+        <Footer isHomepage={false} />
       </section>
     </>
   );

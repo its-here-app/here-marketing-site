@@ -9,6 +9,7 @@ const MailChimpForm = ({ currentSlide }) => {
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
 
   return (
+    
     <MailchimpSubscribe
       url={url}
       render={({ subscribe, status, message }) => (
