@@ -152,19 +152,17 @@ export default function Home() {
     });
     // animate in body on load
     animateBodyFade(body);
-    
     setCursorState("ul-arrow")
     setTimeout(() => {
       setCursorState(null)
     }, 1000)
+  }, []);
 
+  useEffect(() => {    
     document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
       el.addEventListener("mouseover", () => setCursorState(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setCursorState(null));
     })
-  }, []);
-
-  useEffect(() => {
   }, [hydrated]);
 
   useEffect(() => {
@@ -244,6 +242,7 @@ export default function Home() {
     <div
       onMouseMove={handleMouseMove}
       id="home-body"
+      // set cursorState
       className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto transition-bg bg-[--current-bg]"
     >
       <Head>

@@ -125,7 +125,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
         <div className="cursor-none scale(110%) select-none bg-center w-full h-full transition-all ease-in duration-[1800ms] items-center justify-center">
           <div className="grid grid-cols-1 grid-rows-3 w-full h-full bg-cover ">
             <div
-              className="absolute bg-[#dfdfdf] w-full h-full bg-cover"
+              className="absolute w-full h-full bg-cover"
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${
                   currentList.username
@@ -133,7 +133,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
               }}
             ></div>
             <div
-              className="w-full h-full absolute"
+              className="w-full bg-gray-300 h-full absolute"
               style={{
                 background:
                   "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 54.95%, rgba(0, 0, 0, 0.00) 100%)",

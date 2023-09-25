@@ -180,7 +180,7 @@ export default function ListPage({
                   className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
                 >
                   <SVG
-                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Close.svg`}
+                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Close_focus.svg`}
                     width={24}
                     height="auto"
                     title="Close"
@@ -192,7 +192,7 @@ export default function ListPage({
                   className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
                 >
                   <SVG
-                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share.svg`}
+                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share_focus.svg`}
                     width={24}
                     height="auto"
                     title="Share"
@@ -210,13 +210,13 @@ export default function ListPage({
                 <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
                   <a href={`https://instagram.com/${instagram}`} className="flex flex-row ">
                     <div
-                      className="w-[1.25rem] md:w[1.75rem] mr-2 md:h[1.75rem] h-[1.25rem] bg-cover rounded-full"
+                      className="w-[1.25rem] md:w-[1.75rem] mr-2 md:h-[1.75rem] h-[1.25rem] bg-cover rounded-full"
                       style={{
                         backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/_profile-pics/${username}.jpg')`,
                       }}
                     ></div>
 
-                    <div className="text-[0.75rem] md:text-[0.875rem]">{username}</div>
+                    <div className="text-[0.75rem] md:text-[0.875rem] md:pt-[.175rem]">{username}</div>
                   </a>
                 </div>
                 <div className="text-[0.75rem] md:text-[0.875rem]">
@@ -273,7 +273,7 @@ export default function ListPage({
             </div>
             <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
               {parsedContent.map((spot, i) => {
-                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_${slugify(spot.name)}_${"00"}.jpg`;
+                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_${slugify(spot.name)}.jpg`;
 
                 return (
                   <Spot

@@ -22,9 +22,7 @@ export const Footer = ({ isHomepage = true }) => {
         <Image alt="none" fill className="absolute top-0 pop-in" src={stickerLockupOcean} />
       </div>
 
-      {!isHomepage && (
-        <>
-          <div
+          {!isHomepage && (<div
             className="hidden md:block absolute
           w-[230px] h-[150px]
           scale-[.8] md:scale-[1] lg:scale-[1.2]
@@ -37,8 +35,8 @@ export const Footer = ({ isHomepage = true }) => {
               className="z-30 fade-in scale-[0.95]"
               data-cursor-state="asterisk"
               src={stickerStartYourPlaylist}
-            />
-          </div>
+              />
+          </div>)}
           <div
             className="cursor-pointer 
            absolute block md:hidden
@@ -70,8 +68,7 @@ export const Footer = ({ isHomepage = true }) => {
               src={stickerInstagramOutline}
             />
           </div>
-        </>
-      )}
+   
 
       <div className="w-full">
         <div className="md:pl-20 xxl:pl-32">

@@ -9,7 +9,7 @@ const MailChimpForm = ({ currentSlide }) => {
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
 
   return (
-    
+
     <MailchimpSubscribe
       url={url}
       render={({ subscribe, status, message }) => (
@@ -31,9 +31,8 @@ const EmailForm = ({ status, message, onSubmitted }) => {
   const [name, setName] = useState("");
   const [success, setSuccess] = useState(false);
   const [successMessage, setMessage] = useState("sending... 💌");
-
+  const inputRef = useRef(null);
   useEffect(() => {
-    console.log("status...", status);
     if (status === "success") {
       setSuccess(true);
       setTimeout(() => {
@@ -46,6 +45,12 @@ const EmailForm = ({ status, message, onSubmitted }) => {
       setMessage("sorry, something went wrong :( try again?");
     }
   }, [status]);
+
+  useEffect(() => {
+    if(currentSlide > 0) {
+      inputRef.current.focus();
+    }
+  }, [currentSlide])
 
   const clearFields = () => {
     setName("");
@@ -69,7 +74,8 @@ const EmailForm = ({ status, message, onSubmitted }) => {
     if (email.indexOf("@") > -1) {
       setCurrentSlide((currentStep) => currentStep + 1);
     } else {
-      console.log("needs a valid email");
+      clearFields();
+      setMessage("please enter a valid email address")
     }
   };
 
@@ -80,6 +86,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
           <input
             autoComplete="off"
             onChange={(e) => setEmail(e.target.value)}
+            ref={inputRef}
             type="email"
             value={email}
             name="email"
@@ -103,6 +110,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
         <form>
           <input
             autoComplete="off"
+            ref={inputRef}
             onChange={(e) => setName(e.target.value)}
             value={name}
             type="name"
