@@ -115,42 +115,43 @@ export default function ListPage({
 
   useEffect(() => {
     const body = document.querySelector("body");
-    body.animate(
-      [
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-        },
-      ],
-      {
-        duration: 500,
-        easing: "ease-in-out",
-        fill: "forwards",
-      }
-    );
+    // body.animate(
+    //   [
+    //     {
+    //       opacity: 0,
+    //     },
+    //     {
+    //       opacity: 1,
+    //     },
+    //   ],
+    //   {
+    //     duration: 500,
+    //     easing: "ease-in-out",
+    //     fill: "forwards",
+    //   }
+    // );
   }, []);
 
   const handleClose = () => {
     const body = document.querySelector("body");
-    body.animate(
-      [
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
-        },
-      ],
-      {
-        duration: 500,
-        easing: "ease-in-out",
-        fill: "forwards",
-      }
-    ).onfinish = (event) => {
-      router.push("/", undefined, { shallow: true });
-    };
+    // body.animate(
+    //   [
+    //     {
+    //       opacity: 1,
+    //     },
+    //     {
+    //       opacity: 0,
+    //     },
+    //   ],
+    //   {
+    //     duration: 500,
+    //     easing: "ease-in-out",
+    //     fill: "forwards",
+    //   }
+    // ).onfinish = (event) => {
+      // router.push("/", undefined, { shallow: true });
+    // };
+    router.push("/", undefined, { shallow: true });
   };
 
   const getTimeElapsed = () => {
@@ -162,7 +163,7 @@ export default function ListPage({
       <Head>
         <title>Here* | {playlistName}</title>
       </Head>
-      <div className="max-w-[1800gpx] mx-auto">
+      <div className="max-w-[1800px] mx-auto">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh]">
           <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
             <div

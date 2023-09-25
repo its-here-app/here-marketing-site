@@ -99,25 +99,26 @@ export default function Carousel({ lists }) {
 const CarouselItem = ({ index, currentList, parsedContent }) => {
   const handleClick = (slug, username) => {
     const body = document.querySelector("body");
-    body.animate(
-      [
-        {
-          opacity: 1,
-          // transform: "translateY(0px)",
-        },
-        {
-          opacity: 0,
-          // transform: "translateY(30px)",
-        },
-      ],
-      {
-        duration: 500,
-        easing: "ease-in-out",
-        fill: "forwards",
-      }
-    ).onfinish = (event) => {
-      router.push(`/${username}/${slug}`, undefined, { shallow: true });
-    };
+    // body.animate(
+    //   [
+    //     {
+    //       opacity: 1,
+    //       // transform: "translateY(0px)",
+    //     },
+    //     {
+    //       opacity: 0,
+    //       // transform: "translateY(30px)",
+    //     },
+    //   ],
+    //   {
+    //     duration: 500,
+    //     easing: "ease-in-out",
+    //     fill: "forwards",
+    //   }
+    // ).onfinish = (event) => {
+    //   router.push(`/${username}/${slug}`, undefined, { shallow: true });
+    // };
+    router.push(`/${username}/${slug}`, undefined, { shallow: true });
   };
   return (
     <div key={index} id="carousel-item" data-fade-in-group="2" className="z-2 transition-transform">

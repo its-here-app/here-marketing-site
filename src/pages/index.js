@@ -67,23 +67,23 @@ export default function Home() {
     setCarouselData(featured);
   };
 
-  const animateBodyFade = (context) => {
-    context.animate(
-      [
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-        },
-      ],
-      {
-        duration: 500,
-        easing: "ease-in-out",
-        fill: "forwards",
-      }
-    );
-  };
+  // const animateBodyFade = (context) => {
+  //   context.animate(
+  //     [
+  //       {
+  //         opacity: 0,
+  //       },
+  //       {
+  //         opacity: 1,
+  //       },
+  //     ],
+  //     {
+  //       duration: 500,
+  //       easing: "ease-in-out",
+  //       fill: "forwards",
+  //     }
+  //   );
+  // };
 
   const flipperAnimationList = [
     {
@@ -151,7 +151,7 @@ export default function Home() {
       setIsLoading(false);
     });
     // animate in body on load
-    animateBodyFade(body);
+    // animateBodyFade(body);
     setCursorState("ul-arrow")
     setTimeout(() => {
       setCursorState(null)
