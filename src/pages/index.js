@@ -180,14 +180,14 @@ export default function Home() {
     const bgElements = document.querySelectorAll("[data-bg]");
 
     // if your scroll position is 1000px from the bottom, fade out the scroll sticker
-    if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 100) {
+    if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 180) {
+      console.log('got here')
+      ctaSticker.current.classList.add("translate-y-[-80px]");
       store.style.setProperty("--cta-fill", `var(--neon)`);
-      // cta sticker ref add top-[60%]
-      ctaSticker.current.classList.add("md:top-[62%]");
       store.style.setProperty("--cta-fill-inner", `black`);
     } else {
       store.style.setProperty("--cta-fill-inner", `var(--white)`);
-      ctaSticker.current.classList.remove("md:top-[62%]");
+      ctaSticker.current.classList.remove("translate-y-[-80px]");
       store.style.setProperty("--cta-fill", `var(--black)`);
     }
 
@@ -284,7 +284,7 @@ export default function Home() {
         onClick={openModal}
         data-cursor-state="asterisk"
         ref={ctaSticker}
-        className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] transition-all duration-[500ms] pop-in w-[180px] md:w-[250px] md:h-[200px]",
+        className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] transition-all duration-[500ms] w-[180px] md:w-[250px] md:h-[200px]",
         {
           "absolute top-0 hidden opacity-0": modalIsOpen,
         })}
