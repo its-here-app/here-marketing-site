@@ -155,6 +155,7 @@ export default function Home() {
     setCursorState("ul-arrow")
     setTimeout(() => {
       setCursorState(null)
+      ctaSticker.current.classList.remove("pop-in");
     }, 1000)
   }, []);
 
@@ -284,7 +285,7 @@ export default function Home() {
         onClick={openModal}
         data-cursor-state="asterisk"
         ref={ctaSticker}
-        className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] transition-all duration-[500ms] w-[180px] md:w-[250px] md:h-[200px]",
+        className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] transition-all duration-[500ms] pop-in w-[180px] md:w-[250px] md:h-[200px]",
         {
           "absolute top-0 hidden opacity-0": modalIsOpen,
         })}

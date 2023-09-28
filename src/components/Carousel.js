@@ -19,14 +19,22 @@ export default function Carousel({ lists }) {
   useEffect(() => {
     // shuffle lists
     lists.sort(() => Math.random() - 0.5);
-    carousel.current.style.transform = `translateX(${-300}px)`;
-    setCurrentPosition(-300);
+
     let timer = 0;
     document.querySelectorAll('[data-fade-in-group="2"]').forEach((el, i) => {
       el.classList.add("fade-in-slide-up");
       el.style.animationDelay = `${(timer += i * 85)}ms`;
     });
     setCarouselWidth(carousel.current.scrollWidth);
+    // settimeout
+    carousel.current.style.transitionDuration = "1600ms";
+    window.setTimeout(() => {
+      carousel.current.style.transform = `translateX(${-600}px)`;
+      setCurrentPosition(-600);
+    }, 1000)
+    window.setTimeout(() => {
+      carousel.current.style.transitionDuration = "800ms";
+    }, 2000)
   }, []);
 
   const handleDragStart = (event) => {
@@ -78,7 +86,7 @@ export default function Carousel({ lists }) {
     >
       <div
         ref={carousel}
-        className={`touch-pan-x transition-transform  duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] flex flex-row gap-[2vw] pt-[2rem] text-[5rem] mx-auto subtitle-text px-[5px]`}
+        className={`touch-pan-x transition-transform ease-[cubic-bezier(.23,1,.32,1)] flex flex-row gap-[2vw] pt-[2rem] text-[5rem] mx-auto subtitle-text px-[5px]`}
         style={{
           width: `100vw`,
         }}
