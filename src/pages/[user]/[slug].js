@@ -149,7 +149,7 @@ export default function ListPage({
     //     fill: "forwards",
     //   }
     // ).onfinish = (event) => {
-      // router.push("/", undefined, { shallow: true });
+    // router.push("/", undefined, { shallow: true });
     // };
     router.push("/", undefined, { shallow: true });
   };
@@ -167,67 +167,67 @@ export default function ListPage({
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
           <section className="h-full relative m-0 flex flex-col w-full">
             <div className="h-[100vh] w-full sticky  top-0">
-            <div
-              className="h-[98vh] bg-gray-300 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
-              style={{
-                backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
-                  city
-                )}_${listSlug}_cover.jpg')`,
-              }}
-            >
-              {/* add a sticky element */}
-              <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
-                <div
-                  onClick={handleClose}
-                  className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
-                >
-                  <SVG
-                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Close_focus.svg`}
-                    width={24}
-                    height="auto"
-                    title="Close"
-                    className="fill-[--neon]"
-                  />
+              <div
+                className="h-[98vh] bg-gray-300 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
+                style={{
+                  backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
+                    city
+                  )}_${listSlug}_cover.jpg')`,
+                }}
+              >
+                {/* add a sticky element */}
+                <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
+                  <div
+                    onClick={handleClose}
+                    className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
+                  >
+                    <SVG
+                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Close_focus.svg`}
+                      width={24}
+                      height="auto"
+                      title="Close"
+                      className="fill-[--neon]"
+                    />
+                  </div>
+                  <div
+                    onClick={handleClose}
+                    className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
+                  >
+                    <SVG
+                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share_focus.svg`}
+                      width={24}
+                      height="auto"
+                      title="Share"
+                      className="fill-[--neon]"
+                    />
+                  </div>
                 </div>
-                <div
-                  onClick={handleClose}
-                  className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
-                >
-                  <SVG
-                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share_focus.svg`}
-                    width={24}
-                    height="auto"
-                    title="Share"
-                    className="fill-[--neon]"
-                  />
+                <div className="h-full flex items-center justify-center flex-col">
+                  <div className="max-w-[80%] font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
+                    {city}
+                  </div>
+                  <div className="max-w-[80%] list-playlist-name">{playlistName}</div>
                 </div>
-              </div>
-              <div className="h-full flex items-center justify-center flex-col">
-                <div className="max-w-[80%] font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
-                  {city}
-                </div>
-                <div className="max-w-[80%] list-playlist-name">{playlistName}</div>
-              </div>
-              <div className="w-full h-full flex justify-between items-end px-[1.25rem] py-[1.25rem]">
-                <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
-                  <a href={`https://instagram.com/${instagram}`} className="flex flex-row ">
-                    <div
-                      className="w-[1.25rem] md:w-[1.75rem] mr-2 md:h-[1.75rem] h-[1.25rem] bg-cover rounded-full"
-                      style={{
-                        backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/_profile-pics/${username}.jpg')`,
-                      }}
-                    ></div>
-
-                    <div className="text-[0.75rem] md:text-[0.875rem] md:pt-[.175rem]">{username}</div>
-                  </a>
-                </div>
-                <div className="text-[0.75rem] md:text-[0.875rem]">
-                  Last updated {getTimeElapsed()}
+                <div className="w-full h-full flex justify-between items-end px-[1.25rem] py-[1.25rem]">
+                  <div className="flex flex-row gap-[0.6875rem] items-center justify-center">
+                    <a href={`https://instagram.com/${instagram}`} className="flex flex-row ">
+                      <div
+                        className="w-[1.25rem] md:w-[1.75rem] mr-2 md:h-[1.75rem] h-[1.25rem] bg-cover rounded-full"
+                        style={{
+                          backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/_profile-pics/${username}.jpg')`,
+                        }}
+                      ></div>
+                      <div className="text-[0.75rem] md:text-[0.875rem] md:pt-[.175rem]">
+                        {username}
+                      </div>
+                    </a>
+                  </div>
+                  <div className="text-[0.75rem] md:text-[0.875rem]">
+                    Last updated {getTimeElapsed()}
+                  </div>
                 </div>
               </div>
             </div>
-            </div>
-           
           </section>
           {/* right side */}
           <section className="flex gap-[1rem] pt-[0.5rem] top-0 w-full px-[.75rem] flex-col">
@@ -277,7 +277,9 @@ export default function ListPage({
             </div>
             <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
               {parsedContent.map((spot, i) => {
-                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_${slugify(spot.name)}.jpg`;
+                const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
+                  city
+                )}_${listSlug}_${slugify(spot.name)}.jpg`;
 
                 return (
                   <Spot
@@ -311,8 +313,7 @@ export default function ListPage({
                 </div>
               </div>
             </div>
-            <div className="flex flex-col h-[200px] w-full items-center  justify-center">
-               </div>
+            <div className="flex flex-col h-[200px] w-full items-center  justify-center"></div>
           </section>
         </div>
       </div>
