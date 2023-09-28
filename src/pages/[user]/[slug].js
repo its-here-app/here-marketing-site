@@ -127,7 +127,7 @@ export default function ListPage({
   return (
     <>
       <Head>
-        <title>Here* | {playlistName}</title>
+        <title>{city} — {playlistName} @{username} • Here*</title>
       </Head>
       <div className="max-w-[1800px] mx-auto">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
