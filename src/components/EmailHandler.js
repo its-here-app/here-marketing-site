@@ -9,7 +9,6 @@ const MailChimpForm = ({ currentSlide }) => {
   const url = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
 
   return (
-
     <MailchimpSubscribe
       url={url}
       render={({ subscribe, status, message }) => (
@@ -32,6 +31,13 @@ const EmailForm = ({ status, message, onSubmitted }) => {
   const [success, setSuccess] = useState(false);
   const [successMessage, setMessage] = useState("sending... 💌");
   const inputRef = useRef(null);
+  let emailPlaceholderCopy = "Enter email for exclusive access";
+  useEffect(() => {
+    // if viewport is mobile, set email palceholder to "email"
+    if (window.innerWidth < 768) {
+      emailPlaceholderCopy = "Email.";
+    }
+  }, []);
   useEffect(() => {
     if (status === "success") {
       setSuccess(true);
@@ -47,10 +53,10 @@ const EmailForm = ({ status, message, onSubmitted }) => {
   }, [status]);
 
   useEffect(() => {
-    if(currentSlide > 0) {
+    if (currentSlide > 0) {
       inputRef.current.focus();
     }
-  }, [currentSlide])
+  }, [currentSlide]);
 
   const clearFields = () => {
     setName("");
@@ -92,8 +98,9 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             value={email}
             name="email"
             className="email-input"
-            placeholder="Enter email for exclusive access"
+            placeholder={emailPlaceholderCopy}
           ></input>
+
           <button
             className="email-button"
             onClick={(e) => nextFormStep(e)}
