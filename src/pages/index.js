@@ -261,7 +261,7 @@ export default function Home() {
         <button onClick={closeModal}>close</button>
         <ModalForm isModal={true} />
       </Modal>
-      <div ref={cursorCircle} className="circle"></div>
+      <div ref={cursorCircle} className="circle max-md:hidden"></div>
       {/* cta sticker */}
       <div
         onClick={openModal}
