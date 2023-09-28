@@ -95,9 +95,20 @@ export default function ListPage({
 }) {
   const parsedContent = JSON.parse(content);
 
-  const [showToast, setShowToast] = useState(false);
+  const [showClipboardToast, setShowClipboardToast] = useState(false);
+  const [showToggleToast, setShowToggleToast] = useState(false);
 
+  const handleToggleClick = () => {
+    setShowToggleToast(true)
+    setTimeout(() => {
+      setShowToggleToast(false); 
+    }, 2000);
+  }
   const copyToClipboard = () => {
+    showClipboardToast(true);
+    setTimeout(() => {
+      setShowClipboardToast(false); 
+    }, 2000);
     const el = document.createElement("textarea");
     let content = "";
 
@@ -114,7 +125,6 @@ export default function ListPage({
     el.select();
     document.execCommand("copy");
     document.body.removeChild(el);
-    setShowToast(true);
   };
 
   useEffect(() => {
@@ -210,7 +220,10 @@ export default function ListPage({
               {/* icon bubbles */}
               <div className="justify-self-end">
                 {/* a sliding toggle switch */}
-                <div className="relative grid grid-cols-3 gap-[.5rem] bg-[#DFDFDF] w-[124px] px-[8px] h-[40px] rounded-full overflow-hidden">
+
+                <Toast message="Oops, custom views aren't yet 😳" down={true} showToast={showToggleToast}/>
+                <div className="relative grid cursor-pointer grid-cols-3 gap-[.5rem] bg-[#DFDFDF] w-[124px] px-[8px] h-[40px] rounded-full overflow-hidden"
+                onClick={handleToggleClick}>
                   <div className="z-10 absolute bg-[--neon] w-[44px] h-full rounded-full"></div>
                   <div className="z-20 rounded-full flex items-center justify-center">
                     <SVG
@@ -268,7 +281,7 @@ export default function ListPage({
             <div className="grid grid-cols-2">
               <div className=""></div>
               <div className="justify-self-end">
-                <Toast message="Copied to clipboard" showToast={showToast}/>
+                <Toast message="Copied to clipboard" showToast={showClipboardToast}/>
                 <div
                   onClick={copyToClipboard}
                   className="mb-12 bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
@@ -342,12 +355,12 @@ const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
           rel="noopener noreferrer"
           className="flex items-center content-center justify-self-end"
         >
-          <div className="group hover:bg-[--neon] rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
+          <div className="group hover:bg-[--neon] cursor-ne-resize rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
             <SVG
               src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map.svg`}
               width={30}
               height="auto"
-              title="Share"
+              title="See Google Map"
               className="group-hover:fill-black fill-white"
             />
           </div>
