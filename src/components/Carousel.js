@@ -106,26 +106,7 @@ export default function Carousel({ lists }) {
 
 const CarouselItem = ({ index, currentList, parsedContent }) => {
   const handleClick = (slug, username) => {
-    const body = document.querySelector("body");
-    // body.animate(
-    //   [
-    //     {
-    //       opacity: 1,
-    //       // transform: "translateY(0px)",
-    //     },
-    //     {
-    //       opacity: 0,
-    //       // transform: "translateY(30px)",
-    //     },
-    //   ],
-    //   {
-    //     duration: 500,
-    //     easing: "ease-in-out",
-    //     fill: "forwards",
-    //   }
-    // ).onfinish = (event) => {
-    //   router.push(`/${username}/${slug}`, undefined, { shallow: true });
-    // };
+    console.log('got here')
     router.push(`/${username}/${slug}`, undefined, { shallow: true });
   };
   return (

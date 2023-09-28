@@ -114,43 +114,9 @@ export default function ListPage({
   };
 
   useEffect(() => {
-    const body = document.querySelector("body");
-    // body.animate(
-    //   [
-    //     {
-    //       opacity: 0,
-    //     },
-    //     {
-    //       opacity: 1,
-    //     },
-    //   ],
-    //   {
-    //     duration: 500,
-    //     easing: "ease-in-out",
-    //     fill: "forwards",
-    //   }
-    // );
   }, []);
 
   const handleClose = () => {
-    const body = document.querySelector("body");
-    // body.animate(
-    //   [
-    //     {
-    //       opacity: 1,
-    //     },
-    //     {
-    //       opacity: 0,
-    //     },
-    //   ],
-    //   {
-    //     duration: 500,
-    //     easing: "ease-in-out",
-    //     fill: "forwards",
-    //   }
-    // ).onfinish = (event) => {
-    // router.push("/", undefined, { shallow: true });
-    // };
     router.push("/", undefined, { shallow: true });
   };
 
