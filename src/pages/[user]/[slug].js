@@ -99,15 +99,15 @@ export default function ListPage({
   const [showToggleToast, setShowToggleToast] = useState(false);
 
   const handleToggleClick = () => {
-    setShowToggleToast(true)
+    setShowToggleToast(true);
     setTimeout(() => {
-      setShowToggleToast(false); 
+      setShowToggleToast(false);
     }, 2000);
-  }
+  };
   const copyToClipboard = () => {
-    showClipboardToast(true);
+    setShowClipboardToast(true);
     setTimeout(() => {
-      setShowClipboardToast(false); 
+      setShowClipboardToast(false);
     }, 2000);
     const el = document.createElement("textarea");
     let content = "";
@@ -127,8 +127,7 @@ export default function ListPage({
     document.body.removeChild(el);
   };
 
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   const handleClose = () => {
     router.push("/", undefined, { shallow: true });
@@ -141,7 +140,9 @@ export default function ListPage({
   return (
     <>
       <Head>
-        <title>{city} — {playlistName} @{username} • Here*</title>
+        <title>
+          {city} — {playlistName} @{username} • Here*
+        </title>
       </Head>
       <div className="max-w-[1800px] mx-auto">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
@@ -221,9 +222,15 @@ export default function ListPage({
               <div className="justify-self-end">
                 {/* a sliding toggle switch */}
 
-                <Toast message="Oops, custom views aren't yet 😳" down={true} showToast={showToggleToast}/>
-                <div className="relative grid cursor-pointer grid-cols-3 gap-[.5rem] bg-[#DFDFDF] w-[124px] px-[8px] h-[40px] rounded-full overflow-hidden"
-                onClick={handleToggleClick}>
+                <Toast
+                  message="Oops, custom views aren't ready yet 😳"
+                  down={true}
+                  showToast={showToggleToast}
+                />
+                <div
+                  className="relative grid cursor-pointer grid-cols-3 gap-[.5rem] bg-[#DFDFDF] w-[124px] px-[8px] h-[40px] rounded-full overflow-hidden"
+                  onClick={handleToggleClick}
+                >
                   <div className="z-10 absolute bg-[--neon] w-[44px] h-full rounded-full"></div>
                   <div className="z-20 rounded-full flex items-center justify-center">
                     <SVG
@@ -281,7 +288,7 @@ export default function ListPage({
             <div className="grid grid-cols-2">
               <div className=""></div>
               <div className="justify-self-end">
-                <Toast message="Copied to clipboard" showToast={showClipboardToast}/>
+                <Toast message="Copied to clipboard" showToast={showClipboardToast} />
                 <div
                   onClick={copyToClipboard}
                   className="mb-12 bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
@@ -297,7 +304,7 @@ export default function ListPage({
                 </div>
               </div>
             </div>
-            <div className="flex flex-col h-[200px] w-full items-center  justify-center"></div>
+            <div className="flex flex-col h-[50px] w-full items-center  justify-center"></div>
           </section>
         </div>
       </div>
