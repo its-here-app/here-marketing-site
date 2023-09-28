@@ -164,10 +164,11 @@ export default function ListPage({
         <title>Here* | {playlistName}</title>
       </Head>
       <div className="max-w-[1800px] mx-auto">
-        <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh]">
-          <section className=" m-0 flex flex-col h-[50vh] md:h-[calc(100vh)] w-full">
+        <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
+          <section className="h-full relative m-0 flex flex-col w-full">
+            <div className="h-[100vh] w-full sticky  top-0">
             <div
-              className="h-full top-0 bg-gray-300 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
+              className="h-[98vh] bg-gray-300 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
               style={{
                 backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city
@@ -225,9 +226,11 @@ export default function ListPage({
                 </div>
               </div>
             </div>
+            </div>
+           
           </section>
           {/* right side */}
-          <section className="flex gap-[1rem] max-h-[100vh] overflow-y-auto pt-[0.5rem] top-0 w-full px-[.75rem] flex-col">
+          <section className="flex gap-[1rem] pt-[0.5rem] top-0 w-full px-[.75rem] flex-col">
             <div className="grid grid-cols-2">
               {/*  */}
               <div className="justify-self-start flex gap-[8px] items-center text-[1rem] lg:text-[1.125rem]">
@@ -308,7 +311,8 @@ export default function ListPage({
                 </div>
               </div>
             </div>
-            <div className="flex flex-col h-[500px] items-center justify-center"></div>
+            <div className="flex flex-col h-[200px] w-full items-center  justify-center">
+               </div>
           </section>
         </div>
       </div>

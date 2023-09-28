@@ -35,7 +35,7 @@
   html,
   body {
     max-width: 100% !important;
-    overflow-x: hidden !important;
+    /* overflow-x: hidden !important; */
   }
   body {
     height: 100%;

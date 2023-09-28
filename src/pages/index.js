@@ -182,12 +182,12 @@ export default function Home() {
     // if your scroll position is 1000px from the bottom, fade out the scroll sticker
     if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 180) {
       console.log('got here')
-      ctaSticker.current.classList.add("translate-y-[-80px]");
+      ctaSticker.current.classList.add("translate-y-[-100px]");
       store.style.setProperty("--cta-fill", `var(--neon)`);
       store.style.setProperty("--cta-fill-inner", `black`);
     } else {
       store.style.setProperty("--cta-fill-inner", `var(--white)`);
-      ctaSticker.current.classList.remove("translate-y-[-80px]");
+      ctaSticker.current.classList.remove("translate-y-[-100px]");
       store.style.setProperty("--cta-fill", `var(--black)`);
     }
 
