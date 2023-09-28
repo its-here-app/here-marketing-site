@@ -71,11 +71,12 @@ const EmailForm = ({ status, message, onSubmitted }) => {
 
   const nextFormStep = (e) => {
     e.preventDefault();
-    if (email.indexOf("@") > -1) {
-      setCurrentSlide((currentStep) => currentStep + 1);
+    // prevent spam submissions by checking for @, with a .com or .edu after
+    if (email.indexOf("@") > -1 && email.indexOf(".") > -1) {
+      setCurrentSlide(1);
     } else {
       clearFields();
-      setMessage("please enter a valid email address")
+      alert("please enter a valid email address");
     }
   };
 
