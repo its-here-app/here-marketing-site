@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import slugify from "@sindresorhus/slugify";
 import { Footer } from "../../components/Footer";
+import { Toast } from "../../components/Toast";
 import SVG from "react-inlinesvg";
 import { Share } from "/public/icons/Share.svg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import router from "next/router";
 import Image from "next/image";
 import moment from "moment";
@@ -94,6 +95,8 @@ export default function ListPage({
 }) {
   const parsedContent = JSON.parse(content);
 
+  const [showToast, setShowToast] = useState(false);
+
   const copyToClipboard = () => {
     const el = document.createElement("textarea");
     let content = "";
@@ -111,6 +114,7 @@ export default function ListPage({
     el.select();
     document.execCommand("copy");
     document.body.removeChild(el);
+    setShowToast(true);
   };
 
   useEffect(() => {
@@ -264,12 +268,13 @@ export default function ListPage({
             <div className="grid grid-cols-2">
               <div className=""></div>
               <div className="justify-self-end">
+                <Toast message="Copied to clipboard" showToast={showToast}/>
                 <div
                   onClick={copyToClipboard}
                   className="mb-12 bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
                 >
                   <SVG
-                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/bookmark.svg`}
+                    src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/copy.svg`}
                     width={24}
                     className="stroke-white group-hover:stroke-black"
                     height="auto"
