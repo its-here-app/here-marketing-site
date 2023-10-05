@@ -67,7 +67,6 @@
 
   .card-playlist-name {
     color: var(--neon, #daff70);
-    font-family: Golos Text;
     text-align: center;
     font-size: 1.9rem;
     font-style: normal;
@@ -77,12 +76,11 @@
 
     @apply md:text-[2rem] lg:text-[2.8125rem] 
     md:leading-[2.2rem] lg:leading-[3rem] 
-    lg:tracking-[-0.1875rem];
+    lg:tracking-[-0.1875rem] font-sans;
   }
 
   .card-city-name {
     color: var(--neon, #daff70);
-    font-family: Crimson Text;
     text-align: center;
     font-size: 1.75rem;
     font-style: italic;
@@ -90,7 +88,7 @@
     line-height: 2.08794rem; /* 98.255% */
     letter-spacing: -0.1275rem;
 
-    @apply md:text-[2.2rem];
+    @apply md:text-[2.2rem] font-serif;
   }
 
   .card-content-length{
@@ -113,14 +111,13 @@
 .list-playlist-name {
   color: var(--neon, #daff70);
   text-align: center;
-  font-family: Golos Text;
   font-size: 2.5rem;
   font-style: normal;
   font-weight: 600;
   line-height: 2.4rem;
   letter-spacing: -0.15rem;
 
-  @apply lg:text-[5rem] md:text-[4rem]
+  @apply font-sans lg:text-[5rem] md:text-[4rem]
     lg:tracking-[-0.3rem] md:tracking-[-0.24rem]
     lg:leading-[4.4rem] md:leading-[3.4rem];
 }
