@@ -1,42 +1,191 @@
+@import "animations.css";
+@import "typography.css";
+@import "imessage.css";
+@import "cursor.css";
+@import "email.css";
+
+@layer utilities {
+  .container {
+    @apply max-w-[1900px] mx-auto;
+  }
+}
+@layer base {
+  :root {
+    --cursor-size: 20px;
+    --current-bg: var(--off-white);
+    --cta-fill: black;
+    --cta-fill-inner: white;
+    --neon: #daff70;
+    --neon--srgb: #e1fe84;
+    --ocean: #5c89cc;
+    --cream: #fffbf7;
+    --off-white: #fffbf7;
+    --bubble: #1169ee;
+    --black: #101010;
+    --white: #ffffff;
+  }
+  html {
+    background-color: var(--cream);
+    overscroll-behavior: auto;
+    scroll-behavior: smooth;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html,
+  body {
+    max-width: 100% !important;
+    /* overflow-x: hidden !important; */
+  }
+  body {
+    height: 100%;
+    position: relative;
+  }
+  button {
+    border: 0px;
+  }
+
+  #cta-sticker > path {
+    @apply fill-[--cta-fill-inner];
+  }
+  #cta-sticker > ellipse {
+    @apply fill-[--cta-fill] transition-all;
+  }
+
+  .transition-bg {
+    transition: background-color ease-in-out 350ms;
+  }
+  .tile-2-outer {
+    @apply relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
+  }
+  .tile-2-inner {
+    @apply z-[-1] relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px];
+  }
+  .tile-2-text-wrapper {
+    @apply flex select-none  text-red-200 w-full h-full flex-col items-center justify-center;
+  }
+
+  .card-playlist-name {
+    color: var(--neon, #daff70);
+    text-align: center;
+    font-size: 1.9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2rem; /* 117.216% */
+    letter-spacing: -0.16875rem;
+
+    @apply md:text-[2rem] lg:text-[2.8125rem] 
+    md:leading-[2.2rem] lg:leading-[3rem] 
+    lg:tracking-[-0.1875rem] font-sans;
+  }
+
+  .card-city-name {
+    color: var(--neon, #daff70);
+    text-align: center;
+    font-size: 1.75rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 2.08794rem; /* 98.255% */
+    letter-spacing: -0.1275rem;
+
+    @apply md:text-[2.2rem] font-serif;
+  }
+
+  .card-content-length{
+    color: var(--Neon, var(--neon, #DAFF70));
+    text-align: center;
+    font-family: Golos Text;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.0675rem;
+    @apply md:text-[1.5rem] lg:text-[1.75rem];
+  }
+
+  
+}
+
+
+
+.list-playlist-name {
+  color: var(--neon, #daff70);
+  text-align: center;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.4rem;
+  letter-spacing: -0.15rem;
+
+  @apply font-sans lg:text-[5rem] md:text-[4rem]
+    lg:tracking-[-0.3rem] md:tracking-[-0.24rem]
+    lg:leading-[4.4rem] md:leading-[3.4rem];
+}
+
+.tighten {
+  letter-spacing: -0.06rem;
+}
+.tile-2-text {
+  @apply text-[--neon] tracking-[-.06em] text-[2rem] md:text-[3.5vw] xl:text-[70px] font-[Crimson] italic leading-[100%] translate-y-[20%];
+}
+.active {
+  z-index: 1 !important;
+}
+.section-tile {
+  @apply pt-[7vw] xl:pt-[8rem] flex flex-col items-center justify-center w-full;
+}
+.tile {
+  @apply flex flex-col-reverse
+      w-full max-w-[1728px]
+      md:grid grid-cols-12 gap-8 xl:gap-16
+      justify-items-start
+      px-[1rem] md:px-[3rem]
+      pt-[4vh] transition-all;
+}
+.grid-reverse {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.tile-text {
+  @apply col-span-6 xl:col-span-7
+      flex flex-col
+      h-full
+      pl-[1.5vw] md:pl-[1vw]
+      pt-[0vw] md:pt-[.5rem];
+}
+.text-reverse {
+  @apply pl-[0w] md:pl-[0vw]
+      pt-[0vw];
+}
+.tile-text-top {
+  @apply font-[Radio]
+      text-[13vw] md:text-[7vw] xl:text-[8rem]
+      w-[80%] md:w-full
+      tracking-1
+      leading-105 md:leading-100;
+}
+.tile-text-bottom {
+  @apply font-[Golos]
+      text-[1.3rem] lg:text-[1.5rem]
+      leading-125 lg:leading-150
+      max-w-[490px]
+      pt-[2rem] md:pt-[3vh] lg:pt-[6vh];
+}
+.tile-image {
+  @apply col-span-6 xl:col-span-5
+      lg:px-[0rem]
+      w-full flex items-center justify-center;
+}
+.bg-gradient-start {
+  background-image: linear-gradient(var(--off-white) 10%, var(--neon) 60%);
+}
+.bg-gradient-end {
+  background-image: linear-gradient(var(--neon) 10%, var(--off-white) 90%);
+}
+
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-.spin {
-  animation: spin 25s linear infinite;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
