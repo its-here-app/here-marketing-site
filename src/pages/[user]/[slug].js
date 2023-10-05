@@ -186,8 +186,8 @@ export default function ListPage({
       <div className="max-w-[1800px] mx-auto relative">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
           <section className="h-full relative m-0 flex flex-col w-full">
-            <div className="h-[100vh] w-full md:sticky top-0">
-              <div className="h-[98vh] left-0 mx-[.5rem] my-[.5rem] relative overflow-hidden rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]">
+            <div className="h-[60vh] md:h-[100vh] w-full md:sticky top-0">
+              <div className="h-[97%] left-0 mx-[.5rem] my-[.5rem] relative overflow-hidden rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]">
                 <div
                   className="w-full h-full absolute z-[-1]"
                   style={{
@@ -356,7 +356,6 @@ export default function ListPage({
                     key={spot.name}
                     title={spot.name}
                     description={spot.description}
-                    // if spot has ratings, pass in ratings
                     ratings={spot.ratings && spot.ratings}
                     type={spot.type}
                     googleMapsUrl={spot.googleMapsUrl}
