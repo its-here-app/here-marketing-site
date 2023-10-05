@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import slugify from "@sindresorhus/slugify";
 import { Footer } from "../../components/Footer";
+import { motion, AnimatePresence } from "framer-motion";
 import { Toast } from "../../components/Toast";
 import SVG from "react-inlinesvg";
 import { Share } from "/public/icons/Share.svg";
@@ -95,6 +96,7 @@ export default function ListPage({
 }) {
   const parsedContent = JSON.parse(content);
 
+  const [showShareDropdown, setShowShareDropdown] = useState(false);
   const [showClipboardToast, setShowClipboardToast] = useState(false);
   const [showToggleToast, setShowToggleToast] = useState(false);
 
@@ -103,6 +105,9 @@ export default function ListPage({
     setTimeout(() => {
       setShowToggleToast(false);
     }, 2000);
+  };
+  const copyLinkUrl = () => {
+    navigator.clipboard.writeText(`https://itshere.app/${username}/${listSlug}`);
   };
   const copyToClipboard = () => {
     setShowClipboardToast(true);
@@ -170,17 +175,43 @@ export default function ListPage({
                       className="fill-[--neon]"
                     />
                   </div>
-                  <div
-                    onClick={handleClose}
-                    className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
-                  >
-                    <SVG
-                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share_focus.svg`}
-                      width={24}
-                      height="auto"
-                      title="Share"
-                      className="fill-[--neon]"
-                    />
+                  <div className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center">
+                    <div
+                      className="relative"
+                      onClick={() => setShowShareDropdown(!showShareDropdown)}
+                    >
+                      <SVG
+                        src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share_focus.svg`}
+                        width={24}
+                        height="auto"
+                        title="Share"
+                        className="absolute top-0 right-0 fill-[--neon]"
+                      />
+
+                      {showShareDropdown && (
+                        <motion.div
+                          // fade from bottom
+                          initial={{ opacity: 0, y: 0 }}
+                          animate={{ opacity: 1, y: 10 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
+                        >
+                          <div className="bg-black rounded-[16px] py-1 pt-4 px-4 absolute top-[20px] right-[0px] min-w-[120px] min-h-[100px] text-white">
+                            <h3> Share city playlist </h3>
+                            <ShareButton
+                              icon="Share"
+                              text="Get Link"
+                              onClick={copyLinkUrl}
+                            ></ShareButton>
+                            <ShareButton
+                              icon="link"
+                              text="Copy link as Text"
+                              onClick={copyToClipboard}
+                            ></ShareButton>
+                          </div>
+                        </motion.div>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="h-full flex items-center justify-center flex-col">
@@ -317,6 +348,28 @@ export default function ListPage({
     </>
   );
 }
+
+const ShareButton = ({ text, onClick, icon }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="w-[220px] text-[14px] py-3 min-h-[30px] border-[--neon] border-[1px] my-3 rounded-full"
+    >
+      <div className="mx-6 relative flex content-center">
+        <div className="w-[24] h-full absolute top-[3px]">
+          <SVG
+            src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/${icon}.svg`}
+            width={18}
+            height="auto"
+            title="Close"
+            className="fill-[--neon] w-full"
+          />
+        </div>
+        <div className="w-full text-[--neon] flex content-center justify-center">{text}</div>
+      </div>
+    </div>
+  );
+};
 
 const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
   return (

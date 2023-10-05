@@ -120,7 +120,7 @@ export default function Home() {
     document.querySelectorAll("[data-start-y]").forEach((el, i) => {
       el.style.transition = "cubic-bezier(0.22, 1, 0.36, 1) 1800ms";
     });
-  }
+  };
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -134,18 +134,18 @@ export default function Home() {
     });
     // animate in body on load
     // animateBodyFade(body);
-    setCursorState("ul-arrow")
+    setCursorState("ul-arrow");
     setTimeout(() => {
-      setCursorState(null)
+      setCursorState(null);
       ctaSticker.current.classList.remove("pop-in");
-    }, 1000)
+    }, 1000);
   }, []);
 
-  useEffect(() => {    
+  useEffect(() => {
     document.querySelectorAll("[data-cursor-state]").forEach((el, i) => {
       el.addEventListener("mouseover", () => setCursorState(el.dataset.cursorState));
       el.addEventListener("mouseleave", () => setCursorState(null));
-    })
+    });
   }, [hydrated]);
 
   useEffect(() => {
@@ -164,7 +164,7 @@ export default function Home() {
 
     // if your scroll position is 1000px from the bottom, fade out the scroll sticker
     if (scrollPosition > document.body.offsetHeight - document.documentElement.clientHeight - 180) {
-      console.log('got here')
+      console.log("got here");
       ctaSticker.current.classList.add("translate-y-[-100px]");
       store.style.setProperty("--cta-fill", `var(--neon)`);
       store.style.setProperty("--cta-fill-inner", `black`);
@@ -202,15 +202,14 @@ export default function Home() {
     });
   }, [scrollPosition]);
 
-
   useEffect(() => {
     const manageHoverState = (state) => {
-      if(cursorState === state) {
+      if (cursorState === state) {
         cursorCircle.current.classList.add(`cursor-${state}`);
       } else {
         cursorCircle.current.classList.remove(`cursor-${state}`);
       }
-    }
+    };
     const hoverStates = ["ul-arrow", "asterisk", "invert"];
     hoverStates.forEach((state) => {
       manageHoverState(state);
@@ -241,8 +240,14 @@ export default function Home() {
         <meta name="og:site_name" content="here* — One place for fave spots" />
         <meta property="og:image" content="/graphics/share_image.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends." />
-        <meta property="og:description" content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends." />
+        <meta
+          name="description"
+          content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends."
+        />
+        <meta
+          property="og:description"
+          content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends."
+        />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://itshere.app" />
@@ -267,15 +272,17 @@ export default function Home() {
         onClick={openModal}
         data-cursor-state="asterisk"
         ref={ctaSticker}
-        className={classNames("hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] transition-all duration-[500ms] pop-in w-[180px] md:w-[250px] md:h-[200px]",
-        {
-          "absolute top-0 hidden opacity-0": modalIsOpen,
-        })}
+        className={classNames(
+          "hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] transition-all duration-[500ms] pop-in w-[180px] md:w-[250px] md:h-[200px]",
+          {
+            "absolute top-0 hidden opacity-0": modalIsOpen,
+          }
+        )}
       >
         <SVG id="cta-sticker" className="group w-full h-full" src="/stickers/sticker-cta.svg" />
       </div>
 
-      <section 
+      <section
         data-bg="off-white"
         className="w-full flex max-w-[1738px] mx-auto items-center justify-between px-4 md:px-8 py-6 lg:py-8"
       >
@@ -317,7 +324,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section data-bg="white" className="relative h-max pt-12 flex items-top justify-center w-full">
+      <section
+        data-bg="white"
+        className="relative h-max pt-12 flex items-top justify-center w-full"
+      >
         {isLoading ? <PlaceholderCarousel /> : <Carousel lists={carouselData} />}
       </section>
 
@@ -500,7 +510,8 @@ export default function Home() {
 
       <section
         data-cursor-state="invert"
-        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top">
+        className="overflow-hidden bg-[--black] relative h-[80vh] md:h-[450px]  w-full flex flex-col justify-between items-top"
+      >
         <Footer />
       </section>
     </div>
