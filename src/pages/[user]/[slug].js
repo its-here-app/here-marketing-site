@@ -153,14 +153,24 @@ export default function ListPage({
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
           <section className="h-full relative m-0 flex flex-col w-full">
             <div className="h-[100vh] w-full sticky  top-0">
-              <div
-                className="h-[98vh] bg-gray-300 left-0 mx-[.5rem] my-[.5rem]  rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]"
-                style={{
-                  backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
-                    city
-                  )}_${listSlug}_cover.jpg')`,
-                }}
-              >
+              <div className="h-[98vh] left-0 mx-[.5rem] my-[.5rem] relative overflow-hidden rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]">
+                <div
+                  className="w-full h-full absolute z-[-1]"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 54.95%, rgba(0, 0, 0, 0.00) 100%)",
+                    mixBlendMode: "soft-light",
+                  }}
+                ></div>
+                <div
+                  className="w-full h-full absolute z-[-2] bg-center bg-cover flex"
+                  style={{
+                    backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
+                      city
+                    )}_${listSlug}_cover.jpg')`,
+                  }}
+                ></div>
+
                 {/* add a sticky element */}
                 <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
                   <div
@@ -175,6 +185,7 @@ export default function ListPage({
                       className="fill-[--neon]"
                     />
                   </div>
+
                   <div className=" flex flex-row gap-[0.6875rem] items-center justify-center">
                     <div
                       className="relative"
