@@ -342,7 +342,7 @@ export default function ListPage({
                 </div>
               </div>
             </div>
-            <div className="w-full text-[.875rem] lg:text-[1.125rem] md:pr-[5rem] ">
+            <div className="w-full text-[.875rem] lg:text-[1.125rem] md:pr-[1.2rem] ">
               {description}
             </div>
             <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
