@@ -175,7 +175,7 @@ export default function ListPage({
                       className="fill-[--neon]"
                     />
                   </div>
-                  <div className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center">
+                  <div className=" flex flex-row gap-[0.6875rem] items-center justify-center">
                     <div
                       className="relative"
                       onClick={() => setShowShareDropdown(!showShareDropdown)}
@@ -185,7 +185,7 @@ export default function ListPage({
                         width={24}
                         height="auto"
                         title="Share"
-                        className="absolute top-0 right-0 fill-[--neon]"
+                        className="cursor-pointer absolute top-0 right-0 fill-[--neon]"
                       />
 
                       {showShareDropdown && (
@@ -353,7 +353,7 @@ const ShareButton = ({ text, onClick, icon }) => {
   return (
     <div
       onClick={onClick}
-      className="w-[220px] text-[14px] py-3 min-h-[30px] border-[--neon] border-[1px] my-3 rounded-full"
+      className="w-[220px] cursor-pointer text-[14px] py-3 min-h-[30px] border-[--neon] border-[1px] my-3 rounded-full"
     >
       <div className="mx-6 relative flex content-center">
         <div className="w-[24] h-full absolute top-[3px]">
