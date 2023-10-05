@@ -356,7 +356,7 @@ const ShareButton = ({ text, onClick, icon }) => {
       className="w-[220px] cursor-pointer text-[14px] py-3 min-h-[30px] border-solid border-[--neon] border-[1px] my-3 rounded-full"
     >
       <div className="mx-6 relative flex content-center">
-        <div className="w-[24] h-full absolute top-[3px]">
+        <div className="w-[18px] h-full absolute left-0 top-[2px]">
           <SVG
             src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/${icon}.svg`}
             width={18}
