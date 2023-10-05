@@ -152,7 +152,15 @@ export default function ListPage({
           {city} — {playlistName} @{username} • Here*
         </title>
       </Head>
+      <AnimatePresence>
       {showShareDropdown && (
+        <motion.div
+        initial={{ opacity: 0}}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
+        >
+          
         <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
           <div className="w-[80%]">
             <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
@@ -170,11 +178,14 @@ export default function ListPage({
             ></ShareButton>
           </div>
         </div>
+
+        </motion.div>
       )}
+      </AnimatePresence>
       <div className="max-w-[1800px] mx-auto relative">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
           <section className="h-full relative m-0 flex flex-col w-full">
-            <div className="h-[100vh] w-full sticky  top-0">
+            <div className="h-[100vh] w-full md:sticky top-0">
               <div className="h-[98vh] left-0 mx-[.5rem] my-[.5rem] relative overflow-hidden rounded-[1rem] md:max-w-[50vw] bg-center bg-cover flex flex-col justify-between  font-[Golos] text-[--neon]">
                 <div
                   className="w-full h-full absolute z-[-1]"
@@ -359,7 +370,7 @@ export default function ListPage({
                 <Toast message="Copied to clipboard" showToast={showClipboardToast} />
                 <div
                   onClick={copyToClipboard}
-                  className="mb-12 bg-black group hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
+                  className="mb-12 bg-black group transition-all duration-[800ms] hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
                 >
                   <SVG
                     src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/copy.svg`}
