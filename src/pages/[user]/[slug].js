@@ -75,6 +75,7 @@ export async function getServerSideProps({ query }) {
     props: {
       city,
       playlistName,
+      isFeatured,
       listSlug,
       username,
       instagram,
