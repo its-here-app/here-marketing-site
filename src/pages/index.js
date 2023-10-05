@@ -225,7 +225,7 @@ export default function Home() {
       onMouseMove={handleMouseMove}
       id="home-body"
       // set cursorState
-      className="font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto transition-bg bg-[--current-bg]"
+      className="overflow-x-hidden font-[Radio] cursor-none flex m-0 p-0 flex-col w-full h-auto transition-bg bg-[--current-bg]"
     >
       <Head>
         <title>Here*</title>
