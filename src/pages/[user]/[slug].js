@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import router from "next/router";
 import Image from "next/image";
 import moment from "moment";
+import classNames from "classnames";
 
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
@@ -108,6 +109,7 @@ export default function ListPage({
   };
   const copyLinkUrl = () => {
     navigator.clipboard.writeText(`https://itshere.app/${username}/${listSlug}`);
+    setShowShareDropdown(false);
   };
   const copyToClipboard = () => {
     setShowClipboardToast(true);
@@ -130,6 +132,7 @@ export default function ListPage({
     el.select();
     document.execCommand("copy");
     document.body.removeChild(el);
+    setShowShareDropdown(false);
   };
 
   useEffect(() => {}, []);
@@ -149,7 +152,26 @@ export default function ListPage({
           {city} — {playlistName} @{username} • Here*
         </title>
       </Head>
-      <div className="max-w-[1800px] mx-auto">
+      {showShareDropdown && (
+        <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
+          <div className="w-[80%]">
+            <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
+            <ShareButton icon="Share" text="Get Link" onClick={copyLinkUrl}></ShareButton>
+            <ShareButton
+              icon="Copy"
+              text="Copy list as text"
+              onClick={copyToClipboard}
+            ></ShareButton>
+            <ShareButton
+              icon=""
+              text="Cancel"
+              onClick={() => setShowShareDropdown(!showShareDropdown)}
+              cancel
+            ></ShareButton>
+          </div>
+        </div>
+      )}
+      <div className="max-w-[1800px] mx-auto relative">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
           <section className="h-full relative m-0 flex flex-col w-full">
             <div className="h-[100vh] w-full sticky  top-0">
@@ -173,6 +195,7 @@ export default function ListPage({
 
                 {/* add a sticky element */}
                 <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
+                  {/* x container */}
                   <div
                     onClick={handleClose}
                     className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
@@ -180,49 +203,52 @@ export default function ListPage({
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Close_focus.svg`}
                       width={24}
-                      height="auto"
+                      height={24}
                       title="Close"
                       className="fill-[--neon]"
                     />
                   </div>
-
-                  <div className=" flex flex-row gap-[0.6875rem] items-center justify-center">
-                    <div
-                      className="relative"
-                      onClick={() => setShowShareDropdown(!showShareDropdown)}
-                    >
-                      <SVG
-                        src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share_focus.svg`}
-                        width={24}
-                        height="auto"
-                        title="Share"
-                        className="cursor-pointer absolute top-0 right-0 fill-[--neon]"
-                      />
-
+                  {/* share dropdown */}
+                  <div
+                    className="cursor-pointer relative flex flex-row gap-[0.6875rem] items-center justify-center"
+                    onClick={() => setShowShareDropdown(!showShareDropdown)}
+                  >
+                    <SVG
+                      src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Share_focus.svg`}
+                      width={24}
+                      height={24}
+                      title="Share"
+                      className="cursor-pointer absolute top-0 right-0 fill-[--neon]"
+                    />
+                    <AnimatePresence>
                       {showShareDropdown && (
-                        <motion.div
-                          // fade from bottom
-                          initial={{ opacity: 0, y: 0 }}
-                          animate={{ opacity: 1, y: 10 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
-                        >
-                          <div className="bg-black rounded-[16px] py-1 pt-4 px-4 absolute top-[20px] right-[0px] min-w-[120px] min-h-[100px] text-white">
-                            <h3> Share city playlist </h3>
-                            <ShareButton
-                              icon="Share"
-                              text="Get Link"
-                              onClick={copyLinkUrl}
-                            ></ShareButton>
-                            <ShareButton
-                              icon="link"
-                              text="Copy link as Text"
-                              onClick={copyToClipboard}
-                            ></ShareButton>
-                          </div>
-                        </motion.div>
+                        <div className="max-md:hidden">
+                          <motion.div
+                            // fade from bottom
+                            initial={{ opacity: 0, y: 0 }}
+                            animate={{ opacity: 1, y: 10 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
+                          >
+                            <div className="bg-black rounded-[16px] py-1 pt-4 px-4 absolute top-[20px] right-[0px] min-w-[120px] min-h-[100px] text-white">
+                              <div className="w-[220px]">
+                                <h3> Share city playlist </h3>
+                                <ShareButton
+                                  icon="Share"
+                                  text="Get Link"
+                                  onClick={copyLinkUrl}
+                                ></ShareButton>
+                                <ShareButton
+                                  icon="link"
+                                  text="Copy link as Text"
+                                  onClick={copyToClipboard}
+                                ></ShareButton>
+                              </div>
+                            </div>
+                          </motion.div>
+                        </div>
                       )}
-                    </div>
+                    </AnimatePresence>
                   </div>
                 </div>
                 <div className="h-full flex items-center justify-center flex-col">
@@ -360,11 +386,17 @@ export default function ListPage({
   );
 }
 
-const ShareButton = ({ text, onClick, icon }) => {
+const ShareButton = ({ text, onClick, icon, cancel = false }) => {
   return (
     <div
       onClick={onClick}
-      className="w-[220px] cursor-pointer text-[14px] py-3 min-h-[30px] border-solid border-[--neon] border-[1px] my-3 rounded-full"
+      className={classNames(
+        "w-full cursor-pointer text-[14px] py-3 group min-h-[30px] border-solid border-[--neon] text-[--neon] border-[1px] my-3 rounded-full",
+        {
+          "border-white text-white": cancel,
+          " hover:bg-[--neon] hover:text-black": !cancel,
+        }
+      )}
     >
       <div className="mx-6 relative flex content-center">
         <div className="w-[18px] h-full absolute left-0 top-[2px]">
@@ -373,10 +405,10 @@ const ShareButton = ({ text, onClick, icon }) => {
             width={18}
             height="auto"
             title="Close"
-            className="fill-[--neon] w-full"
+            className="fill-[--neon] group-hover:fill-black w-full"
           />
         </div>
-        <div className="w-full text-[--neon] flex content-center justify-center">{text}</div>
+        <div className="w-full flex content-center justify-center">{text}</div>
       </div>
     </div>
   );
