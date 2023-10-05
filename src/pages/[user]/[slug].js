@@ -325,7 +325,7 @@ const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
         <div
           className="aspect-square bg-gray-300 bg-cover bg-center my-auto overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${image}), url('/graphics/placeholder.jpg')`,
           }}
         ></div>
       </div>

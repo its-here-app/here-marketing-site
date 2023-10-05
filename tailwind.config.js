@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'placeholder': "url('/graphics/placeholder.jpg')",
+      },
       transitionTimingFunction: {
         "in-out-quint": "cubic-bezier(0.23, 1, 0.32,1)",
         "in-out-image": "cubic-bezier(0.65, 0.05, 0.36, 1)",
