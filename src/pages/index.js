@@ -289,7 +289,6 @@ export default function Home() {
         <div className="relative w-[60px] md:w-[80px] h-auto flex  items-center justify-center">
           <SVG
             src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/graphics/logo-lockup.svg`}
-            fill
             title="Logo"
           />
         </div>
