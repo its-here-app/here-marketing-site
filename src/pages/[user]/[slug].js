@@ -154,34 +154,32 @@ export default function ListPage({
         </title>
       </Head>
       <AnimatePresence>
-      {showShareDropdown && (
-        <motion.div
-        initial={{ opacity: 0}}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
-        >
-          
-        <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
-          <div className="w-[80%]">
-            <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
-            <ShareButton icon="Share" text="Get Link" onClick={copyLinkUrl}></ShareButton>
-            <ShareButton
-              icon="Copy"
-              text="Copy list as text"
-              onClick={copyToClipboard}
-            ></ShareButton>
-            <ShareButton
-              icon=""
-              text="Cancel"
-              onClick={() => setShowShareDropdown(!showShareDropdown)}
-              cancel
-            ></ShareButton>
-          </div>
-        </div>
-
-        </motion.div>
-      )}
+        {showShareDropdown && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
+          >
+            <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
+              <div className="w-[80%]">
+                <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
+                <ShareButton icon="Share" text="Get Link" onClick={copyLinkUrl}></ShareButton>
+                <ShareButton
+                  icon="Copy"
+                  text="Copy list as text"
+                  onClick={copyToClipboard}
+                ></ShareButton>
+                <ShareButton
+                  icon=""
+                  text="Cancel"
+                  onClick={() => setShowShareDropdown(!showShareDropdown)}
+                  cancel
+                ></ShareButton>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </AnimatePresence>
       <div className="max-w-[1800px] mx-auto relative">
         <div className="flex flex-col md:grid grid-cols-2 min-h-[100vh] h-full">
@@ -485,9 +483,11 @@ const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
 };
 
 const Ratings = ({ rating }) => {
+  // add single decimal place to rating
+  const ratingWithDecimal = rating.toFixed(1);
   return (
     <div className="flex leading-120 text-base text-gray-500">
-      {rating}
+      {ratingWithDecimal}
       <SVG
         src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/star.svg`}
         width={15}
