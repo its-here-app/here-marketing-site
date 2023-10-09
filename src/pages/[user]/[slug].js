@@ -314,7 +314,7 @@ export default function ListPage({
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/list-view-focus.svg`}
                       width={24}
-                      height="auto"
+                      height={24}
                       title="list-view"
                       className="stroke-2"
                     />
@@ -323,7 +323,7 @@ export default function ListPage({
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/expanded-view.svg`}
                       width={24}
-                      height="auto"
+                      height={24}
                       title="expanded-view"
                       className=""
                     />
@@ -332,7 +332,7 @@ export default function ListPage({
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map.svg`}
                       width={24}
-                      height="auto"
+                      height={24}
                       title="map-view"
                       className="fill-gray-400"
                     />
@@ -374,7 +374,7 @@ export default function ListPage({
                     src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/copy.svg`}
                     width={24}
                     className="stroke-white group-hover:stroke-black"
-                    height="auto"
+                    height={24}
                     title="Copy List"
                   />{" "}
                   Copy List
@@ -412,7 +412,7 @@ const ShareButton = ({ text, onClick, icon, cancel = false }) => {
           <SVG
             src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/${icon}.svg`}
             width={18}
-            height="auto"
+            height={18}
             title="Close"
             className="fill-[--neon] group-hover:fill-black w-full"
           />
@@ -424,6 +424,8 @@ const ShareButton = ({ text, onClick, icon, cancel = false }) => {
 };
 
 const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
+  const mapsUrl = `https://www.google.com/maps/place/?q=place_id:${googleMapsUrl}`;
+
   return (
     <div className="relative flex w-full flex-row  min-h-[80px]">
       <div className="flex-shrink-0 min-w-[5.5rem] w-[24%] md:w-[17%] lg:w-[15%] aspect-square">
@@ -461,17 +463,20 @@ const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
           </div>
         </div>
         {/* icon right */}
-        <a
-          href={`${googleMapsUrl}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center content-center justify-self-end"
-        >
+        {/* {googleMapsUrl} */}
+        <a href={`${mapsUrl}`}
+          onClick={() => {
+            window.open(
+              `https://www.google.com/maps/place/?q=place_id:${googleMapsUrl}`,
+              "_blank"
+            );
+          }}
+         className="flex items-center content-center justify-self-end">
           <div className="group hover:bg-[--neon] cursor-ne-resize rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
             <SVG
               src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map.svg`}
               width={30}
-              height="auto"
+              height={30}
               title="See Google Map"
               className="group-hover:fill-black fill-white"
             />
@@ -491,7 +496,7 @@ const Ratings = ({ rating }) => {
       <SVG
         src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/star.svg`}
         width={15}
-        height="auto"
+        height={15}
         title="Star Ratings"
         className="fill-[--bubble] pb-.75 mx-1"
       />
