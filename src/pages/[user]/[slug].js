@@ -238,12 +238,12 @@ export default function ListPage({
                               <div className="w-[220px]">
                                 <h3> Share city playlist </h3>
                                 <ShareButton
-                                  icon="Share"
+                                  icon="link"
                                   text="Get Link"
                                   onClick={copyLinkUrl}
                                 ></ShareButton>
                                 <ShareButton
-                                  icon="link"
+                                  icon="copy2"
                                   text="Copy link as Text"
                                   onClick={copyToClipboard}
                                 ></ShareButton>
