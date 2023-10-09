@@ -310,7 +310,7 @@ export default function Home() {
         </div>
 
         <div className="flex w-full md:w-[365px] flex-col lg:ml-[19vw] xxl:ml-[15%] pt-12 text-6 md:ml-[10vw]">
-          <span data-fade-in-group="1" className="font-[Golos] text-[1.3rem] lg:text-[1.5rem]">
+          <span data-fade-in-group="1" className="font-sans text-[1.3rem] lg:text-[1.5rem]">
             Discover and share favorite spots through city playlists*
           </span>
           <button
@@ -318,7 +318,7 @@ export default function Home() {
             // ref={(ref) => cursorRefs.current.push(ref)}
             data-cursor-state="ul-arrow"
             onClick={openModal}
-            className="bg-black mt-8 md:mt-16 leading-150 cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-[Golos] px-[18px] py-[10px]"
+            className="bg-black mt-8 md:mt-16 leading-150 cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-sans px-[18px] py-[10px]"
           >
             Start your playlist
           </button>

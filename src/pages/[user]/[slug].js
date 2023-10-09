@@ -155,16 +155,11 @@ export default function ListPage({
       </Head>
       <AnimatePresence>
         {showShareDropdown && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
-          >
+         
             <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
               <div className="w-[80%]">
                 <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
-                <ShareButton icon="Share" text="Get Link" onClick={copyLinkUrl}></ShareButton>
+                <ShareButton icon="Link" text="Get Link" onClick={copyLinkUrl}></ShareButton>
                 <ShareButton
                   icon="Copy"
                   text="Copy list as text"
@@ -178,7 +173,6 @@ export default function ListPage({
                 ></ShareButton>
               </div>
             </div>
-          </motion.div>
         )}
       </AnimatePresence>
       <div className="max-w-[1800px] mx-auto relative">
@@ -262,7 +256,7 @@ export default function ListPage({
                   </div>
                 </div>
                 <div className="h-full flex items-center justify-center flex-col">
-                  <div className="max-w-[80%] font-[Crimson] text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
+                  <div className="max-w-[80%] font-serif italic text-[2.125rem] lg:text-[3rem] font-[400] leading-[106%] lg:leading-normal tracking-[-0.06em] ">
                     {city}
                   </div>
                   <div className="max-w-[80%] list-playlist-name">{playlistName}</div>
@@ -343,7 +337,7 @@ export default function ListPage({
             <div className="w-full text-[.875rem] lg:text-[1.125rem] md:pr-[1.2rem] ">
               {description}
             </div>
-            <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-[Golos]">
+            <div className="flex flex-col w-full h-auto gap-[1rem] pt-[1rem] font-sans">
               {parsedContent.map((spot, i) => {
                 const url = `${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
                   city
