@@ -159,9 +159,9 @@ export default function ListPage({
             <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
               <div className="w-[80%]">
                 <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
-                <ShareButton icon="Link" text="Get Link" onClick={copyLinkUrl}></ShareButton>
+                <ShareButton icon="link" text="Get Link" onClick={copyLinkUrl}></ShareButton>
                 <ShareButton
-                  icon="Copy"
+                  icon="copy"
                   text="Copy list as text"
                   onClick={copyToClipboard}
                 ></ShareButton>
