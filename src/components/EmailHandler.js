@@ -30,12 +30,11 @@ const EmailForm = ({ status, message, onSubmitted }) => {
   const [name, setName] = useState("");
   const [success, setSuccess] = useState(false);
   const [successMessage, setMessage] = useState("sending... 💌");
+  const [emailPlaceholder, setEmailPlaceholder] = useState("Enter email for exclusive access");
   const inputRef = useRef(null);
-  let emailPlaceholderCopy = "Enter email for exclusive access";
   useEffect(() => {
-    // if viewport is mobile, set email palceholder to "email"
     if (window.innerWidth < 768) {
-      emailPlaceholderCopy = "Email.";
+      setEmailPlaceholder("Email")
     }
   }, []);
   useEffect(() => {
@@ -98,7 +97,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             value={email}
             name="email"
             className="email-input"
-            placeholder={emailPlaceholderCopy}
+            placeholder={emailPlaceholder}
           ></input>
 
           <button
