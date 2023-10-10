@@ -32,7 +32,7 @@ export const Toast = ({ message, down = false, showToast }) => {
             exit={{ opacity: 0, y: down? 60 : -60 }}
             transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="toast z-80 text-[--neon] absolute w-max py-2 px-2 right-[20%] bg-black rounded-[12px]">
+            <div className="toast z-80 text-[--neon] absolute w-max py-2 px-2 right-[0%] bg-black rounded-[12px]">
               <p>{message}</p>
             </div>
           </motion.div>
