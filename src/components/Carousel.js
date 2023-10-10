@@ -154,7 +154,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
                 {/* amout of items in list */}
                 {/* <div className="">{console.log(currentList)}</div> */}
                 {/* {currentList} */}
-                <div className="card-content-length">{parsedContent.length}</div>
+                <div className="card-content-length font-sans">{parsedContent.length}</div>
                 <div className="relative w-[10px] lg:w-[18px] ml-[4px] h-auto">
                   <Image fill src={asterisk} alt="asterisk" />
                 </div>
