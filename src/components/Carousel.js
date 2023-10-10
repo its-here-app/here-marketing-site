@@ -16,9 +16,17 @@ export default function Carousel({ lists }) {
   const [dragStartPoint, setDragStartPoint] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
+  const shuffle = (arr) => {
+    return arr.forEach((val, key) => {
+      let randomIndex = Math.ceil(Math.random() * arr.length - 1);
+      arr[key] = arr[randomIndex];
+      arr[randomIndex] = val;
+    });
+  }
+ 
   useEffect(() => {
-    // shuffle lists
-    lists.sort(() => Math.random() - 0.5);
+    // shuffle order of lists array
+    lists = shuffle(lists);
 
     let timer = 0;
     document.querySelectorAll('[data-fade-in-group="2"]').forEach((el, i) => {
