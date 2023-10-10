@@ -328,7 +328,7 @@ export default function ListPage({
                       className=""
                     />
                   </div>
-                  <a href="" className="z-20 flex items-center justify-center opacity-[.2]">
+                  <div className="z-20 flex items-center justify-center opacity-[.2]">
                     <SVG
                       src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map.svg`}
                       width={24}
@@ -336,7 +336,7 @@ export default function ListPage({
                       title="map-view"
                       className="fill-gray-400"
                     />
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
