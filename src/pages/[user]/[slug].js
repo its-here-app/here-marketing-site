@@ -86,6 +86,7 @@ export async function getServerSideProps({ query }) {
   };
 }
 
+
 export default function ListPage({
   city,
   playlistName,
@@ -135,8 +136,13 @@ export default function ListPage({
     document.body.removeChild(el);
     setShowShareDropdown(false);
   };
+  
+  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    var mobile = require('is-mobile');
+    setIsMobile(mobile());
+  }, []);
 
   const handleClose = () => {
     router.push("/", undefined, { shallow: true });
@@ -345,12 +351,13 @@ export default function ListPage({
 
                 return (
                   <Spot
+                    isMobile={isMobile}
                     key={spot.name}
                     title={spot.name}
                     description={spot.description}
                     ratings={spot.ratings && spot.ratings}
                     type={spot.type}
-                    googleMapsUrl={spot.googleMapsUrl}
+                    place_id={spot.googleMapsUrl}
                     image={url}
                   />
                 );
@@ -417,8 +424,12 @@ const ShareButton = ({ text, onClick, icon, cancel = false }) => {
   );
 };
 
-const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
-  const mapsUrl = `https://www.google.com/maps/place/?q=place_id:${googleMapsUrl}`;
+const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) => {
+
+  const mapsUrlDesktop = `https://www.google.com/maps/place/?q=place_id:${place_id}`;
+  const mapsUrlMobile = `comgooglemapsurl://www.google.com/maps/search/?api=1&query=""&query_place_id=${place_id}`
+
+  const mapsUrl = isMobile ? mapsUrlMobile : mapsUrlDesktop;
 
   return (
     <div className="relative flex w-full flex-row  min-h-[80px]">
@@ -456,15 +467,8 @@ const Spot = ({ title, description, type, image, ratings, googleMapsUrl }) => {
             </div>
           </div>
         </div>
-        {/* icon right */}
-        {/* {googleMapsUrl} */}
-        <a href={`${mapsUrl}`}
-          onClick={() => {
-            window.open(
-              `https://www.google.com/maps/place/?q=place_id:${googleMapsUrl}`,
-              "_blank"
-            );
-          }}
+        <a href={mapsUrl}
+          target="_blank"
          className="flex items-center content-center justify-self-end">
           <div className="group hover:bg-[--neon] cursor-ne-resize rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
             <SVG
