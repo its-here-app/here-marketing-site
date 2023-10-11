@@ -8,17 +8,17 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-GM4MCJ7578"></Script>
-        <Script>
-          {`
+      </body>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-GM4MCJ7578" />
+      <Script id="google-analytics">
+        {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
             gtag('config', 'G-GM4MCJ7578');
           `}
-        </Script>
-      </body>
+      </Script>
     </Html>
   );
 }
