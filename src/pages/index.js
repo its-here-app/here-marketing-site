@@ -29,6 +29,7 @@ export async function getServerSideProps() {
     }
   }
 }
+
 export default function Home({lists}) {
   const cursorCircle = useRef(null);
   const ctaSticker = useRef(null);

@@ -31,11 +31,12 @@ const EmailForm = ({ status, message, onSubmitted }) => {
   const [success, setSuccess] = useState(false);
   const [successMessage, setMessage] = useState("sending... 💌");
   const [emailPlaceholder, setEmailPlaceholder] = useState("Enter email for exclusive access");
+  const [isMobile, setIsMobile] = useState(false);
+
   const inputRef = useRef(null);
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      setEmailPlaceholder("Email")
-    }
+    setIsMobile(window.innerWidth < 768);
+    isMobile && setEmailPlaceholder("Email");
   }, []);
   useEffect(() => {
     if (status === "success") {
@@ -43,7 +44,9 @@ const EmailForm = ({ status, message, onSubmitted }) => {
       setTimeout(() => {
         setSuccess(true);
       }, 1000);
-      setMessage("Email added. Can’t wait to keep you updated!");
+      isMobile
+        ? setMessage("Email Added")
+        : setMessage("Email added. Can’t wait to keep you updated!");
       clearFields();
     } else if (status === "error") {
       setSuccess(false);

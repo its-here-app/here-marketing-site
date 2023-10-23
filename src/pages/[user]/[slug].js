@@ -12,6 +12,8 @@ import router from "next/router";
 import Image from "next/image";
 import moment from "moment";
 import classNames from "classnames";
+import { Metadata } from "next";
+
 
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
@@ -86,6 +88,9 @@ export async function getServerSideProps({ query }) {
   };
 }
 
+export const metadata = {
+  title: "News",
+};
 export default function ListPage({
   city,
   playlistName,
@@ -153,11 +158,7 @@ export default function ListPage({
 
   return (
     <>
-      <Head>
-        <title>
-          {city} — {playlistName} @{username} • Here*
-        </title>
-      </Head>
+ 
       <AnimatePresence>
         {showShareDropdown && (
             <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
