@@ -28,7 +28,7 @@ export async function getServerSideProps({ query }) {
       client_x509_cert_url: process.env.GOOGLE_CLIENT_X509_CERT_URL,
       universe_domain: process.env.GOOGLE_UNIVERSE_DOMAIN,
     },
-    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"j],
   });
 
   const sheets = google.sheets({ version: "v4", auth });
@@ -85,7 +85,6 @@ export async function getServerSideProps({ query }) {
     },
   };
 }
-
 
 export default function ListPage({
   city,
@@ -161,7 +160,6 @@ export default function ListPage({
       </Head>
       <AnimatePresence>
         {showShareDropdown && (
-         
             <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
               <div className="w-[80%]">
                 <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>

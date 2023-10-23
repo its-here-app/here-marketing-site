@@ -16,7 +16,20 @@ import Carousel from "../components/Carousel";
 import { ModalForm } from "../components/Modal";
 import { Footer } from "../components/Footer";
 
-export default function Home() {
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/sheets`, {
+    next: {
+      revalidate: 3600,
+    },
+  });
+  const data = await res.json();
+  return {
+    props: {
+      lists: data.lists,
+    }
+  }
+}
+export default function Home({lists}) {
   const cursorCircle = useRef(null);
   const ctaSticker = useRef(null);
   const [cursorState, setCursorState] = useState(null);
@@ -29,7 +42,7 @@ export default function Home() {
     left: 800,
     top: 400,
   });
-
+  console.log('hello', lists)
   const openModal = () => {
     setModalOpen(true);
     cursorCircle.current.classList.add("invert");
@@ -56,14 +69,7 @@ export default function Home() {
   }, 1);
 
   const getCarouselData = async () => {
-    // set isloading to false on success
-    const res = await fetch("/api/sheets", {
-      next: {
-        revalidate: 3600,
-      },
-    });
-    const data = await res.json();
-    let featured = data.lists.filter((list) => list.isFeatured === "yes");
+    let featured = lists.filter((list) => list.isFeatured === "yes");
     setCarouselData(featured);
   };
 
