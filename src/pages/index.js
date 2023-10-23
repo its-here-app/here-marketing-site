@@ -26,11 +26,11 @@ export async function getServerSideProps() {
   return {
     props: {
       lists: data.lists,
-    }
-  }
+    },
+  };
 }
 
-export default function Home({lists}) {
+export default function Home({ lists }) {
   const cursorCircle = useRef(null);
   const ctaSticker = useRef(null);
   const [cursorState, setCursorState] = useState(null);
@@ -176,7 +176,6 @@ export default function Home({lists}) {
       store.style.setProperty("--cta-fill", `var(--neon)`);
       store.style.setProperty("--cta-fill-inner", `black`);
     } else {
-      
       store.style.setProperty("--cta-fill-inner", `var(--white)`);
       ctaSticker.current.classList.remove("md:translate-y-[-100px]");
       ctaSticker.current.classList.remove("translate-y-[-220px]");

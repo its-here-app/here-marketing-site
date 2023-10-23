@@ -22,8 +22,8 @@ export default function Carousel({ lists }) {
       arr[key] = arr[randomIndex];
       arr[randomIndex] = val;
     });
-  }
- 
+  };
+
   useEffect(() => {
     // shuffle order of lists array
     lists = shuffle(lists);
@@ -39,10 +39,10 @@ export default function Carousel({ lists }) {
     window.setTimeout(() => {
       carousel.current.style.transform = `translateX(${-600}px)`;
       setCurrentPosition(-600);
-    }, 1000)
+    }, 1000);
     window.setTimeout(() => {
       carousel.current.style.transitionDuration = "800ms";
-    }, 2000)
+    }, 2000);
   }, []);
 
   const handleDragStart = (event) => {
@@ -114,7 +114,7 @@ export default function Carousel({ lists }) {
 
 const CarouselItem = ({ index, currentList, parsedContent }) => {
   const handleClick = (slug, username) => {
-    console.log('got here')
+    console.log("got here");
     router.push(`/${username}/${slug}`, undefined, { shallow: true });
   };
   return (
@@ -124,7 +124,9 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
           <div className="grid grid-cols-1 grid-rows-3 w-full h-full bg-cover ">
             <Image
               className="w-full h-full absolute object-cover"
-              src={`${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${slugify(currentList.city)}_${currentList.slug}_cover.jpg`}
+              src={`${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${slugify(
+                currentList.city
+              )}_${currentList.slug}_cover.jpg`}
               width={800}
               height={800}
             />

@@ -14,7 +14,6 @@ import moment from "moment";
 import classNames from "classnames";
 import { Metadata } from "next";
 
-
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
     credentials: {
@@ -140,11 +139,11 @@ export default function ListPage({
     document.body.removeChild(el);
     setShowShareDropdown(false);
   };
-  
+
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    var mobile = require('is-mobile');
+    var mobile = require("is-mobile");
     setIsMobile(mobile());
   }, []);
 
@@ -158,26 +157,25 @@ export default function ListPage({
 
   return (
     <>
- 
       <AnimatePresence>
         {showShareDropdown && (
-            <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
-              <div className="w-[80%]">
-                <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
-                <ShareButton icon="link" text="Get Link" onClick={copyLinkUrl}></ShareButton>
-                <ShareButton
-                  icon="copy"
-                  text="Copy list as text"
-                  onClick={copyToClipboard}
-                ></ShareButton>
-                <ShareButton
-                  icon=""
-                  text="Cancel"
-                  onClick={() => setShowShareDropdown(!showShareDropdown)}
-                  cancel
-                ></ShareButton>
-              </div>
+          <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
+            <div className="w-[80%]">
+              <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
+              <ShareButton icon="link" text="Get Link" onClick={copyLinkUrl}></ShareButton>
+              <ShareButton
+                icon="copy"
+                text="Copy list as text"
+                onClick={copyToClipboard}
+              ></ShareButton>
+              <ShareButton
+                icon=""
+                text="Cancel"
+                onClick={() => setShowShareDropdown(!showShareDropdown)}
+                cancel
+              ></ShareButton>
             </div>
+          </div>
         )}
       </AnimatePresence>
       <div className="max-w-[1800px] mx-auto relative">
@@ -193,14 +191,14 @@ export default function ListPage({
                     mixBlendMode: "soft-light",
                   }}
                 ></div>
-                <div
-                  className="w-full h-full absolute z-[-2] bg-center bg-cover flex"
-                  style={{
-                    backgroundImage: `url('${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
-                      city
-                    )}_${listSlug}_cover.jpg')`,
-                  }}
-                ></div>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(
+                    city
+                  )}_${listSlug}_cover.jpg`}
+                  width={1200}
+                  height={1200}
+                  className="w-full h-full absolute z-[-2] object-cover bg-cover flex"
+                />
 
                 {/* add a sticky element */}
                 <div className="w-full h-full flex justify-between items-start px-[1.25rem] py-[1.25rem]">
@@ -424,9 +422,8 @@ const ShareButton = ({ text, onClick, icon, cancel = false }) => {
 };
 
 const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) => {
-
   const mapsUrlDesktop = `https://www.google.com/maps/place/?q=place_id:${place_id}`;
-  const mapsUrlMobile = `comgooglemapsurl://www.google.com/maps/search/?api=1&query=""&query_place_id=${place_id}`
+  const mapsUrlMobile = `comgooglemapsurl://www.google.com/maps/search/?api=1&query=""&query_place_id=${place_id}`;
 
   const mapsUrl = isMobile ? mapsUrlMobile : mapsUrlDesktop;
 
@@ -466,9 +463,11 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
             </div>
           </div>
         </div>
-        <a href={mapsUrl}
+        <a
+          href={mapsUrl}
           target="_blank"
-         className="flex items-center content-center justify-self-end">
+          className="flex items-center content-center justify-self-end"
+        >
           <div className="group hover:bg-[--neon] cursor-ne-resize rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
             <SVG
               src={`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/icons/Map.svg`}
