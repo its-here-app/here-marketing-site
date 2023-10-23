@@ -28,7 +28,7 @@ export async function getServerSideProps({ query }) {
       client_x509_cert_url: process.env.GOOGLE_CLIENT_X509_CERT_URL,
       universe_domain: process.env.GOOGLE_UNIVERSE_DOMAIN,
     },
-    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"j],
+    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
   });
 
   const sheets = google.sheets({ version: "v4", auth });
