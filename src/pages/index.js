@@ -43,7 +43,6 @@ export default function Home({lists}) {
     left: 800,
     top: 400,
   });
-  console.log('hello', lists)
   const openModal = () => {
     setModalOpen(true);
     cursorCircle.current.classList.add("invert");
