@@ -45,6 +45,10 @@
     border: 0px;
   }
 
+  .scrim {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 54.95%, rgba(0, 0, 0, 0.00) 100%);
+    mix-blend-mode: soft-light;
+  }
   #cta-sticker > path {
     @apply fill-[--cta-fill-inner];
   }

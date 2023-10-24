@@ -121,22 +121,21 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
     <div key={index} id="carousel-item" data-fade-in-group="2" className="z-2 transition-transform">
       <div className="w-[80vw] md:w-[40vw] hover:scale-[1.01] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden transition-all rounded-[1rem] relative">
         <div className="cursor-none scale(110%) select-none bg-center w-full h-full transition-all ease-in duration-[1800ms] items-center justify-center">
-          <div className="grid grid-cols-1 grid-rows-3 w-full h-full bg-cover ">
+          <div className="grid grid-cols-1 grid-rows-3 w-full h-full bg-cover">
             <Image
-              className="w-full h-full absolute object-cover"
+              className="w-full h-full absolute object-cover z-20"
               src={`${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${slugify(
                 currentList.city
               )}_${currentList.slug}_cover.jpg`}
+              loading="lazy"
               width={800}
               height={800}
             />
             <div
-              className="w-full bg-gray-300 h-full absolute"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 54.95%, rgba(0, 0, 0, 0.00) 100%)",
-                mixBlendMode: "soft-light",
-              }}
+              className="w-full h-full absolute scrim z-30"
+            ></div>
+            <div
+              className="w-full h-full absolute shimmer"
             ></div>
             <div
               onClick={() => {
