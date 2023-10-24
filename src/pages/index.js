@@ -8,9 +8,9 @@ import classNames from "classnames";
 import SVG from "react-inlinesvg";
 
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
-import tile3Before from "/public/graphics/tile3_before.png";
-import tile3After from "/public/graphics/tile3_after.png";
-import footerGraphic from "/public/graphics/footer-graphic.png";
+import tile3Before from "/public/photos/tile3_before.webp";
+import tile3After from "/public/photos/tile3_after.webp";
+import footerGraphic from "/public/photos/footer-graphic.webp";
 
 import Carousel from "../components/Carousel";
 import { ModalForm } from "../components/Modal";
@@ -76,27 +76,27 @@ export default function Home({ lists }) {
   const flipperAnimationList = [
     {
       title: "New York City",
-      img: "newyork.png",
+      img: "newyork.webp",
       z: 1,
     },
     {
       title: "Big Island",
-      img: "bigisland.png",
+      img: "bigisland.webp",
       z: -1,
     },
     {
       title: "Los Angeles",
-      img: "losangeles.png",
+      img: "losangeles.webp",
       z: -1,
     },
     {
       title: "San Francisco",
-      img: "sanfrancisco.png",
+      img: "sanfrancisco.webp",
       z: -1,
     },
     {
       title: "Portland",
-      img: "portland.png",
+      img: "portland.webp",
       z: -1,
     },
   ];
@@ -343,7 +343,7 @@ export default function Home({ lists }) {
             <div className="w-[95%] md:w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
-                style={{ backgroundImage: `url('/photos/tile1.png')` }}
+                style={{ backgroundImage: `url('/photos/tile1.webp')` }}
               >
                 <div
                   id="animation-container"
@@ -433,7 +433,7 @@ export default function Home({ lists }) {
             <div className="w-full h-full items-center">
               <div
                 className="relative w-full items-center justify-center aspect-[1/1.23] bg-center bg-cover rounded-[18px]"
-                style={{ backgroundImage: `url('/photos/tile3.png')` }}
+                style={{ backgroundImage: `url('/photos/tile3.webp')` }}
               >
                 <div
                   id="animation-container"
