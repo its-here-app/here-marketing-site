@@ -133,7 +133,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
               height={800}
             />
             <div
-              className="w-full h-full absolute scrim z-20"
+              className="w-full h-full absolute scrim z-30"
             ></div>
             <div
               className="w-full h-full absolute shimmer"
@@ -143,7 +143,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
                 handleClick(currentList.slug, currentList.username);
               }}
               data-cursor-state="ul-arrow"
-              className="z-20 cursor-none flex row-span-1 row-start-2 tighten text-[--neon] flex-col justify-center items-center"
+              className="z-40 cursor-none flex row-span-1 row-start-2 tighten text-[--neon] flex-col justify-center items-center"
             >
               <div className="card-city-name">{currentList.city}</div>
               <div className="card-playlist-name max-w-[74%]">{currentList.playlistName}</div>
