@@ -283,7 +283,7 @@ export default function Home({ lists }) {
         className={classNames(
           "hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] transition-all duration-[500ms] pop-in w-[180px] md:w-[250px] md:h-[200px]",
           {
-            "absolute top-0 hidden opacity-0": modalIsOpen,
+            "absolute top-0 hidden opacity-0 -z-10": modalIsOpen,
           }
         )}
       >
@@ -472,7 +472,7 @@ export default function Home({ lists }) {
         <div
           className="absolute
               w-[140px] h-[140px]
-              z-30
+              z-0
               lg:scale-[1.25] md:scale-[1.2]
               top-[28%] right-[-6%]
               lg:top-[12%] lg:right-[20%]
