@@ -128,6 +128,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
                 currentList.city
               )}_${currentList.slug}_cover.jpg`}
               loading="lazy"
+              alt={`Carousel image for ${currentList.city}`}
               width={800}
               height={800}
             />
