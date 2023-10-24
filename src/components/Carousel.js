@@ -133,7 +133,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
               height={800}
             />
             <div
-              className="w-full h-full absolute scrim z-30"
+              className="w-full h-full absolute scrim z-20"
             ></div>
             <div
               className="w-full h-full absolute shimmer"
