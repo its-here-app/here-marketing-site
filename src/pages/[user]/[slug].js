@@ -494,7 +494,7 @@ const Ratings = ({ rating }) => {
         width={15}
         height={15}
         title="Star Ratings"
-        className="fill-[--bubble] pb-.75 mx-1"
+        className="fill-[--bubble] mt-[2px] pb-.75 mx-1"
       />
     </div>
   );
