@@ -242,11 +242,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends."
+          content="Discover and share the best spots with friends and people like you, helping you sort through all the places."
         />
         <meta
           property="og:description"
-          content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends."
+          content="Discover and share the best spots with friends and people like you, helping you sort through all the places."
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
