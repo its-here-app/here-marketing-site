@@ -361,7 +361,7 @@ export default function Home() {
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">from your fave people</div>
             </div>
             <div className="tile-text-bottom">
-            One place to find their favorites that they’ve been posting about.
+            One place to find their favorites that they’ve been posting about. Hello. 
             </div>
           </div>
         </div>
