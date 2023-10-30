@@ -361,7 +361,7 @@ export default function Home() {
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">from your fave people</div>
             </div>
             <div className="tile-text-bottom">
-            One place to find their favorites that they’ve been posting about. Hello. 
+            One place to find their favorites that they’ve been posting about.
             </div>
           </div>
         </div>
@@ -406,14 +406,14 @@ export default function Home() {
           <div data-start-y="10" className="tile-text">
             <div className="tile-text-top">
               <div>
-                <span>Stop digging </span>
+                <span>Keep your </span>
                 <br />
-                <span> for your</span>
+                <span>travel recs</span>
               </div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">travel recs</div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">with us</div>
             </div>
             <div className="tile-text-bottom">
-              One link for anytime you’re asked for your fave city spots
+            Always have your recommendations ready when your friends come to town 
             </div>
           </div>
         </div>
