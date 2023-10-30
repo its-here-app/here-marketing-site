@@ -331,6 +331,44 @@ export default function Home() {
 
       <section data-scroll-visited="false" data-bg="neon" className="section-tile">
         <div className="tile">
+          <div data-start-y="20" className="tile-image ">
+            <div className="w-full h-full relative items-center justify-center aspect-[1/1.23] bg-center bg-cover ">
+              <div className="tile-2-outer">
+                {flipperAnimationList.map((item, index) => {
+                  return (
+                    <div
+                      className="tile-2-inner absolute"
+                      key={item.title}
+                      style={{
+                        backgroundImage: `url(/photos/cities/${item.img})`,
+                        zIndex: `${item.z}`,
+                      }}
+                    >
+                      <div className="tile-2-text-wrapper">
+                        <span className="tile-2-text ">{item.title}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          <div data-start-y="40" className="tile-text grid-reverse text-reverse">
+            <div className="tile-text-top">
+              <div>
+                Discover <span className="whitespace-nowrap">new places</span>
+              </div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">from your fave people</div>
+            </div>
+            <div className="tile-text-bottom">
+            One place to find their favorites that they’ve been posting about.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-scroll-visited="false" data-bg="neon" className="section-tile">
+        <div className="tile">
           <div data-start-y="15" className="tile-image">
             <div className="w-[95%] md:w-full h-full items-center">
               <div
@@ -381,43 +419,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section data-scroll-visited="false" data-bg="neon" className="section-tile">
-        <div className="tile">
-          <div data-start-y="20" className="tile-image ">
-            <div className="w-full h-full relative items-center justify-center aspect-[1/1.23] bg-center bg-cover ">
-              <div className="tile-2-outer">
-                {flipperAnimationList.map((item, index) => {
-                  return (
-                    <div
-                      className="tile-2-inner absolute"
-                      key={item.title}
-                      style={{
-                        backgroundImage: `url(/photos/cities/${item.img})`,
-                        zIndex: `${item.z}`,
-                      }}
-                    >
-                      <div className="tile-2-text-wrapper">
-                        <span className="tile-2-text ">{item.title}</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div data-start-y="40" className="tile-text grid-reverse text-reverse">
-            <div className="tile-text-top">
-              <div>
-                Discover <span className="whitespace-nowrap">new places</span>
-              </div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">based on what you like</div>
-            </div>
-            <div className="tile-text-bottom">
-              One place to plan, search, cross&#8209;reference and find experiences curated for you.
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section data-scroll-visited="false" data-bg="neon" className="section-tile">
         <div className="tile">
