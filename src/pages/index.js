@@ -444,15 +444,15 @@ export default function Home() {
           </div>
           <div data-start-y="30" className="tile-text">
             <div className="tile-text-top">
-              <div>Auto&#8209;populate from </div>
+              <div>No need to</div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">
                 <div className="text-left">
-                  your <span className="whitespace-nowrap">existing lists</span>
+                  start <span className="whitespace-nowrap">from scratch</span>
                 </div>
               </div>
             </div>
             <div className="tile-text-bottom">
-              Start your city playlist with notes, google docs, instagram, or maps.
+            Upload your notes, instagram, or maps list to create your city playlist*.
             </div>
           </div>
         </div>
@@ -480,7 +480,7 @@ export default function Home() {
           </div>
           <div className="px-0 mt-8 md:mt-2 flex justify-start md:justify-end ">
             <div className="flex items-end justify-end md:w-[55vw] xxl:w-[1020px]">
-              <span className="w-auto ">and those you want to visit</span>
+              <span className="md:w-[50vw] max-w-[900px]">and places you’ll go</span>
             </div>
           </div>
           <div
@@ -490,12 +490,15 @@ export default function Home() {
             <div className="flex col-span-1 md:col-span-9 pt-12 w-full md:pt-0 items-end h-auto order-1 md:-order-1">
               <div className="flex items-end h-full flex-row text-[1.75rem] px-0 leading-120 md:leading-150 tracking-1 font-[Golos]">
                 <div className="flex flex-row">
-                  <span className="pr-2">*</span>
+                  {/* <span className="pr-2">*</span> */}
                   <div className="md:max-w-[355px] lg:max-w-[552px] text-[1.3rem] lg:text-[1.5rem]">
+                  Here* lets you uncover new places to explore and save your go-to spots. 
+                  </div>
+                  {/* <div className="md:max-w-[355px] lg:max-w-[552px] text-[1.3rem] lg:text-[1.5rem]">
                     like music, compile your favorite places into a{" "}
                     <span className="text-[--ocean]">city playlist</span> that captures that time of
                     your life.
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
