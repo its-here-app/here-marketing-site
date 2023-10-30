@@ -308,7 +308,7 @@ export default function Home() {
 
         <div className="flex w-full md:w-[365px] flex-col lg:ml-[19vw] xxl:ml-[15%] pt-12 text-6 md:ml-[10vw]">
           <span data-fade-in-group="1" className="font-[Golos] text-[1.3rem] lg:text-[1.5rem]">
-            Discover and share favorite spots through city playlists*
+          Discover and share the best spots with people like you
           </span>
           <button
             data-fade-in-group="1"
