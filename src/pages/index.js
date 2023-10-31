@@ -353,7 +353,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div data-start-y="40" className="tile-text grid-reverse text-reverse">
+          <div data-start-y="40" className="tile-text">
             <div className="tile-text-top">
               <div>
                 Discover <span className="whitespace-nowrap">new places</span>
@@ -403,7 +403,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div data-start-y="10" className="tile-text">
+          <div data-start-y="10" className="tile-text  grid-reverse text-reverse">
             <div className="tile-text-top">
               <div>
                 <span>Keep your </span>
