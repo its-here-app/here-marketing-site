@@ -440,7 +440,7 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
       <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-4">
         {/* info left */}
         <div className="h-auto col-span-5 lg:col-span-3 pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
-          <div className="font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-[100%]">
+          <div className="font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-110">
             {title}
           </div>
           {description && (
