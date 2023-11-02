@@ -162,15 +162,17 @@ export default function ListPage({
           <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
             <div className="w-[80%]">
               <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
-              <ShareButton icon="link" text="Get Link" onClick={copyLinkUrl}></ShareButton>
+              <ShareButton icon="link" id="share-dropdown-get-link" text="Get Link" onClick={copyLinkUrl}></ShareButton>
               <ShareButton
                 icon="copy"
                 text="Copy list as text"
+                id="share-dropdown-copy-list"
                 onClick={copyToClipboard}
               ></ShareButton>
               <ShareButton
                 icon=""
                 text="Cancel"
+                id="share-dropdown-cancel"
                 onClick={() => setShowShareDropdown(!showShareDropdown)}
                 cancel
               ></ShareButton>
@@ -205,6 +207,7 @@ export default function ListPage({
                   {/* x container */}
                   <div
                     onClick={handleClose}
+                    id="close-list-button"
                     className="cursor-pointer flex flex-row gap-[0.6875rem] items-center justify-center"
                   >
                     <SVG
@@ -218,6 +221,7 @@ export default function ListPage({
                   {/* share dropdown */}
                   <div
                     className="cursor-pointer relative flex flex-row gap-[0.6875rem] items-center justify-center"
+                    id="share-list-menu-button"
                     onClick={() => setShowShareDropdown(!showShareDropdown)}
                   >
                     <SVG
@@ -243,11 +247,13 @@ export default function ListPage({
                                 <ShareButton
                                   icon="link"
                                   text="Get Link"
+                                  id="share-dropdown-copy-link-desktop"
                                   onClick={copyLinkUrl}
                                 ></ShareButton>
                                 <ShareButton
                                   icon="copy2"
                                   text="Copy link as Text"
+                                  id="share-dropdown-copy-link-desktop"
                                   onClick={copyToClipboard}
                                 ></ShareButton>
                               </div>
@@ -366,6 +372,7 @@ export default function ListPage({
                 <Toast message="Copied to clipboard" showToast={showClipboardToast} />
                 <div
                   onClick={copyToClipboard}
+                  id="copy-list-button"
                   className="mb-12 bg-black group transition-all duration-[800ms] hover:bg-[--neon] hover:text-black cursor-pointer flex flex-row font-sans rounded-[1rem] text-[.875rem] px-[.75rem] py-[.5rem] text-white"
                 >
                   <SVG

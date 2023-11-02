@@ -94,6 +94,7 @@ export const Footer = ({ isHomepage = true }) => {
           <div className="flex flex-row text-6 w-[65%] ext-[400]  max-w-[600px] h-full items-center md:justify-between justify-end text-white font-[Golos]">
             <a
               href="mailto:team@itshere.app"
+              id="contact-us-footer"
               className="cursor-none whitespace-nowrap hidden md:flex"
             >
               Contact us ↗
@@ -101,6 +102,7 @@ export const Footer = ({ isHomepage = true }) => {
             <a
               href="https://instagram.com/itshere.app"
               target="blank"
+              id="follow-us-footer"
               className="cursor=none whitespace-nowrap hidden md:flex"
             >
               Follow us on instagram ↗

@@ -143,6 +143,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
                 handleClick(currentList.slug, currentList.username);
               }}
               data-cursor-state="ul-arrow"
+              id="open-list-button"
               className="z-40 cursor-none flex row-span-1 row-start-2 tighten text-[--neon] flex-col justify-center items-center"
             >
               <div className="card-city-name">{currentList.city}</div>

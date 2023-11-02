@@ -279,6 +279,7 @@ export default function Home({ lists }) {
       <div
         onClick={openModal}
         data-cursor-state="asterisk"
+        id="start-your-paylist-sticker"
         ref={ctaSticker}
         className={classNames(
           "hover:drop-shadow-2xl z-[2] md:block fixed right-[5%] top-[84%] md:top-[75%] transition-all duration-[500ms] pop-in w-[180px] md:w-[250px] md:h-[200px]",
@@ -320,6 +321,7 @@ export default function Home({ lists }) {
           </span>
           <button
             data-fade-in-group="1"
+            id="start-your-paylist-button"
             // ref={(ref) => cursorRefs.current.push(ref)}
             data-cursor-state="ul-arrow"
             onClick={openModal}
