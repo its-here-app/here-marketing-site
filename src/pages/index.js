@@ -250,11 +250,11 @@ export default function Home({ lists }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends."
+          content="Discover and share the best spots with friends and people like you, helping you sort through all the places."
         />
         <meta
           property="og:description"
-          content="A place to make and discover “city playlists” for favorite spots in cities and share them with friends."
+          content="Discover and share the best spots with friends and people like you, helping you sort through all the places."
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
@@ -316,8 +316,8 @@ export default function Home({ lists }) {
         </div>
 
         <div className="flex w-full md:w-[365px] flex-col lg:ml-[19vw] xxl:ml-[15%] pt-12 text-6 md:ml-[10vw]">
-          <span data-fade-in-group="1" className="font-sans text-[1.3rem] lg:text-[1.5rem]">
-            Discover and share favorite spots through city playlists*
+          <span data-fade-in-group="1" className="font-[Golos] text-[1.3rem] lg:text-[1.5rem]">
+          Discover and share the best spots with people like you
           </span>
           <button
             data-fade-in-group="1"
@@ -337,6 +337,44 @@ export default function Home({ lists }) {
         className="relative h-max pt-12 flex items-top justify-center w-full"
       >
         {isLoading ? <PlaceholderCarousel /> : <Carousel lists={carouselData} />}
+      </section>
+
+      <section data-scroll-visited="false" data-bg="neon" className="section-tile">
+        <div className="tile">
+          <div data-start-y="20" className="tile-image ">
+            <div className="w-full h-full relative items-center justify-center aspect-[1/1.23] bg-center bg-cover ">
+              <div className="tile-2-outer">
+                {flipperAnimationList.map((item, index) => {
+                  return (
+                    <div
+                      className="tile-2-inner absolute"
+                      key={item.title}
+                      style={{
+                        backgroundImage: `url(/photos/cities/${item.img})`,
+                        zIndex: `${item.z}`,
+                      }}
+                    >
+                      <div className="tile-2-text-wrapper">
+                        <span className="tile-2-text ">{item.title}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          <div data-start-y="40" className="tile-text">
+            <div className="tile-text-top">
+              <div>
+                Discover <span className="whitespace-nowrap">new places</span>
+              </div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">from your fave people</div>
+            </div>
+            <div className="tile-text-bottom">
+            One place to find their favorites that they’ve been posting about.
+            </div>
+          </div>
+        </div>
       </section>
 
       <section data-scroll-visited="false" data-bg="neon" className="section-tile">
@@ -375,59 +413,22 @@ export default function Home({ lists }) {
               </div>
             </div>
           </div>
-          <div data-start-y="10" className="tile-text">
+          <div data-start-y="10" className="tile-text  grid-reverse text-reverse">
             <div className="tile-text-top">
               <div>
-                <span>Stop digging </span>
+                <span>Keep your </span>
                 <br />
-                <span> for your</span>
+                <span>travel recs</span>
               </div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">travel recs</div>
+              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">with us</div>
             </div>
             <div className="tile-text-bottom">
-              One link for anytime you’re asked for your fave city spots
+            Always have your recommendations ready when your friends come to town 
             </div>
           </div>
         </div>
       </section>
 
-      <section data-scroll-visited="false" data-bg="neon" className="section-tile">
-        <div className="tile">
-          <div data-start-y="20" className="tile-image ">
-            <div className="w-full h-full relative items-center justify-center aspect-[1/1.23] bg-center bg-cover ">
-              <div className="tile-2-outer">
-                {flipperAnimationList.map((item, index) => {
-                  return (
-                    <div
-                      className="tile-2-inner absolute"
-                      key={item.title}
-                      style={{
-                        backgroundImage: `url(/photos/cities/${item.img})`,
-                        zIndex: `${item.z}`,
-                      }}
-                    >
-                      <div className="tile-2-text-wrapper">
-                        <span className="tile-2-text ">{item.title}</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div data-start-y="40" className="tile-text grid-reverse text-reverse">
-            <div className="tile-text-top">
-              <div>
-                Discover <span className="whitespace-nowrap">new places</span>
-              </div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">based on what you like</div>
-            </div>
-            <div className="tile-text-bottom">
-              One place to plan, search, cross&#8209;reference and find experiences curated for you.
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section data-scroll-visited="false" data-bg="neon" className="section-tile">
         <div className="tile">
@@ -453,15 +454,15 @@ export default function Home({ lists }) {
           </div>
           <div data-start-y="30" className="tile-text">
             <div className="tile-text-top">
-              <div>Auto&#8209;populate from </div>
+              <div>No need to</div>
               <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">
                 <div className="text-left">
-                  your <span className="whitespace-nowrap">existing lists</span>
+                  start <span className="whitespace-nowrap">from scratch</span>
                 </div>
               </div>
             </div>
             <div className="tile-text-bottom">
-              Start your city playlist with notes, google docs, instagram, or maps.
+            Upload your notes, instagram, or maps list to create your city playlist*.
             </div>
           </div>
         </div>
@@ -489,7 +490,7 @@ export default function Home({ lists }) {
           </div>
           <div className="px-0 mt-8 md:mt-2 flex justify-start md:justify-end ">
             <div className="flex items-end justify-end md:w-[55vw] xxl:w-[1020px]">
-              <span className="w-auto ">and those you want to visit</span>
+              <span className="md:w-[50vw] max-w-[900px]">and places you’ll go</span>
             </div>
           </div>
           <div
@@ -499,12 +500,15 @@ export default function Home({ lists }) {
             <div className="flex col-span-1 md:col-span-9 pt-12 w-full md:pt-0 items-end h-auto order-1 md:-order-1">
               <div className="flex items-end h-full flex-row text-[1.75rem] px-0 leading-120 md:leading-150 tracking-1 font-[Golos]">
                 <div className="flex flex-row">
-                  <span className="pr-2">*</span>
+                  {/* <span className="pr-2">*</span> */}
                   <div className="md:max-w-[355px] lg:max-w-[552px] text-[1.3rem] lg:text-[1.5rem]">
+                  Here* lets you uncover new places to explore and save your go-to spots. 
+                  </div>
+                  {/* <div className="md:max-w-[355px] lg:max-w-[552px] text-[1.3rem] lg:text-[1.5rem]">
                     like music, compile your favorite places into a{" "}
                     <span className="text-[--ocean]">city playlist</span> that captures that time of
                     your life.
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
