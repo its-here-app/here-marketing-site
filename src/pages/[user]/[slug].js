@@ -34,7 +34,8 @@ export async function getServerSideProps({ query }) {
 
   const sheets = google.sheets({ version: "v4", auth });
 
-  const { slug } = query;
+  const { user, slug } = query;
+
   const range = `Sheet1!A$2:I$40`;
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
@@ -57,8 +58,8 @@ export async function getServerSideProps({ query }) {
 
   // const list = lists.find((list) => list.slug === slug);
 
-  // get id of list with matching slug
-  const listId = lists.findIndex((list) => list.slug === slug);
+  // get id of list with matching user and slug
+  const listId = lists.findIndex((list) => list.username === user && list.slug === slug);
 
   const [
     city,
