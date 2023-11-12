@@ -88,9 +88,6 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export const metadata = {
-  title: "News",
-};
 export default function ListPage({
   city,
   playlistName,
@@ -163,7 +160,12 @@ export default function ListPage({
           <div className="md:hidden bg-black fixed w-full h-[300px] bottom-0 z-30 rounded-t-[2rem] flex items-center justify-center flex-col">
             <div className="w-[80%]">
               <h3 className="font-[Radio] text-white text-[2rem] pb-3">Share City playlist</h3>
-              <ShareButton icon="link" id="share-dropdown-get-link" text="Get Link" onClick={copyLinkUrl}></ShareButton>
+              <ShareButton
+                icon="link"
+                id="share-dropdown-get-link"
+                text="Get Link"
+                onClick={copyLinkUrl}
+              ></ShareButton>
               <ShareButton
                 icon="copy"
                 text="Copy list as text"
@@ -433,10 +435,12 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
   const mapsUrlDesktop = `https://www.google.com/maps/place/?q=place_id:${place_id}`;
   const mapsUrlMobile = `comgooglemapsurl://www.google.com/maps/search/?api=1&query=""&query_place_id=${place_id}`;
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const mapsUrl = isMobile ? mapsUrlMobile : mapsUrlDesktop;
 
   return (
-    <div className="relative flex w-full flex-row  min-h-[80px]">
+    <div onClick={setIsOpen} className="relative flex w-full flex-row  min-h-[80px]">
       <div className="flex-shrink-0 min-w-[5.5rem] w-[24%] md:w-[17%] lg:w-[15%] aspect-square">
         <div
           className="aspect-square bg-gray-300 bg-cover bg-center my-auto overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
@@ -448,33 +452,52 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
       <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-4">
         {/* info left */}
         <div className="h-auto col-span-5 lg:col-span-3 pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
-          <div className="font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-110">
-            {title}
-          </div>
-          {description && (
-            <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
-              <div className="hidden md:line-clamp-2">{description}</div>
+          {/* <motion.div layout transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}> */}
+            <div
+              className={classNames(
+                "font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-110",
+                {
+                  "line-clamp-2": isOpen,
+                }
+              )}
+            >
+              {title}
             </div>
-          )}
-          {ratings && (
-            <div className="flex md:hidden">
-              <Ratings rating={ratings} />
-            </div>
-          )}
+          {/* </motion.div> */}
+          <motion.div layout transition={{ type: "spring", bounce: 0.2, duration: 0.8}}>
+            {description && (
+              <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
+                {/* <motion.div
+                      // fade from bottom
+                  initial={{ opacity: 0, y: 0 }}
+                  animate={{ opacity: 1, y: 10 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 1.3, ease: [0.23, 1, 0.32, 1] }}
+                > */}
+                {!isOpen && <div className="line-clamp-1 md:line-clamp-2">{description}</div>}
+                {isOpen && <div className="">{description}</div>}
+              </div>
+            )}
+            {ratings && (
+              <div className="flex md:hidden">
+                <Ratings rating={ratings} />
+              </div>
+            )}
 
-          <div className="flex flex-row items-center gap-x-1">
-            <div className="hidden md:flex leading-100">
-              <Ratings rating={ratings} />
+            <div className="flex flex-row items-center gap-x-1">
+              <div className="hidden md:flex leading-100">
+                <Ratings rating={ratings} />
+              </div>
+              <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
+                {type && type}
+              </div>
             </div>
-            <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
-              {type && type}
-            </div>
-          </div>
+          </motion.div>
         </div>
         <a
           href={mapsUrl}
           target="_blank"
-          className="flex items-center content-center justify-self-end"
+          className={classNames("flex items-start content-center justify-self-end")}
         >
           <div className="group hover:bg-[--neon] cursor-ne-resize rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
             <SVG
