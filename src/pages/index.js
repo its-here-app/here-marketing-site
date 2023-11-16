@@ -227,7 +227,12 @@ export default function Home({ lists }) {
   const handleMouseMove = (e) => {
     setMousePosition({ left: e.clientX, top: e.clientY });
   };
-
+  const customStyles = {
+    content: {
+      position: 'relative',
+      zIndex: '1200',
+    },
+  };
   return (
     <div
       onMouseMove={handleMouseMove}
@@ -270,6 +275,7 @@ export default function Home({ lists }) {
         className="cursor-none w-[95%] max-w-[980px] mt-[140px] lg:w-[944px] p-6 md:p-10 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
+        style={customStyles}
       >
         <button onClick={closeModal}>close</button>
         <ModalForm isModal={true} />
@@ -475,7 +481,7 @@ export default function Home({ lists }) {
         <div
           className="absolute
               w-[140px] h-[140px]
-              z-0
+              z-10
               lg:scale-[1.25] md:scale-[1.2]
               top-[28%] right-[-6%]
               lg:top-[12%] lg:right-[20%]
