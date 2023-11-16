@@ -441,7 +441,7 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
 
   return (
     <div onClick={setIsOpen} className="relative flex w-full flex-row  min-h-[80px]">
-      <div className="flex-shrink-0 min-w-[5.5rem] w-[24%] md:w-[17%] lg:w-[15%] aspect-square">
+      <div className="flex-shrink-0 min-w-[5.5rem] w-[22%] md:w-[17%] lg:w-[15%] aspect-square">
         <div
           className="aspect-square bg-gray-300 bg-cover bg-center my-auto overflow-hidden rounded-[0.5rem] md:rounded-[0.625rem]"
           style={{
@@ -451,7 +451,7 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
       </div>
       <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-4">
         {/* info left */}
-        <div className="h-auto col-span-5 lg:col-span-3 pl-[.69rem] flex flex-col gap-[.32rem] lg:gap-[.6rem]">
+        <div className="h-auto col-span-5 lg:col-span-3 pl-[.69rem] flex flex-col gap-[.23rem] lg:gap-[.6rem]">
           {/* <motion.div layout transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}> */}
             <div
               className={classNames(
@@ -479,19 +479,24 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
               </div>
             )}
             {ratings && (
-              <div className="flex md:hidden">
-                <Ratings rating={ratings} />
-              </div>
-            )}
-
-            <div className="flex flex-row items-center gap-x-1">
-              <div className="hidden md:flex leading-100">
+             <div className="flex flex-column items-center gap-x-1">
+              <div className="w-max leading-100">
                 <Ratings rating={ratings} />
               </div>
               <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
                 {type && type}
               </div>
-            </div>
+           </div>
+            )}
+
+            {/* <div className="flex md:hidden flex-row items-center gap-x-1">
+              <div className=" w-max leading-100">
+                <Ratings rating={ratings} />
+              </div>
+              <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
+                {type && type}
+              </div>
+            </div> */}
           </motion.div>
         </div>
         <a
