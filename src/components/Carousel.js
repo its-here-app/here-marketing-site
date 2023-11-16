@@ -90,7 +90,7 @@ export default function Carousel({ lists }) {
       // onTouchStart={handleDragStart}
       // onTouchMove={handleDrag}
       // onTouchEnd={handleDragEnd}
-      className="touch-pan-x mx-auto overflow-scroll hide-scrollbar"
+      className="touch-pan-x mx-auto overflow-x-scroll hide-scrollbar"
     >
       <div
         ref={carousel}
