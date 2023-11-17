@@ -35,7 +35,8 @@ const EmailForm = ({ status, message, onSubmitted }) => {
 
   const inputRef = useRef(null);
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    var mobile = require("is-mobile");
+    setIsMobile(mobile());
     isMobile && setEmailPlaceholder("Email");
   }, []);
   useEffect(() => {
@@ -100,7 +101,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             value={email}
             name="email"
             className="email-input"
-            placeholder={emailPlaceholder}
+            placeholder={isMobile ? "Email" : "Enter email for exclusive access"}
           ></input>
 
           <button
@@ -126,7 +127,7 @@ const EmailForm = ({ status, message, onSubmitted }) => {
             type="name"
             name="name"
             className="email-input"
-            placeholder="we'd love to know your name!"
+            placeholder={isMobile ? "Your name!" : "We'd love to know your name!"}
           ></input>
           <button
             className="email-button"
