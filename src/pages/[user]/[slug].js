@@ -452,9 +452,9 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
           }}
         ></div>
       </div>
-      <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-4">
+      <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-12">
         {/* info left */}
-        <div className="h-auto col-span-5 lg:col-span-3 pl-[.69rem] flex flex-col gap-[.23rem] lg:gap-[.4rem]">
+        <div className="h-auto col-span-5 lg:col-span-9 pl-[.69rem] flex flex-col gap-[.23rem] lg:gap-[.4rem]">
           {/* <motion.div layout transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}> */}
             <div
               className={classNames(
