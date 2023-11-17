@@ -467,7 +467,7 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
               {title}
             </div>
           {/* </motion.div> */}
-          <motion.div layout transition={{ type: "spring", bounce: 0.2, duration: 0.8}}>
+          <motion.div class="flex flex-col gap-[3px]" layout transition={{ type: "spring", bounce: 0.2, duration: 0.8}}>
             {description && (
               <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
                 {/* <motion.div
