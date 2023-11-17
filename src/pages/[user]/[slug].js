@@ -454,9 +454,9 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
           }}
         ></div>
       </div>
-      <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-12">
+      <div className="flex-grow-0 w-full grid grid-cols-6 lg:grid-cols-12 place-content-between">
         {/* info left */}
-        <div className="h-auto col-span-5 lg:col-span-9 pl-[.69rem] flex flex-col gap-[.23rem] lg:gap-[.4rem]">
+        <div className="h-auto col-span-5 lg:col-span-10 pl-[.69rem] flex flex-col gap-[.23rem] lg:gap-[.4rem]">
           {/* <motion.div layout transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}> */}
           <div
             className={classNames(
@@ -511,7 +511,7 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
         <a
           href={mapsUrl}
           target="_blank"
-          className={classNames("flex items-start content-center justify-self-end")}
+          className={classNames("flex items-start content-center justify-self-end lg:col-start-12")}
         >
           <div className="group hover:bg-[--neon] cursor-ne-resize rounded-full bg-black w-[36px] h-[36px] flex items-center justify-center">
             <SVG
