@@ -124,7 +124,7 @@ export default function ListPage({
 
     content += `${city} — ${playlistName} @ ${username}\n`;
     content += parsedContent
-      .map((spot) => `*${spot.name}, ${spot.description} (${spot.type})`)
+      .map((spot) => `* ${spot.name}, ${spot.description} (${spot.type})`)
       .join("\n");
     content += `\n\nhttps://itshere.app/${username}/${listSlug}\n`;
     el.value = content;
@@ -155,8 +155,10 @@ export default function ListPage({
 
   return (
     <>
-       <Head>
-        <title>{city} — {playlistName} @{username} • Here*</title>
+      <Head>
+        <title>
+          {city} — {playlistName} @{username} • Here*
+        </title>
       </Head>
       <AnimatePresence>
         {showShareDropdown && (
@@ -456,18 +458,22 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
         {/* info left */}
         <div className="h-auto col-span-5 lg:col-span-9 pl-[.69rem] flex flex-col gap-[.23rem] lg:gap-[.4rem]">
           {/* <motion.div layout transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}> */}
-            <div
-              className={classNames(
-                "font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-110",
-                {
-                  "line-clamp-2": isOpen,
-                }
-              )}
-            >
-              {title}
-            </div>
+          <div
+            className={classNames(
+              "font-[Radio] line-clamp-1 text-[1.5rem] xl:text-[1.75rem] tracking-[-0.04em] leading-110",
+              {
+                "line-clamp-2": isOpen,
+              }
+            )}
+          >
+            {title}
+          </div>
           {/* </motion.div> */}
-          <motion.div class="flex flex-col gap-[3px]" layout transition={{ type: "spring", bounce: 0.2, duration: 0.8}}>
+          <motion.div
+            class="flex flex-col gap-[3px]"
+            layout
+            transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}
+          >
             {description && (
               <div className="w-full col-span-5 lg:col-span-3 text-[1rem] text-ellipsis text-gray-500 tracking-[-0.02em] leading-[112%]">
                 {/* <motion.div
@@ -482,14 +488,14 @@ const Spot = ({ isMobile, title, description, type, image, ratings, place_id }) 
               </div>
             )}
             {ratings && (
-             <div className="flex flex-column items-center gap-x-1">
-              <div className="w-max leading-100">
-                <Ratings rating={ratings} />
+              <div className="flex flex-column items-center gap-x-1">
+                <div className="w-max leading-100">
+                  <Ratings rating={ratings} />
+                </div>
+                <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
+                  {type && type}
+                </div>
               </div>
-              <div className="w-max max-w-[270px] line-clamp-1 px-[8px] mt-[.13rem] py-[2px] text-[0.875rem] rounded-[8px] bg-gray-300 tracking-[-0.02em] leading-[150%]">
-                {type && type}
-              </div>
-           </div>
             )}
 
             {/* <div className="flex md:hidden flex-row items-center gap-x-1">
