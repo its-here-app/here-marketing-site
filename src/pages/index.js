@@ -272,7 +272,7 @@ export default function Home({ lists }) {
 
       <Modal
         isOpen={modalIsOpen}
-        className="cursor-none w-[95%] max-w-[980px] mt-[140px] lg:w-[944px] p-6 md:p-10 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
+        className="cursor-none w-[95%] max-w-[980px] mt-[80px] lg:mt-[140px] lg:w-[944px] p-6 md:p-10 rounded-xl z-[999] mx-auto my-auto h-auto bg-[--black]"
         onRequestClose={closeModal}
         contentLabel="Example Modal"
         style={customStyles}
