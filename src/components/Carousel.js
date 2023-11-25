@@ -115,7 +115,7 @@ export default function Carousel({ lists }) {
 const CarouselItem = ({ index, currentList, parsedContent }) => {
   const handleClick = (slug, username) => {
     console.log("got here");
-    router.push(`/${username}/${slug}`, undefined, { shallow: true });
+    router.push(`/${username}/${slug}`);
   };
   return (
     <div key={index} id="carousel-item" data-fade-in-group="2" className="z-2 transition-transform">

@@ -146,7 +146,7 @@ export default function ListPage({
   }, []);
 
   const handleClose = () => {
-    router.push("/", undefined, { shallow: true });
+    router.push("/", undefined);
   };
 
   const getTimeElapsed = () => {
