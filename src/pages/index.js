@@ -229,8 +229,8 @@ export default function Home({ lists }) {
   };
   const customStyles = {
     content: {
-      position: 'relative',
-      zIndex: '1200',
+      position: "relative",
+      zIndex: "1200",
     },
   };
   return (
@@ -323,7 +323,7 @@ export default function Home({ lists }) {
 
         <div className="flex w-full md:w-[365px] flex-col lg:ml-[19vw] xxl:ml-[15%] pt-12 text-6 md:ml-[10vw]">
           <span data-fade-in-group="1" className="font-[Golos] text-[1.3rem] lg:text-[1.5rem]">
-          Discover and share the best spots with people like you
+            Discover and share the best spots with people like you
           </span>
           <button
             data-fade-in-group="1"
@@ -371,13 +371,14 @@ export default function Home({ lists }) {
           </div>
           <div data-start-y="40" className="tile-text">
             <div className="tile-text-top">
-              <div>
-                Discover <span className="whitespace-nowrap">new places</span>
+              <div className="mt-6 flex flex-col">
+                <span>Discover</span>
+                <span>new places</span>
+                <span>from your fave people</span>
               </div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">from your fave people</div>
             </div>
             <div className="tile-text-bottom">
-            One place to find their favorites that they’ve been posting about.
+              One place to find their favorites that they’ve been posting about.
             </div>
           </div>
         </div>
@@ -421,20 +422,18 @@ export default function Home({ lists }) {
           </div>
           <div data-start-y="10" className="tile-text  grid-reverse text-reverse">
             <div className="tile-text-top">
-              <div>
-                <span>Keep your </span>
-                <br />
+              <div className="mt-6 flex flex-col">
+                <span>Keep your</span>
                 <span>travel recs</span>
+                <span>with us</span>
               </div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">with us</div>
             </div>
             <div className="tile-text-bottom">
-            Always have your recommendations ready when your friends come to town 
+              Always have your recommendations ready when your friends come to town
             </div>
           </div>
         </div>
       </section>
-
 
       <section data-scroll-visited="false" data-bg="neon" className="section-tile">
         <div className="tile">
@@ -460,15 +459,13 @@ export default function Home({ lists }) {
           </div>
           <div data-start-y="30" className="tile-text">
             <div className="tile-text-top">
-              <div>No need to</div>
-              <div className="mt-[0vh] md:mt-[5vh] lg:mt-[8vh]">
-                <div className="text-left">
-                  start <span className="whitespace-nowrap">from scratch</span>
-                </div>
+              <div className="flex flex-col mt-6">
+                  <span>No need to</span>
+                  <span>start from scratch</span>
               </div>
             </div>
             <div className="tile-text-bottom">
-            Upload your notes, instagram, or maps list to create your city playlist*.
+              Upload your notes, instagram, or maps list to create your city playlist*.
             </div>
           </div>
         </div>
@@ -508,7 +505,7 @@ export default function Home({ lists }) {
                 <div className="flex flex-row">
                   {/* <span className="pr-2">*</span> */}
                   <div className="md:max-w-[355px] lg:max-w-[552px] text-[1.3rem] lg:text-[1.5rem]">
-                  Here* lets you uncover new places to explore and save your go-to spots. 
+                    Here* lets you uncover new places to explore and save your go-to spots.
                   </div>
                   {/* <div className="md:max-w-[355px] lg:max-w-[552px] text-[1.3rem] lg:text-[1.5rem]">
                     like music, compile your favorite places into a{" "}
