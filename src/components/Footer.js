@@ -82,7 +82,7 @@ export const Footer = ({ isHomepage = true }) => {
       <div className="flex flex-col gap-4">
         <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
           <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link">Give Feedback ↗</a>
-          <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link" target="blank" className="">
+          <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link"  className="">
             Feature your list ↗
           </a>
         </div>
@@ -91,20 +91,24 @@ export const Footer = ({ isHomepage = true }) => {
             <Image alt="none" fill src={logoOG} />
           </a>
           <div className="flex flex-row text-6 w-[65%] ext-[400]  max-w-[600px] h-full items-center md:justify-between justify-end text-white font-[Golos]">
+
             <a
-              href="mailto:team@itshere.app"
+              // href="mailto:team@itshere.app"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link"
               id="contact-us-footer"
               className="cursor-none whitespace-nowrap hidden md:flex"
-            >
-              Contact us ↗
-            </a>
+              >
+              {/* Contact us ↗ */}
+              Give Feedback ↗</a>
             <a
-              href="https://instagram.com/itshere.app"
+              // href="https://instagram.com/itshere.app"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link"
               target="blank"
               id="follow-us-footer"
               className="cursor=none whitespace-nowrap hidden md:flex"
             >
-              Follow us on instagram ↗
+              {/* Follow us on instagram ↗ */}
+              Feature your list ↗
             </a>
             <div className="whitespace-nowrap">Here 2023 ©</div>
           </div>
