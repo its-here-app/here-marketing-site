@@ -5,7 +5,7 @@
     height: var(--cursor-size);
     /* border: 1px solid white; */
     border-radius: 100%;
-    z-index: 10;
+    z-index: 1201;
     user-select: none;
     pointer-events: none;
     transform: scale(1);
