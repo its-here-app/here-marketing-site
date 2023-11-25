@@ -55,9 +55,8 @@ export const Footer = ({ isHomepage = true }) => {
           <div
             className="cursor-pointer 
            absolute block md:hidden
-
            w-[140px] h-[140px]
-           bottom-[20%]
+           bottom-[30%]
            left-[10%]"
           >
             <Image
@@ -81,10 +80,10 @@ export const Footer = ({ isHomepage = true }) => {
         </div>
       </div>
       <div className="flex flex-col gap-4">
-        <div className="flex hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
-          <a href="mailto:team@itshere.app">Contact us ↗</a>
-          <a href="https://instagram.com/itshere.app" target="blank" className="">
-            Follow us on instagram ↗
+        <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
+          <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link">Give Feedback ↗</a>
+          <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link" target="blank" className="">
+            Feature your list ↗
           </a>
         </div>
         <div className="h-[60px] mb-8 px-4 lg:px-8 flex w-full justify-between">
