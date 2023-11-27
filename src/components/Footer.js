@@ -1,3 +1,4 @@
+"use client";
 import MailChimpForm from "../components/EmailHandler";
 import Image from "next/image";
 import logoOG from "/public/graphics/logo-og.svg";
@@ -6,8 +7,19 @@ import stickerStartYourPlaylist from "/public/stickers/sticker-start-your-playli
 import stickerInstagramOutline from "/public/stickers/sticker-instagram-outline.svg";
 import stickerEmailUs from "/public/stickers/sticker-email-us.svg";
 import stickerLockupOcean from "/public/stickers/sticker-lockup-ocean.svg";
+import { useEffect, useState } from "react";
 
 export const Footer = ({ isHomepage = true }) => {
+  useEffect(() => {
+    setEmailInput(document.querySelector('.email-input'));
+  }, []);
+
+  const [emailInput, setEmailInput] = useState(null);
+
+  const setFocus = () => {
+    emailInput.focus();
+  };
+
   return (
     <div className="container relative bg-[--black] pt-12 lg:pt-15 px-4 w-full mx-auto flex flex-col justify-between h-full">
       {/* i removed max-w-[1738px] */}
@@ -42,7 +54,11 @@ export const Footer = ({ isHomepage = true }) => {
 
       {!isHomepage && (
         <div
-          className="hidden md:block absolute
+          // set focus to email-input on click
+          onClick={setFocus}
+          className="block absolute
+          cursor-pointer
+          z-100
           w-[230px] h-[150px]
           scale-[.8] md:scale-[1] lg:scale-[1.2]
           bottom-[30%] md:bottom-[35%] lg:bottom-[30%]
