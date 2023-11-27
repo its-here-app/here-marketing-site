@@ -1,5 +1,4 @@
-import { google } from "googleapis";
-import { useRouter } from "next/router";
+"use client";
 import Head from "next/head";
 import slugify from "@sindresorhus/slugify";
 import { Footer } from "../../components/Footer";
@@ -14,78 +13,33 @@ import moment from "moment";
 import classNames from "classnames";
 import { Metadata } from "next";
 
-export async function getServerSideProps({ query }) {
-  const auth = await google.auth.getClient({
-    credentials: {
-      client_id: process.env.GOOGLE_CLIENT_ID,
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      project_id: process.env.GOOGLE_PROJECT_ID,
-      private_key: process.env.GOOGLE_PRIVATE_KEY,
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join("\n"),
-      auth_uri: process.env.GOOGLE_AUTH_URI,
-      token_uri: process.env.GOOGLE_TOKEN_URI,
-      auth_provider_x509_cert_url: process.env.GOOGLE_AUTH_PROVIDER_X509_CERT_URL,
-      client_x509_cert_url: process.env.GOOGLE_CLIENT_X509_CERT_URL,
-      universe_domain: process.env.GOOGLE_UNIVERSE_DOMAIN,
+// pass in list slug and user to getServersideprops
+export async function getServerSideProps(context) {
+  const { query } = context;
+
+  // Create URLSearchParams object
+  const params = new URLSearchParams();
+  params.append("slug", query.slug);
+  params.append("user", query.user);
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/getListBySlug?${params.toString()}`, {
+    // pass in other options
+    next: {
+      revalidate: 3600,
     },
-    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
   });
-
-  const sheets = google.sheets({ version: "v4", auth });
-
-  const { user, slug } = query;
-
-  const range = `Sheet1!A$2:I$40`;
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: process.env.SHEET_ID,
-    range,
-  });
-
-  // find list with matching slug
-  const rows = response.data.values;
-  const lists = rows.map((row) => ({
-    city: row[0],
-    playlistName: row[1],
-    isFeatured: row[2],
-    slug: row[3],
-    username: row[4],
-    instagram: row[5],
-    description: row[6],
-    dateAdded: row[7],
-    content: row[8],
-  }));
-
-  // const list = lists.find((list) => list.slug === slug);
-
-  // get id of list with matching user and slug
-  const listId = lists.findIndex((list) => list.username === user && list.slug === slug);
-
-  const [
-    city,
-    playlistName,
-    isFeatured,
-    listSlug,
-    username,
-    instagram,
-    description,
-    dateAdded,
-    content,
-  ] = response.data.values[listId];
-
-  const listTitle = `${city} — ${playlistName} — ${username} • Here*`;
+  const data = await res.json();
   return {
     props: {
-      city,
-      playlistName,
-      isFeatured,
-      listSlug,
-      username,
-      instagram,
-      description,
-      dateAdded,
-      content,
-      listTitle
+      city: data.city,
+      playlistName: data.playlistName,
+      slug: data.listSlug,
+      username: data.username,
+      instagram: data.instagram,
+      description: data.description,
+      dateAdded: data.dateAdded,
+      content: data.content,
+      listTitle: data.listTitle,
     },
   };
 }
@@ -93,14 +47,15 @@ export async function getServerSideProps({ query }) {
 export default function ListPage({
   city,
   playlistName,
-  listSlug,
+  slug: listSlug,
   username,
   instagram,
   description,
   dateAdded,
   content,
-  listTitle
+  listTitle,
 }) {
+  console.log(city);
   const parsedContent = JSON.parse(content);
 
   const [showShareDropdown, setShowShareDropdown] = useState(false);
@@ -159,9 +114,7 @@ export default function ListPage({
   return (
     <>
       <Head>
-        <title>
-          {listTitle}
-        </title>
+        <title>{listTitle}</title>
       </Head>
       <AnimatePresence>
         {showShareDropdown && (
