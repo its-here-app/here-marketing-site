@@ -21,6 +21,23 @@ export const Footer = ({ isHomepage = true }) => {
       >
         <Image alt="none" fill className="absolute top-0 pop-in" src={stickerLockupOcean} />
       </div>
+      <a
+            href="https://instagram.com/itshere.app"
+            className="cursor-pointer
+           absolute hidden md:block
+           w-[140px] h-[140px]
+           right-[30%]
+           md:bottom-[60%]
+           bottom-[40%]"
+          >
+            <Image
+              alt="none"
+              id="cta-sticker-footer"
+              className="z-30 w-full h-full"
+              data-cursor-state="asterisk"
+              src={stickerInstagramOutline}
+            />
+          </a>
 
           {!isHomepage && (<div
             className="hidden md:block absolute
@@ -52,7 +69,8 @@ export const Footer = ({ isHomepage = true }) => {
               src={stickerEmailUs}
             />
           </div>
-          <div
+          <a
+            href="https://instagram.com/itshere.app"
             className="cursor-pointer 
            absolute block md:hidden
            w-[140px] h-[140px]
@@ -66,7 +84,7 @@ export const Footer = ({ isHomepage = true }) => {
               data-cursor-state="asterisk"
               src={stickerInstagramOutline}
             />
-          </div>
+          </a>
    
 
       <div className="w-full">

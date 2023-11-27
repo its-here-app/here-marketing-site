@@ -73,6 +73,7 @@ export async function getServerSideProps({ query }) {
     content,
   ] = response.data.values[listId];
 
+  const listTitle = `${city} — ${playlistName} — ${username} • Here*`;
   return {
     props: {
       city,
@@ -84,6 +85,7 @@ export async function getServerSideProps({ query }) {
       description,
       dateAdded,
       content,
+      listTitle
     },
   };
 }
@@ -97,6 +99,7 @@ export default function ListPage({
   description,
   dateAdded,
   content,
+  listTitle
 }) {
   const parsedContent = JSON.parse(content);
 
@@ -157,7 +160,7 @@ export default function ListPage({
     <>
       <Head>
         <title>
-          {city} — {playlistName} @{username} • Here*
+          {listTitle}
         </title>
       </Head>
       <AnimatePresence>
