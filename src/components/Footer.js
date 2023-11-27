@@ -22,70 +22,73 @@ export const Footer = ({ isHomepage = true }) => {
         <Image alt="none" fill className="absolute top-0 pop-in" src={stickerLockupOcean} />
       </div>
       <a
-            href="https://instagram.com/itshere.app"
-            className="cursor-pointer
+        href="https://instagram.com/itshere.app"
+        target="blank"
+        className="cursor-pointer
            absolute hidden md:block
            w-[140px] h-[140px]
            right-[30%]
            md:bottom-[60%]
            bottom-[40%]"
-          >
-            <Image
-              alt="none"
-              id="cta-sticker-footer"
-              className="z-30 w-full h-full"
-              data-cursor-state="asterisk"
-              src={stickerInstagramOutline}
-            />
-          </a>
+      >
+        <Image
+          alt="none"
+          id="cta-sticker-footer"
+          className="z-30 w-full h-full"
+          data-cursor-state="asterisk"
+          src={stickerInstagramOutline}
+        />
+      </a>
 
-          {!isHomepage && (<div
-            className="hidden md:block absolute
+      {!isHomepage && (
+        <div
+          className="hidden md:block absolute
           w-[230px] h-[150px]
           scale-[.8] md:scale-[1] lg:scale-[1.2]
           bottom-[30%] md:bottom-[35%] lg:bottom-[30%]
           right-[10%] lg:right-[10%]"
-          >
-            <Image
-              alt="none"
-              id="cta-sticker-footer"
-              className="z-30 fade-in scale-[0.95]"
-              data-cursor-state="asterisk"
-              src={stickerStartYourPlaylist}
-              />
-          </div>)}
-          <div
-            className="cursor-pointer 
+        >
+          <Image
+            alt="none"
+            id="cta-sticker-footer"
+            className="z-30 fade-in scale-[0.95]"
+            data-cursor-state="asterisk"
+            src={stickerStartYourPlaylist}
+          />
+        </div>
+      )}
+      <div
+        className="cursor-pointer 
            absolute block md:hidden
            w-[100px] h-[100px]
            bottom-[20%]
            right-[10%]"
-          >
-            <Image
-              alt="none"
-              id="cta-sticker-footer"
-              className="z-30 w-full h-full"
-              data-cursor-state="asterisk"
-              src={stickerEmailUs}
-            />
-          </div>
-          <a
-            href="https://instagram.com/itshere.app"
-            className="cursor-pointer 
+      >
+        <Image
+          alt="none"
+          id="cta-sticker-footer"
+          className="z-30 w-full h-full"
+          data-cursor-state="asterisk"
+          src={stickerEmailUs}
+        />
+      </div>
+      <a
+        href="https://instagram.com/itshere.app"
+        target="blank"
+        className="cursor-pointer 
            absolute block md:hidden
            w-[140px] h-[140px]
            bottom-[30%]
            left-[10%]"
-          >
-            <Image
-              alt="none"
-              id="cta-sticker-footer"
-              className="z-30 w-full h-full"
-              data-cursor-state="asterisk"
-              src={stickerInstagramOutline}
-            />
-          </a>
-   
+      >
+        <Image
+          alt="none"
+          id="cta-sticker-footer"
+          className="z-30 w-full h-full"
+          data-cursor-state="asterisk"
+          src={stickerInstagramOutline}
+        />
+      </a>
 
       <div className="w-full">
         <div className="md:pl-20 xxl:pl-32">
@@ -99,8 +102,17 @@ export const Footer = ({ isHomepage = true }) => {
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex md:hidden gap-4 h-auto px-4 text-[20px] w-full flex-col text-white">
-          <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link">Give Feedback ↗</a>
-          <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link"  className="">
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link"
+          >
+            Give Feedback ↗
+          </a>
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link"
+            className=""
+          >
             Feature your list ↗
           </a>
         </div>
@@ -109,15 +121,15 @@ export const Footer = ({ isHomepage = true }) => {
             <Image alt="none" fill src={logoOG} />
           </a>
           <div className="flex flex-row text-6 w-[65%] ext-[400]  max-w-[600px] h-full items-center md:justify-between justify-end text-white font-[Golos]">
-
             <a
               // href="mailto:team@itshere.app"
               href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link"
               id="contact-us-footer"
               className="cursor-none whitespace-nowrap hidden md:flex"
-              >
+            >
               {/* Contact us ↗ */}
-              Give Feedback ↗</a>
+              Give Feedback ↗
+            </a>
             <a
               // href="https://instagram.com/itshere.app"
               href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link"
