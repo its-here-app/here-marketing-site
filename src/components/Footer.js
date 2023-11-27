@@ -36,7 +36,7 @@ export const Footer = ({ isHomepage = true }) => {
       <a
         href="https://instagram.com/itshere.app"
         target="blank"
-        className="cursor-none
+        className="cursor-pointer
            absolute hidden md:block
            w-[140px] h-[140px]
            right-[30%]
@@ -92,7 +92,7 @@ export const Footer = ({ isHomepage = true }) => {
         href="https://instagram.com/itshere.app"
         target="blank"
         data-cursor-state="asterisk"
-          className="cursor-none
+          className="cursor-pointer
            absolute block md:hidden
            w-[140px] h-[140px]
            bottom-[30%]
@@ -134,7 +134,7 @@ export const Footer = ({ isHomepage = true }) => {
           </a>
         </div>
         <div className="h-[60px] mb-8 px-4 lg:px-8 flex w-full justify-between">
-          <a href="/" alt="logo" className="cursor-none relative flex items-center justify-center h-full w-[40px]">
+          <a href="/" alt="logo" className="cursor-pointer relative flex items-center justify-center h-full w-[40px]">
             <Image alt="none" fill src={logoOG} />
           </a>
           <div className="flex flex-row text-6 w-[65%] ext-[400]  max-w-[600px] h-full items-center md:justify-between justify-end text-white font-[Golos]">
@@ -142,7 +142,7 @@ export const Footer = ({ isHomepage = true }) => {
               // href="mailto:team@itshere.app"
               href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link"
               id="contact-us-footer"
-              className="cursor-none whitespace-nowrap hidden md:flex"
+              className="cursor-pointer whitespace-nowrap hidden md:flex"
             >
               {/* Contact us ↗ */}
               Give Feedback ↗
@@ -152,7 +152,7 @@ export const Footer = ({ isHomepage = true }) => {
               href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link"
               target="blank"
               id="follow-us-footer"
-              className="cursor-none whitespace-nowrap hidden md:flex"
+              className="cursor-pointer whitespace-nowrap hidden md:flex"
             >
               {/* Follow us on instagram ↗ */}
               Feature your list ↗
