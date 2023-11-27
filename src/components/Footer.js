@@ -36,7 +36,7 @@ export const Footer = ({ isHomepage = true }) => {
       <a
         href="https://instagram.com/itshere.app"
         target="blank"
-        className="cursor-pointer
+        className="cursor-none
            absolute hidden md:block
            w-[140px] h-[140px]
            right-[30%]
@@ -91,7 +91,8 @@ export const Footer = ({ isHomepage = true }) => {
       <a
         href="https://instagram.com/itshere.app"
         target="blank"
-        className="cursor-pointer 
+        data-cursor-state="asterisk"
+          className="cursor-none
            absolute block md:hidden
            w-[140px] h-[140px]
            bottom-[30%]
@@ -151,7 +152,7 @@ export const Footer = ({ isHomepage = true }) => {
               href="https://docs.google.com/forms/d/e/1FAIpQLSfjpdGJCZD6t4N497kd-iC8hxJCkKeJ6P2ztHBeUX1HFvytcw/viewform?usp=sf_link"
               target="blank"
               id="follow-us-footer"
-              className="cursor=none whitespace-nowrap hidden md:flex"
+              className="cursor-none whitespace-nowrap hidden md:flex"
             >
               {/* Follow us on instagram ↗ */}
               Feature your list ↗
