@@ -134,7 +134,7 @@ export const Footer = ({ isHomepage = true }) => {
           </a>
         </div>
         <div className="h-[60px] mb-8 px-4 lg:px-8 flex w-full justify-between">
-          <a href="/" className="relative flex items-center justify-center h-full w-[40px]">
+          <a href="/" alt="logo" className="cursor-none relative flex items-center justify-center h-full w-[40px]">
             <Image alt="none" fill src={logoOG} />
           </a>
           <div className="flex flex-row text-6 w-[65%] ext-[400]  max-w-[600px] h-full items-center md:justify-between justify-end text-white font-[Golos]">
