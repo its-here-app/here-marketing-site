@@ -65,7 +65,7 @@ export default async function handler(req, res) {
     content,
   ] = response.data.values[listId];
 
-  const listTitle = `${city} — ${playlistName} — ${username} • Here*`;
+  const listTitle = `${city} — ${playlistName} — @${username} • Here*`;
 
   res.status(200).json({
       city,

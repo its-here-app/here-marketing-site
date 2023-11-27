@@ -115,6 +115,8 @@ export default function ListPage({
     <>
       <Head>
         <title>{listTitle}</title>
+        <meta property="og:url" content={`https://itshere.app/${username}/${listSlug}`} />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_GCP_URL}/${username}_${slugify(city)}_${listSlug}_cover.jpg`} />
       </Head>
       <AnimatePresence>
         {showShareDropdown && (
