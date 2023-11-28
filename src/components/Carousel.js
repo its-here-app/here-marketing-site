@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import slugify from "@sindresorhus/slugify";
 import asterisk from "/public/graphics/asterisk_regular.svg";
-
 import router from "next/router";
 
 export default function Carousel({ lists }) {
@@ -37,14 +36,17 @@ export default function Carousel({ lists }) {
     // settimeout
     carousel.current.style.transitionDuration = "1600ms";
     window.setTimeout(() => {
-      // carousel.current.style.transform = `translateX(${-600}px)`;
-      // setCurrentPosition(-600);
       // carousel.current.scrollLeft = 300;
       // scroll 300px left
-      carouselContainer.current.scrollTo({
-        left: 200,
-        behavior: "smooth",
-      });
+      var mobile = require("is-mobile");
+      if(!mobile()) {
+        carousel.current.style.transform = `translateX(${-600}px)`;
+        setCurrentPosition(-600);
+      }
+      // carouselContainer.current.scrollTo({
+      //   left: 200,
+      //   behavior: "smooth",
+      // });
     }, 1000);
     window.setTimeout(() => {
       carousel.current.style.transitionDuration = "800ms";
@@ -90,10 +92,10 @@ export default function Carousel({ lists }) {
     <div
       ref={carouselContainer}
       id="carousel-container"
-      onMouseDown={handleDragStart}
-      onMouseMove={handleDrag}
-      onMouseUp={handleDragEnd}
-      onMouseLeave={handleDragEnd}
+      // onMouseDown={handleDragStart}
+      // onMouseMove={handleDrag}
+      // onMouseUp={handleDragEnd}
+      // onMouseLeave={handleDragEnd}
       // onTouchStart={handleDragStart}
       // onTouchMove={handleDrag}
       // onTouchEnd={handleDragEnd}
