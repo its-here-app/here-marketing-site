@@ -37,8 +37,14 @@ export default function Carousel({ lists }) {
     // settimeout
     carousel.current.style.transitionDuration = "1600ms";
     window.setTimeout(() => {
-      carousel.current.style.transform = `translateX(${-600}px)`;
-      setCurrentPosition(-600);
+      // carousel.current.style.transform = `translateX(${-600}px)`;
+      // setCurrentPosition(-600);
+      // carousel.current.scrollLeft = 300;
+      // scroll 300px left
+      carouselContainer.current.scrollTo({
+        left: 200,
+        behavior: "smooth",
+      });
     }, 1000);
     window.setTimeout(() => {
       carousel.current.style.transitionDuration = "800ms";
@@ -83,6 +89,7 @@ export default function Carousel({ lists }) {
   return (
     <div
       ref={carouselContainer}
+      id="carousel-container"
       onMouseDown={handleDragStart}
       onMouseMove={handleDrag}
       onMouseUp={handleDragEnd}
@@ -114,14 +121,19 @@ export default function Carousel({ lists }) {
 
 const CarouselItem = ({ index, currentList, parsedContent }) => {
   const handleClick = (slug, username) => {
-    console.log("got here");
     router.push(`/${username}/${slug}`);
   };
   return (
     <div key={index} id="carousel-item" data-fade-in-group="2" className="z-2 transition-transform">
       <div className="w-[80vw] md:w-[40vw] hover:scale-[1.01] lg:w-[30vw] col-span-1 mx-[5px] my-[5px] aspect-[1/1] overflow-hidden transition-all rounded-[1rem] relative">
         <div className="cursor-none scale(110%) select-none bg-center w-full h-full transition-all ease-in duration-[1800ms] items-center justify-center">
-          <div className="grid grid-cols-1 grid-rows-3 w-full h-full bg-cover">
+          <div
+            onClick={() => {
+              handleClick(currentList.slug, currentList.username);
+            }}
+            data-cursor-state="ul-arrow"
+            className="grid grid-cols-1 grid-rows-3 w-full h-full bg-cover"
+          >
             <Image
               className="w-full h-full absolute object-cover z-20"
               src={`${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${slugify(
@@ -132,17 +144,9 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
               width={800}
               height={800}
             />
+            <div className="w-full h-full absolute scrim z-30"></div>
+            <div className="w-full h-full absolute shimmer"></div>
             <div
-              className="w-full h-full absolute scrim z-30"
-            ></div>
-            <div
-              className="w-full h-full absolute shimmer"
-            ></div>
-            <div
-              onClick={() => {
-                handleClick(currentList.slug, currentList.username);
-              }}
-              data-cursor-state="ul-arrow"
               id="open-list-button"
               className="z-40 cursor-none flex row-span-1 row-start-2 tighten text-[--neon] flex-col justify-center items-center"
             >

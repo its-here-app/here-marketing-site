@@ -333,7 +333,7 @@ export default function Home({ lists }) {
             onClick={openModal}
             className="bg-black mt-8 md:mt-16 leading-150 cursor-none w-max rounded-[14px] text-[--white] text-[14px] lg:text-[20px] font-sans px-[18px] py-[10px]"
           >
-            Start your playlist
+            Start a city playlist
           </button>
         </div>
       </section>
