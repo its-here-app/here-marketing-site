@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
   params.append("slug", query.slug);
   params.append("user", query.user);
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/getListBySlug?${params.toString()}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/getListBySlug?${params.toString()}`, {
     // pass in other options
     next: {
       revalidate: 3600,

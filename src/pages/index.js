@@ -17,7 +17,7 @@ import { ModalForm } from "../components/Modal";
 import { Footer } from "../components/Footer";
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/getLists`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}/getLists`, {
     next: {
       revalidate: 3600,
     },

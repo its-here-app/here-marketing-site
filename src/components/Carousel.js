@@ -140,7 +140,7 @@ const CarouselItem = ({ index, currentList, parsedContent }) => {
               className="w-full h-full absolute object-cover z-20"
               src={`${process.env.NEXT_PUBLIC_GCP_URL}/${currentList.username}_${slugify(
                 currentList.city
-              )}_${currentList.slug}_cover.jpg`}
+              )}_${currentList.slug}_cover.jpg?w`}
               loading="lazy"
               alt={`Carousel image for ${currentList.city}`}
               width={800}
