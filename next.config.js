@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "storage.googleapis.com",
-      "here-app.b-cdn.net",
+    remotePatterns: [
+      {
+        hostname: "storage.googleapis.com",
+      },
+      {
+        hostname: "here-app.b-cdn.net",
+      }
     ],
   },
   reactStrictMode: false,
