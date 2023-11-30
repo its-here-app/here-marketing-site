@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       "storage.googleapis.com",
+      "here-app.b-cdn.net",
     ],
   },
   reactStrictMode: false,

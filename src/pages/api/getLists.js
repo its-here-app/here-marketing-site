@@ -20,9 +20,10 @@ export default async function handler(req, res) {
     },
     scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
   });
-
+  console.log(auth)
+  
   const sheets = google.sheets({ version: "v4", auth });
-
+  
   const range = `Sheet1!A2:I40`;
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SHEET_ID,
