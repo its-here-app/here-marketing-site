@@ -3,6 +3,50 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --black: #000000;
+  --neon: #DAFF70;
+  --gray-100: #F0F0F0;
+
+}
+
+@font-face {
+  font-family: "PP Radio Grotesk";
+  src: url("/fonts/Radio/PPRadioGrotesk-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Radio Grotesk";
+  src: url("/fonts/Radio/PPRadioGrotesk-RegularItalic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Golos Text";
+  src: url("/fonts/Golos/GolosText-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Golos Text";
+  src: url("/fonts/Golos/GolosText-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Crimson Text";
+  src: url("/fonts/Crimson/crimson-italic-webfont.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 
 @theme inline {
@@ -12,6 +56,77 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --font-radio: "PP Radio Grotesk", ui-sans-serif, system-ui;
+  --font-golos: "Golos Text", ui-sans-serif, system-ui;
+  --font-crimson: "Crimson Text", ui-serif, Georgia;
+  --color-black: var(--black);
+  --color-neon: var(--neon);
+}
+
+/*
+sm	40rem (640px)	@media (width >= 40rem) { ... }
+md	48rem (768px)	@media (width >= 48rem) { ... }
+lg	64rem (1024px)	@media (width >= 64rem) { ... }
+xl	80rem (1280px)	@media (width >= 80rem) { ... }
+2xl	96rem (1536px)	@media (width >= 96rem) { ... }
+*/
+@layer utilities {
+  .text-display-4 {
+    @apply font-radio leading-none tracking-[-0.03em];
+    font-size: clamp(3.5rem, 7vw, 6.25rem);
+  }
+   .text-display-3 {
+    @apply font-golos leading-none tracking-[-0.06em] font-semibold;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+   .text-display-2 {
+    @apply text-[1.25rem] font-crimson italic leading-none tracking-[-0.06em];
+    font-size: clamp(1.25rem, 3vw, 2.375rem);
+  }
+  .text-body-2 {
+    @apply text-[0.875rem] tracking-[-0.02em] leading-[1.25rem];
+  }
+  .container {
+    @apply w-full max-w-[1440px] mx-auto px-8;
+  }
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  /* Mobile */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  /* Desktop */
+  @media (min-width: 1280px) {
+    .text-display-3 {
+      /*
+      @apply text-[2.5rem]; */
+    }
+    .text-display-2 {
+      /*
+      @apply text-[2.5rem]; */
+    }
+  }
+
+}
+
+@layer base {
+  body {
+    @apply font-golos tracking-[-0.01em] text-black leading-[1.5rem];
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +134,10 @@
   }
 }
 
+/*
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-golos);
 }
+*/
