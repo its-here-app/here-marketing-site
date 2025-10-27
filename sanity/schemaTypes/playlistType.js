@@ -1,0 +1,72 @@
+import { defineField, defineType } from 'sanity'
+
+export const playlistType = defineType({
+  name: 'playlist',
+  title: 'Playlist',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'city',
+      type: 'string',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'playlistName',
+      type: 'string',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'cover',
+      type: 'image',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'featured',
+      type: 'boolean',
+    }),
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'username',
+      type: 'string',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'instagram',
+      type: 'string',
+    }),
+    defineField({
+      name: 'description',
+      type: 'text',
+    }),
+    defineField({
+      name: 'dateAdded',
+      type: 'date',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'content',
+      type: 'text',
+      validation: Rule => Rule.required(),
+    }),
+  ],
+
+  preview: {
+    select: {
+      playlistName: 'playlistName',
+      city: 'city',
+      username: 'username',
+      cover: 'cover',
+    },
+    prepare({ playlistName, city, username, cover }) {
+      return {
+        title: `${city} — ${playlistName}`,
+        subtitle: username,
+        media: cover,
+      }
+    },
+  },
+})

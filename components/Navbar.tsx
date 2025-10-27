@@ -9,7 +9,7 @@ const Navbar = ({
 }) => {
  
   return (
-   <div className="container flex justify-between my-8">
+   <div className="container-lg flex justify-between my-8">
     <a href="/">
         <Logo />
     </a>
