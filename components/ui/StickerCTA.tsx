@@ -1,4 +1,3 @@
-import Image from "next/image";
 
 const StickerCTA = ({
   color = "black", // black or green
@@ -6,13 +5,10 @@ const StickerCTA = ({
 }) => {
 
   return (
-    <Image 
-          src={`/images/stickers/sticker-start-your-playlist_${color}.svg`}
-          alt="Start your playlist"
-          width={263}   
-          height={153}   
-          className={className}
-        />
+    <img src={`/images/stickers/sticker-start-your-playlist_${color}.svg`}
+          alt="Start your playlist"    
+          className={`${className} w-[16rem] hidden md:block`}></img>
+
   );
 };
 

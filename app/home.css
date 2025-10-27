@@ -1,0 +1,53 @@
+
+
+/* Share value prop section */
+.home_share-stickers img {
+  position: absolute;
+  transition: transform 0.2s ease-in-out;
+}
+
+.home_share-juliette,
+.home_share-em, .home_share-ekin {
+  position: absolute;
+  width: 40%;
+  aspect-ratio: 1 / 1;
+}
+
+/* Juliette */
+.home_share-juliette:hover .sticker-1 {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.home_share-juliette:hover .sticker-2 {
+  transform: rotate(20deg);
+}
+
+.home_share-juliette:hover .sticker-3 {
+  transform: rotate(-10deg);
+}
+
+/* Em */
+.home_share-em:hover .sticker-1 {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.home_share-em:hover .sticker-2 {
+  transform: rotate(8deg);
+}
+
+.home_share-em:hover .sticker-3 {
+  transform: rotate(-6deg);
+}
+
+/* Ekin */
+.home_share-ekin:hover .sticker-1 {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.home_share-ekin:hover .sticker-2 {
+  transform: rotate(4deg);
+}
+
+.home_share-ekin:hover .sticker-3 {
+  transform: rotate(6deg);
+}
