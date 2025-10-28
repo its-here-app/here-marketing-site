@@ -58,7 +58,7 @@ const PlaylistCarousel = () => {
       }`;
 
       const playlists = await client.fetch(query);
-      console.log("Playlists:", playlists);
+      // console.log("Playlists:", playlists);
       setPlaylists(playlists);
     }
 

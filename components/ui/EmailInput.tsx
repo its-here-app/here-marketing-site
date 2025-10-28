@@ -11,7 +11,7 @@ const EmailInput = ({
         Email address
       </label>
       <input
-        className="placeholder-neon-50p text-body-3 border border-neon rounded-2xl md:rounded-3xl py-4 px-4 md:py-7 md:px-8 w-full"
+        className="placeholder-neon-50p text-body-lg border border-neon rounded-2xl md:rounded-3xl py-4 px-4 md:py-7 md:px-8 w-full"
         id="email"
         type="email"
         name="email"

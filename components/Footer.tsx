@@ -4,9 +4,11 @@ import StickerCTA from "@/components/ui/StickerCTA";
 
 const Footer = ({ className = "" }) => {
   return (
-    <footer className="text-white bg-black rounded-t-[2.25rem]">
+    <footer
+      className={`${className} w-full text-white bg-black rounded-t-[2.25rem] overflow-hidden`}
+    >
       <div className="container-lg pt-16 md:pt-20 pb-10 relative">
-        <h2 className="text-h1 mb-6 md:mb-9">
+        <h2 className="text-radio-4 mb-6 md:mb-9">
           Keep up with our new<br></br>features and exclusives
         </h2>
         <EmailInput className="mb-16" />

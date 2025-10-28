@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
 
 export const metadata: Metadata = {
   title: "Here*",
@@ -17,11 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="flex flex-col justify-center">
-          <Navbar />
-          {children}
+        <div className="min-h-screen flex flex-col justify-between gap-8">
+          <main className="flex flex-col justify-center">{children}</main>
           <Footer />
-        </main>
+        </div>
       </body>
     </html>
   );
