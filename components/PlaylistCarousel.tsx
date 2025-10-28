@@ -19,6 +19,18 @@ import Marquee from "react-fast-marquee";
 import PlaylistCard from "@/components/PlaylistCard";
 import StickerCTA from "@/components/ui/StickerCTA";
 
+/**
+ * Fisher-Yates shuffle function
+ */
+function shuffleArray(array) {
+  const shuffled = [...array]; // copy to avoid mutating original
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 const PlaylistCarousel = () => {
   const [playlists, setPlaylists] = useState([]);
 
@@ -57,8 +69,8 @@ const PlaylistCarousel = () => {
         cover{ asset->{url} }
       }`;
 
-      const playlists = await client.fetch(query);
-      // console.log("Playlists:", playlists);
+      let playlists = await client.fetch(query);
+      playlists = shuffleArray(playlists);
       setPlaylists(playlists);
     }
 
@@ -66,7 +78,7 @@ const PlaylistCarousel = () => {
   }, []);
 
   return (
-    <div className="my-8 relative">
+    <div className="my-8 relative text-balance">
       {/*
     <div className="embla" ref={emblaRef}>
       <div className="embla__container py-8">
@@ -76,7 +88,7 @@ const PlaylistCarousel = () => {
       </div>
     </div>   */}
 
-      <Marquee className="py-8" pauseOnHover={true} speed={25}>
+      <Marquee className="py-4" pauseOnHover={true} speed={30}>
         {playlists.map((playlist, index) => (
           <PlaylistCard playlist={playlist} index={index} />
         ))}
@@ -114,7 +126,7 @@ const PlaylistCarousel = () => {
         ))}
       </Swiper> */}
 
-      <StickerCTA className="absolute hidden md:block right-[6%] -bottom-4 z-10" />
+      <StickerCTA className="absolute scale-0 rotate-15 md:rotate-0 md:scale-100 transition-transform duration-200 right-[6%] -bottom-10 z-10" />
     </div>
   );
 };

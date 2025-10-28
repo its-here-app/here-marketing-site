@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <section className="container pb-8">
+      <section className="container pb-4">
         <h1 className="text-radio-1 justify-between hidden md:flex">
           <div>
             For the spots<br></br>you love{" "}

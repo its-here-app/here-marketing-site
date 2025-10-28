@@ -5,7 +5,7 @@ const EmailInput = ({
 }) => {
   return (
     <form
-      className={`${className} relative w-[50rem] max-w-full sm:max-w-[68%] transition-all duration-400`}
+      className={`${className} relative w-[50rem] max-w-full sm:max-w-[68%] transition-all duration-400 text-neon`}
     >
       <label htmlFor="email" className="sr-only">
         Email address

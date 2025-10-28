@@ -41,7 +41,7 @@ const Footer = ({ className = "" }) => {
         />
         <StickerCTA
           color="green"
-          className="scale-0 lg:scale-100 absolute right-[8%] bottom-[22%]"
+          className="scale-0 lg:scale-100 rotate-20 lg:rotate-0 absolute right-[8%] bottom-[22%]"
         />
       </div>
     </footer>

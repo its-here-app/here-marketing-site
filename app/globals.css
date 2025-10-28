@@ -4,10 +4,12 @@
   --background: #ffffff;
   --foreground: #171717;
   --black: #000000;
+  --white-30p: rgb(255, 255, 255, 0.3);
   --neon: #daff70;
   --neon-50p: rgb(218, 255, 112, 0.5);
   --gray-100: #f0f0f0;
   --gray-700: #757575;
+  --gray-800: #5a5a5a;
 }
 
 @font-face {
@@ -62,10 +64,12 @@
   --font-golos: "Golos Text", ui-sans-serif, system-ui;
   --font-crimson: "Crimson Text", ui-serif, Georgia;
   --color-black: var(--black);
+  --color-white-30p: var(--white-30p);
   --color-neon: var(--neon);
   --color-neon-50p: var(--neon-50p);
   --color-gray-100: var(--gray-100);
   --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
 }
 
 /*
@@ -114,7 +118,10 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
   .text-body-sm {
     @apply text-[0.75rem] xl:text-[0.875rem] tracking-[-0.02em] leading-[140%];
   }
-
+  .text-body-xs {
+    @apply text-[0.75rem] tracking-[-0.02em] leading-[140%];
+  }
+  /* Containers */
   .container-sm,
   .container,
   .container-lg {
