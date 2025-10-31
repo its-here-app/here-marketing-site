@@ -2,6 +2,7 @@
 
 import CircleIcon from "@/components/ui/CircleIcon";
 import { useRouter } from "next/navigation";
+import PlaylistCoverOverlay from "./PlaylistCoverOverlay";
 
 /** Given a date, returns how long ago that date was in weeks or years
  * @dateString - the date as a string (e.g. "2023-05-12")
@@ -24,14 +25,18 @@ function timeAgo(dateString) {
   return weeksAgo === 1 ? "1 week ago" : `${weeksAgo} weeks ago`;
 }
 
-const SpotHero = ({ playlist }) => {
+const PlaylistHero = ({ playlist }) => {
   const router = useRouter();
 
   return (
     <div
-      className="md:sticky top-2 bg-cover bg-center rounded-2xl h-[28rem] md:h-[calc(100vh_-_1rem)] text-neon flex flex-col justify-center items-center text-center p-[1.2rem] md:p-[1.5rem] text-balance"
-      style={{ backgroundImage: `url(${playlist.cover.asset.url})` }}
+      className="relative overflow-hidden md:sticky md:top-2 bg-cover bg-center rounded-2xl h-[28rem] md:h-[calc(100vh_-_1rem)] text-neon flex flex-col justify-center items-center text-center p-[1.2rem] md:p-[1.5rem] text-balance"
+      style={{
+        backgroundImage: `url(${playlist.cover.asset.url})`,
+      }}
     >
+      <PlaylistCoverOverlay radial={true} />
+
       {/* Inner content */}
       <div className="relative w-full h-full flex items-center justify-center">
         {/* Top */}
@@ -63,4 +68,4 @@ const SpotHero = ({ playlist }) => {
   );
 };
 
-export default SpotHero;
+export default PlaylistHero;

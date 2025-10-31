@@ -81,22 +81,34 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
 */
 @layer utilities {
   /* Radio */
+  .text-radio-1,
+  .text-radio-2,
+  .text-radio-3,
+  .text-radio-4,
+  .text-radio-5,
+  .text-radio-6 {
+    @apply font-radio leading-none;
+  }
   .text-radio-1 {
-    @apply font-radio leading-none tracking-[-0.03em];
+    @apply font-radio tracking-[-0.03em];
     font-size: clamp(3.5rem, 8.5vw, 6.25rem);
   }
   .text-radio-2 {
-    @apply font-radio text-[2.125rem] md:text-[3.25rem] lg:text-[4rem] leading-none tracking-[-0.02em];
+    @apply text-[2.125rem] md:text-[3.25rem] lg:text-[4rem]  tracking-[-0.02em];
   }
   .text-radio-3 {
-    @apply font-radio text-[3.75rem] md:text-[3.75rem] leading-none tracking-[-0.02em];
+    @apply text-[3.75rem] md:text-[3.75rem] tracking-[-0.02em];
   }
   .text-radio-4 {
-    @apply font-radio text-[1.5rem] md:text-[1.75rem] lg:text-[2.375rem] leading-[110%] tracking-[-0.01em];
+    @apply text-[1.5rem] md:text-[1.75rem] lg:text-[2.375rem] leading-[110%] tracking-[-0.01em];
   }
   .text-radio-5 {
-    @apply font-radio text-[1.5rem] leading-[110%] tracking-[-0.03em];
+    @apply text-[1.5rem] leading-[110%] tracking-[-0.03em];
   }
+  .text-radio-6 {
+    @apply text-[1.25rem] leading-[110%] tracking-[-0.03em];
+  }
+
   /* Golos */
   .text-golos-1 {
     @apply font-golos text-[2.5rem] lg:text-[3.75rem] leading-none tracking-[-0.06em] font-semibold;
@@ -104,6 +116,10 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
   .text-golos-2 {
     @apply font-golos text-[1.75rem] xl:text-[2.5rem] leading-none tracking-[-0.06em] font-semibold;
   }
+  .text-golos-3 {
+    @apply font-golos text-[1.5rem] leading-none tracking-[-0.06em] font-semibold;
+  }
+
   /* Crimson */
   .text-crimson-1 {
     @apply font-crimson text-[2.125rem] lg:text-[3rem] italic leading-none tracking-[-0.06em];
@@ -111,16 +127,36 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
   .text-crimson-2 {
     @apply font-crimson text-[1.25rem] xl:text-[2.375rem] italic leading-none tracking-[-0.06em];
   }
+  .text-crimson-3 {
+    @apply font-crimson text-[1.25rem] italic leading-none tracking-[-0.06em];
+  }
+
   /* Body */
+  .text-body-xl,
+  .text-body-lg,
+  .text-body-md,
+  .text-body-sm,
+  .text-body-xs,
+  body {
+    @apply font-golos tracking-[-0.015em] leading-[140%];
+  }
+  .text-body-xl {
+    @apply text-[1.375rem];
+  }
   .text-body-lg {
-    @apply text-[0.875rem] md:text-[1.125rem] xl:text-[1.375rem] tracking-[-0.01em] leading-[1.25rem];
+    @apply text-[0.875rem] md:text-[1.125rem] xl:text-[1.375rem];
   }
   .text-body-sm {
-    @apply text-[0.75rem] xl:text-[0.875rem] tracking-[-0.02em] leading-[140%];
+    @apply text-[0.75rem] xl:text-[0.875rem];
+  }
+  body,
+  .text-body-md {
+    @apply text-[1rem];
   }
   .text-body-xs {
-    @apply text-[0.75rem] tracking-[-0.02em] leading-[140%];
+    @apply text-[0.75rem];
   }
+
   /* Containers */
   .container-sm,
   .container,
@@ -148,7 +184,9 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
     scroll-behavior: smooth;
   }
   body {
-    @apply font-golos tracking-[-0.01em] text-black leading-[1.5rem];
+    /*
+    @apply font-golos tracking-[-0.01em] text-black leading-[1.5rem]; */
+
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
@@ -223,4 +261,8 @@ body {
   flex: 0 0 auto;
   /*
   padding-left: var(--slide-spacing); */
+}
+
+.swiper-navigation-icon {
+  display: none;
 }

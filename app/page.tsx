@@ -1,8 +1,9 @@
 import Button from "@/components/ui/Button";
-import ValueProp from "@/components/ValueProp";
+import ValuePropSection from "@/components/ValuePropSection";
 import PlaylistCarousel from "@/components/PlaylistCarousel";
 import "./home.css";
 import Navbar from "@/components/Navbar";
+import SpotCard from "@/components/SpotCard";
 
 export default function Home() {
   return (
@@ -29,19 +30,42 @@ export default function Home() {
       </section>
       <PlaylistCarousel />
       <div className="text-balance">
-        <ValueProp
+        <ValuePropSection
           header="Stuck on where to go? Discover new spots"
           subhead="Find new spots you like based on your favorites, who you follow, and places you’ve been"
           CTA="Explore spots"
-        ></ValueProp>
+        >
+          <SpotCard
+            className="absolute right-[19%] top-[3%]"
+            name="360 Chicago"
+            rating="4.5"
+            numReviews="19k"
+          />
+          <SpotCard
+            className="absolute right-[-4%] top-[43%]"
+            name="Grace Street Desserts"
+            rating="4.5"
+            numReviews="3.3k"
+            width="20%"
+            ratio="1.2"
+          />
+          <SpotCard
+            className="absolute right-[25%] top-[66%]"
+            name="Greystone Mansion & Gardens"
+            rating="4.6"
+            numReviews="3.2k"
+            width="20%"
+            ratio="1.2"
+          />
+        </ValuePropSection>
 
-        <ValueProp
+        <ValuePropSection
           header="Easily import your existing lists"
           subhead="Start your city playlist with existing notes, Google docs, Instagram, or Maps"
           CTA="Import your spots"
-        ></ValueProp>
+        ></ValuePropSection>
 
-        <ValueProp
+        <ValuePropSection
           header="Share your playlists with friends "
           subhead="Keep all your fave spots in playlists and easily share when your friends ask"
           CTA="Start your profile"
@@ -99,7 +123,7 @@ export default function Home() {
               />
             </div>
           </div>
-        </ValueProp>
+        </ValuePropSection>
       </div>
     </div>
   );

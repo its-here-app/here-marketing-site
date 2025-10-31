@@ -1,16 +1,11 @@
 // app/[username]/[slug]/page.js
 import { client } from "../../../sanity/lib/client";
 import Error from "@/components/Error";
-import SpotHero from "@/components/SpotHero";
+import PlaylistHero from "@/components/PlaylistHero";
 import SpotList from "@/components/SpotList";
+import SimilarPlaylistsCarousel from "@/components/SimilarPlaylistsCarousel";
 
-export default async function Playlist({ params }) {
-  const { username, slug } = await params;
-
-  console.log("Fetching playlist for:", username, slug);
-
-  // const query = `*[_type == "playlist" && username == $username && slug.current == $slug][0]`;
-  const query = `*[_type == "playlist" && username == $username && slug.current == $slug][0]{
+const query = `*[_type == "playlist" && username == $username && slug.current == $slug][0]{
         _id,
         playlistName,
         city,
@@ -21,6 +16,12 @@ export default async function Playlist({ params }) {
         content,
         cover{ asset->{url} }
       }`;
+
+export const revalidate = 3600; // 1 hour
+
+export default async function Playlist({ params }) {
+  const { username, slug } = await params;
+
   const playlist = await client.fetch(query, { username, slug });
 
   const contentJSON = JSON.parse(playlist.content);
@@ -34,9 +35,9 @@ export default async function Playlist({ params }) {
   return (
     <div className="container-lg !p-2">
       {/* Wrapper for sticky behavior */}
-      <div className="grid md:grid-cols-2 gap-[clamp(0rem,_0.5vw,_0.75rem)]">
+      <div className="md:grid md:grid-cols-2 gap-[clamp(0rem,_0.5vw,_0.75rem)]">
         {/* Left column - sticky */}
-        <SpotHero playlist={playlist} />
+        <PlaylistHero playlist={playlist} />
 
         {/* Right column */}
         <div className="px-2 md:px-3 py-4">
@@ -45,9 +46,10 @@ export default async function Playlist({ params }) {
           )}
 
           <p className="mb-7">{contentJSON.length} spots *</p>
-          <div>
-            <SpotList spotsJSON={contentJSON} />
-          </div>
+
+          <SpotList spotsJSON={contentJSON} />
+
+          <SimilarPlaylistsCarousel />
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ const CircleIcon = ({
       bgColorClass = "bg-gray-100";
       break;
     case "glass":
-      bgColorClass = "bg-white-30p backdrop-blur-xs";
+      bgColorClass = "bg-white/25 backdrop-blur-xs";
       break;
     default:
       bgColorClass = "";
