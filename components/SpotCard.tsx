@@ -1,8 +1,9 @@
 import SpotRating from "@/components/ui/SpotRating";
+import { motion, useScroll, useTransform } from "motion/react";
 
 const SpotCard = ({
   className = "",
-  width = "20%",
+  width = "100%",
   imgSrc = "/images/graphics/placeholder.jpg",
   name = "Lorem ipsum",
   rating = "0",
@@ -10,7 +11,7 @@ const SpotCard = ({
   ratio = ".8",
 }) => {
   return (
-    <div
+    <motion.div
       className={`${className} flex flex-col`}
       style={{ width, aspectRatio: ratio ?? "1 / 1" }}
     >
@@ -23,7 +24,7 @@ const SpotCard = ({
       </div>
       <h3 className="text-radio-6 mb-1">{name}</h3>
       <SpotRating rating={rating} numReviews={numReviews} />
-    </div>
+    </motion.div>
   );
 };
 

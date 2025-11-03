@@ -21,16 +21,14 @@ export const revalidate = 3600; // 1 hour
 
 export default async function Playlist({ params }) {
   const { username, slug } = await params;
-
   const playlist = await client.fetch(query, { username, slug });
-
-  const contentJSON = JSON.parse(playlist.content);
-
-  console.log(contentJSON);
 
   if (!playlist) {
     return <Error message="Oops! This list could not be found." />;
   }
+
+  const contentJSON = JSON.parse(playlist.content);
+  console.log("Playlist content:", contentJSON);
 
   return (
     <div className="container-lg !p-2">

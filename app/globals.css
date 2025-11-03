@@ -147,7 +147,7 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
     @apply text-[0.875rem] md:text-[1.125rem] xl:text-[1.375rem];
   }
   .text-body-sm {
-    @apply text-[0.75rem] xl:text-[0.875rem];
+    @apply text-[0.75rem] lg:text-[0.875rem];
   }
   body,
   .text-body-md {

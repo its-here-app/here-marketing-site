@@ -3,6 +3,8 @@
 import CircleIcon from "@/components/ui/CircleIcon";
 import { useRouter } from "next/navigation";
 import PlaylistCoverOverlay from "./PlaylistCoverOverlay";
+import OutlineButton from "@/components/ui/OutlineButton";
+import { useState } from "react";
 
 /** Given a date, returns how long ago that date was in weeks or years
  * @dateString - the date as a string (e.g. "2023-05-12")
@@ -25,8 +27,63 @@ function timeAgo(dateString) {
   return weeksAgo === 1 ? "1 week ago" : `${weeksAgo} weeks ago`;
 }
 
+/** Returns the current page URL
+ * @returns URL as a string
+ */
+const getPageURL = () => {
+  if (typeof window !== "undefined") {
+    return window.location.href;
+  } else {
+    console.warn("Window is undefined, cannot get page URL");
+    return "";
+  }
+};
+
+/** Given a string, copies it to the clipboard
+ * @text - input text to copy
+ */
+const copyToClipboard = (text) => {
+  if (navigator.clipboard) {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log("✅ Copied to clipboard:", text);
+      })
+      .catch((err) => {
+        console.error("Failed to copy link:", err);
+      });
+  } else {
+    console.warn("Clipboard API not supported");
+  }
+};
+
+/** Playlist hero component
+ * @playlist - the playlist object
+ */
 const PlaylistHero = ({ playlist }) => {
   const router = useRouter();
+  const [shareIsOpen, setShareIsOpen] = useState(false);
+
+  const toggleShareMenu = () => setShareIsOpen((prev) => !prev);
+
+  const getLink = () => {
+    copyToClipboard(getPageURL());
+    toggleShareMenu();
+  };
+
+  const copyListAsText = () => {
+    const listHeader = `${playlist.city} — ${playlist.playlistName} @ ${playlist.username}\n`;
+    const spotsJSON = JSON.parse(playlist.content);
+
+    const spotLines = spotsJSON.map(
+      (spot) => `* ${spot.name}, ${spot.description} (${spot.type})`
+    );
+
+    const fullText = listHeader + spotLines.join("\n") + `\n\n${getPageURL()}`;
+
+    copyToClipboard(fullText);
+    toggleShareMenu();
+  };
 
   return (
     <div
@@ -47,11 +104,44 @@ const PlaylistHero = ({ playlist }) => {
             alt="Close"
             onClick={() => router.push("/")}
           />
-          <CircleIcon
-            src="/images/icons/icon-share.svg"
-            alt="Share"
-            bgColor="glass"
-          />
+          <div className="relative">
+            <CircleIcon
+              className="cursor-pointer"
+              src="/images/icons/icon-share.svg"
+              alt="Share"
+              bgColor="glass"
+              onClick={toggleShareMenu}
+            />
+            <div
+              className={`fixed md:absolute bottom-0 right-0 md:right-0 md:bottom-auto z-10 md:top-13 bg-black text-white p-[clamp(1rem,8vw,3rem)] rounded-t-4xl md:rounded-2xl w-full md:w-[16rem] text-left md:p-4 flex flex-col
+           transition-all duration-300 ease-in-out
+          ${shareIsOpen ? "opacity-100 translate-y-0 visible" : "md:opacity-0 translate-y-[100%] md:-translate-y-2 invisible"}
+        `}
+            >
+              <h5 className="text-body-md mb-3">Share city playlist</h5>
+              <OutlineButton
+                className="mb-3"
+                iconSrc="/images/icons/icon-link.svg"
+                onClick={getLink}
+              >
+                Get link
+              </OutlineButton>
+              <OutlineButton
+                className="mb-3 md:mb-0"
+                iconSrc="/images/icons/icon-copy.svg"
+                onClick={copyListAsText}
+              >
+                Copy list as text
+              </OutlineButton>
+              <OutlineButton
+                className="md:hidden"
+                color="white"
+                onClick={toggleShareMenu}
+              >
+                Cancel
+              </OutlineButton>
+            </div>
+          </div>
         </div>
         {/* Center */}
         <div className="p-[10%]">
