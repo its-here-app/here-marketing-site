@@ -6,6 +6,7 @@ const CircleIcon = ({
   alt = "",
   onClick = null,
   link = "",
+  disabled = false,
 }) => {
   /* Get color */
   let bgColorClass;
@@ -36,13 +37,14 @@ const CircleIcon = ({
   }
   const content = (
     <div
-      className={`${bgColorClass} ${className} flex justify-center items-center rounded-full ${
+      className={`${bgColorClass} ${className}  flex justify-center items-center rounded-full ${
         onClick ? "cursor-pointer" : ""
-      }`}
+      } ${disabled ? "!opacity-40 !cursor-default" : ""}`}
       style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
       onClick={onClick}
     >
       <img
+        className="select-none"
         src={src}
         alt={alt}
         style={{ width: `${iconSize}px`, height: `${iconSize}px` }}

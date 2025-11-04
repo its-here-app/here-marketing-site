@@ -47,7 +47,7 @@ export default async function Playlist({ params }) {
 
           <SpotList spotsJSON={contentJSON} />
 
-          <SimilarPlaylistsCarousel />
+          <SimilarPlaylistsCarousel currentPlaylist={playlist} />
         </div>
       </div>
     </div>

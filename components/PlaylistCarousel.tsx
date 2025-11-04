@@ -18,18 +18,7 @@ import Marquee from "react-fast-marquee";
 
 import PlaylistCard from "@/components/PlaylistCard";
 import StickerCTA from "@/components/ui/StickerCTA";
-
-/**
- * Fisher-Yates shuffle function
- */
-function shuffleArray(array) {
-  const shuffled = [...array]; // copy to avoid mutating original
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
+import { getAllPlaylists } from "@/utils/PlaylistUtils";
 
 const PlaylistCarousel = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -58,19 +47,7 @@ const PlaylistCarousel = () => {
 
   useEffect(() => {
     async function fetchPlaylists() {
-      const query = `*[_type == "playlist"]{
-        _id,
-        playlistName,
-        city,
-        slug,
-        username,
-        description,
-        dateAdded,
-        cover{ asset->{url} }
-      }`;
-
-      let playlists = await client.fetch(query);
-      playlists = shuffleArray(playlists);
+      const playlists = await getAllPlaylists();
       setPlaylists(playlists);
     }
 

@@ -7,7 +7,7 @@ import OutlineButton from "@/components/ui/OutlineButton";
 import { useState } from "react";
 
 /** Given a date, returns how long ago that date was in weeks or years
- * @dateString - the date as a string (e.g. "2023-05-12")
+ * @param dateString - the date as a string (e.g. "2023-05-12")
  * @returns a string
  */
 function timeAgo(dateString) {
@@ -40,7 +40,7 @@ const getPageURL = () => {
 };
 
 /** Given a string, copies it to the clipboard
- * @text - input text to copy
+ * @param text - input text to copy
  */
 const copyToClipboard = (text) => {
   if (navigator.clipboard) {
@@ -58,7 +58,7 @@ const copyToClipboard = (text) => {
 };
 
 /** Playlist hero component
- * @playlist - the playlist object
+ * @param playlist - the playlist object
  */
 const PlaylistHero = ({ playlist }) => {
   const router = useRouter();
