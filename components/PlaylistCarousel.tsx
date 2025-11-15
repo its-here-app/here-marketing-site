@@ -8,6 +8,7 @@ import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/autoplay";
+import SlideIn from "@/components/motion/SlideIn";
 
 /*
 import useEmblaCarousel from 'embla-carousel-react';
@@ -65,11 +66,19 @@ const PlaylistCarousel = () => {
       </div>
     </div>   */}
 
-      <Marquee className="py-4" pauseOnHover={true} speed={30}>
-        {playlists.map((playlist, index) => (
-          <PlaylistCard playlist={playlist} index={index} />
-        ))}
-      </Marquee>
+      {playlists.length === 0 ? (
+        <div className="py-4">
+          <div className="h-[15rem] md:h-[20rem] xl:h-[28rem]"></div>
+        </div>
+      ) : (
+        <SlideIn direction="right" stagger="3" duration="1.2">
+          <Marquee className="py-4" pauseOnHover={false} speed={30}>
+            {playlists.map((playlist, index) => (
+              <PlaylistCard playlist={playlist} index={index} />
+            ))}
+          </Marquee>
+        </SlideIn>
+      )}
 
       {/*
       <Swiper

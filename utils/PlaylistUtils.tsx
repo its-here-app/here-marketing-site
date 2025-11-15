@@ -15,6 +15,30 @@ export function shuffleArray(array) {
 }
 
 /**
+ * Get the specified playlist
+ * @param username - playlist owner's username
+ * @param slug - playlist slug
+ * @returns shuffled array of all playlists
+ */
+export async function getPlaylist(username, slug) {
+  const query = `*[_type == "playlist" && username == $username && slug.current == $slug][0]{
+        _id,
+        playlistName,
+        city,
+        slug,
+        profileImage,
+        username,
+        description,
+        dateAdded,
+        content,
+        cover{ asset->{url} }
+      }`;
+
+  const playlist = await client.fetch(query, { username, slug });
+  return playlist;
+}
+
+/**
  * Get all playlists
  * @returns shuffled array of all playlists
  */
@@ -24,13 +48,14 @@ export async function getAllPlaylists() {
         playlistName,
         city,
         slug,
+        profileImage,
         username,
         description,
         dateAdded,
         cover{ asset->{url} }
       }`;
 
-  let playlists = await client.fetch(query);
+  const playlists = await client.fetch(query);
   return shuffleArray(playlists);
 }
 
@@ -48,6 +73,7 @@ export async function getMorePlaylists(currentPlaylist) {
         playlistName,
         city,
         slug,
+        profileImage,
         username,
         description,
         dateAdded,
@@ -108,7 +134,7 @@ export async function getSimilarPlaylists(currentPlaylist) {
     "spots",
   ];
 
-  const { _id, city, username, playlistName } = currentPlaylist;
+  const { _id, city, playlistName } = currentPlaylist;
 
   // Extract title words and filter out common words
   const titleWords = playlistName
@@ -124,12 +150,13 @@ export async function getSimilarPlaylists(currentPlaylist) {
 
   // Final GROQ query
   const query = `*[_type == "playlist" && _id != $id && (
-    city == $city || username == $username${titleConditions ? " || " + titleConditions : ""}
+    city == $city${titleConditions ? " || " + titleConditions : ""}
   )]{
     _id,
     playlistName,
     city,
     slug,
+    profileImage,
     username,
     description,
     dateAdded,
@@ -140,7 +167,6 @@ export async function getSimilarPlaylists(currentPlaylist) {
   const params = {
     id: _id,
     city,
-    username,
     ...Object.fromEntries(
       titleWords.map((word, i) => [`word${i}`, word + "*"])
     ), // wildcard match

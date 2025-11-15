@@ -7,7 +7,8 @@ import "./home.css";
 import Navbar from "@/components/Navbar";
 import SpotCard from "@/components/SpotCard";
 import SlideIn from "@/components/motion/SlideIn";
-import SmoothScroll from "@/components/motion/SmoothScroll";
+import FadeIn from "@/components/motion/FadeIn";
+import PopIn from "@/components/motion/PopIn";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -21,7 +22,6 @@ export default function Home() {
 
   return (
     <div>
-      <SmoothScroll />
       <Navbar />
       <section className="container pb-4">
         <SlideIn>
@@ -157,16 +157,20 @@ export default function Home() {
               alt=""
               className="w-[100%] sticker-1"
             />
-            <img
-              src="images/stickers/sticker-smiley.svg"
-              alt=""
-              className="w-[50%] sticker-2 -top-[5%] -left-[15%]"
-            />
-            <img
-              src="images/stickers/sticker-globe.svg"
-              alt=""
-              className="w-[65%] sticker-3 bottom-0 -right-[33%]"
-            />
+            <FadeIn stagger="4">
+              <img
+                src="images/stickers/sticker-smiley.svg"
+                alt=""
+                className="w-[50%] sticker-2 -top-[5%] -left-[15%]"
+              />
+            </FadeIn>
+            <FadeIn stagger="8">
+              <img
+                src="images/stickers/sticker-globe.svg"
+                alt=""
+                className="w-[65%] sticker-3 bottom-0 -right-[33%]"
+              />
+            </FadeIn>
           </div>
           <div className="top-[17%] -right-[3%] md:right-0 home_share-em">
             <img
@@ -174,16 +178,20 @@ export default function Home() {
               alt=""
               className="w-[100%] sticker-1"
             />
-            <img
-              src="images/stickers/sticker-share.svg"
-              alt=""
-              className="w-[30%] sticker-2 -top-[12%] right-[20%]"
-            />
-            <img
-              src="images/stickers/sticker-playlists.svg"
-              alt=""
-              className="w-[78%] sticker-3 bottom-[12%] -left-[18%]"
-            />
+            <FadeIn stagger="6">
+              <img
+                src="images/stickers/sticker-share.svg"
+                alt=""
+                className="w-[30%] sticker-2 -top-[12%] right-[20%]"
+              />
+            </FadeIn>
+            <FadeIn stagger="4">
+              <img
+                src="images/stickers/sticker-playlists.svg"
+                alt=""
+                className="w-[78%] sticker-3 bottom-[12%] -left-[18%]"
+              />
+            </FadeIn>
           </div>
           <div className="bottom-0 left-[23%] home_share-ekin">
             <img
@@ -191,16 +199,20 @@ export default function Home() {
               alt=""
               className="w-[100%] sticker-1"
             />
-            <img
-              src="images/stickers/sticker-cities.svg"
-              alt=""
-              className="w-[70%] sticker-2 top-[6%] -left-[35%]"
-            />
-            <img
-              src="images/stickers/sticker-eyes.svg"
-              alt=""
-              className="w-[45%] sticker-3 top-[35%] -right-[15%]"
-            />
+            <FadeIn stagger="5">
+              <img
+                src="images/stickers/sticker-cities.svg"
+                alt=""
+                className="w-[70%] sticker-2 top-[6%] -left-[35%]"
+              />
+            </FadeIn>
+            <FadeIn stagger="7">
+              <img
+                src="images/stickers/sticker-eyes.svg"
+                alt=""
+                className="w-[45%] sticker-3 top-[35%] -right-[15%]"
+              />
+            </FadeIn>
           </div>
         </div>
       </ValuePropSection>

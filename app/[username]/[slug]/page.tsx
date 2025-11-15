@@ -4,24 +4,14 @@ import Error from "@/components/Error";
 import PlaylistHero from "@/components/PlaylistHero";
 import SpotList from "@/components/SpotList";
 import SimilarPlaylistsCarousel from "@/components/SimilarPlaylistsCarousel";
-
-const query = `*[_type == "playlist" && username == $username && slug.current == $slug][0]{
-        _id,
-        playlistName,
-        city,
-        slug,
-        username,
-        description,
-        dateAdded,
-        content,
-        cover{ asset->{url} }
-      }`;
+import { getPlaylist } from "@/utils/PlaylistUtils";
+import SmoothScroll from "@/components/motion/SmoothScroll";
 
 export const revalidate = 3600; // 1 hour
 
 export default async function Playlist({ params }) {
   const { username, slug } = await params;
-  const playlist = await client.fetch(query, { username, slug });
+  const playlist = await getPlaylist(username, slug);
 
   if (!playlist) {
     return <Error message="Oops! This list could not be found." />;
@@ -31,25 +21,29 @@ export default async function Playlist({ params }) {
   console.log("Playlist content:", contentJSON);
 
   return (
-    <div className="container-lg !p-2">
-      {/* Wrapper for sticky behavior */}
-      <div className="md:grid md:grid-cols-2 gap-[clamp(0rem,_0.5vw,_0.75rem)]">
-        {/* Left column - sticky */}
-        <PlaylistHero playlist={playlist} />
+    <>
+      <SmoothScroll enabled={false} />
 
-        {/* Right column */}
-        <div className="px-2 md:px-3 py-4">
-          {playlist.description && (
-            <p className="mb-5">{playlist.description}</p>
-          )}
+      <div className="container-lg !p-2">
+        {/* Wrapper for sticky behavior */}
+        <div className="md:grid md:grid-cols-2 gap-[clamp(0rem,_0.5vw,_0.75rem)]">
+          {/* Left column - sticky */}
+          <PlaylistHero playlist={playlist} />
 
-          <p className="mb-7">{contentJSON.length} spots *</p>
+          {/* Right column */}
+          <div className="px-2 md:px-3 py-4">
+            {playlist.description && (
+              <p className="mb-5">{playlist.description}</p>
+            )}
 
-          <SpotList spotsJSON={contentJSON} />
+            <p className="mb-7">{contentJSON.length} spots *</p>
 
-          <SimilarPlaylistsCarousel currentPlaylist={playlist} />
+            <SpotList spotsJSON={contentJSON} />
+
+            <SimilarPlaylistsCarousel currentPlaylist={playlist} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

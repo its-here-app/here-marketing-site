@@ -4,6 +4,8 @@ import CircleIcon from "@/components/ui/CircleIcon";
 import { useRouter } from "next/navigation";
 import PlaylistCoverOverlay from "./PlaylistCoverOverlay";
 import OutlineButton from "@/components/ui/OutlineButton";
+import ProfileImage from "@/components/ui/ProfileImage";
+
 import { useState } from "react";
 
 /** Given a date, returns how long ago that date was in weeks or years
@@ -61,6 +63,7 @@ const copyToClipboard = (text) => {
  * @param playlist - the playlist object
  */
 const PlaylistHero = ({ playlist }) => {
+  console.log(playlist);
   const router = useRouter();
   const [shareIsOpen, setShareIsOpen] = useState(false);
 
@@ -149,8 +152,11 @@ const PlaylistHero = ({ playlist }) => {
           <h4 className="text-golos-1">{playlist.playlistName}</h4>
         </div>
         {/* Bottom */}
-        <div className="text-body-sm absolute transition-all duration-400 bottom-0 flex justify-between w-full">
-          <div>{playlist.username}</div>
+        <div className="text-body-sm absolute transition-all duration-400 bottom-0 flex items-center justify-between w-full">
+          <div className="flex items-center gap-3">
+            <ProfileImage imgSrc={playlist.profileImage} size={28} />
+            {playlist.username}
+          </div>
           <div>Last updated {timeAgo(playlist.dateAdded)}</div>
         </div>
       </div>
