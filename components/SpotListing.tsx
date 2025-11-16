@@ -4,40 +4,48 @@ import Badge from "@/components/ui/Badge";
 import SpotRating from "@/components/ui/SpotRating";
 import CircleIcon from "@/components/ui/CircleIcon";
 
-const SpotListing = ({ spot = null }) => {
-  if (spot) {
-    return (
-      <div className="flex gap-4 text-balance">
-        <div className="bg-gray-100 w-[6.25rem] h-[6.25rem] rounded-lg aspect-square overflow-hidden shrink-0">
-          <img
-            src={spot.imgUrl ? spot.imgUrl : "/images/graphics/placeholder.jpg"}
-            alt=""
-            className="w-full h-full object-cover object-center"
-          ></img>
+const SpotListing = ({
+  imgUrl = null,
+  name = "Unknown",
+  description = "",
+  type = "",
+  ratings = "",
+  numReviews = "",
+  googleMapsUrl = "",
+}) => {
+  return (
+    <div className="flex gap-4 text-balance">
+      <div className="bg-gray-100 w-[6.25rem] h-[6.25rem] rounded-lg aspect-square overflow-hidden shrink-0">
+        <img
+          src={imgUrl ? imgUrl : "/images/graphics/placeholder.jpg"}
+          alt=""
+          className="w-full h-full object-cover object-center"
+        ></img>
+      </div>
+      <div className="grow">
+        <h3 className="text-radio-5 mb-1">{name}</h3>
+        <p className="text-gray-700 text-body-sm line-clamp-2 mb-2">
+          {description}
+        </p>
+        <div className="flex gap-2 flex-wrap">
+          <Badge>{type}</Badge>
+          <SpotRating rating={ratings} numReviews={numReviews} />
         </div>
-        <div className="grow">
-          <h3 className="text-radio-5 mb-1">{spot.name}</h3>
-          <p className="text-gray-700 text-body-sm line-clamp-2 mb-2">
-            {spot.description}
-          </p>
-          <div className="flex gap-2">
-            <Badge>{spot.type}</Badge>
-            <SpotRating rating={spot.ratings} />
-          </div>
-        </div>
-        <div>
+      </div>
+      <div>
+        {googleMapsUrl && (
           <CircleIcon
             className="cursor-ne-resize hover:bg-neon transition-all duration-200"
             src="/images/icons/icon-map-black.svg"
             alt="Close"
             bgColor="gray"
             size="sm"
-            link={`https://www.google.com/maps/place/?q=place_id:${spot.googleMapsUrl}`}
+            link={`https://www.google.com/maps/place/?q=place_id:${googleMapsUrl}`}
           />
-        </div>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default SpotListing;

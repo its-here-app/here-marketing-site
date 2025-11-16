@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  --side-spacing: clamp(1rem, 4vw, 2rem);
   --background: #ffffff;
   --foreground: #171717;
   --black: #000000;
@@ -162,8 +163,8 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
   .container,
   .container-lg {
     @apply w-full mx-auto;
-    padding-left: clamp(1rem, 4vw, 2rem);
-    padding-right: clamp(1rem, 4vw, 2rem);
+    padding-left: var(--side-spacing);
+    padding-right: var(--side-spacing);
   }
   .container-sm {
     @apply max-w-[1280px];

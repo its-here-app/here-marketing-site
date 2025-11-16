@@ -15,7 +15,7 @@ const Button = ({
 
   // --- Base shared styles
   const baseClasses =
-    "rounded-lg py-2 px-5 transition-all duration-400 cursor-pointer";
+    "rounded-lg pt-2 pb-[.625rem] px-5 transition-all duration-400 cursor-pointer";
 
   return (
     <div>

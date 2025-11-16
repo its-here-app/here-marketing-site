@@ -1,5 +1,3 @@
-
-
 /* Share value prop section */
 .home_share-stickers img {
   position: absolute;
@@ -7,7 +5,8 @@
 }
 
 .home_share-juliette,
-.home_share-em, .home_share-ekin {
+.home_share-em,
+.home_share-ekin {
   position: absolute;
   width: 40%;
   aspect-ratio: 1 / 1;

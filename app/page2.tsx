@@ -1,14 +1,14 @@
 "use client";
 
-import Button from "@/components/ui/Button";
-import ValuePropSection from "@/components/ValuePropSection";
-import PlaylistCarousel from "@/components/PlaylistCarousel";
 import "./home.css";
+
+import Button from "@/components/ui/Button";
+import ValuePropSection from "@/components/ValueProp";
+import PlaylistCarousel from "@/components/PlaylistCarousel";
 import Navbar from "@/components/Navbar";
 import SpotCard from "@/components/SpotCard";
 import SlideIn from "@/components/motion/SlideIn";
 import FadeIn from "@/components/motion/FadeIn";
-import PopIn from "@/components/motion/PopIn";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";

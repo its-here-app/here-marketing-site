@@ -5,7 +5,7 @@ import StickerCTA from "@/components/ui/StickerCTA";
 const Footer = ({ className = "" }) => {
   return (
     <footer
-      className={`${className} w-full text-white bg-black rounded-t-[2.25rem] overflow-hidden`}
+      className={`${className} w-full text-white bg-black rounded-t-[2.25rem] overflow-hidden relative`}
     >
       <div className="container-lg pt-16 md:pt-20 pb-10 relative">
         <h2 className="text-radio-4 mb-6 md:mb-9">
