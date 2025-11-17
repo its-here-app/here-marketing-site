@@ -9,7 +9,6 @@ import Navbar from "@/components/Navbar";
 import PlaylistCard from "@/components/PlaylistCard";
 import PhoneSection from "@/components/PhoneSection";
 import ModalTrigger from "@/components/ModalTrigger";
-
 import SlideIn from "@/components/motion/SlideIn";
 import SmoothScroll from "@/components/motion/SmoothScroll";
 
