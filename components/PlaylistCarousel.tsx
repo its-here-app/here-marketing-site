@@ -6,7 +6,7 @@ import PlaylistCard from "@/components/PlaylistCard";
 import StickerCTA from "@/components/ui/StickerCTA";
 import SlideIn from "@/components/motion/SlideIn";
 import { getAllPlaylists } from "@/utils/PlaylistUtils";
-import StartYourPlaylistModal from "@/components/StartYourPlaylistModal";
+import ModalTrigger from "@/components/ModalTrigger";
 
 const PlaylistCarousel = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -45,14 +45,9 @@ const PlaylistCarousel = () => {
         </SlideIn>
       )}
 
-      <div onClick={() => setOpen(true)}>
+      <ModalTrigger>
         <StickerCTA className="cursor-pointer absolute scale-0 rotate-15 md:rotate-0 md:scale-100 transition-transform duration-200 right-[6%] -bottom-10 z-10 hover:rotate-10" />
-      </div>
-
-      <StartYourPlaylistModal
-        open={open}
-        onClose={() => setOpen(false)}
-      ></StartYourPlaylistModal>
+      </ModalTrigger>
     </div>
   );
 };

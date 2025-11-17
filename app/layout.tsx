@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { ModalProvider, useModal } from "@/context/ModalContext";
+import ModalRootClient from "./ModalRootClient";
 
 export const metadata: Metadata = {
   title: "Here*",
@@ -15,10 +17,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="min-h-screen flex flex-col justify-between gap-8">
-          <main className="flex flex-col justify-center">{children}</main>
-          <Footer />
-        </div>
+        <ModalProvider>
+          <ModalRootClient>
+            <div className="min-h-screen flex flex-col justify-between gap-8">
+              <main className="flex flex-col justify-center">{children}</main>
+              <Footer />
+            </div>
+          </ModalRootClient>
+        </ModalProvider>
       </body>
     </html>
   );

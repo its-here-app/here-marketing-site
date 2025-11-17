@@ -8,6 +8,7 @@ import PlaylistCarousel from "@/components/PlaylistCarousel";
 import Navbar from "@/components/Navbar";
 import PlaylistCard from "@/components/PlaylistCard";
 import PhoneSection from "@/components/PhoneSection";
+import ModalTrigger from "@/components/ModalTrigger";
 
 import SlideIn from "@/components/motion/SlideIn";
 import SmoothScroll from "@/components/motion/SmoothScroll";
@@ -98,10 +99,12 @@ export default function Home() {
 
       <div className="px-[clamp(.5rem,2vw,2rem)] flex justify-center">
         <div className="bg-black rounded-4xl h-screen max-h-[38rem] md:max-h-[48rem] xl:max-h-[56rem] md:h-[clamp(38rem,100vh,56rem)] text-white flex flex-col justify-center items-center overflow-hidden w-full relative transition-[height,max-height] duration-300 ease-out">
-          <div className="text-center mt-[-12rem]">
+          <div className="text-center mt-[-17rem] md:mt-[-12rem]">
             <h2 className="mb-4">Capture all your favorites</h2>
             <SlideIn>
-              <p className="text-radio-1">Start today</p>
+              <ModalTrigger>
+                <p className="text-radio-1">Start today</p>
+              </ModalTrigger>
             </SlideIn>
           </div>
           {playlists.map((playlist, index) => (

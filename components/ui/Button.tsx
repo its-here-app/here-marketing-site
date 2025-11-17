@@ -1,11 +1,15 @@
+import { useModal } from "@/context/ModalContext";
+
 const Button = ({
-  onClick,
+  onClick = null,
   children,
   variant = "primary", // visual style
   type = "button", // HTML button type
   disabled = false,
   className = "",
 }) => {
+  const { openModal } = useModal();
+
   // --- Variants (visual styles)
   const variantClasses =
     {
@@ -21,7 +25,7 @@ const Button = ({
     <div>
       <button
         type={type}
-        onClick={onClick}
+        onClick={onClick ? onClick : openModal}
         disabled={disabled}
         className={`${baseClasses} ${variantClasses} ${className}`}
       >
