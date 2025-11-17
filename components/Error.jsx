@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 
 const Error = ({ className = "", message = "404 - Page not found" }) => {

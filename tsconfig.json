@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -30,7 +31,8 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "app/ModalRootClient.jsx"
+    "app/ModalRootClient.tsx",
+    "context/ModalContext.jsx"
   ],
   "exclude": ["node_modules"]
 }
