@@ -99,10 +99,10 @@ export default function Home() {
       <div className="px-[clamp(.5rem,2vw,2rem)] flex justify-center">
         <div className="bg-black rounded-4xl h-screen max-h-[38rem] md:max-h-[48rem] xl:max-h-[56rem] md:h-[clamp(38rem,100vh,56rem)] text-white flex flex-col justify-center items-center overflow-hidden w-full relative transition-[height,max-height] duration-300 ease-out">
           <div className="text-center mt-[-17rem] md:mt-[-12rem]">
-            <h2 className="mb-4">Capture all your favorites</h2>
+            <h2 className="mb-4">For anything, anywhere</h2>
             <SlideIn>
               <ModalTrigger>
-                <p className="text-radio-1">Start today</p>
+                <p className="text-radio-1">Capture all the...</p>
               </ModalTrigger>
             </SlideIn>
           </div>

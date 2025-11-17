@@ -59,8 +59,8 @@ const PhoneSection = ({ className = "" }) => {
     >
       <div className="sticky container top-0 flex flex-col items-center z-20">
         <SlideIn>
-          <h2 className="text-balance text-radio-1 max-w-[44rem] mt-[10vh] mb-[10vh]">
-            Discover your next favorite spot
+          <h2 className="text-balance text-radio-1 max-w-[44rem] mt-[10vh] mb-[7vh]">
+            It's here*
           </h2>
         </SlideIn>
         <div className="relative h-[610px] w-[300px] md:h-[773px] md:w-[380px] pointer-events-none select-none">

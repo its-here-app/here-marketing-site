@@ -142,7 +142,17 @@ const ValuePropSection = forwardRef((props, ref) => {
         header="Easily import your existing lists"
         subhead="Start your city playlist with existing notes, Google docs, Instagram, or Maps"
         CTA="Import your spots"
-      />
+      >
+        <div className="max-w-[80%] -mt-4 md:mt-0 md:max-w-[50%] md:pl-6">
+          <SlideIn>
+            <img
+              src="/images/graphics/import.webp"
+              alt="list in notes app"
+              className="w-full max-w-[32.5rem]"
+            ></img>
+          </SlideIn>
+        </div>
+      </ValueProp>
 
       {/* Value prop 3 */}
       <ValueProp
