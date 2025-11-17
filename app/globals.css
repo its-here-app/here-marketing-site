@@ -161,7 +161,8 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
   /* Containers */
   .container-sm,
   .container,
-  .container-lg {
+  .container-lg,
+  .container-xl {
     @apply w-full mx-auto;
     padding-left: var(--side-spacing);
     padding-right: var(--side-spacing);
@@ -266,4 +267,17 @@ body {
 
 .swiper-navigation-icon {
   display: none;
+}
+
+.sticker-transition {
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Modal stickers */
+.modal_image:hover .sticker-1 {
+  transform: scale(1.05) rotate(-7deg);
+}
+
+.modal_image:hover .sticker-2 {
+  transform: rotate(5deg);
 }

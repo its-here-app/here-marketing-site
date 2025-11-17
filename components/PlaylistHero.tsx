@@ -102,8 +102,8 @@ const PlaylistHero = ({ playlist }) => {
         {/* Top */}
         <div className="absolute top-0 flex justify-between w-full">
           <CircleIcon
-            className="-ml-2 hover:scale-130 transition duration-200"
-            src="/images/icons/icon-close.svg"
+            className="-ml-2 hover:scale-120 transition duration-200"
+            svgSrc="/images/icons/icon-close.svg"
             alt="Close"
             onClick={() => router.push("/")}
           />

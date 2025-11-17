@@ -1,7 +1,6 @@
 /* Share value prop section */
 .home_share-stickers img {
   position: absolute;
-  transition: transform 0.2s ease-in-out;
 }
 
 .home_share-juliette,

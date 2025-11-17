@@ -6,6 +6,7 @@ import ValueProp from "@/components/ValueProp";
 import SpotCard from "@/components/SpotCard";
 import SpotListing from "@/components/SpotListing";
 import SlideIn from "@/components/motion/SlideIn";
+import FadeIn from "@/components/motion/FadeIn";
 
 const ValuePropSection = forwardRef((props, ref) => {
   const cards1Ref = useRef(null);
@@ -75,7 +76,7 @@ const ValuePropSection = forwardRef((props, ref) => {
           <motion.div
             className="absolute right-[20%] top-[3%]"
             style={{
-              y: useTransform(scrollYProgress, [0, 1], [50, -50]),
+              y: useTransform(scrollYProgress, [0, 1], [50, -150]),
               width: "20%",
             }}
           >
@@ -154,51 +155,53 @@ const ValuePropSection = forwardRef((props, ref) => {
             <img
               src="images/photos/juliette.webp"
               alt=""
-              className="w-[100%] sticker-1"
+              className="w-[100%] sticker-1 sticker-transition"
             />
             <img
               src="images/stickers/sticker-smiley.svg"
               alt=""
-              className="w-[50%] sticker-2 -top-[5%] -left-[15%]"
+              className="w-[50%] sticker-2 -top-[5%] -left-[15%] sticker-transition"
             />
             <img
               src="images/stickers/sticker-globe.svg"
               alt=""
-              className="w-[65%] sticker-3 bottom-0 -right-[33%]"
+              className="w-[65%] sticker-3 bottom-0 -right-[33%] sticker-transition"
             />
           </div>
+
           <div className="top-[17%] -right-[3%] md:right-0 home_share-em">
             <img
               src="images/photos/em.webp"
               alt=""
-              className="w-[100%] sticker-1"
+              className="w-[100%] sticker-1 sticker-transition"
             />
             <img
               src="images/stickers/sticker-share.svg"
               alt=""
-              className="w-[30%] sticker-2 -top-[12%] right-[20%]"
+              className="w-[30%] sticker-2 -top-[12%] right-[20%] sticker-transition"
             />
             <img
               src="images/stickers/sticker-playlists.svg"
               alt=""
-              className="w-[78%] sticker-3 bottom-[12%] -left-[18%]"
+              className="w-[78%] sticker-3 bottom-[12%] -left-[18%] sticker-transition"
             />
           </div>
+
           <div className="bottom-0 left-[23%] home_share-ekin">
             <img
               src="images/photos/ekin.webp"
               alt=""
-              className="w-[100%] sticker-1"
+              className="w-[100%] sticker-1 sticker-transition"
             />
             <img
               src="images/stickers/sticker-cities.svg"
               alt=""
-              className="w-[70%] sticker-2 top-[6%] -left-[35%]"
+              className="w-[70%] sticker-2 top-[6%] -left-[35%] sticker-transition"
             />
             <img
               src="images/stickers/sticker-eyes.svg"
               alt=""
-              className="w-[45%] sticker-3 top-[35%] -right-[15%]"
+              className="w-[45%] sticker-3 top-[35%] -right-[15%] sticker-transition"
             />
           </div>
         </div>

@@ -1,8 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import Logo from "@/components/Logo";
 import EmailInput from "@/components/ui/EmailInput";
 import StickerCTA from "@/components/ui/StickerCTA";
+import StartYourPlaylistModal from "@/components/StartYourPlaylistModal";
 
 const Footer = ({ className = "" }) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <footer
       className={`${className} w-full text-white bg-black rounded-t-[2.25rem] overflow-hidden relative`}
@@ -39,11 +45,17 @@ const Footer = ({ className = "" }) => {
           type="icon"
           className="absolute bottom-[6.5rem] right-[-.5rem] lg:bottom-[55%] lg:right-[3%] rotate-[12deg] !w-[4.375rem] md:!w-[5.625rem]"
         />
-        <StickerCTA
-          color="green"
-          className="scale-0 lg:scale-100 rotate-20 lg:rotate-0 absolute right-[8%] bottom-[22%]"
-        />
+        <div onClick={() => setOpen(true)}>
+          <StickerCTA
+            color="green"
+            className="cursor-pointer scale-0 lg:scale-100 rotate-20 lg:rotate-0 absolute right-[8%] bottom-[22%] hover:rotate-10"
+          />
+        </div>
       </div>
+      <StartYourPlaylistModal
+        open={open}
+        onClose={() => setOpen(false)}
+      ></StartYourPlaylistModal>
     </footer>
   );
 };

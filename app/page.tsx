@@ -65,18 +65,24 @@ export default function Home() {
       <SmoothScroll />
       <Navbar />
       <section className="container pb-4">
-        <SlideIn>
-          <h1 className="text-radio-1 justify-between hidden md:flex">
+        <h1 className="text-radio-1 justify-between hidden md:flex">
+          <SlideIn>
             <div>
               For the spots<br></br>you love{" "}
             </div>
+          </SlideIn>
+          <SlideIn stagger="2">
             <div>
               <br></br> & the places<br></br>you’ll go
             </div>
-          </h1>
+          </SlideIn>
+        </h1>
+        <SlideIn>
           <h1 className="text-radio-1 md:hidden mb-4">
             For the spots you love & the places you’ll go
           </h1>
+        </SlideIn>
+        <SlideIn stagger="3">
           <h2 className="md:[margin-top:clamp(-3rem,-4vw,-3rem)]">
             Discover and share favorite spots<br></br>through city playlists*
           </h2>
@@ -92,12 +98,12 @@ export default function Home() {
 
       <div className="px-[clamp(.5rem,2vw,2rem)] flex justify-center">
         <div className="bg-black rounded-4xl h-screen max-h-[38rem] md:max-h-[48rem] xl:max-h-[56rem] md:h-[clamp(38rem,100vh,56rem)] text-white flex flex-col justify-center items-center overflow-hidden w-full relative transition-[height,max-height] duration-300 ease-out">
-          <SlideIn>
-            <div className="text-center mt-[-12rem]">
-              <h2 className="mb-4">Capture all your favorites</h2>
+          <div className="text-center mt-[-12rem]">
+            <h2 className="mb-4">Capture all your favorites</h2>
+            <SlideIn>
               <p className="text-radio-1">Start today</p>
-            </div>
-          </SlideIn>
+            </SlideIn>
+          </div>
           {playlists.map((playlist, index) => (
             <div
               className={`${playlist.wrapperClasses} group absolute`}
@@ -113,37 +119,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-
-      {/* 
-      <div className="min-h-[calc(100vh+8rem)] h-full bg-gradient-to-t from-neon to-neon/0 -mb-16 text-center flex flex-col items-center relative pt-16">
-        <div className="sticky top-0 flex flex-col items-center z-20">
-          <h2 className="text-radio-1 max-w-[48rem] mt-16">
-            Discover your next favorite spot
-          </h2>
-          <div className="relative h-[773px] w-full flex flex-col items-center">
-            <div className="absolute top-[60px] left-1/2 -translate-x-1/2 w-[20.9375rem] h-[650px] overflow-hidden rounded-[2.5rem] z-10" />
-
-            <img
-              className="absolute top-0 z-20 pointer-events-none"
-              src="/images/graphics/phone.png"
-              alt="iPhone"
-              style={{ height: "100%" }}
-            />
-          </div>
-        </div>
-
-        <div
-          className="relative w-[20.9375rem] z-10"
-          style={{ marginTop: "-750px" }}
-        >
-          <img
-            src="/images/graphics/home-feed.png"
-            alt="Here home feed"
-            style={{ width: "100%" }}
-          />
-        </div>
-      </div>
-*/}
 
       <PhoneSection />
     </div>

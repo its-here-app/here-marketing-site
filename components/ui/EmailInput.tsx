@@ -1,8 +1,4 @@
-const EmailInput = ({
-  color = "black", // black or green
-  className = "",
-  children = "",
-}) => {
+const EmailInput = ({ className = "" }) => {
   return (
     <form
       className={`${className} relative w-[50rem] max-w-full sm:max-w-[68%] transition-all duration-400 text-neon`}

@@ -1,7 +1,10 @@
+import { ReactSVG } from "react-svg";
+
 const CircleIcon = ({
   className = "",
   size = "md",
   src = "",
+  svgSrc = "",
   bgColor = "",
   alt = "",
   onClick = null,
@@ -43,12 +46,27 @@ const CircleIcon = ({
       style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
       onClick={onClick}
     >
-      <img
-        className="select-none"
-        src={src}
-        alt={alt}
-        style={{ width: `${iconSize}px`, height: `${iconSize}px` }}
-      />
+      {src && (
+        <img
+          className="select-none"
+          src={src}
+          alt={alt}
+          style={{ width: iconSize, height: iconSize }}
+        />
+      )}
+
+      {/* Render SVG only if svgSrc passed */}
+      {svgSrc && (
+        <ReactSVG
+          src={svgSrc}
+          className="select-none"
+          beforeInjection={(svg) => {
+            svg.setAttribute("width", iconSize);
+            svg.setAttribute("height", iconSize);
+          }}
+          aria-label={alt}
+        />
+      )}
     </div>
   );
 
