@@ -1,6 +1,7 @@
-// app/[username]/[slug]/page.js
-import { client } from "../../../sanity/lib/client";
-import Error from "@/components/Error";
+// app/[username]/[slug]/page.jsx
+
+import { notFound } from "next/navigation";
+
 import PlaylistHero from "@/components/PlaylistHero";
 import SpotList from "@/components/SpotList";
 import SimilarPlaylistsCarousel from "@/components/SimilarPlaylistsCarousel";
@@ -9,12 +10,35 @@ import SmoothScroll from "@/components/motion/SmoothScroll";
 
 export const revalidate = 3600; // 1 hour
 
+/**
+ * Generate playlist page metadata
+ * @param params - username/slug
+ * @returns
+ */
+export async function generateMetadata({ params }) {
+  const { username, slug } = await params;
+  const playlist = await getPlaylist(username, slug);
+
+  if (!playlist) notFound();
+
+  return {
+    title: `${playlist.city} — ${playlist.playlistName} @${username} • Here*`,
+    description:
+      playlist.description || `For the spots you love & the places you’ll go.`,
+  };
+}
+
+/**
+ * Playlist page
+ * @param params - username/slug
+ * @returns playlist page
+ */
 export default async function Playlist({ params }) {
   const { username, slug } = await params;
   const playlist = await getPlaylist(username, slug);
 
   if (!playlist) {
-    return <Error message="Oops! This list could not be found." />;
+    notFound();
   }
 
   const contentJSON = JSON.parse(playlist.content);
