@@ -1,5 +1,3 @@
-import {playlistType} from './playlistType'
+import { playlistType } from "./playlistType";
 
-export const schema = {
-  types: [playlistType],
-}
+export const schemaTypes = [playlistType];
