@@ -7,7 +7,7 @@ import {schemaTypes} from '../sanity/schemaTypes'
 export default defineConfig({
   name: 'default',
   title: 'Here* marketing site',
-
+  basePath: '/',
   projectId: '81mbvj3d',
   dataset: 'playlists',
 
