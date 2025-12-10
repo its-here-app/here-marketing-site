@@ -1,5 +1,4 @@
 "use client";
-
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `/app/studio/[[...tool]]/page.jsx` route
  */
@@ -19,9 +18,10 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
   plugins: [
-    structure({ structure }),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
   ],
 });
+
+console.log("SANITY CONFIG LOADED AT:", __filename);
