@@ -1,8 +1,9 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const Error = ({ className = "" }) => {
+const Error = () => {
   return (
     <div>
       <Navbar />
@@ -20,6 +21,7 @@ const Error = ({ className = "" }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

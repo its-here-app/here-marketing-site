@@ -18,6 +18,7 @@ export const playlistType = defineType({
     defineField({
       name: "cover",
       type: "image",
+      description: "Preferred format: WEBP, < 800KB",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -55,6 +56,8 @@ export const playlistType = defineType({
     defineField({
       name: "content",
       type: "text",
+      description:
+        "JSON array of spot objects. Generate spot objects using: https://itshere.app/utility",
       validation: (Rule) => Rule.required(),
     }),
   ],

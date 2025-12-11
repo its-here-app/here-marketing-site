@@ -60,6 +60,27 @@ export async function getAllPlaylists() {
 }
 
 /**
+ * Get all featured playlists
+ * @returns shuffled array of playlists where featured=true
+ */
+export async function getAllFeaturedPlaylists() {
+  const query = `*[_type == "playlist" && featured == true]{
+        _id,
+        playlistName,
+        city,
+        slug,
+        profileImage,
+        username,
+        description,
+        dateAdded,
+        cover{ asset->{url} }
+      }`;
+
+  const playlists = await client.fetch(query);
+  return shuffleArray(playlists);
+}
+
+/**
  * Get more random playlists
  * @returns shuffled array of 6 playlists that are not the current playlist
  */

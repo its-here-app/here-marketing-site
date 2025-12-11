@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Button from "@/components/ui/Button";
+import Navbar from "@/components/Navbar";
 
 function highlightJSON(json) {
   return (
@@ -48,97 +49,104 @@ export default function UtilityClient() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-      {/* LEFT COLUMN */}
-      <div className="space-y-8">
-        <Field
-          label="Name"
-          description="As seen on Google Maps"
-          placeholder="Maru Coffee"
-          value={form.name}
-          onChange={(e) => updateField("name", e.target.value)}
-        />
+    <>
+      <Navbar showCTA={false} />
+      <div className="container pt-16 pb-32">
+        <h1 className="text-radio-4 mb-12">Spot object generator</h1>
 
-        <Field
-          label="Description (Optional)"
-          description="User's personal note for the spot"
-          placeholder="Aesthetic boutique Asian coffee shop."
-          value={form.description}
-          onChange={(e) => updateField("description", e.target.value)}
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* LEFT COLUMN */}
+          <div className="space-y-8">
+            <Field
+              label="Name"
+              description="As seen on Google Maps"
+              placeholder="Maru Coffee"
+              value={form.name}
+              onChange={(e) => updateField("name", e.target.value)}
+            />
 
-        <Field
-          label="Type"
-          description="As seen on Google Maps"
-          placeholder="Coffee Shop"
-          value={form.type}
-          onChange={(e) => updateField("type", e.target.value)}
-        />
+            <Field
+              label="Description (Optional)"
+              description="User's personal note for the spot"
+              placeholder="Aesthetic boutique Asian coffee shop."
+              value={form.description}
+              onChange={(e) => updateField("description", e.target.value)}
+            />
 
-        <Field
-          label="Ratings"
-          description="As seen on Google Maps"
-          placeholder="4.7"
-          value={form.ratings}
-          onChange={(e) => updateField("ratings", e.target.value)}
-        />
+            <Field
+              label="Type"
+              description="As seen on Google Maps"
+              placeholder="Coffee Shop"
+              value={form.type}
+              onChange={(e) => updateField("type", e.target.value)}
+            />
 
-        <Field
-          label="Google Maps Place ID"
-          description={
-            <>
-              Find using the{" "}
-              <a
-                href="https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline"
-              >
-                Google Place ID Finder
-              </a>
-            </>
-          }
-          placeholder="ChIJb43hJLDAwoARh1TGU9s5VNc"
-          value={form.googleMapsUrl}
-          onChange={(e) => updateField("googleMapsUrl", e.target.value)}
-        />
+            <Field
+              label="Ratings"
+              description="As seen on Google Maps"
+              placeholder="4.7"
+              value={form.ratings}
+              onChange={(e) => updateField("ratings", e.target.value)}
+            />
 
-        <Field
-          label="Image URL"
-          description={
-            <>
-              Store image in{" "}
-              <a
-                href="https://console.cloud.google.com/storage/browser/here-marketing?authuser=0&project=lucid-arc-390822"
-                target="_blank"
-                className="text-blue-600 underline"
-              >
-                Google Cloud Storage
-              </a>{" "}
-              and paste the public URL here
-            </>
-          }
-          placeholder="https://storage.googleapis.com/…"
-          value={form.imgUrl}
-          onChange={(e) => updateField("imgUrl", e.target.value)}
-        />
-      </div>
+            <Field
+              label="Google Maps Place ID"
+              description={
+                <>
+                  Find using the{" "}
+                  <a
+                    href="https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 underline"
+                  >
+                    Google Place ID Finder
+                  </a>
+                </>
+              }
+              placeholder="ChIJb43hJLDAwoARh1TGU9s5VNc"
+              value={form.googleMapsUrl}
+              onChange={(e) => updateField("googleMapsUrl", e.target.value)}
+            />
 
-      {/* RIGHT COLUMN */}
-      <div>
-        <div className="flex justify-between items-center mb-3">
-          <h2>Generated JSON</h2>
-          <Button onClick={copyToClipboard}>
-            {copied ? "Copied ✓" : "Copy"}
-          </Button>
+            <Field
+              label="Image URL"
+              description={
+                <>
+                  Store image in{" "}
+                  <a
+                    href="https://console.cloud.google.com/storage/browser/here-marketing?authuser=0&project=lucid-arc-390822"
+                    target="_blank"
+                    className="text-blue-600 underline"
+                  >
+                    Google Cloud Storage
+                  </a>{" "}
+                  and paste the public URL here
+                </>
+              }
+              placeholder="https://storage.googleapis.com/…"
+              value={form.imgUrl}
+              onChange={(e) => updateField("imgUrl", e.target.value)}
+            />
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div>
+            <div className="flex justify-between items-center mb-3">
+              <h2>Generated JSON</h2>
+              <Button onClick={copyToClipboard}>
+                {copied ? "Copied ✓" : "Copy"}
+              </Button>
+            </div>
+
+            <pre
+              className="bg-gray-100 p-4 rounded text-sm overflow-auto whitespace-pre-wrap"
+              dangerouslySetInnerHTML={{ __html: highlightJSON(jsonOutput) }}
+            />
+          </div>
         </div>
-
-        <pre
-          className="bg-gray-100 p-4 rounded text-sm overflow-auto whitespace-pre-wrap"
-          dangerouslySetInnerHTML={{ __html: highlightJSON(jsonOutput) }}
-        />
       </div>
-    </div>
+    </>
   );
 }
 

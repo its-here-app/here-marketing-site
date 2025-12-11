@@ -2,7 +2,6 @@
 import "./globals.css";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
-import Footer from "@/components/Footer";
 import ClientWrapper from "./ClientWrapper";
 
 export const metadata = {
@@ -27,7 +26,6 @@ export default function RootLayout({ children }) {
         <ClientWrapper>
           <div className="min-h-screen flex flex-col justify-between gap-8">
             <main className="flex flex-col justify-center">{children}</main>
-            <Footer />
           </div>
         </ClientWrapper>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />

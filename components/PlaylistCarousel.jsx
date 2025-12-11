@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import PlaylistCard from "@/components/PlaylistCard";
-import StickerCTA from "@/components/ui/StickerCTA";
 import SlideIn from "@/components/motion/SlideIn";
-import { getAllPlaylists } from "@/utils/PlaylistUtils";
-import ModalTrigger from "@/components/ModalTrigger";
+import { getAllFeaturedPlaylists } from "@/utils/PlaylistUtils";
 
 const PlaylistCarousel = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -14,7 +12,7 @@ const PlaylistCarousel = () => {
 
   useEffect(() => {
     async function fetchPlaylists() {
-      const playlists = await getAllPlaylists();
+      const playlists = await getAllFeaturedPlaylists();
       setPlaylists(playlists);
     }
 
@@ -44,10 +42,6 @@ const PlaylistCarousel = () => {
           </Marquee>
         </SlideIn>
       )}
-
-      <ModalTrigger>
-        <StickerCTA className="cursor-pointer absolute scale-0 rotate-15 md:rotate-0 md:scale-100 transition-transform duration-200 right-[6%] -bottom-10 z-10 hover:rotate-10" />
-      </ModalTrigger>
     </div>
   );
 };

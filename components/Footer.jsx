@@ -6,7 +6,11 @@ import EmailInput from "@/components/ui/EmailInput";
 import StickerCTA from "@/components/ui/StickerCTA";
 import StartYourPlaylistModal from "@/components/StartYourPlaylistModal";
 
-const Footer = ({ className = "" }) => {
+const Footer = ({
+  className = "",
+  ctaPosition = "absolute",
+  ctaColor = "neon",
+}) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -47,8 +51,8 @@ const Footer = ({ className = "" }) => {
         />
         <div onClick={() => setOpen(true)}>
           <StickerCTA
-            color="green"
-            className="cursor-pointer scale-0 lg:scale-100 rotate-20 lg:rotate-0 absolute right-[8%] bottom-[22%] hover:rotate-10"
+            color={ctaColor}
+            className={`${ctaPosition} cursor-pointer scale-0 lg:scale-100 rotate-20 lg:rotate-0 right-[8%] bottom-24 hover:rotate-10 z-100`}
           />
         </div>
       </div>

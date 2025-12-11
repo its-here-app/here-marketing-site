@@ -7,6 +7,7 @@ import SpotList from "@/components/SpotList";
 import SimilarPlaylistsCarousel from "@/components/SimilarPlaylistsCarousel";
 import { getPlaylist } from "@/utils/PlaylistUtils";
 import SmoothScroll from "@/components/motion/SmoothScroll";
+import Footer from "@/components/Footer";
 
 export const revalidate = 3600; // 1 hour
 
@@ -68,6 +69,7 @@ export default async function Playlist({ params }) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

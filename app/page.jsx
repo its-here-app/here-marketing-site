@@ -11,16 +11,39 @@ import PhoneSection from "@/components/PhoneSection";
 import ModalTrigger from "@/components/ModalTrigger";
 import SlideIn from "@/components/motion/SlideIn";
 import SmoothScroll from "@/components/motion/SmoothScroll";
+import Footer from "@/components/Footer";
 
-import { useScroll } from "framer-motion";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 
 export default function Home() {
   const cardsRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: cardsRef,
-    offset: ["start end", "end start"],
-  });
+
+  const [ctaColor, setCtaColor] = useState("black");
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[data-cta-color]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Check if the section is intersecting
+          if (entry.isIntersecting) {
+            setCtaColor(entry.target.dataset.ctaColor);
+          }
+        });
+      },
+      {
+        root: null, // viewport
+        rootMargin: `-80% 0px 0px 0px`, // triggers when the top of the section reaches 80% down the viewport
+        threshold: 0, // trigger as soon as the section enters the target area
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
 
   const playlists = [
     {
@@ -63,66 +86,78 @@ export default function Home() {
   return (
     <div>
       <SmoothScroll />
-      <Navbar />
-      <section className="container pb-4">
-        <h1 className="text-radio-1 justify-between hidden md:flex">
-          <SlideIn>
-            <div>
-              For the spots<br></br>you love{" "}
-            </div>
-          </SlideIn>
-          <SlideIn stagger="2">
-            <div>
-              <br></br> & the places<br></br>you’ll go
-            </div>
-          </SlideIn>
-        </h1>
-        <SlideIn>
-          <h1 className="text-radio-1 md:hidden mb-4">
-            For the spots you love & the places you’ll go
+
+      <section data-cta-color="black">
+        <Navbar />
+
+        <section className="container pb-4">
+          <h1 className="text-radio-1 justify-between hidden md:flex">
+            <SlideIn>
+              <div>
+                For the spots<br></br>you love{" "}
+              </div>
+            </SlideIn>
+            <SlideIn stagger="2">
+              <div>
+                <br></br> & the places<br></br>you’ll go
+              </div>
+            </SlideIn>
           </h1>
-        </SlideIn>
-        <SlideIn stagger="3">
-          <h2 className="md:[margin-top:clamp(-3rem,-4vw,-3rem)]">
-            Discover and share favorite spots<br></br>through city playlists*
-          </h2>
-          <Button variant="primary" className="sm:hidden mt-6">
-            Start for free
-          </Button>
-        </SlideIn>
+          <SlideIn>
+            <h1 className="text-radio-1 md:hidden mb-4">
+              For the spots you love & the places you’ll go
+            </h1>
+          </SlideIn>
+          <SlideIn stagger="3">
+            <h2 className="md:[margin-top:clamp(-3rem,-4vw,-3rem)]">
+              Discover and share favorite spots<br></br>through city playlists*
+            </h2>
+            <Button variant="primary" className="sm:hidden mt-6">
+              Start for free
+            </Button>
+          </SlideIn>
+        </section>
+
+        <PlaylistCarousel />
+
+        <ValuePropSection ref={cardsRef} />
       </section>
 
-      <PlaylistCarousel />
-
-      <ValuePropSection ref={cardsRef} />
-
-      <div className="px-[clamp(.5rem,2vw,2rem)] flex justify-center">
-        <div className="bg-black rounded-4xl h-screen max-h-[38rem] md:max-h-[48rem] xl:max-h-[56rem] md:h-[clamp(38rem,100vh,56rem)] text-white flex flex-col justify-center items-center overflow-hidden w-full relative transition-[height,max-height] duration-300 ease-out">
-          <div className="text-center mt-[-17rem] md:mt-[-12rem]">
-            <h2 className="mb-4">For anything, anywhere</h2>
-            <SlideIn>
-              <ModalTrigger>
-                <p className="text-radio-1">Capture all the...</p>
-              </ModalTrigger>
-            </SlideIn>
-          </div>
-          {playlists.map((playlist, index) => (
-            <div
-              className={`${playlist.wrapperClasses} group absolute`}
-              key={index}
-            >
-              <PlaylistCard
-                playlistName={playlist.playlistName}
-                cover={playlist.cover}
-                className={`${playlist.playlistClasses} !mr-0 !ease-[cubic-bezier(0.34,1.3,0.64,1)] select-none pointer-events-none
-`}
-              />
+      <section data-cta-color="neon">
+        <div className="px-[clamp(.5rem,2vw,2rem)] flex justify-center">
+          <div className="bg-black rounded-4xl h-screen max-h-[38rem] md:max-h-[48rem] xl:max-h-[56rem] md:h-[clamp(38rem,100vh,56rem)] text-white flex flex-col justify-center items-center overflow-hidden w-full relative transition-[height,max-height] duration-300 ease-out">
+            <div className="text-center mt-[-17rem] md:mt-[-12rem]">
+              <h2 className="mb-4">For anything, anywhere</h2>
+              <SlideIn>
+                <ModalTrigger>
+                  <p className="text-radio-1">Capture all the...</p>
+                </ModalTrigger>
+              </SlideIn>
             </div>
-          ))}
+            {playlists.map((playlist, index) => (
+              <div
+                className={`${playlist.wrapperClasses} group absolute`}
+                key={index}
+              >
+                <PlaylistCard
+                  playlistName={playlist.playlistName}
+                  cover={playlist.cover}
+                  className={`${playlist.playlistClasses} !mr-0 !ease-[cubic-bezier(0.34,1.3,0.64,1)] select-none pointer-events-none
+`}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      <PhoneSection />
+      <section data-cta-color="black">
+        <PhoneSection />
+      </section>
+
+      <section data-cta-color="neon">
+        <Footer data-cta-color="neon" ctaPosition="fixed" ctaColor={ctaColor} />
+      </section>
     </div>
   );
 }
