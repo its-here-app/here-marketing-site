@@ -295,3 +295,18 @@ select:-webkit-autofill:focus {
 .modal_image:hover .sticker-2 {
   transform: rotate(5deg);
 }
+
+/* Custom cursor */
+/*
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+@media only screen and (hover: none) {
+  .custom-cursor {
+    display: none;
+  }
+}
+*/

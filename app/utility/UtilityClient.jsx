@@ -84,9 +84,13 @@ export default function UtilityClient() {
             <Field
               label="Ratings"
               description="As seen on Google Maps"
+              type="number"
               placeholder="4.7"
               value={form.ratings}
-              onChange={(e) => updateField("ratings", e.target.value)}
+              onChange={(e) => {
+                const value = parseFloat(e.target.value);
+                updateField("ratings", isNaN(value) ? 0 : value);
+              }}
             />
 
             <Field
@@ -104,6 +108,7 @@ export default function UtilityClient() {
                   </a>
                 </>
               }
+              type="url"
               placeholder="ChIJb43hJLDAwoARh1TGU9s5VNc"
               value={form.googleMapsUrl}
               onChange={(e) => updateField("googleMapsUrl", e.target.value)}
@@ -140,7 +145,7 @@ export default function UtilityClient() {
             </div>
 
             <pre
-              className="bg-gray-100 p-4 rounded text-sm overflow-auto whitespace-pre-wrap"
+              className="bg-black/4 p-4 rounded text-sm overflow-auto whitespace-pre-wrap"
               dangerouslySetInnerHTML={{ __html: highlightJSON(jsonOutput) }}
             />
           </div>
@@ -150,13 +155,20 @@ export default function UtilityClient() {
   );
 }
 
-function Field({ label, description, placeholder, value, onChange }) {
+function Field({
+  label,
+  description,
+  placeholder,
+  value,
+  onChange,
+  type = "text",
+}) {
   return (
     <div className="space-y-1">
       <label className="block">{label}</label>
       <div className="text-sm text-gray-500 mb-2">{description}</div>
       <input
-        type="text"
+        type={type}
         className="w-full border rounded px-3 py-2"
         placeholder={placeholder}
         value={value}
