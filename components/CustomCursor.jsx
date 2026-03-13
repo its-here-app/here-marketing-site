@@ -6,6 +6,7 @@ import { motion, useMotionValue, useSpring } from "motion/react";
 // Resolved value of --neon token, used for Framer Motion color interpolation
 // (CSS variables can't be interpolated directly by Framer Motion)
 const NEON = "#daff70";
+const WHITE = "#ffffff";
 
 function parseCursorEl(el) {
   if (!el) return { state: "default", rotation: 0, size: null };
@@ -79,7 +80,7 @@ export default function CustomCursor({ size }) {
   if (isTouchDevice) return null;
 
   const isArrow = cursorState === "arrow";
-  const circleColor = cursorState === "neon" ? NEON : "#000000";
+  const circleColor = cursorState === "neon" ? NEON : cursorState === "white" ? WHITE : "#000000";
 
   return (
     <motion.div

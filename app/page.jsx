@@ -126,7 +126,7 @@ export default function Home() {
       <section data-cta-color="neon">
         <div className="px-[clamp(.5rem,2vw,2rem)] flex justify-center">
           <div
-            data-cursor="neon"
+            data-cursor="white"
             className="bg-black rounded-4xl h-screen max-h-[38rem] md:max-h-[48rem] xl:max-h-[56rem] md:h-[clamp(38rem,100vh,56rem)] text-white flex flex-col justify-center items-center overflow-hidden w-full relative transition-[height,max-height] duration-300 ease-out"
           >
             <div className="text-center mt-[-17rem] md:mt-[-12rem]">

@@ -90,7 +90,7 @@ const PlaylistHero = ({ playlist }) => {
 
   return (
     <div
-      data-cursor="neon"
+      data-cursor="white"
       className="relative overflow-hidden md:sticky md:top-2 bg-cover bg-center rounded-2xl h-[28rem] md:h-[calc(100vh_-_1rem)] text-neon flex flex-col justify-center items-center text-center p-[1.2rem] md:p-[1.5rem] text-balance"
       style={{
         backgroundImage: `url(${playlist.cover.asset.url})`,

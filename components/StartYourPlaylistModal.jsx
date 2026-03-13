@@ -36,7 +36,7 @@ export default function StartYourPlaylistModal({ open, onClose }) {
 
           {/* Modal Content (full bleed) */}
           <motion.div
-            data-cursor="neon"
+            data-cursor="white"
             className="absolute inset-0 bg-black text-white flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()} // prevent backdrop close
             initial={{ opacity: 0 }}
@@ -47,6 +47,7 @@ export default function StartYourPlaylistModal({ open, onClose }) {
             <div className="absolute top-0 w-full text-white mt-[var(--side-spacing)] z-50">
               <div className="container-xl text-right">
                 <ReactSVG
+                  data-cursor-size="sm"
                   src="/images/icons/icon-close.svg"
                   width=""
                   className="cursor-pointer inline-block hidden hover:scale-120 transition duration-200"
