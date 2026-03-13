@@ -23,7 +23,7 @@ const Logo = ({
   };
 
   return button ? (
-    <a href="/" className="block">
+    <a href="/" className="block" data-cursor="neon">
       <img {...imgProps} />
     </a>
   ) : (

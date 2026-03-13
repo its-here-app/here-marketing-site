@@ -10,6 +10,7 @@ const CircleIcon = ({
   onClick = null,
   link = "",
   disabled = false,
+  cursorSize = null,
 }) => {
   /* Get color */
   let bgColorClass;
@@ -45,6 +46,7 @@ const CircleIcon = ({
       } ${disabled ? "!opacity-40 !cursor-default" : ""}`}
       style={{ width: `${circleSize}px`, height: `${circleSize}px` }}
       onClick={onClick}
+      {...(cursorSize ? { "data-cursor-size": cursorSize } : {})}
     >
       {src && (
         <img

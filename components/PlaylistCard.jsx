@@ -22,6 +22,7 @@ const PlaylistCard = ({
   return (
     <div
       className={`w-[15rem] h-[15rem] md:w-[20rem] md:h-[20rem] xl:w-[28rem] xl:h-[28rem] bg-gray-100 rounded-2xl mr-[clamp(0.5rem,1.5vw,1.25rem)] transition-all duration-1200 ease-in-out ${className}`}
+      data-cursor="arrow"
     >
       <div className="rounded-2xl relative w-full h-full transform transition-transform duration-300 hover:scale-103 overflow-hidden">
         <Wrapper

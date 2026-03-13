@@ -36,6 +36,7 @@ export default function StartYourPlaylistModal({ open, onClose }) {
 
           {/* Modal Content (full bleed) */}
           <motion.div
+            data-cursor="neon"
             className="absolute inset-0 bg-black text-white flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()} // prevent backdrop close
             initial={{ opacity: 0 }}

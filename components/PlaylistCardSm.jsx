@@ -6,6 +6,7 @@ const PlaylistCardSm = ({ className = "", index = 0, playlist = null }) => {
   if (playlist) {
     return (
       <div
+        data-cursor="neon"
         key={index}
         className={`aspect-square rounded-2xl transition-all duration-1200 ease-in-out ${className}`}
       >

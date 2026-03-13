@@ -15,6 +15,7 @@ const Footer = ({
 
   return (
     <footer
+      data-cursor="neon"
       className={`${className} w-full text-white bg-black rounded-t-[2.25rem] overflow-hidden relative`}
     >
       <div className="container-lg pt-16 md:pt-20 pb-10 relative">
@@ -26,17 +27,19 @@ const Footer = ({
         <div className="text-gray-700 flex flex-col md:flex-row md:justify-between">
           <ul className="flex flex-col md:flex-row gap-5 md:gap-10 mb-10 md:mb-0">
             <li>
-              <a href="https://www.instagram.com/itshere.app/" target="_blank">
+              <a href="https://www.instagram.com/itshere.app/" target="_blank" data-cursor-size="sm" className="py-1 -my-1 block">
                 Instagram
               </a>
             </li>
             <li>
-              <a href="mailto:team@itshere.app">Contact</a>
+              <a href="mailto:team@itshere.app" data-cursor-size="sm" className="py-1 -my-1 block">Contact</a>
             </li>
             <li>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link"
                 target="_blank"
+                data-cursor-size="sm"
+                className="py-1 -my-1 block"
               >
                 Give us feedback
               </a>

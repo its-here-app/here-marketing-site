@@ -23,6 +23,7 @@ const OutlineButton = ({
   return (
     <div>
       <button
+        data-cursor="default"
         type={type}
         onClick={onClick}
         disabled={disabled}

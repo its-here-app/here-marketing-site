@@ -12,7 +12,7 @@ const StickerCTA = ({ color = "black", className = "" }) => {
   }
 
   return (
-    <div className={`${className} w-[16rem] transition-all duration-500`}>
+    <div className={`${className} w-[16rem] transition-all duration-500`} data-cursor={color === "black" ? "neon" : "black"}>
       <svg
         width="263"
         height="153"

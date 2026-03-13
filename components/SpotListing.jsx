@@ -41,6 +41,7 @@ const SpotListing = ({
             bgColor="gray"
             size="sm"
             link={`https://www.google.com/maps/place/?q=place_id:${googleMapsUrl}`}
+            cursorSize="sm"
           />
         )}
       </div>

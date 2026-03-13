@@ -79,7 +79,7 @@ const PlaylistHero = ({ playlist }) => {
     const spotsJSON = JSON.parse(playlist.content);
 
     const spotLines = spotsJSON.map(
-      (spot) => `* ${spot.name}, ${spot.description} (${spot.type})`
+      (spot) => `* ${spot.name}, ${spot.description} (${spot.type})`,
     );
 
     const fullText = listHeader + spotLines.join("\n") + `\n\n${getPageURL()}`;
@@ -90,6 +90,7 @@ const PlaylistHero = ({ playlist }) => {
 
   return (
     <div
+      data-cursor="neon"
       className="relative overflow-hidden md:sticky md:top-2 bg-cover bg-center rounded-2xl h-[28rem] md:h-[calc(100vh_-_1rem)] text-neon flex flex-col justify-center items-center text-center p-[1.2rem] md:p-[1.5rem] text-balance"
       style={{
         backgroundImage: `url(${playlist.cover.asset.url})`,
@@ -106,6 +107,7 @@ const PlaylistHero = ({ playlist }) => {
             svgSrc="/images/icons/icon-close.svg"
             alt="Close"
             onClick={() => router.push("/")}
+            cursorSize="sm"
           />
           <div className="relative">
             <CircleIcon
@@ -114,6 +116,7 @@ const PlaylistHero = ({ playlist }) => {
               alt="Share"
               bgColor="glass"
               onClick={toggleShareMenu}
+              cursorSize="sm"
             />
             <div
               className={`fixed md:absolute bottom-0 right-0 md:right-0 md:bottom-auto z-10 md:top-13 bg-black text-white p-[clamp(1rem,8vw,3rem)] rounded-t-4xl md:rounded-2xl w-full md:w-[16rem] text-left md:p-4 flex flex-col

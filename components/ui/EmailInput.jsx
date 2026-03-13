@@ -54,6 +54,7 @@ const EmailInput = ({ className = "" }) => {
         />
 
         <button
+          data-cursor="default"
           type="submit"
           aria-label="Submit"
           className="bg-neon rounded-full w-[2.4rem] h-[2.4rem] md:w-[3.375rem] md:h-[3.375rem] bg-[url('/images/icons/icon-arrow-green.svg')] bg-cover bg-center absolute right-[.6rem] md:right-[1rem] top-1/2 -translate-y-1/2 cursor-pointer transition duration-200 hover:scale-112"
