@@ -1,17 +1,24 @@
 "use client";
 
 import { forwardRef, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import ValueProp from "@/components/ValueProp";
 import SpotCard from "@/components/SpotCard";
 import SpotListing from "@/components/SpotListing";
 import SlideIn from "@/components/motion/SlideIn";
 import FadeIn from "@/components/motion/FadeIn";
+import ImportAnimation from "@/components/ImportAnimation";
 
 const ValuePropSection = forwardRef((props, ref) => {
   const cards1Ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: cards1Ref,
+    offset: ["start end", "end start"],
+  });
+
+  const cards2Ref = useRef(null);
+  const { scrollYProgress: scrollYProgress2 } = useScroll({
+    target: cards2Ref,
     offset: ["start end", "end start"],
   });
 
@@ -139,19 +146,12 @@ const ValuePropSection = forwardRef((props, ref) => {
 
       {/* Value prop 2 */}
       <ValueProp
+        ref={cards2Ref}
         header="Easily import your existing lists"
         subhead="Start your city playlist with existing notes, Google docs, Instagram, or Maps"
         CTA="Import your spots"
       >
-        <div className="max-w-[80%] -mt-4 md:mt-0 md:max-w-[50%] md:pl-6">
-          <SlideIn>
-            <img
-              src="/images/graphics/import.webp"
-              alt="list in notes app"
-              className="w-full max-w-[32.5rem]"
-            ></img>
-          </SlideIn>
-        </div>
+        <ImportAnimation scrollYProgress={scrollYProgress2} />
       </ValueProp>
 
       {/* Value prop 3 */}
