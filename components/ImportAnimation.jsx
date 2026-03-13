@@ -12,7 +12,7 @@ const floatingElements = [
     initX: -280,
     initY: -260,
     stagger: 0,
-    end: 0.46,
+    end: 0.58,
     zIndex: 15,
   },
   {
@@ -21,7 +21,7 @@ const floatingElements = [
     initX: 240,
     initY: -290,
     stagger: 0.1,
-    end: 0.51,
+    end: 0.63,
     zIndex: 5,
   },
   {
@@ -30,7 +30,7 @@ const floatingElements = [
     initX: 260,
     initY: 240,
     stagger: 0.2,
-    end: 0.56,
+    end: 0.68,
     zIndex: 15,
   },
   {
@@ -39,7 +39,7 @@ const floatingElements = [
     initX: -240,
     initY: 270,
     stagger: 0.3,
-    end: 0.62,
+    end: 0.73,
     zIndex: 5,
   },
 ];
@@ -85,11 +85,11 @@ const ImportAnimation = ({ scrollYProgress }) => {
     damping: 20,
     mass: 0.5,
   });
-  const imageOpacity = useTransform(smoothProgress, [0.58, 0.68], [0, 1]);
-  const textColor = useTransform(smoothProgress, [0.58, 0.68], [GRAY, NEON]);
+  const imageOpacity = useTransform(smoothProgress, [0.68, 0.78], [0, 1]);
+  const textColor = useTransform(smoothProgress, [0.68, 0.78], [GRAY, NEON]);
   const borderColor = useTransform(
     smoothProgress,
-    [0.58, 0.64],
+    [0.68, 0.74],
     ["rgba(117,117,117,1)", "rgba(117,117,117,0)"],
   );
 
