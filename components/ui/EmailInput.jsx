@@ -1,11 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const EmailInput = ({ className = "" }) => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState(null); // "success" | "error" | null
   const [message, setMessage] = useState("");
+  const [isNarrow, setIsNarrow] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 389px)");
+    setIsNarrow(mq.matches);
+    const handler = (e) => setIsNarrow(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -47,7 +56,7 @@ const EmailInput = ({ className = "" }) => {
           id="email"
           type="email"
           name="email"
-          placeholder="Enter email for exclusive access"
+          placeholder={isNarrow ? "Enter email address" : "Enter email for exclusive access"}
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}

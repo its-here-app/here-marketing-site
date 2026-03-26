@@ -59,7 +59,7 @@ export default function StartYourPlaylistModal({ open, onClose }) {
             <div className="container-sm">
               <div className="flex flex-col md:flex-row md:gap-[clamp(3rem,8vw,8rem)]">
                 {/* Text */}
-                <div className="relative flex flex-col justify-center min-w-[26rem] basis-[60%]">
+                <div className="relative flex flex-col justify-center md:min-w-[26rem] basis-[60%]">
                   <h1 className="text-radio-3 mb-6">
                     We're excited
                     <br /> that you're excited

@@ -50,35 +50,35 @@ export default function Home() {
       playlistName: "Picturesque waterfronts",
       cover: "/images/photos/playlists/waterfronts.webp",
       wrapperClasses:
-        "bottom-[11%] md:bottom-[-25%] left-[-10%] md:left-[10%] rotate-[-12deg]",
+        "bottom-[11%] md:bottom-[-25%] left-1/2 translate-x-[-420px] md:translate-x-[-295px] rotate-[-12deg]",
       playlistClasses: `group-hover:-translate-y-[10vh] md:group-hover:-translate-y-[48vh] md:group-hover:-translate-x-[-107%] group-hover:rotate-[12deg]`,
     },
     {
       playlistName: "Cozy coffee shops",
       cover: "/images/photos/playlists/cozy-coffee-shops.webp",
       wrapperClasses:
-        "bottom-[9%] md:bottom-[-20%] left-[12%] md:left-[24%] rotate-[-3deg]",
+        "bottom-[10%] md:bottom-[-20%] left-1/2 translate-x-[-270px] md:translate-x-[-192px] rotate-[-3deg]",
       playlistClasses: `group-hover:-translate-y-[10vh] md:group-hover:-translate-y-[48vh] md:group-hover:-translate-x-[-42%] group-hover:rotate-[3deg]`,
     },
     {
       playlistName: "Romantic sweet spots in the city",
       cover: "/images/photos/playlists/sweet-spots.webp",
       wrapperClasses:
-        "z-50 md:z-auto bottom-[12%] md:bottom-[-15%] rotate-[1.5deg]",
+        "z-50 md:z-auto bottom-[12%] md:bottom-[-15%] left-1/2 -translate-x-1/2 rotate-[1.5deg]",
       playlistClasses: `group-hover:-translate-y-[10vh] md:group-hover:-translate-y-[48vh] group-hover:rotate-[-1.5deg]`,
     },
     {
       playlistName: "Tucked-away bookstores",
       cover: "/images/photos/playlists/bookstores.webp",
       wrapperClasses:
-        "bottom-[9%] md:bottom-[-22%] right-[8%] md:right-[20%] rotate-[-5deg] md:rotate-[2.8deg]",
+        "bottom-[10%] md:bottom-[-22%] left-1/2 translate-x-[30px] md:translate-x-[-99px] rotate-[-5deg] md:rotate-[2.8deg]",
       playlistClasses: `group-hover:-translate-y-[10vh] md:group-hover:-translate-y-[48vh] md:group-hover:-translate-x-[47%] group-hover:rotate-[-2.8deg]`,
     },
     {
       playlistName: "Scenic overlooks",
       cover: "/images/photos/playlists/overlooks.webp",
       wrapperClasses:
-        "bottom-[12%] md:bottom-[-25%] right-[-10%] md:right-[9%] rotate-[4.5deg]",
+        "bottom-[11%] md:bottom-[-25%] left-1/2 translate-x-[180px] md:translate-x-[-18px] rotate-[4.5deg]",
       playlistClasses: `group-hover:-translate-y-[10vh] md:group-hover:-translate-y-[52vh] md:group-hover:-translate-x-[90%] group-hover:rotate-[-4.5deg]`,
     },
   ];
@@ -127,13 +127,15 @@ export default function Home() {
         <div className="px-[clamp(.5rem,2vw,2rem)] flex justify-center">
           <div
             data-cursor="white"
-            className="bg-black rounded-4xl h-screen max-h-[38rem] md:max-h-[48rem] xl:max-h-[56rem] md:h-[clamp(38rem,100vh,56rem)] text-white flex flex-col justify-center items-center overflow-hidden w-full relative transition-[height,max-height] duration-300 ease-out"
+            className="bg-black rounded-3xl h-screen max-h-[38rem] md:max-h-[48rem] xl:max-h-[56rem] md:h-[clamp(38rem,100vh,56rem)] text-white flex flex-col justify-center items-center overflow-hidden w-full relative transition-[height,max-height] duration-300 ease-out px-6"
           >
             <div className="text-center mt-[-17rem] md:mt-[-12rem]">
               <h2 className="mb-4">For anything, anywhere</h2>
               <SlideIn>
                 <ModalTrigger>
-                  <p className="text-radio-1">Capture all the...</p>
+                  <p className="text-radio-1 text-balance">
+                    Capture all your...
+                  </p>
                 </ModalTrigger>
               </SlideIn>
             </div>

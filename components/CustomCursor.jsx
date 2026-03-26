@@ -19,19 +19,20 @@ function parseCursorEl(el) {
 const SPRING_CONFIG = { stiffness: 500, damping: 40, mass: 0.5 };
 
 export default function CustomCursor({ size }) {
-  const [cursorState, setCursorState] = useState("default");
+  const [cursorState, setCursorState] = useState("arrow");
   const [cursorSize, setCursorSize] = useState(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const arrowElRef = useRef(null);
 
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
+  // Start off-screen so any render before home position is set is invisible
+  const cursorX = useMotionValue(-200);
+  const cursorY = useMotionValue(-200);
   const smoothX = useSpring(cursorX, SPRING_CONFIG);
   const smoothY = useSpring(cursorY, SPRING_CONFIG);
 
-  const rotationMV = useMotionValue(0);
+  const rotationMV = useMotionValue(-135);
   const smoothRotation = useSpring(rotationMV, { stiffness: 300, damping: 25 });
 
   useEffect(() => {
@@ -40,10 +41,20 @@ export default function CustomCursor({ size }) {
       return;
     }
 
+    // Jump to home position, then reveal
+    const isMobile = window.innerWidth < 768;
+    const x = isMobile ? window.innerWidth * 0.8 : window.innerWidth * 0.4;
+    const y = window.innerHeight * 0.27;
+    cursorX.set(x);
+    cursorY.set(y);
+    smoothX.jump(x);
+    smoothY.jump(y);
+    setVisible(true);
+
     const onMouseMove = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+
       if (arrowElRef.current) {
         const rect = arrowElRef.current.getBoundingClientRect();
         const dx = rect.left + rect.width / 2 - e.clientX;
@@ -61,8 +72,8 @@ export default function CustomCursor({ size }) {
       setCursorSize(sizeEl?.dataset.cursorSize ?? null);
     };
 
-    const onMouseLeave = () => setIsVisible(false);
-    const onMouseEnter = () => setIsVisible(true);
+    const onMouseLeave = () => setVisible(false);
+    const onMouseEnter = () => setVisible(true);
 
     window.addEventListener("mousemove", onMouseMove);
     document.addEventListener("mouseover", onMouseOver);
@@ -96,7 +107,7 @@ export default function CustomCursor({ size }) {
         zIndex: 9999,
         willChange: "transform",
       }}
-      animate={{ opacity: isVisible ? 1 : 0 }}
+      animate={{ opacity: visible ? 1 : 0 }}
       transition={{ opacity: { duration: 0.15 } }}
     >
       {/* default / neon circle */}
