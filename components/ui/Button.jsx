@@ -13,7 +13,7 @@ const Button = ({
   // --- Variants (visual styles)
   const variantClasses =
     {
-      primary: "bg-black text-white hover:bg-neon hover:text-black",
+      primary: "btn-primary text-inverse hover:bg-neon hover:text-black",
       secondary: "bg-gray-100 text-black hover:bg-neon",
     }[variant] || "";
 

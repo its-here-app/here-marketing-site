@@ -7,11 +7,13 @@ import StickerCTA from "@/components/ui/StickerCTA";
 import StartYourPlaylistModal from "@/components/StartYourPlaylistModal";
 
 const Footer = ({
+  variant = "default",
   className = "",
   ctaPosition = "absolute",
   ctaColor = "neon",
 }) => {
   const [open, setOpen] = useState(false);
+  const isBasic = variant === "basic";
 
   return (
     <footer
@@ -19,10 +21,14 @@ const Footer = ({
       className={`${className} w-full text-white bg-black rounded-t-[2.25rem] overflow-hidden relative`}
     >
       <div className="container-lg pt-16 md:pt-20 pb-10 relative">
-        <h2 className="text-radio-4 mb-6 md:mb-9">
-          Keep up with our new<br></br>features and exclusives
-        </h2>
-        <EmailInput className="mb-16" />
+        {!isBasic && (
+          <>
+            <h2 className="text-radio-4 mb-6 md:mb-9">
+              Keep up with our new<br></br>features and exclusives
+            </h2>
+            <EmailInput className="mb-16" />
+          </>
+        )}
         <Logo button={true} color="white" className="mb-8" />
         <div className="text-gray-700 flex flex-col md:flex-row md:justify-between">
           <ul className="flex flex-col md:flex-row gap-5 md:gap-10 mb-10 md:mb-0">
@@ -55,25 +61,40 @@ const Footer = ({
                 Give us feedback
               </a>
             </li>
+            <li>
+              <a
+                href="/privacy"
+                data-cursor-size="sm"
+                className="py-1 -my-1 block"
+              >
+                Privacy
+              </a>
+            </li>
           </ul>
-          <p>© Here* 2024. All rights reserved</p>
+          <p>© Here* 2026. All rights reserved</p>
         </div>
-        <Logo
-          color="blue"
-          type="icon"
-          className="absolute bottom-[6.5rem] right-[-.5rem] lg:bottom-[55%] lg:right-[3%] rotate-[12deg] !w-[4.375rem] md:!w-[5.625rem]"
-        />
-        <div onClick={() => setOpen(true)}>
-          <StickerCTA
-            color={ctaColor}
-            className={`${ctaPosition} cursor-pointer scale-0 lg:scale-100 rotate-20 lg:rotate-0 right-[8%] bottom-24 hover:rotate-10 z-100`}
+        {!isBasic && (
+          <Logo
+            color="blue"
+            type="icon"
+            className="absolute bottom-[6.5rem] right-[-.5rem] lg:bottom-[55%] lg:right-[3%] rotate-[12deg] !w-[4.375rem] md:!w-[5.625rem]"
           />
-        </div>
+        )}
+        {!isBasic && (
+          <div onClick={() => setOpen(true)}>
+            <StickerCTA
+              color={ctaColor}
+              className={`${ctaPosition} cursor-pointer scale-0 lg:scale-100 rotate-20 lg:rotate-0 right-[8%] bottom-24 hover:rotate-10 z-100`}
+            />
+          </div>
+        )}
       </div>
-      <StartYourPlaylistModal
-        open={open}
-        onClose={() => setOpen(false)}
-      ></StartYourPlaylistModal>
+      {!isBasic && (
+        <StartYourPlaylistModal
+          open={open}
+          onClose={() => setOpen(false)}
+        ></StartYourPlaylistModal>
+      )}
     </footer>
   );
 };
