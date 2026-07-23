@@ -5,10 +5,21 @@
 
 .home_share-juliette,
 .home_share-em,
-.home_share-ekin {
+.home_share-ekin,
+.home_share-mimi {
   position: absolute;
-  width: 40%;
+  width: 40.5%;
   aspect-ratio: 1 / 1;
+}
+
+.home_share-juliette,
+.home_share-mimi {
+  width: 38.475%;
+}
+
+.home_share-em,
+.home_share-ekin {
+  width: 42.55%;
 }
 
 /* Juliette */
@@ -48,4 +59,17 @@
 
 .home_share-ekin:hover .sticker-3 {
   transform: rotate(6deg);
+}
+
+/* Mimi (duplicate placeholder) */
+.home_share-mimi:hover .sticker-1 {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+.home_share-mimi:hover .sticker-2 {
+  transform: rotate(-20deg);
+}
+
+.home_share-mimi:hover .sticker-3 {
+  transform: rotate(10deg);
 }

@@ -161,7 +161,7 @@ const ValuePropSection = forwardRef((props, ref) => {
         CTA="Start your profile"
       >
         <div className="home_share-stickers aspect-square w-[90%] max-w-[28rem] md:max-w-[50%] -mt-6 md:mt-0 mb-1 md:mb-0 relative">
-          <div className="home_share-juliette">
+          <div className="top-[5%] left-0 home_share-juliette">
             <img
               src="images/photos/juliette.webp"
               alt=""
@@ -179,7 +179,7 @@ const ValuePropSection = forwardRef((props, ref) => {
             />
           </div>
 
-          <div className="top-[17%] -right-[3%] md:right-0 home_share-em">
+          <div className="top-[5%] right-0 home_share-em">
             <img
               src="images/photos/em.webp"
               alt=""
@@ -188,30 +188,38 @@ const ValuePropSection = forwardRef((props, ref) => {
             <img
               src="images/stickers/sticker-share.svg"
               alt=""
-              className="w-[30%] sticker-2 -top-[12%] right-[20%] sticker-transition"
-            />
-            <img
-              src="images/stickers/sticker-playlists.svg"
-              alt=""
-              className="w-[78%] sticker-3 bottom-[12%] -left-[18%] sticker-transition"
+              className="w-[33%] sticker-2 top-[8%] -right-[4%] sticker-transition"
             />
           </div>
 
-          <div className="bottom-0 left-[23%] home_share-ekin">
+          <div className="bottom-[5%] left-0 home_share-ekin">
             <img
               src="images/photos/ekin.webp"
               alt=""
               className="w-[100%] sticker-1 sticker-transition"
             />
             <img
+              src="images/stickers/sticker-playlists.svg"
+              alt=""
+              className="w-[78%] sticker-2 -bottom-[6%] -right-[14%] sticker-transition"
+            />
+          </div>
+
+          <div className="bottom-[5%] right-0 home_share-mimi">
+            <img
+              src="images/photos/mimi.webp"
+              alt=""
+              className="w-[100%] sticker-1 sticker-transition"
+            />
+            <img
               src="images/stickers/sticker-cities.svg"
               alt=""
-              className="w-[70%] sticker-2 top-[6%] -left-[35%] sticker-transition"
+              className="w-[75%] sticker-2 top-[18%] -left-[36%] sticker-transition"
             />
             <img
               src="images/stickers/sticker-eyes.svg"
               alt=""
-              className="w-[45%] sticker-3 top-[35%] -right-[15%] sticker-transition"
+              className="w-[45%] sticker-3 -top-[8%] -right-[12%] sticker-transition"
             />
           </div>
         </div>
