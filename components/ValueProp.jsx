@@ -11,13 +11,15 @@ const ValueProp = forwardRef(
       subhead = "Lorem ipsum dolor sit amet",
       CTA = "Start for free",
       headingRef = null,
+      maxHeight = "48rem",
     },
     ref
   ) => {
     return (
       <section
         ref={ref}
-        className="relative container-sm min-h-auto md:h-screen md:max-h-[64rem] my-20 md:my-0 flex flex-col md:flex-row items-center md:justify-between gap-8 md:gap-0"
+        className="relative container-sm min-h-auto md:h-screen md:max-h-(--value-prop-max-h) my-20 md:my-0 flex flex-col md:flex-row items-center md:justify-between gap-8 md:gap-0"
+        style={{ "--value-prop-max-h": maxHeight }}
       >
         <div
           className={`${className} text-center max-w-[24rem] md:max-w-auto md:text-left md:max-w-[50%]`}

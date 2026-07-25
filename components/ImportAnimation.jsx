@@ -5,13 +5,15 @@ import { motion, useTransform, useMotionValue, animate } from "motion/react";
 
 // reference size the fan/gap offsets below were tuned at; actual rendered
 // height is clamped responsively and measured live (see cardHeight state)
-const BASE_HEIGHT = 420;
+const BASE_HEIGHT = 445;
 const BASE_GAP = 20;
 const CARD_ASPECT = 1101 / 1278;
 const FINAL_ASPECT = 1052 / 1074;
 
-// smaller on mobile, reaches its full 420px height at the 2xl breakpoint (1536px)
-const HEIGHT_CLAMP = "clamp(280px, 27.34375vw, 420px)";
+// desktop scales with viewport, reaching its full 445px height at the 2xl breakpoint (1536px)
+const HEIGHT_CLAMP = "clamp(320px, 28.971354vw, 445px)";
+// mobile uses a fixed height instead of scaling (matches the clamp's floor)
+const MOBILE_HEIGHT = 280;
 
 // animation states the progress value passes through: row -> fan 1 -> fan 2 -> settle into card 4
 const STATES = [0, 1, 2, 3];
@@ -154,7 +156,7 @@ const ImportAnimation = ({
     <div
       ref={stageRef}
       className="relative w-full md:max-w-[50%] -mt-4 md:mt-0 mb-5 md:mb-0"
-      style={{ height: HEIGHT_CLAMP }}
+      style={{ height: isMobile ? MOBILE_HEIGHT : HEIGHT_CLAMP }}
     >
       {CARD_CONFIGS.map((card, i) => (
         <SourceCard
@@ -183,7 +185,7 @@ const ImportAnimation = ({
           top: "50%",
           translateY: "-50%",
           pointerEvents: "none",
-          zIndex: 20,
+          zIndex: 1,
           borderRadius: "24px",
         }}
       />

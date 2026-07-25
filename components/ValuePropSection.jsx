@@ -171,7 +171,7 @@ const ValuePropSection = forwardRef((props, ref) => {
   return (
     <div
       ref={ref}
-      className="text-balance relative flex flex-col gap-0 md:pt-20 overflow-x-hidden"
+      className="text-balance relative flex flex-col gap-0 md:pt-20 mb-10 md:mb-20 overflow-x-hidden"
     >
       {/* Value prop 1 */}
       <ValueProp
@@ -179,6 +179,7 @@ const ValuePropSection = forwardRef((props, ref) => {
         header={discover.heading}
         subhead={discover.subhead}
         CTA={discover.cta}
+        maxHeight="64rem"
       >
         <div className="md:hidden flex flex-col gap-4">
           {discoverSpots
