@@ -5,12 +5,16 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import ClientWrapper from "./ClientWrapper";
 
 export const metadata = {
-  title: "Here*",
+  metadataBase: new URL("https://itshere.app"),
+  title: "Here* — Discover and share favorite spots through city playlists",
   description: "For the spots you love & the places you'll go.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     images: [
       {
-        url: "/images/og/og.jpg",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "Here* default OG image",

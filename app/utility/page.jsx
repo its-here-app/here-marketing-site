@@ -1,5 +1,8 @@
 export const metadata = {
   title: "Utility",
+  alternates: {
+    canonical: "/utility",
+  },
   robots: {
     index: false,
     follow: false,
