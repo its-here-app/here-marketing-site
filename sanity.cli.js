@@ -4,8 +4,6 @@
  **/
 import { defineCliConfig } from "sanity/cli";
 
-// Use env variables specifically for Sanity
-const projectId = process.env.SANITY_PROJECT_ID;
-const dataset = process.env.SANITY_DATASET;
+import { projectId, dataset } from "./cms/env";
 
 export default defineCliConfig({ api: { projectId, dataset } });

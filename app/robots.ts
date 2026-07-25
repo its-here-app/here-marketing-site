@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/utility",
+        disallow: ["/utility", "/studio"],
       },
     ],
     sitemap: "https://itshere.app/sitemap.xml",
