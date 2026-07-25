@@ -25,7 +25,7 @@ const ValuePropSection = forwardRef((props, ref) => {
   const importSectionRef = useRef(null);
   const { scrollYProgress: importSectionTrigger } = useScroll({
     target: importSectionRef,
-    offset: ["center 51%", "center 49%"],
+    offset: ["center 61%", "center 59%"],
   });
 
   const [isMobile, setIsMobile] = useState(false);
