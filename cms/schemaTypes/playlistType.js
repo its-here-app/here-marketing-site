@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const playlistType = defineType({
   name: "playlist",
-  title: "Playlist",
+  title: "Marketing playlists",
   type: "document",
   fields: [
     defineField({
