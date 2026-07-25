@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import PlaylistCard from "@/components/PlaylistCard";
-import SlideIn from "@/components/motion/SlideIn";
+import FadeIn from "@/components/motion/FadeIn";
 import { getAllFeaturedPlaylists } from "@/utils/PlaylistUtils";
 
 const PlaylistCarousel = () => {
@@ -26,7 +26,7 @@ const PlaylistCarousel = () => {
           <div className="h-[15rem] md:h-[20rem] xl:h-[28rem]"></div>
         </div>
       ) : (
-        <SlideIn direction="right" stagger="4" duration="1.4">
+        <FadeIn duration={1.4}>
           <Marquee className="py-4" pauseOnHover={false} speed={30}>
             {playlists.map((playlist, index) => (
               <PlaylistCard
@@ -40,7 +40,7 @@ const PlaylistCarousel = () => {
               />
             ))}
           </Marquee>
-        </SlideIn>
+        </FadeIn>
       )}
     </div>
   );
