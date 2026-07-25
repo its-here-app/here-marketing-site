@@ -1,145 +1,183 @@
 "use client";
 
-import { motion, useTransform, useSpring } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useTransform, useMotionValue, animate } from "motion/react";
 
-const GRAY = "#757575";
-const NEON = "#daff70";
+// reference size the fan/gap offsets below were tuned at; actual rendered
+// height is clamped responsively and measured live (see cardHeight state)
+const BASE_HEIGHT = 420;
+const BASE_GAP = 20;
+const CARD_ASPECT = 1101 / 1278;
+const FINAL_ASPECT = 1052 / 1074;
 
-const floatingElements = [
+// smaller on mobile, reaches its full 420px height at the 2xl breakpoint (1536px)
+const HEIGHT_CLAMP = "clamp(280px, 27.34375vw, 420px)";
+
+// animation states the progress value passes through: row -> fan 1 -> fan 2 -> settle into card 4
+const STATES = [0, 1, 2, 3];
+
+// forward timeline: each convergence step transitions, then pauses before the next
+const TRANSITION = 0.6;
+const PAUSE = 0.2;
+const SEGMENT_DURATIONS = [TRANSITION, PAUSE, TRANSITION, PAUSE, TRANSITION];
+const FORWARD_DURATION = SEGMENT_DURATIONS.reduce((a, b) => a + b, 0);
+const FORWARD_TIMES = SEGMENT_DURATIONS.reduce(
+  (acc, d) => [...acc, acc[acc.length - 1] + d / FORWARD_DURATION],
+  [0]
+);
+// bounce on the two convergence transitions (row->fan1, fan1->fan2); plain ease on holds and the final settle
+const FORWARD_EASE = ["backOut", "linear", "backOut", "linear", "easeInOut"];
+
+const cardConfigs = [
   {
     id: 0,
-    src: "/images/photos/import-list/import-list_1.webp",
-    initX: -280,
-    initY: -260,
-    stagger: 0,
-    end: 0.58,
-    zIndex: 15,
+    src: "/images/graphics/home/import-list-animation/01.webp",
+    rowIndex: 0,
+    fan1: { dx: -70, y: 12, rotate: -24 },
+    fan2: { dx: -34, y: 6, rotate: -14 },
+    zIndex: 12,
   },
   {
     id: 1,
-    src: "/images/photos/import-list/import-list_2.webp",
-    initX: 240,
-    initY: -290,
-    stagger: 0.1,
-    end: 0.63,
-    zIndex: 5,
+    src: "/images/graphics/home/import-list-animation/02.webp",
+    rowIndex: 1,
+    fan1: { dx: 0, y: -6, rotate: -3 },
+    fan2: { dx: 0, y: -3, rotate: -3 },
+    zIndex: 11,
   },
   {
     id: 2,
-    src: "/images/photos/import-list/import-list_3.webp",
-    initX: 260,
-    initY: 240,
-    stagger: 0.2,
-    end: 0.68,
-    zIndex: 15,
-  },
-  {
-    id: 3,
-    src: "/images/photos/import-list/import-list_4.webp",
-    initX: -240,
-    initY: 270,
-    stagger: 0.3,
-    end: 0.73,
-    zIndex: 5,
+    src: "/images/graphics/home/import-list-animation/03.webp",
+    rowIndex: 2,
+    fan1: { dx: 70, y: 12, rotate: 14 },
+    fan2: { dx: 34, y: 6, rotate: 7 },
+    zIndex: 10,
   },
 ];
 
-const FloatingElement = ({ scrollYProgress, src, initX, initY, stagger, end, zIndex }) => {
-  const rawProgress = useTransform(scrollYProgress, [0.15 + stagger, end], [0, 1]);
-  const easedProgress = useTransform(rawProgress, (t) =>
-    Math.pow(Math.min(Math.max(t, 0), 1), 4),
-  );
-  const x = useTransform(easedProgress, [0, 1], [initX, 0]);
-  const y = useTransform(easedProgress, [0, 1], [initY, 0]);
-  const opacity = useTransform(
-    scrollYProgress,
-    [0.15 + stagger, 0.25 + stagger, end - 0.08, end],
-    [0, 1, 1, 0],
-  );
+const SourceCard = ({
+  progress,
+  card,
+  centerX,
+  cardHeight,
+  cardWidth,
+  rowOffset,
+  scaleFactor,
+  isMobile,
+}) => {
+  const { fan1, fan2 } = card;
+  const restX = centerX - cardWidth / 2;
+  const rowX = isMobile ? restX + (card.rowIndex - 1) * rowOffset : card.rowIndex * rowOffset;
+
+  const xStops = [rowX, restX + fan1.dx * scaleFactor, restX + fan2.dx * scaleFactor, restX];
+  const yStops = [0, fan1.y * scaleFactor, fan2.y * scaleFactor, 0];
+  const rotateStops = [0, fan1.rotate, fan2.rotate, 0];
+
+  const x = useTransform(progress, STATES, xStops);
+  const y = useTransform(progress, STATES, yStops);
+  const rotate = useTransform(progress, STATES, rotateStops);
+  const opacity = useTransform(progress, STATES, [1, 1, 1, 0]);
+  const scale = useTransform(progress, STATES, [1, 1, 1, 0.85]);
 
   return (
     <motion.img
-      src={src}
+      src={card.src}
       alt=""
       style={{
         x,
         y,
+        rotate,
         opacity,
-        width: "100%",
-        maxWidth: "21.25rem",
+        scale,
+        height: cardHeight,
+        width: "auto",
         position: "absolute",
-        left: "50%",
+        left: 0,
         top: "50%",
-        translateX: "-50%",
         translateY: "-50%",
         pointerEvents: "none",
-        zIndex,
+        zIndex: card.zIndex,
+        borderRadius: "24px",
       }}
     />
   );
 };
 
-const ImportAnimation = ({ scrollYProgress }) => {
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    mass: 0.5,
-  });
-  const imageOpacity = useTransform(smoothProgress, [0.68, 0.78], [0, 1]);
-  const textColor = useTransform(smoothProgress, [0.68, 0.78], [GRAY, NEON]);
-  const borderColor = useTransform(
-    smoothProgress,
-    [0.68, 0.74],
-    ["rgba(117,117,117,1)", "rgba(117,117,117,0)"],
-  );
+const ImportAnimation = ({ isActive, isMobile }) => {
+  const stageRef = useRef(null);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: BASE_HEIGHT });
+
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setContainerSize({ width: entry.contentRect.width, height: entry.contentRect.height });
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const progress = useMotionValue(0);
+
+  useEffect(() => {
+    const controls = isActive
+      ? animate(progress, [0, 1, 1, 2, 2, 3], {
+          times: FORWARD_TIMES,
+          duration: FORWARD_DURATION,
+          ease: FORWARD_EASE,
+        })
+      : animate(progress, 0, { duration: 0.8, ease: "easeInOut" });
+    return () => controls.stop();
+  }, [isActive, progress]);
+
+  const finalOpacity = useTransform(progress, [2, 3], [0, 1]);
+  const finalScale = useTransform(progress, [2, 3], [0.88, 1]);
+
+  const { width: containerWidth, height: cardHeight } = containerSize;
+  const centerX = containerWidth / 2;
+  const scaleFactor = cardHeight / BASE_HEIGHT;
+  const cardWidth = cardHeight * CARD_ASPECT;
+  const gap = BASE_GAP * scaleFactor;
+  const rowOffset = cardWidth + gap;
+  const finalWidth = cardHeight * FINAL_ASPECT;
 
   return (
-    <div className="relative w-full md:max-w-[50%] flex items-center justify-center -mt-4 md:mt-0">
-      {/* Square */}
-      <motion.div
-        className="relative w-full aspect-square flex items-center justify-center overflow-hidden max-w-[445px]"
-        style={{
-          borderRadius: "24px",
-          borderWidth: "1px",
-          borderStyle: "solid",
-          borderColor,
-          zIndex: 10,
-        }}
-      >
-        <motion.img
-          src="/images/photos/playlists/waterfronts.webp"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: imageOpacity }}
-        />
-        <motion.div
-          className="relative z-10 text-center select-none p-[10%]"
-          style={{ color: textColor }}
-        >
-          <h3 className="text-crimson-2">Chicago</h3>
-          <h4 className="text-golos-2">All time favs</h4>
-        </motion.div>
-        <motion.div
-          className="text-body-sm absolute bottom-[8%] z-10 select-none"
-          style={{ color: textColor }}
-        >
-          by juliettewang
-        </motion.div>
-      </motion.div>
-
-      {/* Floating elements — positioned relative to this wrapper, converge to center */}
-      {floatingElements.map((el) => (
-        <FloatingElement
-          key={el.id}
-          scrollYProgress={smoothProgress}
-          src={el.src}
-          initX={el.initX}
-          initY={el.initY}
-          stagger={el.stagger}
-          end={el.end}
-          zIndex={el.zIndex}
+    <div
+      ref={stageRef}
+      className="relative w-full md:max-w-[50%] -mt-4 md:mt-0 mb-5 md:mb-0"
+      style={{ height: HEIGHT_CLAMP }}
+    >
+      {cardConfigs.map((card) => (
+        <SourceCard
+          key={card.id}
+          progress={progress}
+          card={card}
+          centerX={centerX}
+          cardHeight={cardHeight}
+          cardWidth={cardWidth}
+          rowOffset={rowOffset}
+          scaleFactor={scaleFactor}
+          isMobile={isMobile}
         />
       ))}
+
+      <motion.img
+        src="/images/graphics/home/import-list-animation/04.webp"
+        alt=""
+        style={{
+          opacity: finalOpacity,
+          scale: finalScale,
+          height: cardHeight,
+          width: "auto",
+          position: "absolute",
+          left: centerX - finalWidth / 2,
+          top: "50%",
+          translateY: "-50%",
+          pointerEvents: "none",
+          zIndex: 20,
+          borderRadius: "24px",
+        }}
+      />
     </div>
   );
 };

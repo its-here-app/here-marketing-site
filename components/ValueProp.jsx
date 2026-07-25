@@ -10,6 +10,7 @@ const ValueProp = forwardRef(
       header = "Lorem ipsum dolor sit amet",
       subhead = "Lorem ipsum dolor sit amet",
       CTA = "Start for free",
+      headingRef = null,
     },
     ref
   ) => {
@@ -22,7 +23,7 @@ const ValueProp = forwardRef(
           className={`${className} text-center max-w-[24rem] md:max-w-auto md:text-left md:max-w-[50%]`}
         >
           <SlideIn>
-            <h2 className="text-radio-2 mb-4">{header}</h2>
+            <h2 ref={headingRef} className="text-radio-2 mb-4">{header}</h2>
             <p className="mb-6 md:w-[80%]">{subhead}</p>
             <Button variant="secondary" className="hidden md:block">
               {CTA}

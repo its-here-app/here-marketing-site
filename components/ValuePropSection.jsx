@@ -1,7 +1,7 @@
 "use client";
 
-import { forwardRef, useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import ValueProp from "@/components/ValueProp";
 import SpotCard from "@/components/SpotCard";
 import SpotListing from "@/components/SpotListing";
@@ -16,10 +16,37 @@ const ValuePropSection = forwardRef((props, ref) => {
     offset: ["start end", "end start"],
   });
 
-  const cards2Ref = useRef(null);
-  const { scrollYProgress: scrollYProgress2 } = useScroll({
-    target: cards2Ref,
-    offset: ["start end", "end start"],
+  const importHeadingRef = useRef(null);
+  const { scrollYProgress: importHeadingTrigger } = useScroll({
+    target: importHeadingRef,
+    offset: ["center 51%", "center 49%"],
+  });
+
+  const importSectionRef = useRef(null);
+  const { scrollYProgress: importSectionTrigger } = useScroll({
+    target: importSectionRef,
+    offset: ["center 51%", "center 49%"],
+  });
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const [importActive, setImportActive] = useState(false);
+  useMotionValueEvent(importHeadingTrigger, "change", (v) => {
+    if (isMobile) return;
+    const active = v > 0.5;
+    setImportActive((prev) => (prev === active ? prev : active));
+  });
+  useMotionValueEvent(importSectionTrigger, "change", (v) => {
+    if (!isMobile) return;
+    const active = v > 0.5;
+    setImportActive((prev) => (prev === active ? prev : active));
   });
 
   return (
@@ -146,12 +173,13 @@ const ValuePropSection = forwardRef((props, ref) => {
 
       {/* Value prop 2 */}
       <ValueProp
-        ref={cards2Ref}
+        ref={importSectionRef}
+        headingRef={importHeadingRef}
         header="Easily import your existing lists"
         subhead="Start your city playlist with existing notes, Google docs, Instagram, or Maps"
         CTA="Import your spots"
       >
-        <ImportAnimation scrollYProgress={scrollYProgress2} />
+        <ImportAnimation isActive={importActive} isMobile={isMobile} />
       </ValueProp>
 
       {/* Value prop 3 */}

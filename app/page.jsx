@@ -50,7 +50,7 @@ export default function Home() {
       playlistName: "Picturesque waterfronts",
       cover: "/images/photos/playlists/waterfronts.webp",
       wrapperClasses:
-        "bottom-[11%] md:bottom-[-25%] left-1/2 translate-x-[-420px] md:translate-x-[-295px] rotate-[-12deg]",
+        "bottom-[8%] md:bottom-[-25%] left-1/2 translate-x-[-420px] md:translate-x-[-295px] rotate-[-12deg]",
       playlistClasses: `group-hover:-translate-y-[10vh] md:group-hover:-translate-y-[48vh] md:group-hover:-translate-x-[-107%] group-hover:rotate-[12deg]`,
     },
     {
@@ -78,7 +78,7 @@ export default function Home() {
       playlistName: "Scenic overlooks",
       cover: "/images/photos/playlists/overlooks.webp",
       wrapperClasses:
-        "bottom-[11%] md:bottom-[-25%] left-1/2 translate-x-[180px] md:translate-x-[-18px] rotate-[4.5deg]",
+        "bottom-[8%] md:bottom-[-25%] left-1/2 translate-x-[180px] md:translate-x-[-18px] rotate-[4.5deg]",
       playlistClasses: `group-hover:-translate-y-[10vh] md:group-hover:-translate-y-[52vh] md:group-hover:-translate-x-[90%] group-hover:rotate-[-4.5deg]`,
     },
   ];
