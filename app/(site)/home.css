@@ -17,9 +17,39 @@
   width: 38.475%;
 }
 
-.home_share-em,
+.home_share-em {
+  width: 36.778%;
+}
+
 .home_share-ekin {
-  width: 42.55%;
+  width: 38.295%;
+}
+
+.home_share-juliette .sticker-1,
+.home_share-mimi .sticker-1 {
+  border-radius: 50%;
+}
+
+.home_share-em .sticker-1,
+.home_share-ekin .sticker-1 {
+  border-radius: 24px;
+}
+
+.home_share-juliette .sticker-1 {
+  transform: rotate(-6.42deg);
+}
+
+.home_share-em .sticker-1 {
+  transform: rotate(-8.04deg);
+}
+
+.home_share-ekin .sticker-1 {
+  transform: rotate(9.82deg);
+  top: -4%;
+}
+
+.home_share-mimi .sticker-1 {
+  transform: rotate(-3.4deg);
 }
 
 /* Juliette */
@@ -37,7 +67,7 @@
 
 /* Em */
 .home_share-em:hover .sticker-1 {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.1) rotate(-5.04deg);
 }
 
 .home_share-em:hover .sticker-2 {
@@ -50,7 +80,7 @@
 
 /* Ekin */
 .home_share-ekin:hover .sticker-1 {
-  transform: scale(1.1) rotate(-3deg);
+  transform: scale(1.1) rotate(6.82deg);
 }
 
 .home_share-ekin:hover .sticker-2 {

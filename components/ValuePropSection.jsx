@@ -8,8 +8,127 @@ import SpotListing from "@/components/SpotListing";
 import SlideIn from "@/components/motion/SlideIn";
 import FadeIn from "@/components/motion/FadeIn";
 import ImportAnimation from "@/components/ImportAnimation";
+import { getHomePage } from "@/utils/HomePageUtils";
+import { urlFor } from "@/cms/lib/image";
+
+const DEFAULT_PHOTOS = {
+  photoJuliette: "/images/photos/juliette.webp",
+  photoEm: "/images/photos/em.webp",
+  photoEkin: "/images/photos/ekin.webp",
+  photoMimi: "/images/photos/mimi.webp",
+};
+
+const photoUrl = (image, fallback, width = 800) =>
+  image ? urlFor(image).width(width).auto("format").url() : fallback;
+
+const DEFAULT_IMPORT_IMAGES = {
+  sourceImage1: "/images/graphics/home/import-list-animation/01.webp",
+  sourceImage2: "/images/graphics/home/import-list-animation/02.webp",
+  sourceImage3: "/images/graphics/home/import-list-animation/03.webp",
+  finalImage: "/images/graphics/home/import-list-animation/04.webp",
+};
+
+const DEFAULT_SPOTS = [
+  {
+    name: "Courage Bagel",
+    rating: "4.5",
+    reviewCount: "19k",
+    imgUrl: "/images/photos/spots/courage-bagel.webp",
+    type: "Cafe",
+    showOnMobile: false,
+  },
+  {
+    name: "360 Chicago",
+    rating: "4.5",
+    reviewCount: "19k",
+    imgUrl: "/images/photos/spots/360-chicago.webp",
+    type: "Observatory deck",
+    showOnMobile: true,
+  },
+  {
+    name: "Grace Street Desserts",
+    rating: "4.5",
+    reviewCount: "3.3k",
+    imgUrl: "/images/photos/spots/grace-street-desserts.webp",
+    type: "Dessert spot",
+    showOnMobile: true,
+  },
+  {
+    name: "Greystone Mansion & Gardens",
+    rating: "4.6",
+    reviewCount: "3.2k",
+    imgUrl: "/images/photos/spots/greystone-mansion.webp",
+    type: "Historic site",
+    showOnMobile: false,
+  },
+  {
+    name: "Girl & the Goat",
+    rating: "4.8",
+    reviewCount: "2.9k",
+    imgUrl: "/images/photos/spots/girl-&-the-goat.webp",
+    type: "American restaurant",
+    showOnMobile: true,
+  },
+];
+
+const DEFAULTS = {
+  discoverSection: {
+    heading: "Stuck on where to go? Discover new spots",
+    subhead:
+      "Find new spots you like based on your favorites, who you follow, and places you've been",
+    cta: "Explore spots",
+  },
+  importSection: {
+    heading: "Easily import your existing lists",
+    subhead: "Start your city playlist with existing notes, Google docs, Instagram, or Maps",
+    cta: "Import your spots",
+  },
+  shareSection: {
+    heading: "Share your playlists with friends ",
+    subhead: "Keep all your fave spots in playlists and easily share when your friends ask",
+    cta: "Start your profile",
+  },
+};
 
 const ValuePropSection = forwardRef((props, ref) => {
+  const [homePage, setHomePage] = useState(null);
+  useEffect(() => {
+    async function fetchHomePage() {
+      const homePage = await getHomePage();
+      setHomePage(homePage);
+    }
+    fetchHomePage();
+  }, []);
+
+  const discover = { ...DEFAULTS.discoverSection, ...homePage?.discoverSection };
+  const importSection = { ...DEFAULTS.importSection, ...homePage?.importSection };
+  const share = { ...DEFAULTS.shareSection, ...homePage?.shareSection };
+  const sharePhotos = {
+    photoJuliette: photoUrl(share.photoJuliette, DEFAULT_PHOTOS.photoJuliette),
+    photoEm: photoUrl(share.photoEm, DEFAULT_PHOTOS.photoEm),
+    photoEkin: photoUrl(share.photoEkin, DEFAULT_PHOTOS.photoEkin),
+    photoMimi: photoUrl(share.photoMimi, DEFAULT_PHOTOS.photoMimi),
+  };
+
+  const importImages = {
+    sourceImage1: photoUrl(importSection.sourceImage1, DEFAULT_IMPORT_IMAGES.sourceImage1),
+    sourceImage2: photoUrl(importSection.sourceImage2, DEFAULT_IMPORT_IMAGES.sourceImage2),
+    sourceImage3: photoUrl(importSection.sourceImage3, DEFAULT_IMPORT_IMAGES.sourceImage3),
+    finalImage: photoUrl(importSection.finalImage, DEFAULT_IMPORT_IMAGES.finalImage),
+  };
+
+  const discoverSpots = DEFAULT_SPOTS.map((defaultSpot, i) => {
+    const spot = discover[`spot${i + 1}`];
+    return {
+      name: spot?.name || defaultSpot.name,
+      rating: spot?.rating || defaultSpot.rating,
+      reviewCount: spot?.reviewCount || defaultSpot.reviewCount,
+      imgUrl: photoUrl(spot?.image, defaultSpot.imgUrl),
+      type: spot?.type || defaultSpot.type,
+      showOnMobile: spot?.showOnMobile ?? defaultSpot.showOnMobile,
+    };
+  });
+
   const cards1Ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: cards1Ref,
@@ -57,38 +176,24 @@ const ValuePropSection = forwardRef((props, ref) => {
       {/* Value prop 1 */}
       <ValueProp
         ref={cards1Ref}
-        header="Stuck on where to go? Discover new spots"
-        subhead="Find new spots you like based on your favorites, who you follow, and places you've been"
-        CTA="Explore spots"
+        header={discover.heading}
+        subhead={discover.subhead}
+        CTA={discover.cta}
       >
         <div className="md:hidden flex flex-col gap-4">
-          <SlideIn stagger="1">
-            <SpotListing
-              name="360 Chicago"
-              ratings="4.5"
-              numReviews="19k"
-              type="Observatory deck"
-              imgUrl="/images/photos/spots/360-chicago.webp"
-            />
-          </SlideIn>
-          <SlideIn stagger="2">
-            <SpotListing
-              name="Girl & the Goat"
-              ratings="4.8"
-              numReviews="2.9k"
-              type="American restaurant"
-              imgUrl="/images/photos/spots/girl-&-the-goat.webp"
-            />
-          </SlideIn>
-          <SlideIn stagger="3">
-            <SpotListing
-              name="Grace Street Desserts"
-              ratings="4.5"
-              numReviews="3.3k"
-              type="Dessert spot"
-              imgUrl="/images/photos/spots/grace-street-desserts.webp"
-            />
-          </SlideIn>
+          {discoverSpots
+            .filter((spot) => spot.showOnMobile)
+            .map((spot, i) => (
+              <SlideIn key={spot.name} stagger={`${i + 1}`}>
+                <SpotListing
+                  name={spot.name}
+                  ratings={spot.rating}
+                  numReviews={spot.reviewCount}
+                  type={spot.type}
+                  imgUrl={spot.imgUrl}
+                />
+              </SlideIn>
+            ))}
         </div>
         <div className="hidden md:block">
           <motion.div
@@ -99,10 +204,10 @@ const ValuePropSection = forwardRef((props, ref) => {
             }}
           >
             <SpotCard
-              name="Courage Bagel"
-              imgSrc="/images/photos/spots/courage-bagel.webp"
-              rating="4.5"
-              numReviews="19k"
+              name={discoverSpots[0].name}
+              imgSrc={discoverSpots[0].imgUrl}
+              rating={discoverSpots[0].rating}
+              numReviews={discoverSpots[0].reviewCount}
               ratio="1.3"
             />
           </motion.div>
@@ -115,10 +220,10 @@ const ValuePropSection = forwardRef((props, ref) => {
             }}
           >
             <SpotCard
-              name="360 Chicago"
-              imgSrc="/images/photos/spots/360-chicago.webp"
-              rating="4.5"
-              numReviews="19k"
+              name={discoverSpots[1].name}
+              imgSrc={discoverSpots[1].imgUrl}
+              rating={discoverSpots[1].rating}
+              numReviews={discoverSpots[1].reviewCount}
             />
           </motion.div>
 
@@ -130,10 +235,10 @@ const ValuePropSection = forwardRef((props, ref) => {
             }}
           >
             <SpotCard
-              name="Grace Street Desserts"
-              imgSrc="/images/photos/spots/grace-street-desserts.webp"
-              rating="4.5"
-              numReviews="3.3k"
+              name={discoverSpots[2].name}
+              imgSrc={discoverSpots[2].imgUrl}
+              rating={discoverSpots[2].rating}
+              numReviews={discoverSpots[2].reviewCount}
               ratio="1.1"
             />
           </motion.div>
@@ -146,10 +251,10 @@ const ValuePropSection = forwardRef((props, ref) => {
             }}
           >
             <SpotCard
-              name="Greystone Mansion & Gardens"
-              imgSrc="/images/photos/spots/greystone-mansion.webp"
-              rating="4.6"
-              numReviews="3.2k"
+              name={discoverSpots[3].name}
+              imgSrc={discoverSpots[3].imgUrl}
+              rating={discoverSpots[3].rating}
+              numReviews={discoverSpots[3].reviewCount}
               ratio="1.2"
             />
           </motion.div>
@@ -162,10 +267,10 @@ const ValuePropSection = forwardRef((props, ref) => {
             }}
           >
             <SpotCard
-              name="Girl & the Goat"
-              imgSrc="/images/photos/spots/girl-&-the-goat.webp"
-              rating="4.8"
-              numReviews="2.9k"
+              name={discoverSpots[4].name}
+              imgSrc={discoverSpots[4].imgUrl}
+              rating={discoverSpots[4].rating}
+              numReviews={discoverSpots[4].reviewCount}
             />
           </motion.div>
         </div>
@@ -175,23 +280,32 @@ const ValuePropSection = forwardRef((props, ref) => {
       <ValueProp
         ref={importSectionRef}
         headingRef={importHeadingRef}
-        header="Easily import your existing lists"
-        subhead="Start your city playlist with existing notes, Google docs, Instagram, or Maps"
-        CTA="Import your spots"
+        header={importSection.heading}
+        subhead={importSection.subhead}
+        CTA={importSection.cta}
       >
-        <ImportAnimation isActive={importActive} isMobile={isMobile} />
+        <ImportAnimation
+          isActive={importActive}
+          isMobile={isMobile}
+          sourceImages={[
+            importImages.sourceImage1,
+            importImages.sourceImage2,
+            importImages.sourceImage3,
+          ]}
+          finalImage={importImages.finalImage}
+        />
       </ValueProp>
 
       {/* Value prop 3 */}
       <ValueProp
-        header="Share your playlists with friends "
-        subhead="Keep all your fave spots in playlists and easily share when your friends ask"
-        CTA="Start your profile"
+        header={share.heading}
+        subhead={share.subhead}
+        CTA={share.cta}
       >
         <div className="home_share-stickers aspect-square w-[90%] max-w-[28rem] md:max-w-[50%] -mt-6 md:mt-0 mb-1 md:mb-0 relative">
-          <div className="top-[5%] left-0 home_share-juliette">
+          <div className="top-[5%] left-[2%] home_share-juliette">
             <img
-              src="images/photos/juliette.webp"
+              src={sharePhotos.photoJuliette}
               alt=""
               className="w-[100%] sticker-1 sticker-transition"
             />
@@ -207,9 +321,9 @@ const ValuePropSection = forwardRef((props, ref) => {
             />
           </div>
 
-          <div className="top-[5%] right-0 home_share-em">
+          <div className="top-[5%] right-[4%] home_share-em">
             <img
-              src="images/photos/em.webp"
+              src={sharePhotos.photoEm}
               alt=""
               className="w-[100%] sticker-1 sticker-transition"
             />
@@ -220,9 +334,9 @@ const ValuePropSection = forwardRef((props, ref) => {
             />
           </div>
 
-          <div className="bottom-[5%] left-0 home_share-ekin">
+          <div className="bottom-[5%] left-[2%] home_share-ekin">
             <img
-              src="images/photos/ekin.webp"
+              src={sharePhotos.photoEkin}
               alt=""
               className="w-[100%] sticker-1 sticker-transition"
             />
@@ -233,9 +347,9 @@ const ValuePropSection = forwardRef((props, ref) => {
             />
           </div>
 
-          <div className="bottom-[5%] right-0 home_share-mimi">
+          <div className="bottom-[5%] right-[2%] home_share-mimi">
             <img
-              src="images/photos/mimi.webp"
+              src={sharePhotos.photoMimi}
               alt=""
               className="w-[100%] sticker-1 sticker-transition"
             />

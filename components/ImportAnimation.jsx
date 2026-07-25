@@ -28,10 +28,16 @@ const FORWARD_TIMES = SEGMENT_DURATIONS.reduce(
 // bounce on the two convergence transitions (row->fan1, fan1->fan2); plain ease on holds and the final settle
 const FORWARD_EASE = ["backOut", "linear", "backOut", "linear", "easeInOut"];
 
-const cardConfigs = [
+const DEFAULT_SOURCE_IMAGES = [
+  "/images/graphics/home/import-list-animation/01.webp",
+  "/images/graphics/home/import-list-animation/02.webp",
+  "/images/graphics/home/import-list-animation/03.webp",
+];
+const DEFAULT_FINAL_IMAGE = "/images/graphics/home/import-list-animation/04.webp";
+
+const CARD_CONFIGS = [
   {
     id: 0,
-    src: "/images/graphics/home/import-list-animation/01.webp",
     rowIndex: 0,
     fan1: { dx: -70, y: 12, rotate: -24 },
     fan2: { dx: -34, y: 6, rotate: -14 },
@@ -39,7 +45,6 @@ const cardConfigs = [
   },
   {
     id: 1,
-    src: "/images/graphics/home/import-list-animation/02.webp",
     rowIndex: 1,
     fan1: { dx: 0, y: -6, rotate: -3 },
     fan2: { dx: 0, y: -3, rotate: -3 },
@@ -47,7 +52,6 @@ const cardConfigs = [
   },
   {
     id: 2,
-    src: "/images/graphics/home/import-list-animation/03.webp",
     rowIndex: 2,
     fan1: { dx: 70, y: 12, rotate: 14 },
     fan2: { dx: 34, y: 6, rotate: 7 },
@@ -103,7 +107,12 @@ const SourceCard = ({
   );
 };
 
-const ImportAnimation = ({ isActive, isMobile }) => {
+const ImportAnimation = ({
+  isActive,
+  isMobile,
+  sourceImages = DEFAULT_SOURCE_IMAGES,
+  finalImage = DEFAULT_FINAL_IMAGE,
+}) => {
   const stageRef = useRef(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: BASE_HEIGHT });
 
@@ -147,11 +156,11 @@ const ImportAnimation = ({ isActive, isMobile }) => {
       className="relative w-full md:max-w-[50%] -mt-4 md:mt-0 mb-5 md:mb-0"
       style={{ height: HEIGHT_CLAMP }}
     >
-      {cardConfigs.map((card) => (
+      {CARD_CONFIGS.map((card, i) => (
         <SourceCard
           key={card.id}
           progress={progress}
-          card={card}
+          card={{ ...card, src: sourceImages[i] ?? DEFAULT_SOURCE_IMAGES[i] }}
           centerX={centerX}
           cardHeight={cardHeight}
           cardWidth={cardWidth}
@@ -162,7 +171,7 @@ const ImportAnimation = ({ isActive, isMobile }) => {
       ))}
 
       <motion.img
-        src="/images/graphics/home/import-list-animation/04.webp"
+        src={finalImage}
         alt=""
         style={{
           opacity: finalOpacity,

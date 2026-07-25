@@ -14,4 +14,16 @@ export default defineConfig({
     types: schemaTypes,
   },
   plugins: [structureTool({ structure }), visionTool({ defaultApiVersion: apiVersion })],
+  document: {
+    // Home Page is a singleton: no creating a second one via the global "+" menu,
+    // no deleting/duplicating the only instance.
+    newDocumentOptions: (prev, { creationContext }) =>
+      creationContext.type === "global"
+        ? prev.filter((template) => template.templateId !== "homePage")
+        : prev,
+    actions: (prev, { schemaType }) =>
+      schemaType === "homePage"
+        ? prev.filter(({ action }) => !["delete", "duplicate"].includes(action))
+        : prev,
+  },
 });
