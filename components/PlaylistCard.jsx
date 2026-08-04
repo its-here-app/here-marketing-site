@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PlaylistCoverOverlay from "./PlaylistCoverOverlay";
+import { getPlaylistUrl } from "@/utils/PlaylistUtils";
 
 const PlaylistCard = ({
   className = "",
@@ -14,7 +15,7 @@ const PlaylistCard = ({
   const Wrapper = isClickable ? Link : "div";
   const wrapperProps = isClickable
     ? {
-        href: `/${username}/${slug}`,
+        href: getPlaylistUrl(username, slug),
         "aria-label": "View playlist",
       }
     : {};

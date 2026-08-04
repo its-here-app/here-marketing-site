@@ -38,7 +38,12 @@ export const playlistType = defineType({
     defineField({
       name: "username",
       type: "string",
-      validation: (Rule) => Rule.required(),
+      description: "Must not contain hyphens (used to build the playlist URL as /username-slug)",
+      validation: (Rule) =>
+        Rule.required().regex(/^[^-]+$/, {
+          name: "no hyphens",
+          invert: false,
+        }),
     }),
     defineField({
       name: "instagram",

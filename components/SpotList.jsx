@@ -12,8 +12,8 @@ const SpotList = ({ className = "", index = 0, spotsJSON = [] }) => {
           description={spot.description}
           type={spot.type}
           ratings={spot.ratings}
-          googleMapsUrl={spot.googleMapsUrl}
           index={index}
+          interactive
         />
       ))}
     </div>

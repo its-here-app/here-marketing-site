@@ -1,11 +1,11 @@
-// app/[username]/[slug]/page.jsx
+// app/[usernameslug]/page.jsx
 
 import { notFound } from "next/navigation";
 
 import PlaylistHero from "@/components/PlaylistHero";
 import SpotList from "@/components/SpotList";
 import SimilarPlaylistsCarousel from "@/components/SimilarPlaylistsCarousel";
-import { getPlaylist } from "@/utils/PlaylistUtils";
+import { getPlaylist, parsePlaylistUrlParam } from "@/utils/PlaylistUtils";
 import SmoothScroll from "@/components/motion/SmoothScroll";
 import Footer from "@/components/Footer";
 
@@ -13,11 +13,12 @@ export const revalidate = 3600; // 1 hour
 
 /**
  * Generate playlist page metadata
- * @param params - username/slug
+ * @param params - usernameslug
  * @returns
  */
 export async function generateMetadata({ params }) {
-  const { username, slug } = await params;
+  const { usernameslug } = await params;
+  const { username, slug } = parsePlaylistUrlParam(usernameslug);
   const playlist = await getPlaylist(username, slug);
 
   if (!playlist) notFound();
@@ -31,11 +32,12 @@ export async function generateMetadata({ params }) {
 
 /**
  * Playlist page
- * @param params - username/slug
+ * @param params - usernameslug
  * @returns playlist page
  */
 export default async function Playlist({ params }) {
-  const { username, slug } = await params;
+  const { usernameslug } = await params;
+  const { username, slug } = parsePlaylistUrlParam(usernameslug);
   const playlist = await getPlaylist(username, slug);
 
   if (!playlist) {

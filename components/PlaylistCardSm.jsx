@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PlaylistCoverOverlay from "./PlaylistCoverOverlay";
 import ProfileImage from "@/components/ui/ProfileImage";
+import { getPlaylistUrl } from "@/utils/PlaylistUtils";
 
 const PlaylistCardSm = ({ className = "", index = 0, playlist = null }) => {
   if (playlist) {
@@ -12,7 +13,7 @@ const PlaylistCardSm = ({ className = "", index = 0, playlist = null }) => {
       >
         <div className="group rounded-lg bg-gray-100 relative bg-black w-full h-full overflow-hidden">
           <Link
-            href={`/${playlist.username}/${playlist.slug.current}`}
+            href={getPlaylistUrl(playlist.username, playlist.slug.current)}
             className="z-10 w-full h-full relative bg-center bg-cover flex flex-col justify-center items-center text-center text-neon p-[10%]"
             aria-label={"View playlist"}
           >

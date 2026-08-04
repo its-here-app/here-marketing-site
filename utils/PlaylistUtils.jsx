@@ -15,6 +15,35 @@ export function shuffleArray(array) {
 }
 
 /**
+ * Build a playlist page URL from username and slug
+ * @param username - playlist owner's username (must not contain hyphens)
+ * @param slug - playlist slug
+ * @returns url path, e.g. /jdoe-summer-mix
+ */
+export function getPlaylistUrl(username, slug) {
+  return `/${username}-${slug}`;
+}
+
+/**
+ * Split a combined "username-slug" route param back into its parts.
+ * Usernames may not contain hyphens, so the first hyphen is always the boundary.
+ * @param usernameSlug - combined route param, e.g. "jdoe-summer-mix"
+ * @returns { username, slug }
+ */
+export function parsePlaylistUrlParam(usernameSlug) {
+  const separatorIndex = usernameSlug.indexOf("-");
+
+  if (separatorIndex === -1) {
+    return { username: usernameSlug, slug: "" };
+  }
+
+  return {
+    username: usernameSlug.slice(0, separatorIndex),
+    slug: usernameSlug.slice(separatorIndex + 1),
+  };
+}
+
+/**
  * Get the specified playlist
  * @param username - playlist owner's username
  * @param slug - playlist slug

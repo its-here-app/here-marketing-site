@@ -5,29 +5,9 @@ import { useRouter } from "next/navigation";
 import PlaylistCoverOverlay from "./PlaylistCoverOverlay";
 import OutlineButton from "@/components/ui/OutlineButton";
 import ProfileImage from "@/components/ui/ProfileImage";
+import { useModal } from "@/context/ModalContext";
 
 import { useState } from "react";
-
-/** Given a date, returns how long ago that date was in weeks or years
- * @param dateString - the date as a string (e.g. "2023-05-12")
- * @returns a string
- */
-function timeAgo(dateString) {
-  const givenDate = new Date(dateString);
-  const now = new Date();
-
-  const msInWeek = 1000 * 60 * 60 * 24 * 7;
-  const msInYear = 1000 * 60 * 60 * 24 * 365;
-
-  const diffMs = now - givenDate;
-
-  const yearsAgo = Math.floor(diffMs / msInYear);
-  if (yearsAgo >= 1) {
-    return yearsAgo === 1 ? "1 year ago" : `${yearsAgo} years ago`;
-  }
-  const weeksAgo = Math.floor(diffMs / msInWeek);
-  return weeksAgo === 1 ? "1 week ago" : `${weeksAgo} weeks ago`;
-}
 
 /** Returns the current page URL
  * @returns URL as a string
@@ -65,6 +45,7 @@ const copyToClipboard = (text) => {
 const PlaylistHero = ({ playlist }) => {
   console.log(playlist);
   const router = useRouter();
+  const { openModal } = useModal();
   const [shareIsOpen, setShareIsOpen] = useState(false);
 
   const toggleShareMenu = () => setShareIsOpen((prev) => !prev);
@@ -155,12 +136,14 @@ const PlaylistHero = ({ playlist }) => {
           <h4 className="text-golos-1">{playlist.playlistName}</h4>
         </div>
         {/* Bottom */}
-        <div className="text-body-sm absolute transition-all duration-400 bottom-0 flex items-center justify-between w-full">
-          <div className="flex items-center gap-3">
+        <div className="text-body-sm absolute transition-all duration-400 bottom-0 flex items-center w-full">
+          <div
+            onClick={openModal}
+            className="flex items-center gap-3 cursor-pointer"
+          >
             <ProfileImage imgSrc={playlist.profileImage} size={28} />
             {playlist.username}
           </div>
-          <div>Last updated {timeAgo(playlist.dateAdded)}</div>
         </div>
       </div>
     </div>
