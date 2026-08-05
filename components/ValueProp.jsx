@@ -1,6 +1,8 @@
 import { forwardRef } from "react";
 import Button from "@/components/ui/Button";
 import SlideIn from "@/components/motion/SlideIn";
+import { useModal } from "@/context/ModalContext";
+import { trackEvent } from "@/utils/analytics";
 
 const ValueProp = forwardRef(
   (
@@ -10,11 +12,19 @@ const ValueProp = forwardRef(
       header = "Lorem ipsum dolor sit amet",
       subhead = "Lorem ipsum dolor sit amet",
       CTA = "Start for free",
+      eventName = "",
       headingRef = null,
       maxHeight = "48rem",
     },
     ref
   ) => {
+    const { openModal } = useModal();
+
+    const handleCTAClick = () => {
+      trackEvent(eventName);
+      openModal(eventName);
+    };
+
     return (
       <section
         ref={ref}
@@ -27,14 +37,22 @@ const ValueProp = forwardRef(
           <SlideIn>
             <h2 ref={headingRef} className="text-radio-2 mb-4">{header}</h2>
             <p className="mb-6 md:w-[80%]">{subhead}</p>
-            <Button variant="secondary" className="hidden md:block">
+            <Button
+              variant="secondary"
+              className="hidden md:block"
+              onClick={handleCTAClick}
+            >
               {CTA}
             </Button>
           </SlideIn>
         </div>
         {children}
         <SlideIn>
-          <Button variant="secondary" className="md:hidden">
+          <Button
+            variant="secondary"
+            className="md:hidden"
+            onClick={handleCTAClick}
+          >
             {CTA}
           </Button>
         </SlideIn>

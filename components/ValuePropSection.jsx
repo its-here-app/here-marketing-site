@@ -179,6 +179,7 @@ const ValuePropSection = forwardRef((props, ref) => {
         header={discover.heading}
         subhead={discover.subhead}
         CTA={discover.cta}
+        eventName="home_discover_cta_click"
         maxHeight="64rem"
       >
         <div className="md:hidden flex flex-col gap-4">
@@ -284,6 +285,7 @@ const ValuePropSection = forwardRef((props, ref) => {
         header={importSection.heading}
         subhead={importSection.subhead}
         CTA={importSection.cta}
+        eventName="home_import_cta_click"
       >
         <ImportAnimation
           isActive={importActive}
@@ -302,6 +304,7 @@ const ValuePropSection = forwardRef((props, ref) => {
         header={share.heading}
         subhead={share.subhead}
         CTA={share.cta}
+        eventName="home_share_cta_click"
       >
         <div className="home_share-stickers aspect-square w-[90%] max-w-[28rem] md:max-w-[50%] -mt-6 md:mt-0 mb-1 md:mb-0 relative">
           <div className="top-[5%] left-[2%] home_share-juliette">

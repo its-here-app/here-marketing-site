@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { trackEvent } from "@/utils/analytics";
 
-const EmailInput = ({ className = "" }) => {
+const EmailInput = ({ className = "", trackingEvent = null, trackingParams = {} }) => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState(null); // "success" | "error" | null
   const [message, setMessage] = useState("");
@@ -32,6 +33,7 @@ const EmailInput = ({ className = "" }) => {
       setStatus("success");
       setMessage("You're in!");
       setEmail("");
+      if (trackingEvent) trackEvent(trackingEvent, trackingParams);
     } else if (data.custom) {
       setStatus("error");
       setMessage(data.custom);

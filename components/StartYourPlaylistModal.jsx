@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import EmailInput from "@/components/ui/EmailInput";
 import { ReactSVG } from "react-svg";
+import { trackEvent } from "@/utils/analytics";
 
-export default function StartYourPlaylistModal({ open, onClose }) {
+export default function StartYourPlaylistModal({ open, onClose, source = null }) {
   // Handle ESC key to close
   useEffect(() => {
     if (!open) return;
@@ -15,6 +16,13 @@ export default function StartYourPlaylistModal({ open, onClose }) {
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [open, onClose]);
+
+  // Track modal impressions
+  useEffect(() => {
+    if (open) {
+      trackEvent("signup_modal_view", { trigger_source: source });
+    }
+  }, [open, source]);
 
   return (
     <AnimatePresence>
@@ -69,7 +77,11 @@ export default function StartYourPlaylistModal({ open, onClose }) {
                     launch. Be the first to know when it comes to exclusive
                     access or updates!
                   </p>
-                  <EmailInput className="sm:max-w-[100%] w-full mt-10" />
+                  <EmailInput
+                    className="sm:max-w-[100%] w-full mt-10"
+                    trackingEvent="signup_modal_submit"
+                    trackingParams={{ trigger_source: source }}
+                  />
                   {/* Mobile images */}
                   <img
                     src="/images/stickers/modal-smiley.svg"

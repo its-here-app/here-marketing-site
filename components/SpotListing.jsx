@@ -4,6 +4,7 @@ import Badge from "@/components/ui/Badge";
 import SpotRating from "@/components/ui/SpotRating";
 import CircleIcon from "@/components/ui/CircleIcon";
 import { useModal } from "@/context/ModalContext";
+import { trackEvent } from "@/utils/analytics";
 
 const SpotListing = ({
   imgUrl = null,
@@ -16,10 +17,20 @@ const SpotListing = ({
 }) => {
   const { openModal } = useModal();
 
+  const handleSpotClick = () => {
+    trackEvent("playlist_spot_click");
+    openModal("playlist_spot_click");
+  };
+
+  const handleSaveClick = () => {
+    trackEvent("playlist_save_spot_click");
+    openModal("playlist_save_spot_click");
+  };
+
   return (
     <div className="flex gap-4 text-balance">
       <div
-        onClick={interactive ? openModal : undefined}
+        onClick={interactive ? handleSpotClick : undefined}
         className={`flex gap-4 grow ${interactive ? "cursor-pointer" : ""}`}
       >
         <div className="bg-gray-100 w-[6.25rem] h-[6.25rem] rounded-lg aspect-square overflow-hidden shrink-0">
@@ -48,7 +59,7 @@ const SpotListing = ({
             alt="Bookmark"
             bgColor="gray"
             size="sm"
-            onClick={openModal}
+            onClick={handleSaveClick}
             cursorSize="sm"
           />
         </div>

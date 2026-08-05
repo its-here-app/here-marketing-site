@@ -6,6 +6,7 @@ import PlaylistCoverOverlay from "./PlaylistCoverOverlay";
 import OutlineButton from "@/components/ui/OutlineButton";
 import ProfileImage from "@/components/ui/ProfileImage";
 import { useModal } from "@/context/ModalContext";
+import { trackEvent } from "@/utils/analytics";
 
 import { useState } from "react";
 
@@ -51,11 +52,13 @@ const PlaylistHero = ({ playlist }) => {
   const toggleShareMenu = () => setShareIsOpen((prev) => !prev);
 
   const getLink = () => {
+    trackEvent("playlist_share_get_link");
     copyToClipboard(getPageURL());
     toggleShareMenu();
   };
 
   const copyListAsText = () => {
+    trackEvent("playlist_share_copy_text");
     const listHeader = `${playlist.city} — ${playlist.playlistName} @ ${playlist.username}\n`;
     const spotsJSON = JSON.parse(playlist.content);
 
@@ -67,6 +70,11 @@ const PlaylistHero = ({ playlist }) => {
 
     copyToClipboard(fullText);
     toggleShareMenu();
+  };
+
+  const handleProfileClick = () => {
+    trackEvent("playlist_profile_click");
+    openModal("playlist_profile_click");
   };
 
   return (
@@ -138,7 +146,7 @@ const PlaylistHero = ({ playlist }) => {
         {/* Bottom */}
         <div className="text-body-sm absolute transition-all duration-400 bottom-0 flex items-center w-full">
           <div
-            onClick={openModal}
+            onClick={handleProfileClick}
             className="flex items-center gap-3 cursor-pointer"
           >
             <ProfileImage imgSrc={playlist.profileImage} size={28} />

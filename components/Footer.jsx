@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Logo from "@/components/Logo";
 import EmailInput from "@/components/ui/EmailInput";
 import StickerCTA from "@/components/ui/StickerCTA";
-import StartYourPlaylistModal from "@/components/StartYourPlaylistModal";
+import { useModal } from "@/context/ModalContext";
+import { trackEvent } from "@/utils/analytics";
 
 const Footer = ({
   variant = "default",
@@ -12,8 +12,13 @@ const Footer = ({
   ctaPosition = "absolute",
   ctaColor = "neon",
 }) => {
-  const [open, setOpen] = useState(false);
+  const { openModal } = useModal();
   const isBasic = variant === "basic";
+
+  const handleStartPlaylistClick = () => {
+    trackEvent("footer_start_playlist_click");
+    openModal("footer_start_playlist_click");
+  };
 
   return (
     <footer
@@ -81,7 +86,7 @@ const Footer = ({
           />
         )}
         {!isBasic && (
-          <div onClick={() => setOpen(true)}>
+          <div onClick={handleStartPlaylistClick}>
             <StickerCTA
               color={ctaColor}
               className={`${ctaPosition} cursor-pointer scale-0 lg:scale-100 rotate-20 lg:rotate-0 right-[8%] bottom-24 hover:rotate-10 z-100`}
@@ -89,12 +94,6 @@ const Footer = ({
           </div>
         )}
       </div>
-      {!isBasic && (
-        <StartYourPlaylistModal
-          open={open}
-          onClose={() => setOpen(false)}
-        ></StartYourPlaylistModal>
-      )}
     </footer>
   );
 };

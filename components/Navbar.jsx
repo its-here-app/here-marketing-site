@@ -3,11 +3,19 @@
 import { useEffect, useState } from "react";
 import Logo from "@/components/Logo";
 import Button from "@/components/ui/Button";
+import { useModal } from "@/context/ModalContext";
+import { trackEvent } from "@/utils/analytics";
 
 const Navbar = ({ className = "", showCTA = true }) => {
+  const { openModal } = useModal();
   const [isDark, setIsDark] = useState(
     typeof document !== "undefined" && document.body.dataset.theme === "dark"
   );
+
+  const handleCTAClick = () => {
+    trackEvent("navbar_cta_click");
+    openModal("navbar_cta_click");
+  };
 
   useEffect(() => {
     setIsDark(document.body.dataset.theme === "dark");
@@ -28,7 +36,11 @@ const Navbar = ({ className = "", showCTA = true }) => {
       <Logo button={true} color={isDark ? "white" : "black"} />
       <div>
         {showCTA && (
-          <Button variant="primary" className="sm:block hidden">
+          <Button
+            variant="primary"
+            className="sm:block hidden"
+            onClick={handleCTAClick}
+          >
             Start for free
           </Button>
         )}
