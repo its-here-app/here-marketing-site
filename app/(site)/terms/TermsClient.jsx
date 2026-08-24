@@ -27,9 +27,9 @@ export default function TermsClient({ termsPage }) {
   const effectiveDate = termsPage?.effectiveDate;
 
   return (
-    <div data-cursor="white">
+    <div data-cursor="white" className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container-sm pt-10 pb-20">
+      <div className="container-sm pt-10 pb-20 flex-1">
         <h1 className="text-radio-1 text-default mb-10">{title}</h1>
         {effectiveDate && termsPage?.body && (
           <p className="text-body-xs text-default mb-8">
