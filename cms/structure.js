@@ -9,6 +9,20 @@ export const structure = (S) =>
         .child(
           S.document().schemaType('homePage').documentId('homePage').title('Home page')
         ),
+      S.listItem()
+        .title('Privacy page')
+        .id('privacyPage')
+        .child(
+          S.document().schemaType('privacyPage').documentId('privacyPage').title('Privacy page')
+        ),
+      S.listItem()
+        .title('Terms page')
+        .id('termsPage')
+        .child(
+          S.document().schemaType('termsPage').documentId('termsPage').title('Terms page')
+        ),
       S.divider(),
-      ...S.documentTypeListItems().filter((item) => item.getId() !== 'homePage'),
+      ...S.documentTypeListItems().filter(
+        (item) => !['homePage', 'privacyPage', 'termsPage'].includes(item.getId())
+      ),
     ])

@@ -1,8 +1,12 @@
 // layout.jsx
 import "./globals.css";
 
+import { draftMode } from "next/headers";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { VisualEditing } from "next-sanity/visual-editing";
+import { SanityLive } from "@/cms/lib/live";
 import ClientWrapper from "./ClientWrapper";
+import DisableDraftMode from "@/components/DisableDraftMode";
 
 export const metadata = {
   metadataBase: new URL("https://itshere.app"),
@@ -23,7 +27,9 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const isDraftMode = (await draftMode()).isEnabled;
+
   return (
     <html lang="en">
       <body>
@@ -33,6 +39,13 @@ export default function RootLayout({ children }) {
           </div>
         </ClientWrapper>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <SanityLive />
+        {isDraftMode && (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        )}
       </body>
     </html>
   );

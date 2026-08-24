@@ -15,7 +15,7 @@ const portableTextComponents = {
   },
 };
 
-export default function PrivacyClient({ privacyPage }) {
+export default function TermsClient({ termsPage }) {
   useEffect(() => {
     document.body.dataset.theme = "dark";
     return () => {
@@ -23,23 +23,23 @@ export default function PrivacyClient({ privacyPage }) {
     };
   }, []);
 
-  const title = privacyPage?.title || "Privacy policy";
-  const effectiveDate = privacyPage?.effectiveDate;
+  const title = termsPage?.title || "Terms of use";
+  const effectiveDate = termsPage?.effectiveDate;
 
   return (
     <div data-cursor="white">
       <Navbar />
       <div className="container-sm pt-10 pb-20">
         <h1 className="text-radio-1 text-default mb-10">{title}</h1>
-        {effectiveDate && privacyPage?.body && (
+        {effectiveDate && termsPage?.body && (
           <p className="text-body-xs text-default mb-8">
             Effective date: {effectiveDate}
           </p>
         )}
 
         <div className="prose-legal">
-          {privacyPage?.body ? (
-            <PortableText value={privacyPage.body} components={portableTextComponents} />
+          {termsPage?.body ? (
+            <PortableText value={termsPage.body} components={portableTextComponents} />
           ) : (
             <p>Content coming soon.</p>
           )}

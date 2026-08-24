@@ -1,4 +1,5 @@
 import PrivacyClient from "./PrivacyClient";
+import { getPrivacyPage } from "@/utils/PrivacyPageUtils";
 
 export const metadata = {
   title: "Privacy • Here*",
@@ -7,6 +8,7 @@ export const metadata = {
   },
 };
 
-export default function Privacy() {
-  return <PrivacyClient />;
+export default async function Privacy() {
+  const privacyPage = await getPrivacyPage();
+  return <PrivacyClient privacyPage={privacyPage} />;
 }

@@ -68,6 +68,15 @@ const Footer = ({
             </li>
             <li>
               <a
+                href="/terms"
+                data-cursor-size="sm"
+                className="py-1 -my-1 block"
+              >
+                Terms
+              </a>
+            </li>
+            <li>
+              <a
                 href="/privacy"
                 data-cursor-size="sm"
                 className="py-1 -my-1 block"
