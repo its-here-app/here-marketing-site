@@ -35,8 +35,8 @@ const Footer = ({
           </>
         )}
         <Logo button={true} color="white" className="mb-8" />
-        <div className="text-gray-700 flex flex-col md:flex-row md:justify-between">
-          <ul className="flex flex-col md:flex-row gap-5 md:gap-10 mb-10 md:mb-0">
+        <div className="text-gray-700 flex flex-col lg:flex-row lg:justify-between">
+          <ul className="flex flex-col lg:flex-row gap-5 lg:gap-10 mb-10 lg:mb-0">
             <li>
               <a
                 href="https://www.instagram.com/itshere.app/"
