@@ -1,12 +1,13 @@
 // layout.jsx
 import "./globals.css";
 
-import { draftMode } from "next/headers";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { draftMode, headers } from "next/headers";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { SanityLive } from "@/cms/lib/live";
 import ClientWrapper from "./ClientWrapper";
 import DisableDraftMode from "@/components/DisableDraftMode";
+import GoogleAnalyticsGate from "@/components/GoogleAnalyticsGate";
+import { isEuOrUkCountry } from "@/utils/region";
 
 export const metadata = {
   metadataBase: new URL("https://itshere.app"),
@@ -29,6 +30,8 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const isDraftMode = (await draftMode()).isEnabled;
+  const countryCode = (await headers()).get("x-vercel-ip-country");
+  const requiresCookieConsent = isEuOrUkCountry(countryCode);
 
   return (
     <html lang="en">
@@ -38,7 +41,10 @@ export default async function RootLayout({ children }) {
             <main className="flex flex-col justify-center">{children}</main>
           </div>
         </ClientWrapper>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <GoogleAnalyticsGate
+          gaId={process.env.NEXT_PUBLIC_GA_ID}
+          requiresConsent={requiresCookieConsent}
+        />
         <SanityLive />
         {isDraftMode && (
           <>
