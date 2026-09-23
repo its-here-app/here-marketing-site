@@ -5,6 +5,7 @@ import EmailInput from "@/components/ui/EmailInput";
 import StickerCTA from "@/components/ui/StickerCTA";
 import { useModal } from "@/context/ModalContext";
 import { trackEvent } from "@/utils/analytics";
+import { showCookieConsentSnackbar } from "@/utils/cookieConsent";
 
 const Footer = ({
   variant = "default",
@@ -83,6 +84,16 @@ const Footer = ({
               >
                 Privacy
               </a>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={showCookieConsentSnackbar}
+                data-cursor-size="sm"
+                className="py-1 -my-1 block cursor-pointer"
+              >
+                Cookie settings
+              </button>
             </li>
           </ul>
           <p>© Here* 2026. All rights reserved</p>

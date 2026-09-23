@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { snackbar } from "@/components/ui/Snackbar";
-
-const CONSENT_KEY = "here-cookie-consent";
+import {
+  getCookieConsent,
+  showCookieConsentSnackbar,
+  COOKIE_CONSENT_EVENT,
+} from "@/utils/cookieConsent";
 
 export default function GoogleAnalyticsGate({ gaId, requiresConsent }) {
   const [consent, setConsent] = useState(() =>
@@ -12,37 +14,19 @@ export default function GoogleAnalyticsGate({ gaId, requiresConsent }) {
   );
 
   useEffect(() => {
-    if (!requiresConsent) return;
-
-    const stored = localStorage.getItem(CONSENT_KEY);
-    if (stored === "granted" || stored === "denied") {
+    const stored = getCookieConsent();
+    if (stored) {
       setConsent(stored === "granted");
-      return;
+    } else if (requiresConsent) {
+      showCookieConsentSnackbar();
     }
-
-    snackbar({
-      key: "cookie-consent",
-      duration: 0,
-      message: (
-        <>
-          We use cookies for Google Analytics ·{" "}
-          <a href="/privacy" data-cursor-size="sm" className="underline">
-            Privacy policy
-          </a>
-        </>
-      ),
-      actionLabel: "Allow",
-      secondActionLabel: "Decline",
-      onAction: () => {
-        localStorage.setItem(CONSENT_KEY, "granted");
-        setConsent(true);
-      },
-      onSecondAction: () => {
-        localStorage.setItem(CONSENT_KEY, "denied");
-        setConsent(false);
-      },
-    });
   }, [requiresConsent]);
+
+  useEffect(() => {
+    const handleChange = (e) => setConsent(e.detail === "granted");
+    window.addEventListener(COOKIE_CONSENT_EVENT, handleChange);
+    return () => window.removeEventListener(COOKIE_CONSENT_EVENT, handleChange);
+  }, []);
 
   if (!consent) return null;
 
