@@ -1,4 +1,4 @@
-// app/[usernameslug]/page.jsx
+// app/playlist/[usernameslug]/page.jsx
 
 import { notFound } from "next/navigation";
 

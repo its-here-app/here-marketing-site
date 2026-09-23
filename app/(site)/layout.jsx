@@ -19,7 +19,10 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: "/og.png",
+        // Under /images/og/ rather than the root: itshere.app serves this app
+        // through rewrites, and a root /og.png would resolve to the product
+        // app's own image instead of this one.
+        url: "/images/og/og.png",
         width: 1200,
         height: 630,
         alt: "Here* default OG image",

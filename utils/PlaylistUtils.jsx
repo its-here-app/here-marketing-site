@@ -18,10 +18,10 @@ export function shuffleArray(array) {
  * Build a playlist page URL from username and slug
  * @param username - playlist owner's username (must not contain hyphens)
  * @param slug - playlist slug
- * @returns url path, e.g. /jdoe-summer-mix
+ * @returns url path, e.g. /playlist/jdoe-summer-mix
  */
 export function getPlaylistUrl(username, slug) {
-  return `/${username}-${slug}`;
+  return `/playlist/${username}-${slug}`;
 }
 
 /**
