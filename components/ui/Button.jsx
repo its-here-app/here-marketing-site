@@ -1,5 +1,3 @@
-import { useModal } from "@/context/ModalContext";
-
 const Button = ({
   onClick = null,
   children,
@@ -8,7 +6,6 @@ const Button = ({
   disabled = false,
   className = "",
 }) => {
-  const { openModal } = useModal();
 
   // --- Variants (visual styles)
   const variantClasses =
@@ -22,16 +19,20 @@ const Button = ({
     "rounded-lg pt-2 pb-[.625rem] px-5 transition-all duration-400 cursor-pointer";
 
   return (
-    <div>
-      <button
-        type={type}
-        onClick={onClick ? onClick : openModal}
-        disabled={disabled}
-        className={`${baseClasses} ${variantClasses} ${className}`}
-      >
-        {children}
-      </button>
-    </div>
+    <button
+      type={type}
+      onClick={
+        onClick
+          ? onClick
+          : () => {
+              window.location.href = "/signin";
+            }
+      }
+      disabled={disabled}
+      className={`${baseClasses} ${variantClasses} ${className}`}
+    >
+      {children}
+    </button>
   );
 };
 

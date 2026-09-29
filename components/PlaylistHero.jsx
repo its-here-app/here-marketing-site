@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import PlaylistCoverOverlay from "./PlaylistCoverOverlay";
 import OutlineButton from "@/components/ui/OutlineButton";
 import ProfileImage from "@/components/ui/ProfileImage";
-import { useModal } from "@/context/ModalContext";
 import { trackEvent } from "@/utils/analytics";
 
 import { useState } from "react";
@@ -46,7 +45,6 @@ const copyToClipboard = (text) => {
 const PlaylistHero = ({ playlist }) => {
   console.log(playlist);
   const router = useRouter();
-  const { openModal } = useModal();
   const [shareIsOpen, setShareIsOpen] = useState(false);
 
   const toggleShareMenu = () => setShareIsOpen((prev) => !prev);
@@ -74,7 +72,7 @@ const PlaylistHero = ({ playlist }) => {
 
   const handleProfileClick = () => {
     trackEvent("playlist_profile_click");
-    openModal("playlist_profile_click");
+    window.location.href = "/signin";
   };
 
   return (

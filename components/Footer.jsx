@@ -3,7 +3,6 @@
 import Logo from "@/components/Logo";
 import EmailInput from "@/components/ui/EmailInput";
 import StickerCTA from "@/components/ui/StickerCTA";
-import { useModal } from "@/context/ModalContext";
 import { trackEvent } from "@/utils/analytics";
 import { showCookieConsentSnackbar } from "@/utils/cookieConsent";
 
@@ -13,12 +12,11 @@ const Footer = ({
   ctaPosition = "absolute",
   ctaColor = "neon",
 }) => {
-  const { openModal } = useModal();
   const isBasic = variant === "basic";
 
   const handleStartPlaylistClick = () => {
     trackEvent("footer_start_playlist_click");
-    openModal("footer_start_playlist_click");
+    window.location.href = "/signin";
   };
 
   return (

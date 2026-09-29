@@ -3,7 +3,6 @@
 import Badge from "@/components/ui/Badge";
 import SpotRating from "@/components/ui/SpotRating";
 import CircleIcon from "@/components/ui/CircleIcon";
-import { useModal } from "@/context/ModalContext";
 import { trackEvent } from "@/utils/analytics";
 
 const SpotListing = ({
@@ -15,16 +14,14 @@ const SpotListing = ({
   numReviews = "",
   interactive = false,
 }) => {
-  const { openModal } = useModal();
-
   const handleSpotClick = () => {
     trackEvent("playlist_spot_click");
-    openModal("playlist_spot_click");
+    window.location.href = "/signin";
   };
 
   const handleSaveClick = () => {
     trackEvent("playlist_save_spot_click");
-    openModal("playlist_save_spot_click");
+    window.location.href = "/signin";
   };
 
   return (

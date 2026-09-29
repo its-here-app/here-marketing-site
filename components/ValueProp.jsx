@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import Button from "@/components/ui/Button";
 import SlideIn from "@/components/motion/SlideIn";
-import { useModal } from "@/context/ModalContext";
 import { trackEvent } from "@/utils/analytics";
 
 const ValueProp = forwardRef(
@@ -18,11 +17,9 @@ const ValueProp = forwardRef(
     },
     ref
   ) => {
-    const { openModal } = useModal();
-
     const handleCTAClick = () => {
       trackEvent(eventName);
-      openModal(eventName);
+      window.location.href = "/signin";
     };
 
     return (

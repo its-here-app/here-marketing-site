@@ -1,13 +1,11 @@
 "use client";
 
-import { useModal } from "@/context/ModalContext";
-
 export default function ModalTrigger({ children, className = "" }) {
-  const { openModal } = useModal();
-
   return (
     <div
-      onClick={openModal}
+      onClick={() => {
+        window.location.href = "/signin";
+      }}
       className={`${className} cursor-pointer`}
       style={{ display: "inlineblock" }}
     >

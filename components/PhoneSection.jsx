@@ -4,16 +4,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
 import SlideIn from "@/components/motion/SlideIn";
-import { useModal } from "@/context/ModalContext";
 import { trackEvent } from "@/utils/analytics";
 
 const PhoneSection = ({ className = "" }) => {
-  const { openModal } = useModal();
   const containerRef = useRef(null);
 
   const handleCTAClick = () => {
     trackEvent("home_phone_cta_click");
-    openModal("home_phone_cta_click");
+    window.location.href = "/signin";
   };
 
   // Track dynamic heights

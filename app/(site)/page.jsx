@@ -12,7 +12,6 @@ import ModalTrigger from "@/components/ModalTrigger";
 import SlideIn from "@/components/motion/SlideIn";
 import SmoothScroll from "@/components/motion/SmoothScroll";
 import Footer from "@/components/Footer";
-import { useModal } from "@/context/ModalContext";
 import { trackEvent } from "@/utils/analytics";
 
 import { useState } from "react";
@@ -20,12 +19,11 @@ import { useEffect } from "react";
 import { useRef } from "react";
 
 export default function Home() {
-  const { openModal } = useModal();
   const cardsRef = useRef(null);
 
   const handleHeroCTAClick = () => {
     trackEvent("home_hero_cta_click");
-    openModal("home_hero_cta_click");
+    window.location.href = "/signin";
   };
 
   const [ctaColor, setCtaColor] = useState("black");

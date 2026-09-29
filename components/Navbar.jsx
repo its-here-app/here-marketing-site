@@ -3,18 +3,20 @@
 import { useEffect, useState } from "react";
 import Logo from "@/components/Logo";
 import Button from "@/components/ui/Button";
-import { useModal } from "@/context/ModalContext";
 import { trackEvent } from "@/utils/analytics";
 
 const Navbar = ({ className = "", showCTA = true }) => {
-  const { openModal } = useModal();
   const [isDark, setIsDark] = useState(
     typeof document !== "undefined" && document.body.dataset.theme === "dark"
   );
 
   const handleCTAClick = () => {
     trackEvent("navbar_cta_click");
-    openModal("navbar_cta_click");
+    window.location.href = "/signin";
+  };
+
+  const handleSignInClick = () => {
+    trackEvent("navbar_signin_click");
   };
 
   useEffect(() => {
@@ -34,15 +36,24 @@ const Navbar = ({ className = "", showCTA = true }) => {
   return (
     <div className="container-lg flex justify-between items-center my-8">
       <Logo button={true} color={isDark ? "white" : "black"} />
-      <div>
+      <div className="flex items-center gap-6">
         {showCTA && (
-          <Button
-            variant="primary"
-            className="sm:block hidden"
-            onClick={handleCTAClick}
-          >
-            Start for free
-          </Button>
+          <>
+            <a
+              href="/signin"
+              onClick={handleSignInClick}
+              data-cursor="neon"
+            >
+              Sign in
+            </a>
+            <Button
+              variant="primary"
+              className="sm:block hidden"
+              onClick={handleCTAClick}
+            >
+              Start for free
+            </Button>
+          </>
         )}
       </div>
     </div>
