@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 import ValuePropSection from "@/components/ValuePropSection";
 import PlaylistCarousel from "@/components/PlaylistCarousel";
 import Navbar from "@/components/Navbar";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 import PlaylistCard from "@/components/PlaylistCard";
 import PhoneSection from "@/components/PhoneSection";
 import ModalTrigger from "@/components/ModalTrigger";
@@ -94,6 +95,7 @@ export default function Home() {
       <SmoothScroll />
 
       <section data-cta-color="black">
+        <AnnouncementBanner />
         <Navbar />
 
         <section className="container pb-4">

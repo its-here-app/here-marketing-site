@@ -26,6 +26,44 @@ export const homePageType = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "announcementBanner",
+      title: "Announcement banner",
+      type: "object",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: "visible",
+          title: "Visible",
+          description: "Show the announcement banner on the site",
+          type: "boolean",
+          initialValue: false,
+        }),
+        defineField({
+          name: "desktopMessage",
+          title: "Desktop message",
+          type: "string",
+        }),
+        defineField({
+          name: "mobileMessage",
+          title: "Mobile message",
+          description: "Optional — uses the desktop message if not filled",
+          type: "string",
+        }),
+        defineField({
+          name: "ctaText",
+          title: "CTA text",
+          type: "string",
+        }),
+        defineField({
+          name: "href",
+          title: "CTA link",
+          description:
+            "A relative path (e.g. /signin) renders a right arrow. A full URL (e.g. https://...) renders a northeast arrow.",
+          type: "string",
+        }),
+      ],
+    }),
+    defineField({
       name: "discoverSection",
       title: "Discover",
       type: "object",

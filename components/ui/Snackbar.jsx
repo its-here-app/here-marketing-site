@@ -103,7 +103,7 @@ function SnackbarItem({ data, onRemove }) {
       style={{
         animation: `${exiting ? "snackbar-out 200ms ease" : "snackbar-in 400ms cubic-bezier(0.21,1.02,0.73,1)"} forwards`,
       }}
-      className={`pointer-events-auto w-full max-w-sm bg-[#212121] rounded-xl px-5 py-3.5 shadow-[0px_2px_4px_0px_rgba(64,64,64,0.14)] ${
+      className={`pointer-events-auto w-full max-w-sm bg-gray-900 rounded-xl px-5 py-3.5 shadow-[0px_2px_4px_0px_rgba(64,64,64,0.14)] ${
         hasTwoActions ? "flex flex-col gap-3" : "flex items-center gap-3"
       }`}
     >
