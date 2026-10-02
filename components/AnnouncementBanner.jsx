@@ -42,8 +42,8 @@ const AnnouncementBanner = () => {
       className="group w-full h-[3.25rem] bg-black hover:bg-gray-900 transition-colors duration-300 text-cream px-[var(--side-spacing)] flex items-center gap-8 cursor-pointer"
     >
       <p className="text-body-sm truncate flex-1 text-left">
-        <span className="md:hidden">{mobileMessage || desktopMessage}</span>
-        <span className="hidden md:inline">{desktopMessage}</span>
+        <span className="lg:hidden">{mobileMessage || desktopMessage}</span>
+        <span className="hidden lg:inline">{desktopMessage}</span>
       </p>
       {ctaText && (
         <span className="flex items-center gap-1 text-body-sm shrink-0">
