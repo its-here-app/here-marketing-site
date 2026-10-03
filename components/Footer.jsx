@@ -1,10 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Logo from "@/components/Logo";
 import EmailInput from "@/components/ui/EmailInput";
 import StickerCTA from "@/components/ui/StickerCTA";
 import { trackEvent } from "@/utils/analytics";
 import { showCookieConsentSnackbar } from "@/utils/cookieConsent";
+import { getFooter } from "@/utils/FooterUtils";
+
+const isExternalHref = (href) => /^https?:\/\//i.test(href || "");
+
+const DEFAULT_LINKS = [
+  { label: "Instagram", href: "https://www.instagram.com/itshere.app/" },
+  { label: "Contact", href: "mailto:team@itshere.app" },
+  {
+    label: "Give us feedback",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link",
+  },
+  { label: "Terms", href: "/terms" },
+  { label: "Privacy", href: "/privacy" },
+];
 
 const Footer = ({
   variant = "default",
@@ -13,6 +28,15 @@ const Footer = ({
   ctaColor = "neon",
 }) => {
   const isBasic = variant === "basic";
+  const [links, setLinks] = useState(DEFAULT_LINKS);
+
+  useEffect(() => {
+    async function fetchFooter() {
+      const footer = await getFooter();
+      if (footer?.links?.length) setLinks(footer.links);
+    }
+    fetchFooter();
+  }, []);
 
   const handleStartPlaylistClick = () => {
     trackEvent("footer_start_playlist_click");
@@ -34,55 +58,21 @@ const Footer = ({
           </>
         )}
         <Logo button={true} color="white" className="mb-8" />
-        <div className="text-gray-700 flex flex-col lg:flex-row lg:justify-between">
-          <ul className="flex flex-col lg:flex-row gap-5 lg:gap-10 mb-10 lg:mb-0">
-            <li>
-              <a
-                href="https://www.instagram.com/itshere.app/"
-                target="_blank"
-                data-cursor-size="sm"
-                className="py-1 -my-1 block"
-              >
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a
-                href="mailto:team@itshere.app"
-                data-cursor-size="sm"
-                className="py-1 -my-1 block"
-              >
-                Contact
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScsPPpWZztGYAwZH3V3czQodyYgmy4mQFYhTmdLr33k08Bd1g/viewform?usp=sf_link"
-                target="_blank"
-                data-cursor-size="sm"
-                className="py-1 -my-1 block"
-              >
-                Give us feedback
-              </a>
-            </li>
-            <li>
-              <a
-                href="/terms"
-                data-cursor-size="sm"
-                className="py-1 -my-1 block"
-              >
-                Terms
-              </a>
-            </li>
-            <li>
-              <a
-                href="/privacy"
-                data-cursor-size="sm"
-                className="py-1 -my-1 block"
-              >
-                Privacy
-              </a>
-            </li>
+        <div className="text-gray-700 flex flex-col lg:flex-row lg:gap-20">
+          <ul className="flex flex-col lg:flex-row lg:flex-wrap lg:flex-1 gap-5 lg:gap-x-10 lg:gap-y-3 mb-10 lg:mb-0">
+            {links.map(({ label, href }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target={isExternalHref(href) ? "_blank" : undefined}
+                  rel={isExternalHref(href) ? "noopener noreferrer" : undefined}
+                  data-cursor-size="sm"
+                  className="py-1 -my-1 block"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
             <li>
               <button
                 type="button"
@@ -94,7 +84,7 @@ const Footer = ({
               </button>
             </li>
           </ul>
-          <p>© Here* 2026. All rights reserved</p>
+          <p className="shrink-0 whitespace-nowrap">© Here* 2026. All rights reserved</p>
         </div>
         {!isBasic && (
           <Logo

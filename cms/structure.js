@@ -21,8 +21,14 @@ export const structure = (S) =>
         .child(
           S.document().schemaType('termsPage').documentId('termsPage').title('Terms page')
         ),
+      S.listItem()
+        .title('Footer')
+        .id('footer')
+        .child(
+          S.document().schemaType('footer').documentId('footer').title('Footer')
+        ),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (item) => !['homePage', 'privacyPage', 'termsPage'].includes(item.getId())
+        (item) => !['homePage', 'privacyPage', 'termsPage', 'footer'].includes(item.getId())
       ),
     ])

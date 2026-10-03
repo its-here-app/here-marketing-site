@@ -40,16 +40,17 @@ export default defineConfig({
     visionTool({ defaultApiVersion: apiVersion }),
   ],
   document: {
-    // Home Page, Privacy Page, and Terms Page are singletons: no creating a
+    // Home Page, Privacy Page, Terms Page, and Footer are singletons: no creating a
     // second one via the global "+" menu, no deleting/duplicating the only instance.
     newDocumentOptions: (prev, { creationContext }) =>
       creationContext.type === "global"
         ? prev.filter(
-            (template) => !["homePage", "privacyPage", "termsPage"].includes(template.templateId)
+            (template) =>
+              !["homePage", "privacyPage", "termsPage", "footer"].includes(template.templateId)
           )
         : prev,
     actions: (prev, { schemaType }) =>
-      ["homePage", "privacyPage", "termsPage"].includes(schemaType)
+      ["homePage", "privacyPage", "termsPage", "footer"].includes(schemaType)
         ? prev.filter(({ action }) => !["delete", "duplicate"].includes(action))
         : prev,
   },
